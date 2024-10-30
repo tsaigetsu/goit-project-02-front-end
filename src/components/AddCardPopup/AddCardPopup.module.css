@@ -1,0 +1,77 @@
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background: #1c1c1e;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    max-width: 90%;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    float: right;
+    cursor: pointer;
+  }
+  
+  h2 {
+    margin-top: 0;
+  }
+  
+  input[type="text"],
+  textarea,
+  input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #333;
+    border: 1px solid #444;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .label-color div {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .pink { background: pink; }
+  .green { background: green; }
+  .black { background: black; }
+  
+  .add-button,
+  .edit-button {
+    width: 100%;
+    padding: 10px;
+    background: #97d700;
+    border: none;
+    color: #1c1c1e;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-button:hover,
+  .edit-button:hover {
+    background: #85be00;
+  }
