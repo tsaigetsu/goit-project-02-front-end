@@ -1,68 +1,68 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  @font-face {
+    font-family: "Poppins";
+    src:
+      url("/fonts/Poppins-Medium.ttf") format("ttf"),
+      url("/fonts/Poppins-Regular.ttf") format("ttf"),
+      url("/fonts/Poppins-SemiBold.ttf") format("ttf");
+  }
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /*BG colors*/
+  --background-pop-up-colorB: #151515;
+  --background-sidebar-colorB: #121212;
+  --background-topbar-colorB: #161616;
+  --background-colorV: #ECEDFD;
+  --background-sidebar-colorV: #5255BC;
+  --background-topbar-colorV: #FFFFFF;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /*Text colors*/
+  --main-text-colorB: #ffffff;
+  --main-text-colorV: #161616;
+
+  /*Button-colors*/
+  --background-button-color:#BEDBB0;
+  --background-button-color:#5255BC;
+
+  /*Priority colors*/
+  --priority-color-low: #8FA1D0;
+  --priority-color-mid: #E09CB5;
+  --priority-color-high: #BEDBB0;
+}
+
+/* Reset styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  color: currentColor;
+  text-decoration: none;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
