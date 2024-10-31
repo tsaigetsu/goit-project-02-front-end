@@ -1,0 +1,38 @@
+
+.myBoardsText {
+    color: rgba(22, 22, 22, 0.50);
+    font-family: Poppins, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.24px;
+    margin: 0 14px 8px;
+}
+.createBoard {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(22, 22, 22, 0.10);
+    border-bottom: 1px solid rgba(22, 22, 22, 0.10);
+    margin: 0 14px 8px;
+}
+
+.createBoardText {
+    width: 76px;
+    color: #161616;
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.28px;
+}
+.createBoardBtn {
+    width: 40px;
+    height: 36px;
+    border: none;
+    border-radius: 6px;
+    background-color: #BEDBB0;
+}

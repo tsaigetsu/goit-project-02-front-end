@@ -1,0 +1,38 @@
+.li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 61px;
+    flex-grow: 1;
+}
+.svgProjectName {
+    margin-left: 14px;
+}
+.boardName {
+    display: flex;
+    gap: 4px;
+}
+.boardBtns {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn {
+    border: none;
+    background-color: aqua;
+    width: 16px;
+    height: 16px;
+}
+.activeLine {
+    width: 4px;
+    height: 61px;
+    background-color: transparent;
+    border-radius: 8px 0 0 8px;
+    margin-left: 6px;
+}
+.isActiveProject {
+    background-color: #F6F6F7;
+    .activeLine {
+        background-color: #BEDBB0;
+    }
+}
