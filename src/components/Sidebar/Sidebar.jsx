@@ -1,29 +1,20 @@
-import SidebarBoardItem from "../SidebarBoardItem/SidebarBoardItem";
+import LogoComponent from "../LogoComponent/LogoComponent";
+import NeedHelpComponent from "../NeedHelpComponent/NeedHelpComponent";
+import SidebarBoardList from "../SidebarBoardList/SidebarBoardList";
 import s from "./Sidebar.module.css";
 
 const Sidebar = () => {
   return (
-    <div>
+    <aside>
       <div className={s.overlay} />
-      <aside className={s.aside}>
-        <nav>
-          <h1 className={s.header}>
-            <svg className={s.iconLogo} width="32" height="32">
-              <use xlinkHref="../../assets/symbol-defs.svg#icon-logo"></use>
-            </svg>
-            <p className={s.logoText}>Task Pro</p>
-          </h1>
-          <p className={s.myBoardsText}>My boards</p>
-          <div className={s.createBoard}>
-            <p className={s.createBoardText}>Create a new board</p>
-            <button className={s.createBoardBtn}>+</button>
-          </div>
+      <div className={s.aside}>
+        <nav className={s.nav}>
+          <LogoComponent />
+          <SidebarBoardList />
+          <NeedHelpComponent />
         </nav>
-        <ul className={s.ul}>
-          <SidebarBoardItem />
-        </ul>
-      </aside>
-    </div>
+      </div>
+    </aside>
   );
 };
 
