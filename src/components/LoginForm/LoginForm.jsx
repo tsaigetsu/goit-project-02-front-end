@@ -1,4 +1,4 @@
-import css from "./RegisterForm.module.css";
+import css from "./LoginForm.module.css";
 import { NavLink } from "react-router-dom";
 
 import * as Yup from "yup";
@@ -7,11 +7,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 
 const validateFormSchema = Yup.object().shape({
-  name: Yup.string()
-    .required("Name is required")
-    .matches(/^[A-Za-z]+$/, "Name must contain only letters")
-    .min(2, "Name is too short")
-    .max(50, "Name is too long"),
   email: Yup.string()
     .required("Email is required")
     .email("Invalid email address"),
@@ -20,7 +15,7 @@ const validateFormSchema = Yup.object().shape({
     .min(8, "Password must be at least 8 characters"),
 });
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const [visiblePassword, setVisiblePassword] = useState(true);
 
   const {
@@ -30,7 +25,6 @@ const RegisterForm = () => {
     formState: { errors, touchedFields },
   } = useForm({
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
@@ -69,17 +63,6 @@ const RegisterForm = () => {
           <div className={css.inputContainer}>
             <label className={css.label}>
               <input
-                {...register("name")}
-                type="text"
-                placeholder="Enter your name"
-                className={css.input}
-              />
-              {errors.name && touchedFields.name && (
-                <div className={css.error}>{errors.name.message}</div>
-              )}
-            </label>
-            <label className={css.label}>
-              <input
                 {...register("email")}
                 type="text"
                 placeholder="Enter your email"
@@ -114,4 +97,5 @@ const RegisterForm = () => {
     </div>
   );
 };
-export default RegisterForm;
+
+export default LoginForm;
