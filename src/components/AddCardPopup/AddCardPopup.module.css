@@ -10,7 +10,7 @@
     align-items: center;
   }
   
-  .popup-content {
+  .popupContent {
     background: #1c1c1e;
     color: white;
     padding: 20px;
@@ -19,7 +19,7 @@
     max-width: 90%;
   }
   
-  .close-button {
+  .closeButton {
     background: none;
     border: none;
     color: white;
@@ -32,8 +32,7 @@
     margin-top: 0;
   }
   
-  input[type="text"],
-  textarea,
+  .inputTitle
   input[type="date"] {
     width: 100%;
     padding: 10px;
@@ -44,12 +43,12 @@
     border-radius: 5px;
   }
   
-  .label-color div {
+  .labelColor{
     display: flex;
     justify-content: space-around;
   }
   
-  .color-circle {
+  .colorCircle {
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -60,7 +59,7 @@
   .green { background: green; }
   .black { background: black; }
   
-  .add-button,
+  .addButton,
   .edit-button {
     width: 100%;
     padding: 10px;
@@ -71,7 +70,7 @@
     cursor: pointer;
   }
   
-  .add-button:hover,
+  .aaddButton:hover,
   .edit-button:hover {
     background: #85be00;
   }

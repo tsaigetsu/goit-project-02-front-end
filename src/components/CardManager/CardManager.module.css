@@ -1,0 +1,10 @@
+.cardManager {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cardManagerButton {
+    padding: 10px;
+    margin: 20px 0;
+  }
