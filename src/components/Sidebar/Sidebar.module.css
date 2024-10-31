@@ -1,0 +1,68 @@
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(21, 21, 21, 0.50);
+    z-index: 999;
+}
+.aside {
+    position: fixed;
+    width: 225px;
+    height: 100%;
+    background-color: #FFF;
+    padding: 14px;
+    z-index: 1000;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 70px;
+}
+.logoText {
+    color: #161616;
+    font-family: Poppins,sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.64px;
+}
+.myBoardsText {
+    color: rgba(22, 22, 22, 0.50);
+    font-family: Poppins, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.24px;
+    margin-bottom: 8px;
+}
+.createBoard {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(22, 22, 22, 0.10);
+    border-bottom: 1px solid rgba(22, 22, 22, 0.10);
+    margin-bottom: 8px;
+}
+
+.createBoardText {
+    width: 76px;
+    color: #161616;
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.28px;
+}
+.createBoardBtn {
+    width: 40px;
+    height: 36px;
+    border: none;
+    border-radius: 6px;
+    background-color: #BEDBB0;
+}
