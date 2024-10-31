@@ -4,6 +4,7 @@ import s from "./SidebarBoardList.module.css";
 const SidebarBoardList = () => {
   return (
     <ul className={s.ul}>
+      {/* нужен скролл */}
       <li className={s.myBoardsText}>My boards</li>
       <li className={s.createBoard}>
         <p className={s.createBoardText}>Create a new board</p>
