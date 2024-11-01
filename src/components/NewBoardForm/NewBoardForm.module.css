@@ -1,0 +1,214 @@
+* {
+    box-sizing: border-box;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    animation: overlayFadeIn 0.3s forwards;
+}
+
+@keyframes overlayFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modalContainer {
+    background: #151515;
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid rgba(190, 219, 176, 0.50);
+    width: 350px;
+    height: 433px;
+    color: #FFF;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: scale(0.9);
+    animation: modalFadeIn 0.3s ease-out forwards;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modalCloseBtn {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #f0f0f0;
+}
+
+.modalContainer h2 {
+    color: #FFF;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.36px;
+    margin-bottom: 24px;
+}
+
+.inputGroup {
+    position: relative;
+    height: 73px;
+}
+
+.inputGroup input {
+    width: 302px;
+    height: 49px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 18px;
+    align-items: center;
+    display: flex;
+    margin-bottom: 4px;
+    border-radius: 8px;
+    border: 1px solid #BEDBB0;
+    background: #1F1F1F;
+    opacity: 0.4;
+    box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
+
+    color: #FFF;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.02em;
+}
+
+.inputGroup input:focus {
+    outline: none;
+    border-color: #BEDBB0;
+    opacity: 1;
+}
+
+.error {
+    color: #ff4d4f;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* Контейнер для иконок */
+.icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+/* Стили для кнопок иконок */
+.iconButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.iconButton input[type="radio"] {
+    display: none;
+    /* Скрываем радио-кнопки */
+}
+
+.iconButton svg {
+    fill: #f0f0f0;
+    width: 24px;
+    height: 24px;
+}
+
+.iconButton:hover {
+    background-color: #333;
+}
+
+.iconButton input[type="radio"]:checked+svg {
+    fill: #a3d9a5;
+    /* Цвет выбранной иконки */
+}
+
+/* Контейнер для фонов */
+.backgrounds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+/* Кнопка фона */
+.backgroundButton {
+    width: 48px;
+    height: 48px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.backgroundButton input[type="radio"] {
+    display: none;
+    /* Скрываем радио-кнопки */
+}
+
+.backgroundButton.selected {
+    border-color: #a3d9a5;
+    /* Обводка выбранного фона */
+}
+
+/* Кнопка создания / редактирования */
+.createBtn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #a3d9a5;
+    color: #1e1e1e;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.createBtn svg {
+    width: 16px;
+    height: 16px;
+    fill: #1e1e1e;
+}
+
+.createBtn:hover {
+    background-color: #8ecf95;
+}

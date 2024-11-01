@@ -61,8 +61,12 @@ const NewBoardForm = ({ isOpen, onClose }) => {
 
     return (
         <div className={s.modalOverlay} onClick={onClose}>
-            <div className={s.modalContent} onClick={(e) => e.stopPropagation()}>
-                <button className={s.modalClose} onClick={onClose}>×</button>
+            <div className={s.modalContainer} onClick={(e) => e.stopPropagation()}>
+                <button className={s.modalCloseBtn} onClick={onClose}>
+                    <svg width="18" height="18">
+                        <use href='#$icon-close' />
+                    </svg>
+                </button>
                 <h2>New board</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
