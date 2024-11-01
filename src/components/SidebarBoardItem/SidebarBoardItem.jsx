@@ -1,22 +1,40 @@
+// import { useDispatch } from "react-redux";
+import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./SidebarBoardItem.module.css";
 
-const SidebarBoardItem = () => {
+const SidebarBoardItem = ({ name }) => {
+  // const dispatch = useDispatch();
   return (
     <li className={`${s.li} ${s.isActiveProject}`}>
+      {/* добавить динамику для второго класса */}
       <div className={s.boardName}>
-        <svg width="18" height="18" className={s.svgProjectName}></svg>
-        <p>{name}BoardName</p>
+        <SvgIcon
+          id="icon-Project" //  заменить на айди иконки с бека
+          className="projectIcon"
+          width="18"
+          height="18"
+        />
+        <p className={s.p}>{name}</p>
       </div>
       <div className={s.boardBtns}>
         <button className={s.btn}>
-          <svg width="16" height="16">
-            <use xlinkHref="../../assets/symbol-defs.svg#icon-icon"></use>
-          </svg>
+          <SvgIcon
+            id="icon-pencil-01"
+            className="boardIcon"
+            width="16"
+            height="16"
+          />
         </button>
-        <button className={s.btn}>
-          <svg width="16" height="16">
-            <use xlinkHref="../../assets/symbol-defs.svg#icon-icon"></use>
-          </svg>
+        <button
+          className={s.btn}
+          // onClick={() => dispatch(deleteBoardThunk(id))}
+        >
+          <SvgIcon
+            id="icon-trash-04"
+            className="boardIcon"
+            width="16"
+            height="16"
+          />
         </button>
         <div className={s.activeLine}></div>
       </div>

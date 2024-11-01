@@ -1,11 +1,13 @@
+@font-face {
+  font-family: "Poppins";
+  src:
+    url("/fonts/Poppins-Medium.ttf") format("ttf"),
+    url("/fonts/Poppins-Regular.ttf") format("ttf"),
+    url("/fonts/Poppins-SemiBold.ttf") format("ttf");
+}
+
 :root {
-  @font-face {
-    font-family: "Poppins";
-    src:
-      url("/fonts/Poppins-Medium.ttf") format("ttf"),
-      url("/fonts/Poppins-Regular.ttf") format("ttf"),
-      url("/fonts/Poppins-SemiBold.ttf") format("ttf");
-  }
+
 
   /*BG colors*/
   --background-pop-up-colorB: #151515;
@@ -20,8 +22,8 @@
   --main-text-colorV: #161616;
 
   /*Button-colors*/
-  --background-button-color:#BEDBB0;
-  --background-button-color:#5255BC;
+  --background-button-colorB: #BEDBB0;
+  --background-button-colorV: #5255BC;
 
   /*Priority colors*/
   --priority-color-low: #8FA1D0;
