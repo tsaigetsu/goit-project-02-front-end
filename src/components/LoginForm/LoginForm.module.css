@@ -1,0 +1,117 @@
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  padding: 24px;
+  background-color: #151515;
+  border-radius: 8px;
+  width: 335px;
+  height: fit-content;
+  box-sizing: border-box;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 424px;
+    padding: 40px;
+  }
+}
+
+.linkContainer {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.link {
+  color: #ffffff;
+  opacity: 0.3;
+}
+
+.link:hover,
+.link:focus {
+  opacity: 100%;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.label {
+  position: relative;
+}
+.input {
+  box-sizing: border-box;
+  background-color: #1f1f1f;
+  border: 1px solid #bedbb0;
+  border-radius: 8px;
+  opacity: 40%;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 49px;
+  width: 100%;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.input::placeholder {
+  color: #ffffff;
+
+  font-size: 14px;
+}
+
+.input:hover,
+.input:focus {
+  opacity: 100%;
+}
+
+.active {
+  opacity: 100%;
+}
+
+.active {
+  color: #ffffff;
+}
+.btn {
+  height: 49px;
+  padding: 14px 0px;
+  border-radius: 8px;
+  background-color: #bedbb0;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #9dc888;
+}
+
+.toggleBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: #fff;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 2px;
+}

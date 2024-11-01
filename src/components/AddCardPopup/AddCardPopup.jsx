@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-import css from "./AddCardPopup.module.css";
+import s from "./AddCardPopup.module.css";
 
 const AddCardPopup = ({ onClose, onAdd }) => {
   const [title, setTitle] = useState('');
@@ -20,26 +20,35 @@ const AddCardPopup = ({ onClose, onAdd }) => {
   };
 
   return (
-    <div className={css.popup}>
-      <div className={css.popupContent}>
-        <button className={css.closeButton} onClick={onClose}>×</button>
-        <h2>Add Card</h2>
+    <div className={s.popup}>
+      <div className={s.popupContent}>
+        <button className={s.closeButton} onClick={onClose}>×</button>
+        <p className={s.labelTitle}>Add Card</p>
         <input
-          className={css.inputTitle}
+          className={s.inputTitle}
           type="text"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
-          className={css.inputTitle}
+          className={s.inputTitle}
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <div className={css.labelColor}>
-          <p>Label color</p>
+        <div className={s.labelColor}>
+          <p className={s.labelTitle}>Label color</p>
           <div>
+            <label>
+              <input
+                type="radio"
+                name="labelColor"
+                value="violet"
+                onChange={() => setLabelColor('violet')}
+              />
+              <span className={`${s.colorCircle} ${s.violet}`} />
+            </label>
             <label>
               <input
                 type="radio"
@@ -47,7 +56,7 @@ const AddCardPopup = ({ onClose, onAdd }) => {
                 value="pink"
                 onChange={() => setLabelColor('pink')}
               />
-              <span className={`${css.colorCircle} ${css.pink}`} />
+              <span className={`${s.colorCircle} ${s.pink}`} />
             </label>
             <label>
               <input
@@ -56,7 +65,7 @@ const AddCardPopup = ({ onClose, onAdd }) => {
                 value="green"
                 onChange={() => setLabelColor('green')}
               />
-              <span className={`${css.colorCircle} ${css.green}`} />
+              <span className={`${s.colorCircle} ${s.green}`} />
             </label>
             <label>
               <input
@@ -65,28 +74,22 @@ const AddCardPopup = ({ onClose, onAdd }) => {
                 value="black"
                 onChange={() => setLabelColor('black')}
               />
-              <span className={`${css.colorCircle} ${css.black}`} />
+              <span className={`${s.colorCircle} ${s.black}`} />
             </label>
           </div>
         </div>
-        <div className={css.deadline}>
-          <p>Deadline</p>
+        <div className={s.deadline}>
+          <p className={s.deadlineLabel}>Deadline</p>
           <input
             type="date"
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
           />
         </div>
-        <button className={css.addButton} onClick={handleAdd}>Add</button>
+        <button className={s.addButton} onClick={handleAdd}>Add</button>
       </div>
     </div>
   );
-};
-
-// Валідація пропсів
-AddCardPopup.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  onAdd: PropTypes.func.isRequired,
 };
 
 export default AddCardPopup;

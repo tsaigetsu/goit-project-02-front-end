@@ -34,6 +34,12 @@
   color: #ffffff;
   opacity: 0.3;
 }
+
+.link:hover,
+.link:focus {
+  opacity: 100%;
+}
+
 .formContainer {
   display: flex;
   flex-direction: column;
@@ -70,12 +76,20 @@
   font-size: 14px;
 }
 
+.input:hover,
+.input:focus {
+  opacity: 100%;
+}
+
+.active {
+  opacity: 100%;
+}
+
 .active {
   color: #ffffff;
 }
 .btn {
   height: 49px;
-  font-family: "Poppins" sans-serif;
   padding: 14px 0px;
   border-radius: 8px;
   background-color: #bedbb0;
@@ -84,9 +98,20 @@
   font-weight: 500;
 }
 
+.btn:hover,
+.btn:focus {
+  background-color: #9dc888;
+}
+
 .toggleBtn {
   position: absolute;
   top: 16px;
   right: 16px;
   background-color: #fff;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 2px;
 }
