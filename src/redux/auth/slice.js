@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logoutThunk } from "./operations";
+// import { logoutThunk } from "./operations";
 
 const initialState = {
   user: {
@@ -14,11 +14,11 @@ const initialState = {
 const slice = createSlice({
   name: "auth",
   initialState,
-  extraReducers: (builder) => {
-    builder.addCase(logoutThunk.fulfilled, () => {
-      return initialState;
-    });
-  },
+  // extraReducers: (builder) => {
+  //   builder.addCase(logoutThunk.fulfilled, () => {
+  //     return initialState;
+  //   });
+  // },
 });
 
 export const authReducer = slice.reducer;
