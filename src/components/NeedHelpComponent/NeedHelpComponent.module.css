@@ -24,6 +24,7 @@
 }
 .btnIcon {
     stroke: #161616;
+    fill: none;
 }
 .btn {
     border: none;
