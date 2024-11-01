@@ -1,5 +1,6 @@
 // import { useDispatch, useSelector } from "react-redux";
 import SidebarBoardItem from "../SidebarBoardItem/SidebarBoardItem";
+import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./SidebarBoardList.module.css";
 // import { useEffect } from "react";
 
@@ -15,7 +16,14 @@ const SidebarBoardList = () => {
       <li className={s.myBoardsText}>My boards</li>
       <li className={s.createBoard}>
         <p className={s.createBoardText}>Create a new board</p>
-        <button className={s.createBoardBtn}>+</button>
+        <button className={s.createBoardBtn}>
+          <SvgIcon
+            id="icon-plus"
+            className="createIcon"
+            width="20"
+            height="20"
+          />
+        </button>
       </li>
       {/* {data.map((item) => ( */}
       <SidebarBoardItem
