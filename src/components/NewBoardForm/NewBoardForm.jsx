@@ -2,6 +2,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PropTypes from 'prop-types';
+import SvgIcon from "../SvgIcon/SvgIcon";
 import s from './NewBoardForm.module.css';
 
 const icons = [
@@ -63,9 +64,12 @@ const NewBoardForm = ({ isOpen, onClose }) => {
         <div className={s.modalOverlay} onClick={onClose}>
             <div className={s.modalContainer} onClick={(e) => e.stopPropagation()}>
                 <button className={s.modalCloseBtn} onClick={onClose}>
-                    <svg width="18" height="18">
-                        <use href='#$icon-close' />
-                    </svg>
+                    <SvgIcon 
+                        id="icon-x-close"
+                        className="closeBtnIcon"
+                        width="18"
+                        height="18"
+                    />
                 </button>
                 <h2>New board</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -92,9 +96,12 @@ const NewBoardForm = ({ isOpen, onClose }) => {
                                     checked={selectedIcon === icon}
                                     onChange={() => setValue("icon", icon)}
                                 />
-                                <svg width="24" height="24">
-                                    <use href={`#${icon}`} />
-                                </svg>
+                                <SvgIcon
+                                    width="24"
+                                    height="24"
+                                    id={icon}
+                                    className={s.radioIcon}
+                                />
                             </label>
                         ))}
                     </div>
