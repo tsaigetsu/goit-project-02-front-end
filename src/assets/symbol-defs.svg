@@ -106,5 +106,8 @@
 <path fill="none" stroke="#161616" style="stroke: var(--color4, #161616)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="0.4103" d="M13.949 25.88v2.393"></path>
 <path fill="none" stroke="#161616" style="stroke: var(--color4, #161616)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="0.4103" d="M12.752 27.077h2.393"></path>
 </symbol>
+<symbol id="icon-chevron-down" viewBox="0 0 30 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.3684" d="M7.579 12.211l7.579 7.579 7.579-7.579"></path>
+</symbol>
 </defs>
 </svg>
