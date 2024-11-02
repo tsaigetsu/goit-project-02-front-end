@@ -1,0 +1,16 @@
+.btn {
+    margin-left: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: none;
+    background-color: transparent;
+    padding-right: 7px;
+    width: 98px;
+    height: 32px;
+}
+.logOutIcon {
+    stroke: #BEDBB0;
+    fill: none;
+}

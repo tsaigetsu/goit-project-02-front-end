@@ -4,9 +4,19 @@
     justify-content: space-between;
     height: 61px;
     flex-grow: 1;
+    padding-left: 14px;
 }
-.svgProjectName {
-    margin-left: 14px;
+.projectIcon {
+    stroke: rgba(22, 22, 22, 0.5);
+}
+.p {
+    color: rgba(22, 22, 22, 0.50);
+    /* font-family: Poppins; */
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.28px;
 }
 .boardName {
     display: flex;
@@ -18,21 +28,37 @@
     gap: 8px;
 }
 .btn {
-    border: none;
-    background-color: aqua;
-    width: 16px;
-    height: 16px;
+    display: none;
 }
 .activeLine {
-    width: 4px;
-    height: 61px;
-    background-color: transparent;
-    border-radius: 8px 0 0 8px;
-    margin-left: 6px;
+    display: none;
 }
 .isActiveProject {
     background-color: #F6F6F7;
-    .activeLine {
-        background-color: #BEDBB0;
+    .btn {
+        display: block;
+        border: none;
+        background-color: transparent;
+        width: 16px;
+        height: 16px;
     }
+    .projectIcon {
+        stroke: #161616;
+        fill: none;
+    }
+    .p {
+        color: #161616;
+    }
+    .boardIcon {
+        stroke: rgba(22, 22, 22, 0.5);
+        fill: none;
+    }
+    .activeLine {
+        display: block;
+        background-color: #BEDBB0;
+        width: 4px;
+        height: 61px;
+        border-radius: 8px 0 0 8px;
+        margin-left: 6px;
+        }
 }

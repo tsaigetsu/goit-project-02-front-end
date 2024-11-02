@@ -1,11 +1,10 @@
+import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./LogoComponent.module.css";
 
 const LogoComponent = () => {
   return (
     <h1 className={s.header}>
-      <svg className={s.iconLogo} width="32" height="32">
-        <use xlinkHref="../../assets/symbol-defs.svg#icon-icon"></use>
-      </svg>
+      <SvgIcon id="icon-icon" className="logoIcon" width="32" height="32" />
       <p className={s.logoText}>Task Pro</p>
     </h1>
   );
