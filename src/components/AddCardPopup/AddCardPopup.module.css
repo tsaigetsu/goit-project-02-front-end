@@ -71,7 +71,7 @@ textarea {
 }
 
 .labelTitle {
-  margin: 0 0 4px;
+  margin-bottom: 4px;
   color: #FFFFFF80; 
   font-size: 12px;
   font-weight: 400;
@@ -92,7 +92,7 @@ input[type="radio"] {
   height: 14px;
   border-radius: 50%;
   cursor: pointer;
-  margin-left: 8px;
+  margin-right: 8px;
   border: 2px solid transparent;
   transition: border-color 0.3s;
 }
@@ -145,12 +145,12 @@ input[type="radio"] {
   width: 100%;
   max-width: 335px;
   height: 56px;
-  background-color: #BEDBB0; /* Light green button */
+  background-color: #BEDBB0; 
   border-radius: 8px;
   border: none;
   font-size: 14px;
   font-weight: 500;
-  color: #161616; /* Dark text for button */
+  color: #161616; 
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   margin: 0 auto;
@@ -158,15 +158,15 @@ input[type="radio"] {
 
 .createIcon {
   fill: none;
-  stroke: #161616; /* Dark stroke for icon */
-  background-color: #161616; /* Same as popup background */
+  stroke: #161616; 
+  background-color: #161616; 
   border-radius: 10%; 
   display: inline-flex; 
   margin-right: 4px;
 }
 
 .addButton:hover {
-  background-color: #9DC888; /* Darker shade on hover */
+  background-color: #9DC888; 
 }
 
 /* Адаптивність */
@@ -180,7 +180,7 @@ input[type="radio"] {
 @media (min-width: 768px) {
   .popupContent {
     width: 60%;
-    max-width: 500px; /* Для планшетів */
+    max-width: 768px; /* Для планшетів */
     padding: 32px; /* Add more padding for larger screens */
   }
 }
@@ -188,7 +188,7 @@ input[type="radio"] {
 @media (min-width: 1440px) {
   .popupContent {
     width: 40%;
-    max-width: 600px; /* Для десктопів */
-    padding: 40px; /* Even more padding for desktops */
+    max-width: 1442x; /* Для десктопів */
+    padding: 40px; 
   }
 }
