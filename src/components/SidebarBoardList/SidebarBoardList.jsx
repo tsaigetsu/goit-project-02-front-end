@@ -19,7 +19,7 @@ const SidebarBoardList = () => {
         <button className={s.createBoardBtn}>
           <SvgIcon
             id="icon-plus"
-            className="createIcon"
+            className={s.createIcon}
             width="20"
             height="20"
           />

@@ -6,7 +6,12 @@ const LogOutBtn = () => {
   const dispatch = useDispatch();
   return (
     <button className={s.btn} onClick={() => dispatch(logoutThunk())}>
-      <SvgIcon id="icon-login" className="logOutIcon" width="32" height="32" />
+      <SvgIcon
+        id="icon-login"
+        className={s.logOutIcon}
+        width="32"
+        height="32"
+      />
       Log out
     </button>
   );
