@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
-
-function App() {}
+import EditProfile from "./components/EditProfile/EditProfile";
+function App() {
+  return <EditProfile />;
+}
 
 export default App;
