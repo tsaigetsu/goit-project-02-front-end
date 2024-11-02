@@ -1,0 +1,55 @@
+/* Card Manager Container */
+.cardManager {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Add Card Button */
+.cardManagerButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 335px;
+  height: 56px;
+  background-color: #BEDBB0;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #161616;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.createIcon {
+  
+  fill: none;
+  stroke:#161616;
+  background-color: #161616;
+  border-radius: 10%; 
+  display: inline-flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+
+.cardManagerButton:hover {
+  background-color: #b0dba4;
+  transform: scale(1.02); /* Slight scale effect on hover */
+}
+
+/* SVG Icon Style */
+.svgPlusBlackWhite {
+ 
+}
+
+.svgPlusBlackWhite:hover {
+  background-color: #333; /* Darker shade for hover */
+}

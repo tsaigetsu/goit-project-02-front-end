@@ -1,45 +1,35 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import viteLogo from "/favicon.svg"; 
+
+// import CardManager from "./components/CardManager/CardManager.jsx";
+
 import "./App.css";
-import WelcomePage from "./pages/WelcomePage/WelcomePage";
-import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
-import PublicRoute from "./Routes/PublicRoute";
-import PrivateRoute from "./Routes/PrivateRoute";
-import HomePage from "./pages/HomePage/HomePage";
-import ScreensPage from "./pages/ScreensPage/ScreensPage";
+
 
 function App() {
+  const [count, setCount] = useState(0);
+
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/welcome" replace />} />
-
-      <Route
-        path="/welcome"
-        element={<PublicRoute component={<WelcomePage />} redirectTo="/home" />}
-      />
-
-      {/* <Route
-        path="/auth/:id"
-        element={
-          <PublicRoute
-            component={<AuthPage />}
-            redirectTo="/home"
-          />
-        }
-      >
-        <Route path="login" element={<LoginForm />} />
-        <Route path="register" element={<RegisterForm />} />
-      </Route> */}
-
-      <Route
-        path="/home"
-        element={
-          <PrivateRoute component={<HomePage />} redirectTo="/welcome" />
-        }
-      >
-        <Route path=":boardId" element={<ScreensPage />} />
-      </Route>
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+        {/* <CardManager /> */}
+            </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
   );
 }
 
