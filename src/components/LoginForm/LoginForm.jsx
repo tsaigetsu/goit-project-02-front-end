@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import SvgIcon from "../SvgIcon/SvgIcon";
 
 const validateFormSchema = Yup.object().shape({
   email: Yup.string()
@@ -22,7 +23,7 @@ const LoginForm = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, touchedFields },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       email: "",
@@ -68,7 +69,7 @@ const LoginForm = () => {
                 placeholder="Enter your email"
                 className={css.input}
               />
-              {errors.email && touchedFields.email && (
+              {errors.email && (
                 <div className={css.error}>{errors.email.message}</div>
               )}
             </label>
@@ -79,14 +80,21 @@ const LoginForm = () => {
                 placeholder="Create a password"
                 className={css.input}
               />
-              {errors.password && touchedFields.password && (
+              {errors.password && (
                 <div className={css.error}>{errors.password.message}</div>
               )}
               <button
                 type="button"
                 className={css.toggleBtn}
                 onClick={() => setVisiblePassword(!visiblePassword)}
-              ></button>
+              >
+                <SvgIcon
+                  id="icon-eye"
+                  className={css.toggleBtnIcon}
+                  width="18"
+                  height="18"
+                />
+              </button>
             </label>
           </div>
           <button type="submit" className={css.btn}>
