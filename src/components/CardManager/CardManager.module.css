@@ -28,6 +28,18 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.createIcon {
+  
+  fill: none;
+  stroke:#161616;
+  background-color: #161616;
+  border-radius: 10%; 
+  display: inline-flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+
 .cardManagerButton:hover {
   background-color: #b0dba4;
   transform: scale(1.02); /* Slight scale effect on hover */
@@ -35,16 +47,7 @@
 
 /* SVG Icon Style */
 .svgPlusBlackWhite {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  background-color: #161616;
-  border-radius: 6px;
-  color: #fff;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+ 
 }
 
 .svgPlusBlackWhite:hover {

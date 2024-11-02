@@ -1,12 +1,24 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-import css from "./EditCardPopup.module.css";
+import SvgIcon from '../SvgIcon/SvgIcon';
+import s from "./EditCardPopup.module.css";
 
 const EditCardPopup = ({ onClose, onEdit, card }) => {
   const [title, setTitle] = useState(card.title);
   const [description, setDescription] = useState(card.description);
   const [labelColor, setLabelColor] = useState(card.labelColor);
   const [deadline, setDeadline] = useState(card.deadline);
+  const [showDateInput, setShowDateInput] = useState(false);
+
+  // Функція для перемикання відображення поля вибору дати
+  const toggleDateInput = () => {
+    setShowDateInput(!showDateInput);
+  };
+
+  // Форматування дати для відображення
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
 
   const handleEdit = () => {
     const updatedCard = {
@@ -21,79 +33,77 @@ const EditCardPopup = ({ onClose, onEdit, card }) => {
   };
 
   return (
-    <div className={css.popup}>
-      <div className={css.popupContent}>
-        <button className={css.closeButton} onClick={onClose}>×</button>
-        <h2>Edit Card</h2>
+    <div className={s.popup}>
+      <div className={s.popupContent}>
+        <button className={s.closeButton} onClick={onClose}>
+          <SvgIcon
+            id="icon-x-close"
+            className={s.svgCloseIcon}
+            width="18"
+            height="18"
+          />
+        </button>
+        <p className={s.labelTitle}>Edit Card</p>
         <input
-          className={css.inputTitle}
+          className={s.inputTitle}
           type="text"
+          placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
+          className={s.inputTitle}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <div className={css.labelColor}>
-          <p>Label color</p>
+        <div className={s.labelColor}>
+          <p className={s.labelTitle}>Label color</p>
           <div>
-            <label>
-              <input
-                type="radio"
-                name="labelColor"
-                value="pink"
-                checked={labelColor === 'pink'}
-                onChange={() => setLabelColor('pink')}
-              />
-              <span className={`${css.colorCircle} ${css.pink}`} />
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="labelColor"
-                value="green"
-                checked={labelColor === 'green'}
-                onChange={() => setLabelColor('green')}
-              />
-              <span className={`${css.colorCircle} ${css.green}`} />
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="labelColor"
-                value="black"
-                checked={labelColor === 'black'}
-                onChange={() => setLabelColor('black')}
-              />
-              <span className={`${css.colorCircle} ${css.black}`} />
-            </label>
+            {['violet', 'pink', 'green', 'black'].map((color) => (
+              <label key={color}>
+                <input
+                  type="radio"
+                  name="labelColor"
+                  value={color}
+                  checked={labelColor === color}
+                  onChange={() => setLabelColor(color)}
+                />
+                <span className={`${s.colorCircle} ${s[color]}`} />
+              </label>
+            ))}
           </div>
         </div>
-        <div className={css.deadline}>
-          <p>Deadline</p>
-          <input
-            type="date"
-            value={deadline}
-            onChange={(e) => setDeadline(e.target.value)}
-          />
+        <div className={s.deadline}>
+          <p className={s.deadlineLabel}>Deadline</p>
+          <div onClick={toggleDateInput} className={s.dateDisplay}>
+            {deadline ? formatDate(deadline) : 'Select a date'}
+            <SvgIcon id="icon-dropdown" className={s.dropdownIcon} width="14" height="14" />
+          </div>
+          {showDateInput && (
+           <input
+           type="date"
+           value={deadline}
+           min={new Date().toISOString().split("T")[0]} // забороняє вибір минулих дат
+           onChange={(e) => {
+             setDeadline(e.target.value);
+             setShowDateInput(false);
+           }}
+           className={s.dateInput}
+         />
+          )}
         </div>
-        <button className={css.editButton} onClick={handleEdit}>Edit</button>
+        <button className={s.addButton} onClick={handleEdit}>
+          <SvgIcon
+            id="icon-normalBtnBlack"
+            className={s.createIcon}
+            width="28"
+            height="28"
+          />
+          Edit
+        </button>
       </div>
     </div>
   );
-};
-
-// Валідація пропсів
-EditCardPopup.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  card: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
-    labelColor: PropTypes.string,
-    deadline: PropTypes.string,
-  }).isRequired,
 };
 
 export default EditCardPopup;

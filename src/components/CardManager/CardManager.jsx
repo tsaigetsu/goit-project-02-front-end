@@ -2,6 +2,7 @@ import { useState } from 'react';
 import AddCardPopup from '../AddCardPopup/AddCardPopup.jsx';
 import EditCardPopup from '../EditCardPopup/EditCardPopup.jsx';
 import CardList from '../CardList/CardList.jsx';
+import SvgIcon from '../SvgIcon/SvgIcon.jsx';
 import s from './CardManager.module.css';
 
 const CardManager = () => {
@@ -37,9 +38,12 @@ const CardManager = () => {
   return (
     <div className={s.cardManager}>
       <button className={s.cardManagerButton} onClick={openAddPopup}>
-      <svg width="28" height="28" className={s.svgPlusBlackWhite}>
-            <use xlinkHref="../../symbol-defs.svg#icon-normalBtnBlack"></use>
-          </svg>
+      <SvgIcon
+            id="icon-normalBtnBlack"
+          className={s.createIcon}
+            width="28"
+            height="28"
+          />
           Add another card</button>
       
       <CardList cards={cards} onEdit={openEditPopup} onDelete={handleDeleteCard} />
