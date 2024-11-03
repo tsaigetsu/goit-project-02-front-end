@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PropTypes from 'prop-types';
+import SvgIcon from "../SvgIcon/SvgIcon";
 import s from './EditBoardForm.module.css';
 
 const icons = [
@@ -12,8 +14,7 @@ const icons = [
     "icon-container",
     "icon-lightning-02",
     "icon-colors",
-    "icon-hexagon-01"
-];
+    "icon-hexagon-01"];
 const backgrounds = [
     "/src/assets/images/jpgs/desktop/flowers2x.jpg",
     "/src/assets/images/jpgs/desktop/skyMountrain2x.jpg",
@@ -40,8 +41,11 @@ const schema = yup.object().shape({
         .max(32, "Title cannot exceed 32 characters"),
 });
 
-const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBackground }) => {
-    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
+const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBackground, onSave }) => {
+    const [isExiting, setIsExiting] = useState(false);
+    const [hasText, setHasText] = useState((!!initialTitle));
+
+    const { register, handleSubmit, setValue, watch, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
             title: initialTitle || "",
@@ -50,34 +54,62 @@ const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBack
         },
     });
 
+    const onInputChange = (e) => {
+        setHasText(e.target.value.length > 0);
+    };
+
     const selectedIcon = watch("icon");
     const selectedBackground = watch("background");
 
-    const onSubmit = (data) => {
-        console.log("Updated Data: ", data);
-        onClose();
+    const handleFormClose = () => {
+        setIsExiting(true);
+        setTimeout(() => {
+            setIsExiting(false);
+            reset();
+            onClose();
+        }, 300);
     };
 
-    if (!isOpen) return null;
+    const onSubmit = (data) => {
+        console.log("Updated Data: ", data);
+        onSave(data);
+        handleFormClose();
+    };
+
+    if (!isOpen && !isExiting) return null;
 
     return (
-        <div className={s.modalOverlay} onClick={onClose}>
-            <div className={s.modalContent} onClick={(e) => e.stopPropagation()}>
-                <button className={s.modalClose} onClick={onClose}>×</button>
+        <div className={`${s.modalOverlay} ${isExiting ? s.fadeOut : ""}`} onClick={handleFormClose}>
+            <div className={`${s.modalContainer} ${isExiting ? s.fadeOut : ""}`} onClick={(e) => e.stopPropagation()}>
+                <button className={s.modalCloseBtn} onClick={handleFormClose}>
+                    <SvgIcon 
+                        id="icon-x-close"
+                        className={s.closeBtnIcon}
+                        width="18"
+                        height="18"
+                    />
+                </button>
                 <h2>Edit board</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
-                    {/* Поле для редактирования названия */}
+                    {/* Поле для назви дошки */}
                     <div className={s.inputGroup}>
                         <input
                             type="text"
                             placeholder="Title"
                             {...register("title")}
+                            className={hasText ? s.focused : ""}
+                            onChange={(e) => {
+                                onInputChange(e);
+                                setValue('title', e.target.value);
+                            }}
+                            onFocus={() => setHasText(true)}
+                            onBlur={(e) => setHasText(e.target.value.length > 0)}
                         />
                         {errors.title && <p className={s.error}>{errors.title.message}</p>}
                     </div>
 
-                    {/* Список иконок как радиокнопки */}
+                    {/* Список іконок як радіо-кнопки */}
                     <label>Icons</label>
                     <div className={s.icons}>
                         {icons.map((icon, index) => (
@@ -89,17 +121,20 @@ const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBack
                                     checked={selectedIcon === icon}
                                     onChange={() => setValue("icon", icon)}
                                 />
-                                <svg width="24" height="24">
-                                    <use href={`#${icon}`} />
-                                </svg>
+                                <SvgIcon
+                                    width="18"
+                                    height="18"
+                                    id={icon}
+                                    className={s.radioIcon}
+                                />
                             </label>
                         ))}
                     </div>
 
-                    {/* Список фонов как радиокнопки */}
+                    {/* Список фонів як радіо-кнопки */}
                     <label>Background</label>
                     <div className={s.backgrounds}>
-                        <label className={s.backgroundButton}>
+                        <label className={`${s.backgroundIcon} ${selectedBackground === "none" ? s.selected : ""}`}>
                             <input
                                 type="radio"
                                 value="none"
@@ -107,12 +142,15 @@ const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBack
                                 checked={selectedBackground === "none"}
                                 onChange={() => setValue("background", "none")}
                             />
-                            <svg width="24" height="24">
-                                <use href="#icon-no-background" />
-                            </svg>
+                            <SvgIcon
+                                width="16"
+                                height="16"
+                                id="icon-image-05"
+                                className={s.radioIcon}
+                            />
                         </label>
                         {backgrounds.map((bg, index) => (
-                            <label key={index} className={s.backgroundButton} style={{ backgroundImage: `url(${bg})` }}>
+                            <label key={index} className={`${s.backgroundButton} ${selectedBackground === bg ? s.selected : ""}`} style={{ backgroundImage: `url(${bg})` }}>
                                 <input
                                     type="radio"
                                     value={bg}
@@ -124,11 +162,13 @@ const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBack
                         ))}
                     </div>
 
-                    {/* Кнопка "Edit" */}
+                    {/* Кнопка "Create" */}
                     <button type="submit" className={s.createBtn}>
-                        <svg width="16" height="16">
-                            <use href="#icon-normalPlus" />
-                        </svg>
+                        <SvgIcon
+                            id="icon-normalBtnBlack"
+                            width="16"
+                            height="16"
+                            className={s.createBtnIcon} />
                         Edit
                     </button>
                 </form>
@@ -143,6 +183,7 @@ EditBoardForm.propTypes = {
     initialTitle: PropTypes.string,
     initialIcon: PropTypes.string,
     initialBackground: PropTypes.string,
+    onSave: PropTypes.func.isRequired,
 };
 
 export default EditBoardForm;

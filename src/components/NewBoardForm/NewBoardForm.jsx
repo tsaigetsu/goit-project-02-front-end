@@ -43,6 +43,11 @@ const schema = yup.object().shape({
 
 const NewBoardForm = ({ isOpen, onClose }) => {
     const [isExiting, setIsExiting] = useState(false);
+    const [hasText, setHasText] = useState(false);
+
+    const onInputChange = (e) => {
+        setHasText(e.target.value.length > 0);
+    };
 
     const { register, handleSubmit, setValue, watch, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
@@ -91,7 +96,11 @@ const NewBoardForm = ({ isOpen, onClose }) => {
                         <input
                             type="text"
                             placeholder="Title"
+                            className={hasText ? s.focused : ""}
                             {...register("title")}
+                            onChange={onInputChange}
+                            onFocus={() => setHasText(true)}
+                            onBlur={(e) => setHasText(e.target.value.length > 0)}
                         />
                         {errors.title && <p className={s.error}>{errors.title.message}</p>}
                     </div>
@@ -151,7 +160,11 @@ const NewBoardForm = ({ isOpen, onClose }) => {
 
                     {/* Кнопка "Create" */}
                     <button type="submit" className={s.createBtn}>
-                        <SvgIcon id="icon-normalPlus" width="16" height="16" />
+                        <SvgIcon
+                            id="icon-normalBtnBlack"
+                            width="16"
+                            height="16"
+                            className={s.createBtnIcon} />
                         Create
                     </button>
                 </form>
@@ -166,3 +179,69 @@ NewBoardForm.propTypes = {
 };
 
 export default NewBoardForm;
+
+
+// import { useState } from "react";
+// import "./App.css";
+// import NewBoardForm from "./components/NewBoardForm/NewBoardForm";
+// import EditBoardForm from './components/EditBoardForm/EditBoardForm';
+
+
+// function App() {
+//   const [isCreateOpen, setIsCreateOpen] = useState(false);
+//   const [isEditOpen, setIsEditOpen] = useState(false);
+
+//   // Начальные данные для EditBoardForm
+//   const initialData = {
+//     title: "My Saved Board",
+//     icon: "icon-star-04",
+//     background: "/src/assets/images/jpgs/desktop/sky2x.jpg",
+//   };
+  
+//   // Функции для открытия и закрытия форм
+//     const handleCreateOpen = () => setIsCreateOpen(true);
+//     const handleCreateClose = () => setIsCreateOpen(false);
+
+//     const handleEditOpen = () => setIsEditOpen(true);
+//     const handleEditClose = () => setIsEditOpen(false);
+
+//     const handleSave = (data) => {
+//         console.log("Board saved:", data);
+//         handleCreateClose();
+//     };
+
+//     const handleUpdate = (data) => {
+//         console.log("Board updated:", data);
+//         handleEditClose();
+//     };
+
+//   return (
+//     <div className="App">
+//       <button onClick={handleCreateOpen}>Create new board</button>
+//       <button onClick={handleEditOpen}>Edit board</button>
+      
+//       {/* NewBoardForm */}
+//       {isCreateOpen && (
+//         <NewBoardForm
+//           isOpen={isCreateOpen}
+//           onClose={handleCreateClose}
+//           onSave={handleSave}
+//         />
+//       )}
+      
+//       {/* EditBoardForm */}
+//       {isEditOpen && (
+//         <EditBoardForm
+//           isOpen={isEditOpen}
+//           onClose={handleEditClose}
+//           initialTitle={initialData.title}
+//           initialIcon={initialData.icon}
+//           initialBackground={initialData.background}
+//           onSave={handleUpdate}
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default App;
