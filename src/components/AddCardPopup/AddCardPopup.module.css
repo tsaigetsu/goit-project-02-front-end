@@ -12,24 +12,20 @@
   z-index: 1000;
 }
 
-/* Внутрішній блок попапу */
 .popupContent {
-  width: 100%;
   max-width: 375px; 
   background-color: #161616; 
   border-radius: 8px;
   color: #ffffff;
-  font-family: Arial, sans-serif;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   position: relative;
+  padding: 16px;
 }
 
-/* Заголовок і кнопка закриття */
-.popupContent .labelTitle {
-  margin-top: 0;
+.titleCard {
   font-size: 18px;
   font-weight: 500;
-  width: 100%;
+  margin: 0;
 }
 
 .closeButton {
@@ -43,19 +39,13 @@
   cursor: pointer;
 }
 
-.svgCloseIcon {
-  fill: none;
-  stroke: #ffffff; 
-}
-
-/* Текстові поля */
 .inputTitle {
   width: 90%;
   padding: 12px;
   background-color: transparent;
   border: 1px solid #6f6f6f; 
   border-radius: 6px;
-  color: #ffffff; 
+  color: #BEDBB0; 
   font-size: 16px;
   margin: 14px 0;
 }
@@ -65,7 +55,6 @@ textarea {
   resize: none; 
 }
 
-/* Вибір кольору мітки */
 .labelColor {
   margin-bottom: 16px;
 }
@@ -74,10 +63,8 @@ textarea {
   margin-bottom: 4px;
   color: #FFFFFF80; 
   font-size: 12px;
-  font-weight: 400;
 }
 
-/* Приховування оригінальної радіокнопки */
 input[type="radio"] {
   position: absolute;
   opacity: 0; 
@@ -85,7 +72,6 @@ input[type="radio"] {
   height: 0;
 }
 
-/* Кружечок кольору */
 .colorCircle {
   display: inline-block;
   width: 14px;
@@ -93,57 +79,45 @@ input[type="radio"] {
   border-radius: 50%;
   cursor: pointer;
   margin-right: 8px;
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
 }
 
-/* Колір кружечка для кожного кольору */
-.violet {
-  background-color: #8FA1D0;
+.violet { background-color: #8FA1D0; }
+.pink { background-color: #E09CB5; }
+.green { background-color: #BEDBB0; }
+.black { background-color: #FFFFFF4D; }
+
+.colorCircle.active {
+  box-shadow: 0 0 0 2px #8FA1D0, 0 0 0 4px #000; 
 }
 
-.pink {
-  background-color: #E09CB5;
-}
-
-.green {
-  background-color: #BEDBB0;
-}
-
-.black {
-  background-color: #FFFFFF4D; 
-}
-
-/* Вибір дедлайну */
 .deadline {
   margin-bottom: 24px;
 }
 
-.deadlineLabel {
-  margin: 0 0 4px;
-  color: #FFFFFF80; 
-  font-size: 12px;
-  font-weight: 400;
+
+.CalendarPicker{
+  display: flex;
 }
+
 .dateDisplay {
   color: #BEDBB0;
   font-weight: 500;
   font-size: 14px;
+  display: flex;
+  align-items: center; 
+  gap: 8px; 
 }
 
-.dropdownIcon {
+.iconChevronDown {
   fill: none;
-  stroke:  #BEDBB0;
+  stroke: #BEDBB0;
 }
-
-/* Кнопка "Add" */
 .addButton {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   width: 100%;
-  max-width: 335px;
   height: 56px;
   background-color: #BEDBB0; 
   border-radius: 8px;
@@ -152,43 +126,14 @@ input[type="radio"] {
   font-weight: 500;
   color: #161616; 
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin: 0 auto;
+  transition: background-color 0.3s ease;
 }
 
-.createIcon {
+.icon-normalBtnBlack{
   fill: none;
   stroke: #161616; 
-  background-color: #161616; 
-  border-radius: 10%; 
-  display: inline-flex; 
-  margin-right: 4px;
 }
 
 .addButton:hover {
   background-color: #9DC888; 
-}
-
-/* Адаптивність */
-@media (min-width: 375px) {
-  .popupContent {
-    width: 100%;
-    max-width: 375px;
-  }
-}
-
-@media (min-width: 768px) {
-  .popupContent {
-    width: 60%;
-    max-width: 768px; /* Для планшетів */
-    padding: 32px; /* Add more padding for larger screens */
-  }
-}
-
-@media (min-width: 1440px) {
-  .popupContent {
-    width: 40%;
-    max-width: 1442x; /* Для десктопів */
-    padding: 40px; 
-  }
 }
