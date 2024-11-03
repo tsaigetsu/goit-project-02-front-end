@@ -21,6 +21,7 @@ const validateFormSchema = Yup.object().shape({
 //в пропсе принимаем обьект юзера и вытягивем значение name и email
 const EditProfile = () => {
   const [visiblePassword, setVisiblePassword] = useState(true);
+  const [visibleModal, setVisibleModal] = useState(true);
 
   const {
     register,
@@ -50,10 +51,10 @@ const EditProfile = () => {
         <button
           type="button"
           className={css.closeBtn}
-          onClick={() => setVisiblePassword(!visiblePassword)}
+          onClick={() => setVisibleModal(!visibleModal)}
         >
-          <svg className={css.close} width="18" height="18">
-            <use href="/src/assets/symbol-defs.svg#icon-hexagon-01" />
+          <svg width="18" height="18">
+            <use href="/src/assets/symbol-defs.svg#icon-x-close" />
           </svg>
         </button>
 
@@ -64,7 +65,7 @@ const EditProfile = () => {
               alt="User Avatar"
             />
             <button className={css.btnAvatar}>
-              <svg className={css.avatarIcon} width="24" height="24">
+              <svg width="10" height="10">
                 <use href="/src/assets/symbol-defs.svg#icon-plus" />
               </svg>
             </button>
@@ -110,7 +111,7 @@ const EditProfile = () => {
                 className={css.toggleBtn}
                 onClick={() => setVisiblePassword(!visiblePassword)}
               >
-                <svg className={css.eye} width="18" height="18">
+                <svg width="18" height="18">
                   <use href="/src/assets/symbol-defs.svg#icon-eye" />
                 </svg>
               </button>
