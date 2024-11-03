@@ -1,10 +1,11 @@
 import { useState } from "react";
-import viteLogo from "/favicon.svg"; 
+import viteLogo from "/favicon.svg";
 
 // import CardManager from "./components/CardManager/CardManager.jsx";
 
 import "./App.css";
-
+import EditProfile from "./components/EditProfile/Editprofile";
+import LoginForm from "./components/LoginForm/LoginForm";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -24,8 +25,9 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
-        {/* <CardManager /> */}
-            </div>
+        <LoginForm />
+        <EditProfile />
+      </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
