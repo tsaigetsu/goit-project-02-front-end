@@ -6,27 +6,34 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import SvgIcon from "../SvgIcon/SvgIcon";
+// import { useDispatch } from "react-redux";
 
 const validateFormSchema = Yup.object().shape({
   name: Yup.string()
     .required("Name is required")
-    .matches(/^[A-Za-z]+$/, "Name must contain only letters")
-    .min(2, "Name is too short")
-    .max(50, "Name is too long"),
+    .matches(
+      /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
+      "Name can contain only Latin letters, numbers, and special characters"
+    )
+    .min(2, "Name must be at least 2 characters")
+    .max(32, "Name must not exceed 32 characters"),
   email: Yup.string()
     .required("Email is required")
-    .email("Invalid email address")
-    .matches(
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/,
-      "Invalid email address"
-    ),
+    .email("Invalid email address"),
   password: Yup.string()
     .required("Password is required")
-    .min(8, "Password must be at least 8 characters"),
+    .matches(
+      /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
+      "Password can contain only Latin letters, numbers, and special characters"
+    )
+    .matches(/^\S*$/, "Password cannot contain spaces")
+    .min(8, "Password must be at least 8 characters")
+    .max(64, "Password must not exceed 64 characters"),
 });
 
 const RegisterForm = () => {
   const [visiblePassword, setVisiblePassword] = useState(false);
+  // const dispatch = useDispatch();
 
   const {
     register,
@@ -44,6 +51,7 @@ const RegisterForm = () => {
   });
 
   const onSubmit = (data) => {
+    // dispatch(registerThunk(data));
     console.log(data);
 
     reset();
