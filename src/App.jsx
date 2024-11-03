@@ -3,12 +3,14 @@
 import "./App.css";
 
 // import EditProfile from "./components/EditProfile/Editprofile";
-// import AddColumn from "./components/AddColumn/AddColumn";
+import EditColumn from "./components/AddColumn/AddColumn";
 
 function App() {
   return (
     <>
-      <div>{/* <AddColumn /> */}</div>
+      <div>
+        <EditColumn />
+      </div>
     </>
   );
 }
