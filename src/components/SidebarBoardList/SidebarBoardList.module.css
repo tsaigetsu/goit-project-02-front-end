@@ -35,3 +35,7 @@
     border-radius: 6px;
     background-color: #BEDBB0;
 }
+.createIcon {
+    stroke: #121212;
+    fill: none;
+}

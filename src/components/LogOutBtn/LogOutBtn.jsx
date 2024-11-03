@@ -7,8 +7,8 @@ const LogOutBtn = () => {
   return (
     <button className={s.btn} onClick={() => dispatch(logoutThunk())}>
       <SvgIcon
-        id="icon-pencil-01"
-        className="logOutIcon"
+        id="icon-login"
+        className={s.logOutIcon}
         width="32"
         height="32"
       />

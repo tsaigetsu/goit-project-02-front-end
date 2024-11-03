@@ -44,12 +44,14 @@
     }
     .projectIcon {
         stroke: #161616;
+        fill: none;
     }
     .p {
         color: #161616;
     }
     .boardIcon {
         stroke: rgba(22, 22, 22, 0.5);
+        fill: none;
     }
     .activeLine {
         display: block;

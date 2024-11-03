@@ -11,7 +11,6 @@
 }
 .p {
     color: #161616;
-    font-family: Poppins;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -24,6 +23,7 @@
 }
 .btnIcon {
     stroke: #161616;
+    fill: none;
 }
 .btn {
     border: none;
@@ -33,7 +33,6 @@
     align-items: center;
     color: #161616;
     font-size: 12px;
-    font-style: normal;
     font-weight: 500;
     line-height: normal;
     letter-spacing: -0.24px;

@@ -19,7 +19,7 @@ const NeedHelpComponent = () => {
       <button className={s.btn}>
         <SvgIcon
           id="icon-help-circle"
-          className="btnIcon"
+          className={s.btnIcon}
           width="20"
           height="20"
         />

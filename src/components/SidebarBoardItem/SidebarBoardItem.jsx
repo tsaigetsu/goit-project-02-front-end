@@ -10,17 +10,17 @@ const SidebarBoardItem = ({ name }) => {
       <div className={s.boardName}>
         <SvgIcon
           id="icon-Project" //  заменить на айди иконки с бека
-          className="projectIcon"
+          className={s.projectIcon}
           width="18"
           height="18"
         />
-        <p className={s.p}>{name}</p>
+        <p className={s.p}>{name}BoardName</p>
       </div>
       <div className={s.boardBtns}>
         <button className={s.btn}>
           <SvgIcon
             id="icon-pencil-01"
-            className="boardIcon"
+            className={s.boardIcon}
             width="16"
             height="16"
           />
@@ -31,7 +31,7 @@ const SidebarBoardItem = ({ name }) => {
         >
           <SvgIcon
             id="icon-trash-04"
-            className="boardIcon"
+            className={s.boardIcon}
             width="16"
             height="16"
           />
