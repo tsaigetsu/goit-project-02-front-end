@@ -2,19 +2,20 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = ""; //ссылка на бэк
+axios.defaults.baseURL =
+  "https://goit-project-02-back-end.onrender.com/api-docs/";
 
-export const fetchColumns = createAsyncThunk(
-  "columns/fetchAllColumns",
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get("/columns");
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const fetchColumns = createAsyncThunk(
+//   "columns/fetchAllColumns",
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await axios.get("/columns");
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const addColumn = createAsyncThunk(
   "columns/addColumn",
