@@ -3,6 +3,7 @@
 }
 .container {
   position: absolute;
+  top: 250px;
   display: flex;
   flex-direction: column;
   gap: 24px;

@@ -1,5 +1,5 @@
 import SvgIcon from "../SvgIcon/SvgIcon";
-import css from "./AddColumn.module.css";
+import css from "./EditColumn.module.css";
 
 //принимает в пропсах стейт контролирующий открытие и закрытие окна isModalOpen, setIsModalOpen
 const EditColumn = ({ setIsModalOpen }) => {
