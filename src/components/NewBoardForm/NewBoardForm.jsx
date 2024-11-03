@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -41,7 +42,9 @@ const schema = yup.object().shape({
 });
 
 const NewBoardForm = ({ isOpen, onClose }) => {
-    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
+    const [isExiting, setIsExiting] = useState(false);
+
+    const { register, handleSubmit, setValue, watch, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
             title: "",
@@ -53,20 +56,29 @@ const NewBoardForm = ({ isOpen, onClose }) => {
     const selectedIcon = watch("icon");
     const selectedBackground = watch("background");
 
-    const onSubmit = (data) => {
-        console.log("Valid Data: ", data);
-        onClose();
+    const handleFormClose = () => {
+        setIsExiting(true);
+        setTimeout(() => {
+            setIsExiting(false);
+            reset();
+            onClose();
+        }, 300);
     };
 
-    if (!isOpen) return null;
+    const onSubmit = (data) => {
+        console.log("Valid Data: ", data);
+        handleFormClose();
+    };
+
+    if (!isOpen && !isExiting) return null;
 
     return (
-        <div className={s.modalOverlay} onClick={onClose}>
-            <div className={s.modalContainer} onClick={(e) => e.stopPropagation()}>
-                <button className={s.modalCloseBtn} onClick={onClose}>
+        <div className={`${s.modalOverlay} ${isExiting ? s.fadeOut : ""}`} onClick={handleFormClose}>
+            <div className={`${s.modalContainer} ${isExiting ? s.fadeOut : ""}`} onClick={(e) => e.stopPropagation()}>
+                <button className={s.modalCloseBtn} onClick={handleFormClose}>
                     <SvgIcon 
                         id="icon-x-close"
-                        className="closeBtnIcon"
+                        className={s.closeBtnIcon}
                         width="18"
                         height="18"
                     />
@@ -97,8 +109,8 @@ const NewBoardForm = ({ isOpen, onClose }) => {
                                     onChange={() => setValue("icon", icon)}
                                 />
                                 <SvgIcon
-                                    width="24"
-                                    height="24"
+                                    width="18"
+                                    height="18"
                                     id={icon}
                                     className={s.radioIcon}
                                 />
@@ -109,7 +121,7 @@ const NewBoardForm = ({ isOpen, onClose }) => {
                     {/* Список фонів як радіо-кнопки */}
                     <label>Background</label>
                     <div className={s.backgrounds}>
-                        <label className={s.backgroundButton}>
+                        <label className={`${s.backgroundIcon} ${selectedBackground === "none" ? s.selected : ""}`}>
                             <input
                                 type="radio"
                                 value="none"
@@ -117,12 +129,15 @@ const NewBoardForm = ({ isOpen, onClose }) => {
                                 checked={selectedBackground === "none"}
                                 onChange={() => setValue("background", "none")}
                             />
-                            <svg width="24" height="24">
-                                <use href="#icon-image-05" />
-                            </svg>
+                            <SvgIcon
+                                width="16"
+                                height="16"
+                                id="icon-image-05"
+                                className={s.radioIcon}
+                            />
                         </label>
                         {backgrounds.map((bg, index) => (
-                            <label key={index} className={s.backgroundButton} style={{ backgroundImage: `url(${bg})` }}>
+                            <label key={index} className={`${s.backgroundButton} ${selectedBackground === bg ? s.selected : ""}`} style={{ backgroundImage: `url(${bg})` }}>
                                 <input
                                     type="radio"
                                     value={bg}
@@ -136,9 +151,7 @@ const NewBoardForm = ({ isOpen, onClose }) => {
 
                     {/* Кнопка "Create" */}
                     <button type="submit" className={s.createBtn}>
-                        <svg width="16" height="16">
-                            <use href="#icon-normalPlus" />
-                        </svg>
+                        <SvgIcon id="icon-normalPlus" width="16" height="16" />
                         Create
                     </button>
                 </form>

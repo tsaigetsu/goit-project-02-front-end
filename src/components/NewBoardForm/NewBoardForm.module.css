@@ -14,15 +14,28 @@
     align-items: center;
     z-index: 1000;
     opacity: 0;
-    animation: overlayFadeIn 0.3s forwards;
+    animation: fadeInOpacity 0.3s forwards;
 }
 
-@keyframes overlayFadeIn {
+@keyframes fadeInOpacity {
     from {
         opacity: 0;
     }
     to {
         opacity: 1;
+    }
+}
+
+.modalOverlay.fadeOut {
+    animation: fadeOutOpacity 0.3s forwards;
+}
+
+@keyframes fadeOutOpacity {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
 
@@ -37,19 +50,11 @@
     position: relative;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     opacity: 0;
-    transform: scale(0.9);
-    animation: modalFadeIn 0.3s ease-out forwards;
+        animation: fadeInOpacity 0.3s forwards;
 }
 
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+.modalContainer.fadeOut {
+    animation: fadeOutOpacity 0.3s forwards;
 }
 
 .modalCloseBtn {
@@ -63,11 +68,19 @@
     border: none;
     font-size: 24px;
     color: #f0f0f0;
+    outline: none;
 }
 
-/* .closeBtnIcon {
+.closeBtnIcon {
     stroke: #f0f0f0;
-} */
+    fill: white;
+    transition: stroke 0.3s ease, filter 0.3s ease;
+}
+
+.modalCloseBtn:hover .closeBtnIcon {
+    stroke: #85c764;
+    filter: brightness(1.5) drop-shadow(0 0 8px rgb(174, 226, 141));
+}
 
 .modalContainer h2 {
     color: #FFF;
@@ -80,6 +93,7 @@
     margin-bottom: 24px;
 }
 
+/* Поле для назви дошки */
 .inputGroup {
     position: relative;
     height: 73px;
@@ -119,6 +133,20 @@
     color: #ff4d4f;
     font-size: 14px;
     margin-top: 4px;
+    opacity: 0;
+    transform: translateY(-5px);
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Контейнер для иконок */
@@ -126,67 +154,80 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
+    margin-top: 14px;
 }
 
-/* Стили для кнопок иконок */
 .iconButton {
+    flex-shrink: 0;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
     border-radius: 8px;
     transition: background-color 0.2s;
 }
 
 .iconButton input[type="radio"] {
     display: none;
-    /* Скрываем радио-кнопки */
 }
 
-.iconButton svg {
-    fill: #f0f0f0;
-    width: 24px;
-    height: 24px;
-}
-
-.iconButton:hover {
-    background-color: #333;
+.radioIcon {
+    stroke: rgba(255, 255, 255, 0.5);
 }
 
 .iconButton input[type="radio"]:checked+svg {
-    fill: #a3d9a5;
-    /* Цвет выбранной иконки */
+    stroke: rgba(255, 255, 255, 1);
 }
 
 /* Контейнер для фонов */
 .backgrounds {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 24px;
+    gap: 4px;
+    margin-bottom: 40px;
+    margin-top: 14px;
+    width: 260px;
 }
 
-/* Кнопка фона */
-.backgroundButton {
-    width: 48px;
-    height: 48px;
-    border: 2px solid transparent;
-    border-radius: 8px;
+.backgroundIcon {
+    width: 28px;
+    height: 28px;
+    padding: 6px;
+    border-radius: 6px;
     background-size: cover;
     background-position: center;
     cursor: pointer;
     position: relative;
+    background: #1F1F1F;;
+    border: 1px solid transparent;
+}
+
+.backgroundIcon svg {
+    stroke: rgba(255, 255, 255, 0.1);
+    fill: none;
+}
+
+.backgroundIcon input[type="radio"] {
+    display: none;
+}
+
+.backgroundButton {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid transparent;
 }
 
 .backgroundButton input[type="radio"] {
     display: none;
-    /* Скрываем радио-кнопки */
 }
 
 .backgroundButton.selected {
     border-color: #a3d9a5;
-    /* Обводка выбранного фона */
 }
 
 /* Кнопка создания / редактирования */
