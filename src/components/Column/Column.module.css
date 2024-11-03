@@ -1,0 +1,38 @@
+.section {
+  position: relative;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 400px;
+  width: 334px;
+  padding: 18px 20px;
+  background-color: #121212;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.boxIcon {
+  display: flex;
+  gap: 8px;
+}
+.btnIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  stroke: white;
+  fill: none;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  opacity: 0.5;
+  stroke-width: 1.3px;
+}
+.btnIcon:hover,
+.btnIcon:focus {
+  stroke: #bedbb0;
+}

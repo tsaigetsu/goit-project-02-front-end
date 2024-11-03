@@ -3,10 +3,11 @@ import css from "./AddColumn.module.css";
 
 //принимает в пропсах стейт контролирующий открытие и закрытие окна isModalOpen, setIsModalOpen
 const AddColumn = ({ setIsModalOpen }) => {
+  //закрываем кнопкой {х}
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+  //при добавлении колонки, закрываем окно и добавляем колонку
   const handleAddColumn = () => {
     // const newColumn = { title: "" };
     setIsModalOpen(false);
