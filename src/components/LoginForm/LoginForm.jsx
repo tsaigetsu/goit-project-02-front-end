@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import SvgIcon from "../SvgIcon/SvgIcon";
+// import { useDispatch } from "react-redux";
 
 const validateFormSchema = Yup.object().shape({
   email: Yup.string()
@@ -13,11 +14,18 @@ const validateFormSchema = Yup.object().shape({
     .email("Invalid email address"),
   password: Yup.string()
     .required("Password is required")
-    .min(8, "Password must be at least 8 characters"),
+    .matches(
+      /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
+      "Password can contain only Latin letters, numbers, and special characters"
+    )
+    .matches(/^\S*$/, "Password cannot contain spaces")
+    .min(8, "Password must be at least 8 characters")
+    .max(64, "Password must not exceed 64 characters"),
 });
 
 const LoginForm = () => {
-  const [visiblePassword, setVisiblePassword] = useState(true);
+  const [visiblePassword, setVisiblePassword] = useState(false);
+  // const dispatch = useDispatch();
 
   const {
     register,
@@ -34,6 +42,7 @@ const LoginForm = () => {
   });
 
   const onSubmit = (data) => {
+    // dispatch(loginThunk(data));
     console.log(data);
 
     reset();
