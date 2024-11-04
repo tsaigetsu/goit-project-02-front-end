@@ -1,5 +1,13 @@
+import Sidebar from "../../components/Sidebar/Sidebar";
+import ScreensPage from "../ScreensPage/ScreensPage";
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <>
+      <Sidebar />
+      <ScreensPage />
+    </>
+  );
 };
 
 export default HomePage;

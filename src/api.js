@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://example.test/", // заменить потом
+  baseURL: "https://goit-project-02-back-end.onrender.com/",
 });
 
 export const setToken = (token) => {
