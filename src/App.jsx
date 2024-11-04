@@ -1,5 +1,5 @@
-import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
+import { Navigate, Route, Routes } from "react-router-dom";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import PublicRoute from "./Routes/PublicRoute";
@@ -21,8 +21,7 @@ function App() {
       <Route
         path="/auth/:id"
         element={<PublicRoute component={<AuthPage />} redirectTo="/home" />}
-      >
-      </Route>
+      ></Route>
 
       <Route
         path="/home"
