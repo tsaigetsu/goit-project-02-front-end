@@ -52,7 +52,7 @@ const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBack
         defaultValues: {
             title: initialTitle || "",
             icon: initialIcon || icons[0].id,
-            background: initialBackground || backgrounds[0].id
+            background: initialBackground || 'none'
         },
     });
 
