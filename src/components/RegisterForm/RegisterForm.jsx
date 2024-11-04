@@ -6,7 +6,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import SvgIcon from "../SvgIcon/SvgIcon";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { registerThunk } from "../../redux/auth/operations.js";
 
 const validateFormSchema = Yup.object().shape({
   name: Yup.string()
@@ -33,7 +34,7 @@ const validateFormSchema = Yup.object().shape({
 
 const RegisterForm = () => {
   const [visiblePassword, setVisiblePassword] = useState(false);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -51,7 +52,7 @@ const RegisterForm = () => {
   });
 
   const onSubmit = (data) => {
-    // dispatch(registerThunk(data));
+    dispatch(registerThunk(data));
     console.log(data);
 
     reset();

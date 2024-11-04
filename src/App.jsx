@@ -6,7 +6,9 @@ import PublicRoute from "./Routes/PublicRoute";
 import PrivateRoute from "./Routes/PrivateRoute";
 import HomePage from "./pages/HomePage/HomePage";
 import ScreensPage from "./pages/ScreensPage/ScreensPage";
-import AuthPage from "./pages/AuthPage/AuthPage.jsx";
+import AuthPage from "./pages/AuthPage/AuthPage";
+import RegisterForm from "./components/RegisterForm/RegisterForm";
+import LoginForm from "./components/LoginForm/LoginForm";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         path="/auth/:id"
         element={<PublicRoute component={<AuthPage />} redirectTo="/home" />}
       >
+        <Route path="login" element={<LoginForm />} />
+        <Route path="register" element={<RegisterForm />} />
       </Route>
 
       <Route
