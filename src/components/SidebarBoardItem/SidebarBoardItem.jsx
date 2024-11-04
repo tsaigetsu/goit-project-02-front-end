@@ -1,9 +1,13 @@
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./SidebarBoardItem.module.css";
+import { deleteBoardThunk } from "../../redux/boards/operations";
 
-const SidebarBoardItem = ({ name }) => {
-  // const dispatch = useDispatch();
+const SidebarBoardItem = ({ id, name }) => {
+  const dispatch = useDispatch();
+  const handleDelete = () => {
+    dispatch(deleteBoardThunk(id));
+  };
   return (
     <li className={`${s.li} ${s.isActiveProject}`}>
       {/* добавить динамику для второго класса */}
@@ -25,10 +29,7 @@ const SidebarBoardItem = ({ name }) => {
             height="16"
           />
         </button>
-        <button
-          className={s.btn}
-          // onClick={() => dispatch(deleteBoardThunk(id))}
-        >
+        <button className={s.btn} onClick={handleDelete}>
           <SvgIcon
             id="icon-trash-04"
             className={s.boardIcon}
