@@ -50,30 +50,13 @@ const Column = ({ column }) => {
           {/* {cards.length > 0 && !error && (
             <CardList isFormVisible={isFormVisible} />
           )} */}
-          {/* <ul className={css.testUL}>
-            <li>
-              <div className={css.test}></div>
-            </li>
-            <li>
-              <div className={css.test}></div>
-            </li>
-            <li>
-              <div className={css.test}></div>
-            </li>
-            <li>
-              <div className={css.test}></div>
-            </li>
-            <li>
-              <div className={css.test}></div>
-            </li>
-          </ul> */}
 
           <AddAnotherCard />
+          {isEdit && (
+            <EditColumn column={column} setIsEdit={setIsEdit} isEdit={isEdit} />
+          )}
         </div>
       </div>
-      {isEdit && (
-        <EditColumn column={column} setIsEdit={setIsEdit} isEdit={isEdit} />
-      )}
       <ModalDelete
         isOpen={isModalOpen}
         onClose={closeModal}
