@@ -17,18 +17,13 @@ function App() {
         element={<PublicRoute component={<WelcomePage />} redirectTo="/home" />}
       />
 
-      {/* <Route
+      <Route
         path="/auth/:id"
-        element={
-          <PublicRoute
-            component={<AuthPage />}
-            redirectTo="/home"
-          />
-        }
+        element={<PublicRoute component={<AuthPage />} redirectTo="/home" />}
       >
         <Route path="login" element={<LoginForm />} />
         <Route path="register" element={<RegisterForm />} />
-      </Route> */}
+      </Route>
 
       <Route
         path="/home"
