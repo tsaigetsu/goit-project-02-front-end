@@ -1,4 +1,4 @@
-import CardManager from "./components/CardManager/CardManager.jsx";
+import CardManager from "../../components/CardManager/CardManager.jsx";
 
 const ScreensPage = () => {
   return <div>ScreensPage

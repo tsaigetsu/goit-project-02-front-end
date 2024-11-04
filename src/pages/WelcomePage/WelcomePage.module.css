@@ -1,0 +1,101 @@
+ .welcomePage {
+     background: linear-gradient(to bottom, white, lightgreen);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+     font-family: "Poppins", sans-serif;
+     color: #161616;
+ }
+
+ h1,
+ p {
+     margin: 0;
+ }
+
+ .container {
+     margin: 20px;
+ }
+
+
+ @media (min-width: 1440px) {
+     .welcomSection {
+         width: 478px;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+     }
+
+
+     .welcomSection h1 {
+         font-size: 40px;
+
+     }
+
+     .welcomSection p {
+         font-size: 14px;
+         text-align: center;
+         margin-bottom: 48px;
+     }
+
+     .buttonRegister {
+         width: 344px;
+         padding: 14px 131px;
+         font-size: 14px;
+         color: #FFFFFF;
+         background-color: #161616;
+         border-radius: 5px;
+         border: none;
+         margin-bottom: 14px;
+         font: inherit;
+         cursor: pointer;
+         transition-duration: 0.4s;
+     }
+
+     .buttonLogin {
+         background: none;
+         border: none;
+         padding: 0;
+         font: inherit;
+         color: #161616;
+         cursor: pointer;
+         transition-duration: 0.4s;
+     }
+
+ }
+
+ .buttonRegister:hover {
+     opacity: 0.8;
+ }
+
+ .buttonLogin:hover {
+     color: #FFFFFF;
+ }
+
+ .taskProBox {
+     display: flex;
+     align-items: center;
+     text-align: center;
+
+
+ }
+
+ .taskProBox {
+     margin-bottom: 24px;
+ }
+
+ .iconContainer {
+     width: 48px;
+     height: 48px;
+     background-color: #161616;
+     border-radius: 10px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-right: 14px;
+     /* стиль іконки */
+     background-image: url('path/to/your/icon.svg');
+     background-size: contain;
+     background-repeat: no-repeat;
+ }
