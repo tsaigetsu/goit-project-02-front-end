@@ -1,0 +1,139 @@
+.popup {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popupContent {
+  max-width: 375px; 
+  background-color: #161616; 
+  border-radius: 8px;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 16px;
+}
+
+.titleCard {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #ffffff; 
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.inputTitle {
+  width: 90%;
+  padding: 12px;
+  background-color: transparent;
+  border: 1px solid #6f6f6f; 
+  border-radius: 6px;
+  color: #BEDBB0; 
+  font-size: 16px;
+  margin: 14px 0;
+}
+
+textarea {
+  height: 100px;
+  resize: none; 
+}
+
+.labelColor {
+  margin-bottom: 16px;
+}
+
+.labelTitle {
+  margin-bottom: 4px;
+  color: #FFFFFF80; 
+  font-size: 12px;
+}
+
+input[type="radio"] {
+  position: absolute;
+  opacity: 0; 
+  width: 0;
+  height: 0;
+}
+
+.colorCircle {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.violet { background-color: #8FA1D0; }
+.pink { background-color: #E09CB5; }
+.green { background-color: #BEDBB0; }
+.black { background-color: #FFFFFF4D; }
+
+.colorCircle.active {
+  box-shadow: 0 0 0 2px #8FA1D0, 0 0 0 4px #000; 
+}
+
+.deadline {
+  margin-bottom: 24px;
+}
+
+
+.CalendarPicker{
+  display: flex;
+}
+
+.dateDisplay {
+  color: #BEDBB0;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center; 
+  gap: 8px; 
+}
+
+.iconChevronDown {
+  fill: none;
+  stroke: #BEDBB0;
+}
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 56px;
+  background-color: #BEDBB0; 
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #161616; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.icon-normalBtnBlack{
+  fill: none;
+  stroke: #161616; 
+}
+
+.addButton:hover {
+  background-color: #9DC888; 
+}

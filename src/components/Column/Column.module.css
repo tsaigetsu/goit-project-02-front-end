@@ -1,0 +1,78 @@
+.section {
+  position: relative;
+  height: auto;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  width: 334px;
+  height: 654px;
+
+  overflow: hidden;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #121212;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: #fff;
+  flex-shrink: 0;
+  margin-bottom: 14px;
+}
+.boxIcon {
+  display: flex;
+  gap: 8px;
+}
+.btnIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  stroke: white;
+  fill: none;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  opacity: 0.5;
+  stroke-width: 1.3px;
+}
+.btnIcon:hover,
+.btnIcon:focus {
+  stroke: #bedbb0;
+}
+
+.testUL {
+  overflow-y: auto;
+  flex-grow: 1;
+  padding-right: 24px; /* Оставляем место для скролла */
+  margin-right: -24px; /* Скролл выходит за правый край */
+  margin-bottom: 14px;
+}
+
+.testUL::-webkit-scrollbar {
+  width: 8px;
+  position: relative;
+}
+.testUL::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+  margin-right: -8px;
+}
+.testUL::-webkit-scrollbar-track {
+  background: transparent;
+  margin-right: -8px;
+}
+.test {
+  min-height: 154px;
+  width: 100%;
+  background-color: aquamarine;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}

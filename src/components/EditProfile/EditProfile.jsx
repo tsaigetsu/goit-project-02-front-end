@@ -1,49 +1,37 @@
-import css from "./RegisterForm.module.css";
-import { NavLink } from "react-router-dom";
+import css from "./EditProfile.module.css";
 
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import SvgIcon from "../SvgIcon/SvgIcon";
-// import { useDispatch } from "react-redux";
 
 const validateFormSchema = Yup.object().shape({
   name: Yup.string()
     .required("Name is required")
-    .matches(
-      /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
-      "Name can contain only Latin letters, numbers, and special characters"
-    )
-    .min(2, "Name must be at least 2 characters")
-    .max(32, "Name must not exceed 32 characters"),
+    .matches(/^[A-Za-z]+$/, "Name must contain only letters")
+    .min(2, "Name is too short")
+    .max(50, "Name is too long"),
   email: Yup.string()
     .required("Email is required")
     .email("Invalid email address"),
   password: Yup.string()
     .required("Password is required")
-    .matches(
-      /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
-      "Password can contain only Latin letters, numbers, and special characters"
-    )
-    .matches(/^\S*$/, "Password cannot contain spaces")
-    .min(8, "Password must be at least 8 characters")
-    .max(64, "Password must not exceed 64 characters"),
+    .min(8, "Password must be at least 8 characters"),
 });
-
-const RegisterForm = () => {
-  const [visiblePassword, setVisiblePassword] = useState(false);
-  // const dispatch = useDispatch();
+//в пропсе принимаем обьект юзера и вытягивем значение name и email
+const EditProfile = () => {
+  const [visiblePassword, setVisiblePassword] = useState(true);
+  const [visibleModal, setVisibleModal] = useState(true);
 
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, touchedFields },
   } = useForm({
     defaultValues: {
-      name: "",
-      email: "",
+      name: "", //указываем текущее значение
+      email: "", //указываем текущее значение
       password: "",
     },
     resolver: yupResolver(validateFormSchema),
@@ -51,33 +39,39 @@ const RegisterForm = () => {
   });
 
   const onSubmit = (data) => {
-    // dispatch(registerThunk(data));
     console.log(data);
-
+    //сохраняем новые данные юзера
     reset();
   };
 
   return (
     <div className={css.mainContainer}>
       <div className={css.container}>
-        <nav className={css.linkContainer}>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? `${css.link} ${css.active}` : `${css.link}`
-            }
-            to="/auth/register"
-          >
-            Registration
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? `${css.link} ${css.active}` : `${css.link}`
-            }
-            to="/auth/login"
-          >
-            Log In
-          </NavLink>
-        </nav>
+        <p className={css.title}>Edit profile</p>
+        <button
+          type="button"
+          className={css.closeBtn}
+          onClick={() => setVisibleModal(!visibleModal)}
+        >
+          <svg width="18" height="18">
+            <use href="/src/assets/symbol-defs.svg#icon-x-close" />
+          </svg>
+        </button>
+
+        <div className={css.wrapperAvatar}>
+          <div className={css.avatar}>
+            <img
+              src="https://goedgezind.b-cdn.net/app/uploads/digitale-fotoherinneringen-vrouw-maakt-foto-camera.jpg"
+              alt="User Avatar"
+            />
+            <button className={css.btnAvatar}>
+              <svg width="10" height="10">
+                <use href="/src/assets/symbol-defs.svg#icon-plus" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
         <form onSubmit={handleSubmit(onSubmit)} className={css.formContainer}>
           <div className={css.inputContainer}>
             <label className={css.label}>
@@ -87,7 +81,7 @@ const RegisterForm = () => {
                 placeholder="Enter your name"
                 className={css.input}
               />
-              {errors.name && (
+              {errors.name && touchedFields.name && (
                 <div className={css.error}>{errors.name.message}</div>
               )}
             </label>
@@ -98,7 +92,7 @@ const RegisterForm = () => {
                 placeholder="Enter your email"
                 className={css.input}
               />
-              {errors.email && (
+              {errors.email && touchedFields.email && (
                 <div className={css.error}>{errors.email.message}</div>
               )}
             </label>
@@ -109,7 +103,7 @@ const RegisterForm = () => {
                 placeholder="Create a password"
                 className={css.input}
               />
-              {errors.password && (
+              {errors.password && touchedFields.password && (
                 <div className={css.error}>{errors.password.message}</div>
               )}
               <button
@@ -117,21 +111,18 @@ const RegisterForm = () => {
                 className={css.toggleBtn}
                 onClick={() => setVisiblePassword(!visiblePassword)}
               >
-                <SvgIcon
-                  id="icon-eye"
-                  className={css.toggleBtnIcon}
-                  width="18"
-                  height="18"
-                />
+                <svg width="18" height="18">
+                  <use href="/src/assets/symbol-defs.svg#icon-eye" />
+                </svg>
               </button>
             </label>
           </div>
           <button type="submit" className={css.btn}>
-            Register Now
+            Send
           </button>
         </form>
       </div>
     </div>
   );
 };
-export default RegisterForm;
+export default EditProfile;

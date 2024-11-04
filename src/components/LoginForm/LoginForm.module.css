@@ -53,26 +53,28 @@
   gap: 14px;
   margin-bottom: 24px;
 }
+
 .label {
   position: relative;
 }
+
 .input {
   box-sizing: border-box;
+  color: #ffffff;
   background-color: #1f1f1f;
   border: 1px solid #bedbb0;
   border-radius: 8px;
-  opacity: 40%;
   padding-top: 0;
   padding-bottom: 0;
   height: 49px;
   width: 100%;
-  padding-left: 14px;
-  padding-right: 14px;
+  padding-left: 18px;
+  padding-right: 18px;
 }
 
 .input::placeholder {
   color: #ffffff;
-
+  opacity: 40%;
   font-size: 14px;
 }
 
@@ -105,13 +107,27 @@
 
 .toggleBtn {
   position: absolute;
+  border: none;
+  background-color: transparent;
   top: 16px;
   right: 16px;
-  background-color: #fff;
 }
 
+.toggleBtnIcon {
+  stroke: #ffffff;
+  opacity: 30%;
+  fill: none;
+}
+
+.toggleBtnIcon:hover {
+  opacity: 100%;
+}
 .error {
+  position: absolute;
+  top: 100%;
+  left: 0;
   color: red;
-  font-size: 12px;
+  font-size: 9px;
   margin-top: 2px;
+  margin-left: 8px;
 }
