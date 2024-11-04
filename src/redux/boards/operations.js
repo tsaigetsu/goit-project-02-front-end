@@ -5,13 +5,20 @@ export const fetchBoardsThunk = createAsyncThunk(
   "fetchBoards",
   async (_, thunkApi) => {
     try {
-      const { data } = await api.get("boards");
-      return data;
+      console.log("hello");
+
+      const response = await api.get("boards");
+      console.log(response.data);
+
+      return response.data.data;
     } catch (error) {
+      console.log(error.message);
+
       return thunkApi.rejectWithValue(error.message);
     }
   }
 );
+fetchBoardsThunk();
 
 export const addBoardsThunk = createAsyncThunk(
   "addBoard",
