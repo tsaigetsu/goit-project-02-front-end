@@ -1,8 +1,12 @@
 import SvgIcon from "../SvgIcon/SvgIcon";
 import css from "./AddAnotherCard.module.css";
-
+import AddCardPopup from "../AddCardPopup/AddCardPopup";
+import { useState } from "react";
 const AddAnotherCard = () => {
-  const handleAddCard = () => {};
+  const [isCardVisible, setIsCardVisible] = useState(false);
+  const handleAddCard = () => {
+    setIsCardVisible(true);
+  };
   return (
     <>
       <div className={css.section}>
@@ -10,6 +14,7 @@ const AddAnotherCard = () => {
           <SvgIcon id="icon-normalBtnBlack" width="28" height="28" />
           Add another card
         </button>
+        {isCardVisible && <AddCardPopup setIsCardVisible={setIsCardVisible} />}
       </div>
     </>
   );
