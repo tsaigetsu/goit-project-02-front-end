@@ -8,7 +8,7 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
-import { authReducer } from "./auth/slice";
+import { authReducer } from "./auth/slice.js";
 import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 

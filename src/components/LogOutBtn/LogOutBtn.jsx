@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./LogOutBtn.module.css";
-import { logoutThunk } from "../../redux/auth/operation";
+import { logoutThunk } from "../../redux/auth/operations.js";
 const LogOutBtn = () => {
   const dispatch = useDispatch();
   return (

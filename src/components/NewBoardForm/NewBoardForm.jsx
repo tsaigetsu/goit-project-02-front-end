@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -7,30 +8,31 @@ import SvgIcon from "../SvgIcon/SvgIcon";
 import s from './NewBoardForm.module.css';
 
 const icons = [
-    "icon-Project",
-    "icon-star-04",
-    "icon-loading-03",
-    "icon-puzzle-piece-02",
-    "icon-container",
-    "icon-lightning-02",
-    "icon-colors",
-    "icon-hexagon-01"];
+    { id: "ic1", iconName: "icon-Project" },
+    { id: "ic2", iconName: "icon-star-04" },
+    { id: "ic3", iconName: "icon-loading-03" },
+    { id: "ic4", iconName: "icon-puzzle-piece-02" },
+    { id: "ic5", iconName: "icon-container" },
+    { id: "ic6", iconName: "icon-lightning-02" },
+    { id: "ic7", iconName: "icon-colors" },
+    { id: "ic8", iconName: "icon-hexagon-01" }
+];
 const backgrounds = [
-    "/src/assets/images/jpgs/desktop/flowers2x.jpg",
-    "/src/assets/images/jpgs/desktop/skyMountrain2x.jpg",
-    "/src/assets/images/jpgs/desktop/pinkTree2x.jpg",
-    "/src/assets/images/jpgs/desktop/moon2x.jpg",
-    "/src/assets/images/jpgs/desktop/jungleLeafes2x.jpg",
-    "/src/assets/images/jpgs/desktop/sky2x.jpg",
-    "/src/assets/images/jpgs/desktop/seaMountain2x.jpg",
-    "/src/assets/images/jpgs/desktop/ballons2x.jpg",
-    "/src/assets/images/jpgs/desktop/orangeMoon2x.jpg",
-    "/src/assets/images/jpgs/desktop/ship2x.jpg",
-    "/src/assets/images/jpgs/desktop/flyingBallons2x.jpg",
-    "/src/assets/images/jpgs/desktop/dessert2x.jpg",
-    "/src/assets/images/jpgs/desktop/beach2.jpg",
-    "/src/assets/images/jpgs/desktop/lotBallons2x.jpg",
-    "/src/assets/images/jpgs/desktop/carNightSky2x.jpg"
+    { id: "bg1", url: "/src/assets/images/jpgs/desktop/flowers2x.jpg" },
+    { id: "bg2", url: "/src/assets/images/jpgs/desktop/skyMountrain2x.jpg" },
+    { id: "bg3", url: "/src/assets/images/jpgs/desktop/pinkTree2x.jpg" },
+    { id: "bg4", url: "/src/assets/images/jpgs/desktop/moon2x.jpg" },
+    { id: "bg5", url: "/src/assets/images/jpgs/desktop/jungleLeafes2x.jpg" },
+    { id: "bg6", url: "/src/assets/images/jpgs/desktop/sky2x.jpg" },
+    { id: "bg7", url: "/src/assets/images/jpgs/desktop/seaMountain2x.jpg" },
+    { id: "bg8", url: "/src/assets/images/jpgs/desktop/ballons2x.jpg" },
+    { id: "bg9", url: "/src/assets/images/jpgs/desktop/orangeMoon2x.jpg" },
+    { id: "bg10", url: "/src/assets/images/jpgs/desktop/ship2x.jpg" },
+    { id: "bg11", url: "/src/assets/images/jpgs/desktop/flyingBallons2x.jpg" },
+    { id: "bg12", url: "/src/assets/images/jpgs/desktop/dessert2x.jpg" },
+    { id: "bg13", url: "/src/assets/images/jpgs/desktop/beach2.jpg" },
+    { id: "bg14", url: "/src/assets/images/jpgs/desktop/lotBallons2x.jpg" },
+    { id: "bg15", url: "/src/assets/images/jpgs/desktop/carNightSky2x.jpg" }
 ];
 
 const schema = yup.object().shape({
@@ -41,7 +43,7 @@ const schema = yup.object().shape({
         .max(32, "Title cannot exceed 32 characters"),
 });
 
-const NewBoardForm = ({ isOpen, onClose }) => {
+const NewBoardForm = ({ isOpen, onClose, onSave }) => {
     const [isExiting, setIsExiting] = useState(false);
     const [hasText, setHasText] = useState(false);
 
@@ -53,8 +55,8 @@ const NewBoardForm = ({ isOpen, onClose }) => {
         resolver: yupResolver(schema),
         defaultValues: {
             title: "",
-            icon: icons[0],
-            background: "none"
+            icon: icons[0].id,
+            background: 'none'
         },
     });
 
@@ -70,9 +72,22 @@ const NewBoardForm = ({ isOpen, onClose }) => {
         }, 300);
     };
 
-    const onSubmit = (data) => {
-        console.log("Valid Data: ", data);
-        handleFormClose();
+    const onSubmit = async (data) => {
+        const payload = {
+            title: data.title,
+            iconId: data.icon,
+            backgroundId: data.background === "none" ? null : data.background
+        };
+        
+        try {
+            const response = await axios.post('/boards', payload);
+            
+            console.log("Board created:", response.data);
+            onSave(response.data);
+            handleFormClose();
+        } catch (error) {
+            console.error("Error creating board:", error);
+        }
     };
 
     if (!isOpen && !isExiting) return null;
@@ -108,19 +123,19 @@ const NewBoardForm = ({ isOpen, onClose }) => {
                     {/* Список іконок як радіо-кнопки */}
                     <label>Icons</label>
                     <div className={s.icons}>
-                        {icons.map((icon, index) => (
-                            <label key={index} className={s.iconButton}>
+                        {icons.map((icon) => (
+                            <label key={icon.id} className={s.iconButton}>
                                 <input
                                     type="radio"
-                                    value={icon}
+                                    value={icon.id}
                                     {...register("icon")}
-                                    checked={selectedIcon === icon}
-                                    onChange={() => setValue("icon", icon)}
+                                    checked={selectedIcon === icon.id}
+                                    onChange={() => setValue("icon", icon.id)}
                                 />
                                 <SvgIcon
                                     width="18"
                                     height="18"
-                                    id={icon}
+                                    id={icon.iconName}
                                     className={s.radioIcon}
                                 />
                             </label>
@@ -145,14 +160,17 @@ const NewBoardForm = ({ isOpen, onClose }) => {
                                 className={s.radioIcon}
                             />
                         </label>
-                        {backgrounds.map((bg, index) => (
-                            <label key={index} className={`${s.backgroundButton} ${selectedBackground === bg ? s.selected : ""}`} style={{ backgroundImage: `url(${bg})` }}>
+                        {backgrounds.map((bg) => (
+                            <label
+                                key={bg.id}
+                                className={`${s.backgroundButton} ${selectedBackground === bg.id ? s.selected : ""}`}
+                                style={{ backgroundImage: bg.url ? `url(${bg.url})` : "none" }}>
                                 <input
                                     type="radio"
-                                    value={bg}
+                                    value={bg.id}
                                     {...register("background")}
-                                    checked={selectedBackground === bg}
-                                    onChange={() => setValue("background", bg)}
+                                    checked={selectedBackground === bg.id}
+                                    onChange={() => setValue("background", bg.id)}
                                 />
                             </label>
                         ))}
@@ -176,6 +194,7 @@ const NewBoardForm = ({ isOpen, onClose }) => {
 NewBoardForm.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
 };
 
 export default NewBoardForm;
