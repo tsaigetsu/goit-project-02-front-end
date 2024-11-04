@@ -1,5 +1,5 @@
  .welcomePage {
-     background: linear-gradient(to bottom, white, lightgreen);
+     background: linear-gradient(to bottom, white, rgb(171, 244, 171));
      display: flex;
      justify-content: center;
      align-items: center;
@@ -8,30 +8,42 @@
      color: #161616;
  }
 
- h1,
- p {
-     margin: 0;
- }
 
- .container {
-     margin: 20px;
- }
+ /*  Desktop */
+ @media (min-width: 1440px) {}
 
+ /* tab */
+ @media (min-width: 768px) {}
 
- @media (min-width: 1440px) {
      .welcomSection {
-         width: 478px;
+         width: 375px;
          display: flex;
          flex-direction: column;
          justify-content: center;
          align-items: center;
      }
 
+@media (min-width: 768px) {
+     .welcomSection {
+        width: 473px;
+    }
+}
+
 
      .welcomSection h1 {
-         font-size: 40px;
-
+         font-size: 28px;
      }
+
+@media (min-width: 768px) {
+    .welcomSection h1 {
+        font-size: 40px;
+    }
+}
+
+    .welcomSection img {
+       margin-bottom: 24px;
+
+    }
 
      .welcomSection p {
          font-size: 14px;
@@ -40,7 +52,7 @@
      }
 
      .buttonRegister {
-         width: 344px;
+         width: 335px;
          padding: 14px 131px;
          font-size: 14px;
          color: #FFFFFF;
@@ -56,14 +68,14 @@
      .buttonLogin {
          background: none;
          border: none;
-         padding: 0;
+         padding: 14px 131px;
          font: inherit;
          color: #161616;
          cursor: pointer;
          transition-duration: 0.4s;
      }
 
- }
+ 
 
  .buttonRegister:hover {
      opacity: 0.8;
@@ -78,7 +90,6 @@
      align-items: center;
      text-align: center;
 
-
  }
 
  .taskProBox {
@@ -86,16 +97,34 @@
  }
 
  .iconContainer {
-     width: 48px;
-     height: 48px;
+     width: 40px;
+     height: 40px;
      background-color: #161616;
      border-radius: 10px;
      display: flex;
      justify-content: center;
      align-items: center;
      margin-right: 14px;
-     /* стиль іконки */
-     background-image: url('path/to/your/icon.svg');
-     background-size: contain;
-     background-repeat: no-repeat;
  }
+
+
+@media (min-width: 768px) {
+    .iconContainer {
+        width: 48px;
+        height: 48px;
+    }
+
+    .welcomeIcon {
+        width: 18px;
+        height: 24px;
+    }
+
+    .welcomSection img {
+        width: 162px;
+        height: 162px;
+    }
+    
+    .buttonRegister {
+        width: 344px;
+    }
+}
