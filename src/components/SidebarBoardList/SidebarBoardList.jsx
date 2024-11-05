@@ -6,7 +6,10 @@ import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./SidebarBoardList.module.css";
 import { useEffect } from "react";
 import { selectBoards } from "../../redux/boards/selectors";
-import { fetchBoardsThunk } from "../../redux/boards/operations";
+import {
+  // addBoardsThunk,
+  fetchBoardsThunk,
+} from "../../redux/boards/operations";
 
 const SidebarBoardList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,6 +27,11 @@ const SidebarBoardList = () => {
   };
 
   const onClose = () => setIsModalOpen(false);
+
+  // const handleSaveBoard = (newBoard) => {
+  //   dispatch(addBoardsThunk(newBoard));
+  //   onClose();
+  // };
   return (
     <>
       <ul className={s.ul}>
@@ -41,7 +49,7 @@ const SidebarBoardList = () => {
           </button>
         </li>
         {data.map((item) => (
-          <SidebarBoardItem key={item._id} name={item.name} id={item._id} />
+          <SidebarBoardItem key={item._id} name={item.title} id={item._id} />
         ))}
       </ul>
       {isModalOpen && <NewBoardForm isOpen={isModalOpen} onClose={onClose} />}
