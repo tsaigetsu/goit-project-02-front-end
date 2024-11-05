@@ -39,13 +39,20 @@
   cursor: pointer;
 }
 
+
+.svgCloseIcon {
+  fill:none;
+  stroke: #ffffff;
+}
+
+
 .inputTitle {
-  width: 90%;
+  width: 100%;
   padding: 12px;
   background-color: transparent;
-  border: 1px solid #6f6f6f; 
+  border: 1px solid #BEDBB0; 
   border-radius: 6px;
-  color: #BEDBB0; 
+  color: #ffffff; 
   font-size: 16px;
   margin: 14px 0;
 }
