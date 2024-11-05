@@ -7,7 +7,7 @@ import s from "./SidebarBoardList.module.css";
 import { useEffect } from "react";
 import { selectBoards } from "../../redux/boards/selectors";
 import {
-  // addBoardsThunk,
+  addBoardsThunk,
   fetchBoardsThunk,
 } from "../../redux/boards/operations";
 
@@ -28,10 +28,11 @@ const SidebarBoardList = () => {
 
   const onClose = () => setIsModalOpen(false);
 
-  // const handleSaveBoard = (newBoard) => {
-  //   dispatch(addBoardsThunk(newBoard));
-  //   onClose();
-  // };
+  const handleSaveBoard = (newBoard) => {
+    dispatch(addBoardsThunk(newBoard));
+    onClose();
+  };
+
   return (
     <>
       <ul className={s.ul}>
@@ -39,7 +40,7 @@ const SidebarBoardList = () => {
         <li className={s.myBoardsText}>My boards</li>
         <li className={s.createBoard}>
           <p className={s.createBoardText}>Create a new board</p>
-          <button className={s.createBoardBtn} onClick={handleOpenModal}>
+          <button className={s.createBoardBtn} onClick={handleOpenModal} >
             <SvgIcon
               id="icon-plus"
               className={s.createIcon}
@@ -52,7 +53,7 @@ const SidebarBoardList = () => {
           <SidebarBoardItem key={item._id} name={item.title} id={item._id} />
         ))}
       </ul>
-      {isModalOpen && <NewBoardForm isOpen={isModalOpen} onClose={onClose} />}
+      {isModalOpen && <NewBoardForm isOpen={isModalOpen} onClose={onClose} onSave={handleSaveBoard} />}
     </>
   );
 };

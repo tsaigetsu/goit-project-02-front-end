@@ -76,7 +76,7 @@ const NewBoardForm = ({ isOpen, onClose, onSave }) => {
         const payload = {
             title: data.title,
             iconId: data.icon,
-            backgroundId: data.background === "nobg" ? null : data.background
+            backgroundId: data.background
         };
         
         console.log("Board created:", payload);
