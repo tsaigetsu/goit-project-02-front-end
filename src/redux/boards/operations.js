@@ -24,8 +24,10 @@ export const addBoardsThunk = createAsyncThunk(
   "addBoard",
   async (body, thunkApi) => {
     try {
-      const { data } = await api.post("boards", body);
-      return data;
+      const response = await api.post("boards", body);
+      console.log(response.data.data);
+
+      return response.data.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -34,10 +36,10 @@ export const addBoardsThunk = createAsyncThunk(
 
 export const deleteBoardThunk = createAsyncThunk(
   "deleteBoard",
-  async (id, thunkApi) => {
+  async (_id, thunkApi) => {
     try {
-      await api.delete(`boards/${id}`);
-      return id;
+      await api.delete(`boards/${_id}`);
+      return _id;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

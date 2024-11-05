@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState } from 'react';
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -43,22 +42,18 @@ const schema = yup.object().shape({
         .max(32, "Title cannot exceed 32 characters"),
 });
 
-const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBackground, onSave, boardId }) => {
+const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBackground, onSave }) => {
     const [isExiting, setIsExiting] = useState(false);
     const [hasText, setHasText] = useState((!!initialTitle));
 
-    const { register, handleSubmit, setValue, watch, formState: { errors }, reset } = useForm({
+    const { register, handleSubmit, setValue, watch, formState: { errors }, reset, clearErrors } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
             title: initialTitle || "",
             icon: initialIcon || icons[0].id,
-            background: initialBackground || 'none'
+            background: initialBackground || 'nobg'
         },
     });
-
-    const onInputChange = (e) => {
-        setHasText(e.target.value.length > 0);
-    };
 
     const selectedIcon = watch("icon");
     const selectedBackground = watch("background");
@@ -72,29 +67,22 @@ const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBack
         }, 300);
     };
 
+    const onInputChange = (e) => {
+        setHasText(e.target.value.length > 0);
+        clearErrors("title");
+    };
+
     const onSubmit = async (data) => {
         const payload = {
             title: data.title,
             iconId: data.icon,
-            backgroundId: data.background === "none" ? null : data.background
+            backgroundId: data.background
         };
         
-        try {
-            const response = await axios.patch(`/boards/${boardId}`, payload);
-        
-            console.log("Board updated:", response.data);
-            onSave(response.data);
-            handleFormClose();
-        } catch (error) {
-            console.error("Error updating board:", error);
-        }
+        console.log("Board created:", payload);
+        onSave(payload);
+        handleFormClose();
     };
-    
-    // const onSubmit = (data) => {
-    //     console.log("Updated Data: ", data);
-    //     onSave(data);
-    //     handleFormClose();
-    // };
 
     if (!isOpen && !isExiting) return null;
 
@@ -154,13 +142,13 @@ const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBack
                     {/* Список фонів як радіо-кнопки */}
                     <label>Background</label>
                     <div className={s.backgrounds}>
-                        <label className={`${s.backgroundIcon} ${selectedBackground === "none" ? s.selected : ""}`}>
+                        <label className={`${s.backgroundIcon} ${selectedBackground === "nobg" ? s.selected : ""}`}>
                             <input
                                 type="radio"
-                                value="none"
+                                value="nobg"
                                 {...register("background")}
-                                checked={selectedBackground === "none"}
-                                onChange={() => setValue("background", "none")}
+                                checked={selectedBackground === "nobg"}
+                                onChange={() => setValue("background", "nobg")}
                             />
                             <SvgIcon
                                 width="16"
@@ -173,7 +161,7 @@ const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBack
                             <label
                                 key={bg.id}
                                 className={`${s.backgroundButton} ${selectedBackground === bg.id ? s.selected : ""}`}
-                                style={{ backgroundImage: bg.url ? `url(${bg.url})` : "none" }}>
+                                style={{ backgroundImage: bg.url ? `url(${bg.url})` : "nobg" }}>
                                 <input
                                     type="radio"
                                     value={bg.id}

@@ -1,0 +1,10 @@
+[
+    { "id": "ic1", "iconName": "icon-Project" },
+    { "id": "ic2", "iconName": "icon-star-04" },
+    { "id": "ic3", "iconName": "icon-loading-03" },
+    { "id": "ic4", "iconName": "icon-puzzle-piece-02" },
+    { "id": "ic5", "iconName": "icon-container" },
+    { "id": "ic6", "iconName": "icon-lightning-02" },
+    { "id": "ic7", "iconName": "icon-colors" },
+    { "id": "ic8", "iconName": "icon-hexagon-01" }
+]
