@@ -1,9 +1,7 @@
 import Column from "../Column/Column";
 import css from "./ColumnsList.module.css";
 
-const ColumnsList = ({columns}) => {
-//   const columns = [{ title: "todo1" }, { title: "todo2" }, { title: "todo3" }];
-
+const ColumnsList = ({ columns }) => {
   return (
     <>
       <div className={css.positionWrapper}>

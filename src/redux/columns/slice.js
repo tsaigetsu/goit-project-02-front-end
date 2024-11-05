@@ -10,7 +10,7 @@ import {
 const columnsSlice = createSlice({
   name: "columns",
   initialState: {
-    items: {},
+    columnsByBoard: {},
     loading: false,
     error: null,
   },
