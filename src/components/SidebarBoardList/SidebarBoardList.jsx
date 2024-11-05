@@ -5,11 +5,13 @@ import SidebarBoardItem from "../SidebarBoardItem/SidebarBoardItem";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./SidebarBoardList.module.css";
 import { useEffect } from "react";
-import { selectBoards } from "../../redux/boards/selectors";
+import { selectBoards } from "../../redux/boards/selectors.js";
 import {
   addBoardsThunk,
+  deleteBoardThunk,
   fetchBoardsThunk,
-} from "../../redux/boards/operations";
+} from "../../redux/boards/operations.js";
+import icons from "../../data/icons.json";
 
 const SidebarBoardList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,6 +23,7 @@ const SidebarBoardList = () => {
   }, [dispatch]);
 
   const data = useSelector((state) => selectBoards(state));
+  console.log("data", data);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -32,7 +35,10 @@ const SidebarBoardList = () => {
     dispatch(addBoardsThunk(newBoard));
     onClose();
   };
-
+  const getIconNameById = (id) => {
+    const icon = icons.find((icon) => icon.id === id);
+    return icon ? icon.iconName : "icon-default";
+  };
   return (
     <>
       <ul className={s.ul}>
@@ -40,7 +46,7 @@ const SidebarBoardList = () => {
         <li className={s.myBoardsText}>My boards</li>
         <li className={s.createBoard}>
           <p className={s.createBoardText}>Create a new board</p>
-          <button className={s.createBoardBtn} onClick={handleOpenModal} >
+          <button className={s.createBoardBtn} onClick={handleOpenModal}>
             <SvgIcon
               id="icon-plus"
               className={s.createIcon}
@@ -50,10 +56,22 @@ const SidebarBoardList = () => {
           </button>
         </li>
         {data.map((item) => (
-          <SidebarBoardItem key={item._id} name={item.title} id={item._id} />
+          <SidebarBoardItem
+            key={item._id}
+            name={item.title}
+            id={item._id}
+            iconId={getIconNameById(item.iconId)}
+            onDelete={() => dispatch(deleteBoardThunk(item._id))}
+          />
         ))}
       </ul>
-      {isModalOpen && <NewBoardForm isOpen={isModalOpen} onClose={onClose} onSave={handleSaveBoard} />}
+      {isModalOpen && (
+        <NewBoardForm
+          isOpen={isModalOpen}
+          onClose={onClose}
+          onSave={handleSaveBoard}
+        />
+      )}
     </>
   );
 };
