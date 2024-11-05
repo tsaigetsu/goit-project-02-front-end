@@ -11,12 +11,13 @@ import {
 } from "../../redux/columns/slice";
 import { fetchColumns, onAddColumn } from "../../redux/columns/operations";
 import NewBoardForm from "../NewBoardForm/NewBoardForm";
+import { selectBoards } from "../../redux/boards/selectors";
 
 const MainDashboard = ({ boardId }) => {
   // Получаем колонки для текущей доски по boardId
   const columns = useSelector((state) => selectColumnsByBoard(state, boardId));
   //получить борды с помощь useSelector
-  const boards = ["1", "2"];
+  const boards = useSelector(selectBoards);
 
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
