@@ -1,7 +1,10 @@
-export default function Header () {
-    return (
-        <div>
-            <p>Header</p>
-        </div>
-    )
+import css from "./Header.module.css";
+
+function Header() {
+  return (
+    <div className={css.wrapperHeader}>
+      <p>Header</p>
+    </div>
+  );
 }
+export default Header;

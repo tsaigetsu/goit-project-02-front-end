@@ -8,10 +8,13 @@ const AddColumn = ({ onAddColumn, setIsAddColumnVisible }) => {
   const closeModal = () => {
     setIsAddColumnVisible(false);
   };
+  console.log(title);
 
   const handleAddColumn = () => {
     if (title.trim()) {
       onAddColumn(title);
+      setTitle("");
+      closeModal();
     }
   };
   return (

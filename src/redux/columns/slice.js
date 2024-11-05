@@ -1,34 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  onAddColumn,
-  onDeleteColumn,
-  onEditColumn,
-  fetchColumns,
-} from "./operations";
-// import { logout } from "../auth/operations";
+import { onAddColumn, onDeleteColumn, onEditColumn } from "./operations";
+// import { logout } from "../auth/operations.js";
 
 const columnsSlice = createSlice({
   name: "columns",
   initialState: {
-    columnsByBoard: {},
+    columnsByBoard: {}, // { [boardId]: [{ id, title, ... }] }
     loading: false,
     error: null,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchColumns.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(fetchColumns.fulfilled, (state, action) => {
-        state.loading = false;
-        const { boardId, columns } = action.payload;
-        state.columnsByBoard[boardId] = columns;
-        state.error = null;
-      })
-      .addCase(fetchColumns.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
+
       .addCase(onAddColumn.pending, (state) => {
         state.loading = true;
       })
@@ -91,7 +74,7 @@ const columnsSlice = createSlice({
   },
 });
 
-export const columnReducer = columnsSlice.reducer;
+export const columnsReducer = columnsSlice.reducer;
 export const selectColumnsByBoard = (state, boardId) =>
   state.columns.columnsByBoard[boardId] ?? [];
 

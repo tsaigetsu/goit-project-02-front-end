@@ -8,9 +8,10 @@ import {
   selectError,
   selectLoading,
 } from "../../redux/columns/slice";
-import { fetchColumns, onAddColumn } from "../../redux/columns/operations";
+import { onAddColumn } from "../../redux/columns/operations";
 import NewBoardForm from "../NewBoardForm/NewBoardForm";
 import { selectBoards } from "../../redux/boards/selectors";
+import { fetchBoardsThunk } from "../../redux/boards/operations";
 
 const MainDashboard = ({ boardId }) => {
   const columns = useSelector((state) => selectColumnsByBoard(state, boardId));
@@ -22,7 +23,7 @@ const MainDashboard = ({ boardId }) => {
 
   useEffect(() => {
     if (boardId) {
-      dispatch(fetchColumns(boardId));
+      dispatch(fetchBoardsThunk(boardId));
     }
   }, [dispatch, boardId]);
 
@@ -44,7 +45,7 @@ const MainDashboard = ({ boardId }) => {
     <>
       <div className={css.wrapperMainDashboard}>
         <div className={css.wrapperText}>
-          {!boards.length > 0 ? (
+          {boards.length === 0 ? (
             <p className={css.text}>
               Before starting your project, it is essential{" "}
               <span>
@@ -59,7 +60,7 @@ const MainDashboard = ({ boardId }) => {
           ) : (
             <div className={css.columnsWrapper}>
               {columns.length > 0 ? (
-                <ColumnsList columns={columns} />
+                <ColumnsList boardId={boardId} />
               ) : (
                 <AddAnotherColumn
                   onAddColumn={handleAddColumn}
@@ -68,7 +69,13 @@ const MainDashboard = ({ boardId }) => {
               )}
             </div>
           )}
-          {isOpen && <NewBoardForm isOpen={isOpen} onClose={onClose} />}
+          {isOpen && (
+            <NewBoardForm
+              isOpen={isOpen}
+              onClose={onClose}
+              onSave={handleAddBoard}
+            />
+          )}
         </div>
       </div>
     </>

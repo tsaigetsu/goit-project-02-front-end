@@ -5,24 +5,14 @@ import toast from "react-hot-toast";
 axios.defaults.baseURL =
   "https://goit-project-02-back-end.onrender.com/api-docs/";
 
-export const fetchColumns = createAsyncThunk(
-  "columns/fetchAllColumns",
-  async (boardId, thunkAPI) => {
-    try {
-      const response = await axios.get("/boards/${boardId}/columns");
-      return { boardId, columns: response.data };
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const onAddColumn = createAsyncThunk(
   "columns/addColumn",
   async ({ boardId, newColumn }, thunkAPI) => {
+    console.log("Attempting to add column:", { boardId, newColumn }); // Логируем входные параметры
     try {
       const response = await axios.post(
-        "/boards/${boardId}/columns",
+        // "/boards/${boardId}/columns",
+        `columns`,
         newColumn
       );
       toast.success("Column created successfully!", {
@@ -46,7 +36,10 @@ export const onDeleteColumn = createAsyncThunk(
   "columns/deleteColumn",
   async ({ boardId, columnId }, thunkAPI) => {
     try {
-      await axios.delete(`/boards/${boardId}/columns/${columnId}`);
+      await axios.delete(
+        // `/boards/${boardId}/columns/${columnId}`
+        ` columns/${columnId}`
+      );
       toast.success("Column deleted!", {
         duration: 4000,
         position: "top-center",
@@ -69,7 +62,8 @@ export const onEditColumn = createAsyncThunk(
   async ({ boardId, columnId, updateColumn }, thunkAPI) => {
     try {
       const response = await axios.patch(
-        `/boards/${boardId}/columns/${columnId}`,
+        // `/boards/${boardId}/columns/${columnId}`,
+        ` columns/${columnId}`,
         updateColumn
       );
       toast.success("Column updated successfully!", {

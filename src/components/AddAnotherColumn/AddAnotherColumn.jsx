@@ -7,14 +7,15 @@ import { useDispatch } from "react-redux";
 const AddAnotherColumn = ({ boardId, onAddColumn }) => {
   const [isAddColumnVisible, setIsAddColumnVisible] = useState(false);
   const dispatch = useDispatch();
+
   const handleOpenModalAddColumn = () => {
     setIsAddColumnVisible(true);
   };
 
   const handleAddColumn = (title) => {
-    if (title.trim()) {
-      dispatch(onAddColumn({ title, boardId }));
-    }
+    console.log("Adding column with title:", title);
+
+    dispatch(onAddColumn({ title: title, boardId }));
     setIsAddColumnVisible(false);
   };
   return (
@@ -22,7 +23,7 @@ const AddAnotherColumn = ({ boardId, onAddColumn }) => {
       <div className={css.section}>
         <button
           className={css.btnAdd}
-          type="submit"
+          type="button"
           onClick={handleOpenModalAddColumn}
         >
           <div className={css.svg}>

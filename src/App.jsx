@@ -5,11 +5,11 @@ import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import PublicRoute from "./Routes/PublicRoute";
 import PrivateRoute from "./Routes/PrivateRoute";
-import HomePage from "./pages/HomePage/HomePage";
 import ScreensPage from "./pages/ScreensPage/ScreensPage";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import LoginForm from "./components/LoginForm/LoginForm";
+import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
   return (
