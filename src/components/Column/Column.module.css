@@ -3,20 +3,13 @@
   height: auto;
 }
 .wrapper {
-  /* position: absolute;
-  top: 39px;
-  left: 20px; */
   display: flex;
   flex-direction: column;
-
   width: 334px;
   height: 654px;
-
   overflow: hidden;
 }
 .container {
-  /* position: absolute; */
-  /* top: 110px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,7 +23,6 @@
   color: #fff;
   flex-shrink: 0;
   margin-bottom: 14px;
-  /* width: 334px; */
 }
 .boxIcon {
   display: flex;
@@ -52,33 +44,3 @@
 .btnIcon:focus {
   stroke: #bedbb0;
 }
-
-/* .testUL {
-  overflow-y: auto;
-  flex-grow: 1;
-  padding-right: 24px; /* Оставляем место для скролла */
-/* margin-right: -24px; /* Скролл выходит за правый край */
-/* margin-bottom: 14px;
-}  */
-
-/* .testUL::-webkit-scrollbar {
-  width: 8px;
-  position: relative;
-}
-.testUL::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 4px;
-  margin-right: -8px;
-}
-.testUL::-webkit-scrollbar-track {
-  background: transparent;
-  margin-right: -8px;
-} */
-/* .test {
-  min-height: 154px;
-  width: 100%;
-  background-color: aquamarine;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-} */

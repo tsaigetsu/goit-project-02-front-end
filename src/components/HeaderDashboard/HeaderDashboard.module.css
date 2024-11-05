@@ -1,19 +1,13 @@
-.container {
-  /* position: relative; */
-}
-
-.wrapper {
-  /* position: absolute;
-  top: 68px;
-  left: 260px; */
+.wrapperHeaderDashboard {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #1f1f1f;
-  /* width: 100%; */
+  width: 100%;
   padding: 10px 24px;
-  /* z-index: 10; */
+  background-color: #1f1f1f;
 }
+
 .titleBoard {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
@@ -21,6 +15,12 @@
   letter-spacing: -0.02em;
   color: #fff;
 }
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .btnFilters {
   stroke: white;
   display: flex;
