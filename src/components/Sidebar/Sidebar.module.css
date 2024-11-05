@@ -11,6 +11,7 @@
     width: 260px;
   }
 }
+
 /* .openMenu {
     display: block;
 } */
@@ -39,7 +40,7 @@
     width: 260px;
   }
 }
-*/ .aside {
+.aside {
   position: fixed;
   top: 0;
   left: 0;
