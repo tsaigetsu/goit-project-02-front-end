@@ -39,3 +39,67 @@
     width: 260px;
   }
 }
+*/ .aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Стилі для відкритого сайдбару на мобільних (до 768px) */
+@media (max-width: 768px) {
+  .aside {
+    transform: translateX(-100%);
+  }
+
+  .aside.open {
+    transform: translateX(0);
+  }
+}
+
+/* Стилі для планшетів (від 768px) */
+@media (min-width: 768px) and (max-width: 1439px) {
+  .aside {
+    transform: translateX(-100%);
+    /* Приховуємо сайдбар */
+  }
+
+  .aside.open {
+    transform: translateX(0);
+    /* Показуємо сайдбар, коли додано клас open */
+  }
+}
+
+/* Стилі для десктопів (від 1440px) */
+@media (min-width: 1440px) {
+  .aside {
+    display: block;
+    width: 260px;
+  }
+
+  .overlay {
+    display: none;
+  }
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 21, 21, 0.5);
+  z-index: 999;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  width: 225px;
+  height: 100%;
+  background-color: #fff;
+  padding-top: 14px;
+  z-index: 1000;
+}

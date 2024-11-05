@@ -41,10 +41,10 @@ const SidebarBoardList = () => {
   };
   return (
     <>
-      <ul className={s.ul}>
+      <div className={s.myBoards}>
         {/* нужен скролл */}
-        <li className={s.myBoardsText}>My boards</li>
-        <li className={s.createBoard}>
+        <p className={s.myBoardsText}>My boards</p>
+        <div className={s.createBoard}>
           <p className={s.createBoardText}>Create a new board</p>
           <button className={s.createBoardBtn} onClick={handleOpenModal}>
             <SvgIcon
@@ -54,17 +54,19 @@ const SidebarBoardList = () => {
               height="20"
             />
           </button>
-        </li>
-        {data.map((item) => (
-          <SidebarBoardItem
-            key={item._id}
-            name={item.title}
-            id={item._id}
-            iconId={getIconNameById(item.iconId)}
-            onDelete={() => dispatch(deleteBoardThunk(item._id))}
-          />
-        ))}
-      </ul>
+        </div>
+        <ul>
+          {data.map((item) => (
+            <SidebarBoardItem
+              key={item._id}
+              name={item.title}
+              id={item._id}
+              iconId={getIconNameById(item.iconId)}
+              onDelete={() => dispatch(deleteBoardThunk(item._id))}
+            />
+          ))}
+        </ul>
+      </div>
       {isModalOpen && (
         <NewBoardForm
           isOpen={isModalOpen}
