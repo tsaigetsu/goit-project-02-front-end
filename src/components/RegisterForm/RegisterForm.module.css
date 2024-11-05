@@ -61,7 +61,7 @@
   box-sizing: border-box;
   color: #ffffff;
   background-color: #1f1f1f;
-  border: 1px solid #bedbb0;
+  border: 1px solid rgba(190, 219, 176, 0.4);
   border-radius: 8px;
   padding-top: 0;
   padding-bottom: 0;
@@ -80,6 +80,8 @@
 .input:hover,
 .input:focus {
   opacity: 100%;
+  outline: none;
+  border: 1px solid #9dc888;
 }
 
 .active {
