@@ -1,0 +1,41 @@
+.container {
+  /* position: relative; */
+}
+
+.wrapper {
+  /* position: absolute;
+  top: 68px;
+  left: 260px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f1f1f;
+  /* width: 100%; */
+  padding: 10px 24px;
+  /* z-index: 10; */
+}
+.titleBoard {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.btnFilters {
+  stroke: white;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-content: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.8);
+  width: 64px;
+  height: 20px;
+  background-color: transparent;
+  padding: 4px;
+  border: none;
+  margin: 0;
+}

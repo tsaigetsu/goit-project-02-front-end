@@ -2,6 +2,7 @@ import SvgIcon from "../SvgIcon/SvgIcon";
 import css from "./AddAnotherCard.module.css";
 import AddCardPopup from "../AddCardPopup/AddCardPopup";
 import { useState } from "react";
+
 const AddAnotherCard = () => {
   const [isCardVisible, setIsCardVisible] = useState(false);
   const handleAddCard = () => {
