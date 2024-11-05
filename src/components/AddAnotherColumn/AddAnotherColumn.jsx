@@ -2,20 +2,19 @@ import { useState } from "react";
 import css from "./AddAnotherColumn.module.css";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import AddColumn from "../AddColumn/AddColumn";
-import ColumnsList from "../ColumnsList/ColumnsList";
-import { selectColumnsByBoard } from "../../redux/columns/slice.js";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const AddAnotherColumn = ({ boardId, onAddColumn }) => {
-  const columns = useSelector((state) => selectColumnsByBoard(state, boardId));
   const [isAddColumnVisible, setIsAddColumnVisible] = useState(false);
-
+  const dispatch = useDispatch();
   const handleOpenModalAddColumn = () => {
     setIsAddColumnVisible(true);
   };
 
   const handleAddColumn = (title) => {
-    onAddColumn(boardId, title); // Вызов функции добавления из MainDashboard
+    if (title.trim()) {
+      dispatch(onAddColumn({ title, boardId }));
+    }
     setIsAddColumnVisible(false);
   };
   return (
@@ -37,7 +36,6 @@ const AddAnotherColumn = ({ boardId, onAddColumn }) => {
             setIsAddColumnVisible={setIsAddColumnVisible}
           />
         )}
-        {columns.length > 0 && <ColumnsList columns={columns} />}
       </div>
     </>
   );

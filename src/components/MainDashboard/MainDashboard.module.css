@@ -1,7 +1,10 @@
-.container {
+.wrapperMainDashboard {
   /* position: relative; */
 }
 .wrapper {
+  /* position: absolute;
+  top: 68px;
+  left: 240px; */
   /* display: flex;
     flex-direction: row;
     flex-wrap: nowrap; */
@@ -9,41 +12,25 @@
 
 .columnsWrapper {
   background-color: #1f1f1f;
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: flex-start;
   width: 100%;
-  gap: 20px; /* расстояние между <ColumnsList /> и <AddAnotherColumn /> */
-}
-
-.columnsList {
-  display: flex;
-  overflow-x: auto; /* Добавляем горизонтальный скролл */
-  white-space: nowrap; /* Отключаем перенос */
-  padding-bottom: 10px; /* Дополнительно для скролла */
+  gap: 20px;
 }
 
 .columnsList > * {
-  flex: 0 0 auto; /* Отключаем растягивание колонок, чтобы они следовали друг за другом */
+  flex: 0 0 auto;
 }
 
-/* .list {
-  position: absolute;
-  top: 0;
-  width: 100%;
-} */
-/* .column {
-  width: 334px;
-  background-color: aquamarine;
-} */
 .wrapperText {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   height: 100vh;
+  background-color: rgb(46, 54, 50);
 }
 .text {
   font-family: "Poppins", sans-serif;
@@ -53,6 +40,7 @@
   letter-spacing: -0.02em;
   text-align: center;
   color: rgba(255, 255, 255, 0.5);
+  color: rgba(46, 38, 38, 0.5);
 
   max-width: 486px;
   height: 72px;
@@ -63,21 +51,3 @@
   border: none;
   padding: 0 5px;
 }
-
-/*тест*/
-/* .container {
-  display: flex;
-  flex-direction: column;
-} */
-/* 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-} */
-
-/* .addColumn {
-  flex-shrink: 0; 
-  display: flex;
-  align-items: center;
-  padding-left: 10px; 
-} */

@@ -6,12 +6,10 @@ import MainDashboard from "../../components/MainDashboard/MainDashboard.jsx";
 const ScreensPage = () => {
   return (
     <>
-      <div className={css.section}>
-        <div className={css.container}>
-          <HeaderDashboard className={css.headerDashboard} />
-          <MainDashboard className={css.mainDashboard} />
-        </div>
-      </div>
+      <section className={css.wrapperScreenPage}>
+        <HeaderDashboard className={css.headerDashboard} />
+        <MainDashboard className={css.mainDashboard} />
+      </section>
     </>
   );
 };

@@ -20,7 +20,6 @@ const MainDashboard = ({ boardId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
 
-  // Загружаем колонки при первом рендере
   useEffect(() => {
     if (boardId) {
       dispatch(fetchColumns(boardId));
@@ -28,7 +27,6 @@ const MainDashboard = ({ boardId }) => {
   }, [dispatch, boardId]);
 
   const handleAddColumn = (title) => {
-    // Диспатч для добавления новой колонки с заголовком
     dispatch(onAddColumn({ boardId, newColumn: { title } }));
   };
 
@@ -39,36 +37,38 @@ const MainDashboard = ({ boardId }) => {
     setIsOpen(true);
   };
 
+  const onClose = () => {
+    setIsOpen(false);
+  };
   return (
     <>
-      <div className={css.container1}>
-        <div className={css.wrapper1}>
-          <div className={css.wrapperText}>
-            {!boards.length > 0 ? (
-              <p className={css.text}>
-                Before starting your project, it is essential{" "}
-                <span>
-                  <button className={css.spanBtn} onClick={handleAddBoard}>
-                    to create a board
-                  </button>
-                </span>
-                to visualize and track all the necessary tasks and milestones.
-                This board serves as a powerful tool to organize the workflow
-                and ensure effective collaboration among team members.
-              </p>
-            ) : (
-              <div className={css.columnsWrapper}>
-                <div className={css.columnsList}>
-                  <ColumnsList columns={columns} />
-                </div>
+      <div className={css.wrapperMainDashboard}>
+        <div className={css.wrapperText}>
+          {!boards.length > 0 ? (
+            <p className={css.text}>
+              Before starting your project, it is essential{" "}
+              <span>
+                <button className={css.spanBtn} onClick={handleAddBoard}>
+                  to create a board
+                </button>
+              </span>
+              to visualize and track all the necessary tasks and milestones.
+              This board serves as a powerful tool to organize the workflow and
+              ensure effective collaboration among team members.
+            </p>
+          ) : (
+            <div className={css.columnsWrapper}>
+              {columns.length > 0 ? (
+                <ColumnsList columns={columns} />
+              ) : (
                 <AddAnotherColumn
                   onAddColumn={handleAddColumn}
                   boardId={boardId}
                 />
-              </div>
-            )}
-            {isOpen && <NewBoardForm isOpen={isOpen} />}
-          </div>
+              )}
+            </div>
+          )}
+          {isOpen && <NewBoardForm isOpen={isOpen} onClose={onClose} />}
         </div>
       </div>
     </>
