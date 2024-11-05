@@ -3,10 +3,11 @@ import SvgIcon from "../SvgIcon/SvgIcon";
 import css from "./Column.module.css";
 import EditColumn from "../EditColumn/EditColumn";
 import { ModalDelete } from "../ModalDelete/ModalDelete";
-import AddAnotherCard from "../AddAnotherCard/AddAnotherCard";
+import CardManager from "../CardManager/CardManager";
+
 // import CardList from "../CardList/CardList";
 
-const Column = ({ column }) => {
+const Column = ({ title }) => {
   // const cards = useSelector(selectCards);
   // const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
@@ -36,7 +37,7 @@ const Column = ({ column }) => {
       <div className={css.section}>
         <div className={css.wrapper}>
           <div className={css.container}>
-            <p>назва колонки</p>
+            <p>{title}</p>
             <div className={css.boxIcon}>
               <button className={css.btnIcon} onClick={onEdit}>
                 <SvgIcon id="icon-pencil-01" width="16" height="16" />
@@ -46,15 +47,9 @@ const Column = ({ column }) => {
               </button>
             </div>
           </div>
-          {/* <CardList /> */}
-          {/* {cards.length > 0 && !error && (
-            <CardList isFormVisible={isFormVisible} />
-          )} */}
+          <CardManager />
 
-          <AddAnotherCard />
-          {isEdit && (
-            <EditColumn column={column} setIsEdit={setIsEdit} isEdit={isEdit} />
-          )}
+          {isEdit && <EditColumn setIsEdit={setIsEdit} isEdit={isEdit} />}
         </div>
       </div>
       <ModalDelete

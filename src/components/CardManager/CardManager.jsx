@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import AddCardPopup from '../AddCardPopup/AddCardPopup.jsx';
-import EditCardPopup from '../EditCardPopup/EditCardPopup.jsx';
-import CardList from '../CardList/CardList.jsx';
-import SvgIcon from '../SvgIcon/SvgIcon.jsx';
-import s from './CardManager.module.css';
+import { useState } from "react";
+import AddCardPopup from "../AddCardPopup/AddCardPopup.jsx";
+import EditCardPopup from "../EditCardPopup/EditCardPopup.jsx";
+import CardList from "../CardList/CardList.jsx";
+import SvgIcon from "../SvgIcon/SvgIcon.jsx";
+import s from "./CardManager.module.css";
 
 const CardManager = () => {
   const [cards, setCards] = useState([]);
@@ -17,7 +17,9 @@ const CardManager = () => {
   };
 
   const handleEditCard = (updatedCard) => {
-    setCards(cards.map((card) => (card.id === updatedCard.id ? updatedCard : card)));
+    setCards(
+      cards.map((card) => (card.id === updatedCard.id ? updatedCard : card))
+    );
     setIsEditPopupOpen(false);
     setSelectedCard(null);
   };
@@ -37,16 +39,21 @@ const CardManager = () => {
 
   return (
     <div className={s.cardManager}>
+      <CardList
+        cards={cards}
+        onEdit={openEditPopup}
+        onDelete={handleDeleteCard}
+      />
+
       <button className={s.cardManagerButton} onClick={openAddPopup}>
-      <SvgIcon
-            id="icon-normalBtnBlack"
+        <SvgIcon
+          id="icon-normalBtnBlack"
           className={s.createIcon}
-            width="28"
-            height="28"
-          />
-          Add another card</button>
-      
-      <CardList cards={cards} onEdit={openEditPopup} onDelete={handleDeleteCard} />
+          width="28"
+          height="28"
+        />
+        Add another card
+      </button>
 
       {isAddPopupOpen && (
         <AddCardPopup

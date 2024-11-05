@@ -1,0 +1,30 @@
+.positionWrapper {
+  position: absolute; /* или любое другое нужное позиционирование */
+  top: 50px; /* пример значений для расположения */
+  left: 20px;
+  width: calc(100% - 40px); /* чтобы было место для скролла */
+}
+
+/* .wrapperList {
+  position: relative;
+  width: 100vh;
+} */
+.wrapperList {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 10px; /* чтобы было удобно использовать скролл */
+  white-space: nowrap; /* Опционально, для предотвращения переноса */
+}
+.columns {
+  position: absolute;
+  top: 39px;
+  left: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 18px;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

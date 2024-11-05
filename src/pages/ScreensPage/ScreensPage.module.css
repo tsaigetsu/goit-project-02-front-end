@@ -1,0 +1,17 @@
+.section {
+  position: relative;
+}
+.container {
+  /* position: absolute;
+  width: 100%;
+  top: 68px;
+  left: 260px; */
+}
+.headerDashboard {
+  /* position: absolute; */
+  z-index: 20;
+}
+.mainDashboard {
+  /* position: absolute; */
+  top: 68px;
+}

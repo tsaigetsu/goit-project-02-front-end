@@ -6,8 +6,23 @@
   color: #fff;
   margin-bottom: 24px;
 }
-
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(37, 37, 37, 0.75);
+  z-index: 1000;
+}
 .mainContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(37, 37, 37, 0.75);
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +30,14 @@
 }
 
 .container {
-  position: relative;
+  /* position: relative; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
   padding: 24px;
   background-color: #151515;
   border-radius: 8px;
