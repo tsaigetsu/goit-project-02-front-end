@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import css from "./MainDashboard.module.css";
-// import EditProfile from "../EditProfile/Editprofile";
 import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn";
 import ColumnsList from "../ColumnsList/ColumnsList";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,11 +13,8 @@ import NewBoardForm from "../NewBoardForm/NewBoardForm";
 import { selectBoards } from "../../redux/boards/selectors";
 
 const MainDashboard = ({ boardId }) => {
-  // Получаем колонки для текущей доски по boardId
   const columns = useSelector((state) => selectColumnsByBoard(state, boardId));
-  //получить борды с помощь useSelector
   const boards = useSelector(selectBoards);
-
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const [isOpen, setIsOpen] = useState(false);
@@ -71,8 +67,7 @@ const MainDashboard = ({ boardId }) => {
                 />
               </div>
             )}
-            {/* {isOpen && <EditProfile />} */}
-            {isOpen && <NewBoardForm />}
+            {isOpen && <NewBoardForm isOpen={isOpen} />}
           </div>
         </div>
       </div>
