@@ -1,12 +1,14 @@
 import css from "./LoginForm.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SvgIcon from "../SvgIcon/SvgIcon";
-// import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loginThunk } from "../../redux/auth/operations.js";
+import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
 
 const validateFormSchema = Yup.object().shape({
   email: Yup.string()
@@ -25,7 +27,10 @@ const validateFormSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const [visiblePassword, setVisiblePassword] = useState(false);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -42,11 +47,17 @@ const LoginForm = () => {
   });
 
   const onSubmit = (data) => {
-    // dispatch(loginThunk(data));
+    dispatch(loginThunk(data));
     console.log(data);
 
     reset();
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("home");
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <div className={css.mainContainer}>
@@ -107,7 +118,7 @@ const LoginForm = () => {
             </label>
           </div>
           <button type="submit" className={css.btn}>
-            Register Now
+            Log In Now
           </button>
         </form>
       </div>

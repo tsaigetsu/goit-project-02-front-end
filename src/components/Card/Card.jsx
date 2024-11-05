@@ -15,3 +15,5 @@ const Card = ({ card, onEdit, onDelete }) => {
 };
 
 export default Card;
+
+

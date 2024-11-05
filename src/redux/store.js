@@ -8,9 +8,10 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
-import { authReducer } from "./auth/slice";
+import { authReducer } from "./auth/slice.js";
 import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
+import { boardsReducer } from "./boards/slice.js";
 
 const persistConfig = {
   key: "root",
@@ -21,6 +22,7 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
+    boards: boardsReducer,
     auth: persistReducer(persistConfig, authReducer),
   },
   middleware: (getDefaultMiddleware) =>
