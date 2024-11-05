@@ -49,7 +49,7 @@ const SidebarBoardList = () => {
           </button>
         </li>
         {data.map((item) => (
-          <SidebarBoardItem key={item.id} name={item.name} id={item._id} />
+          <SidebarBoardItem key={item._id} name={item.title} id={item._id} />
         ))}
       </ul>
       {isModalOpen && <NewBoardForm isOpen={isModalOpen} onClose={onClose} />}
