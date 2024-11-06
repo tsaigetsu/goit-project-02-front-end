@@ -27,9 +27,9 @@ const MainDashboard = ({ boardId }) => {
     }
   }, [dispatch, boardId]);
 
-  const handleAddColumn = (title) => {
-    dispatch(onAddColumn({ boardId, newColumn: { title } }));
-  };
+  // const handleAddColumn = (title) => {
+  //   dispatch(onAddColumn({ boardId, newColumn: { title } }));
+  // };
 
   if (loading) return <p>Loading columns...</p>;
   if (error) return <p>Error loading columns: {error}</p>;
@@ -59,14 +59,14 @@ const MainDashboard = ({ boardId }) => {
             </p>
           ) : (
             <div className={css.columnsWrapper}>
-              {columns.length > 0 ? (
-                <ColumnsList boardId={boardId} />
+              <ColumnsList boardId={boardId} />
+              {/* {columns.length > 0 ? (
               ) : (
                 <AddAnotherColumn
                   onAddColumn={handleAddColumn}
                   boardId={boardId}
                 />
-              )}
+              )} */}
             </div>
           )}
           {isOpen && (

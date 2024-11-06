@@ -27,7 +27,7 @@
 
 .wrapperText {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 100vh;
   background-color: #1f1f1f;
