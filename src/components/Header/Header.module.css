@@ -16,24 +16,11 @@
   --background-color: ;
 }
 
-/* .headerContainer {
-    padding: 18px 24px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-} */
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 18px 24px;
-  /* position: fixed;
-    top: 0;
-    left: 0; */
   width: 100%;
   background-color: var(--primary-color);
   color: var(--text-color);
@@ -52,9 +39,8 @@
   margin-right: 5px;
 }
 
-/* modal */
+
 .themeButton {
-  /* Стилі для кнопки */
   background: none;
   border: none;
   cursor: pointer;
@@ -77,7 +63,6 @@
 }
 
 .modal ul {
-  /* Стилі для списку опцій */
   list-style: none;
   padding: 0;
   margin: 0;
@@ -161,4 +146,14 @@
 
 .hamburgerButton:hover {
   opacity: 0.3;
+}
+
+.hamburgerButton.hide {
+  visibility: hidden;
+}
+
+@media (min-width: 1440px) {
+.hamburgerButton {
+    visibility: hidden;
+  }
 }
