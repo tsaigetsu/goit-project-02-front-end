@@ -2,6 +2,8 @@ import { useState } from "react";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import css from "./AddColumn.module.css";
 
+
+
 const AddColumn = ({ onAddColumn, setIsAddColumnVisible }) => {
   const [title, setTitle] = useState("");
 

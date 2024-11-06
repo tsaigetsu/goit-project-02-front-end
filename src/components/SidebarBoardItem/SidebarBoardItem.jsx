@@ -1,4 +1,3 @@
-import ScreensPage from "../../pages/ScreensPage/ScreensPage";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./SidebarBoardItem.module.css";
 
@@ -36,7 +35,6 @@ const SidebarBoardItem = ({ iconId, id, name, onDelete }) => {
           <div className={s.activeLine}></div>
         </div>
       </li>
-      <ScreensPage boardId={id} title={name} />
     </>
   );
 };
