@@ -1,20 +1,13 @@
 import { useEffect, useState } from "react";
 import css from "./MainDashboard.module.css";
-import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn";
 import ColumnsList from "../ColumnsList/ColumnsList";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectColumnsByBoard,
-  selectError,
-  selectLoading,
-} from "../../redux/columns/slice";
-import { onAddColumn } from "../../redux/columns/operations";
+import { selectError, selectLoading } from "../../redux/columns/slice";
 import NewBoardForm from "../NewBoardForm/NewBoardForm";
 import { selectBoards } from "../../redux/boards/selectors";
 import { fetchBoardsThunk } from "../../redux/boards/operations";
 
 const MainDashboard = ({ boardId }) => {
-  const columns = useSelector((state) => selectColumnsByBoard(state, boardId));
   const boards = useSelector(selectBoards);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
@@ -27,14 +20,10 @@ const MainDashboard = ({ boardId }) => {
     }
   }, [dispatch, boardId]);
 
-  // const handleAddColumn = (title) => {
-  //   dispatch(onAddColumn({ boardId, newColumn: { title } }));
-  // };
-
   if (loading) return <p>Loading columns...</p>;
   if (error) return <p>Error loading columns: {error}</p>;
 
-  const handleAddBoard = () => {
+  const onOpen = () => {
     setIsOpen(true);
   };
 
@@ -47,9 +36,9 @@ const MainDashboard = ({ boardId }) => {
         <div className={css.wrapperText}>
           {boards.length === 0 ? (
             <p className={css.text}>
-              Before starting your project, it is essential{" "}
+              Before starting your project, it is essential
               <span>
-                <button className={css.spanBtn} onClick={handleAddBoard}>
+                <button className={css.spanBtn} onClick={onOpen}>
                   to create a board
                 </button>
               </span>
@@ -60,21 +49,10 @@ const MainDashboard = ({ boardId }) => {
           ) : (
             <div className={css.columnsWrapper}>
               <ColumnsList boardId={boardId} />
-              {/* {columns.length > 0 ? (
-              ) : (
-                <AddAnotherColumn
-                  onAddColumn={handleAddColumn}
-                  boardId={boardId}
-                />
-              )} */}
             </div>
           )}
           {isOpen && (
-            <NewBoardForm
-              isOpen={isOpen}
-              onClose={onClose}
-              onSave={handleAddBoard}
-            />
+            <NewBoardForm isOpen={isOpen} onClose={onClose} onSave={onOpen} />
           )}
         </div>
       </div>

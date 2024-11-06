@@ -28,18 +28,17 @@ const ColumnsList = ({ boardId }) => {
   };
   return (
     <>
-      <div className={css.positionWrapper}>
-        <div className={css.wrapperList}>
-          <ul className={css.columnsList}>
-            {columns.map((column) => (
-              <li key={column.id} className={css.itemList}>
-                <Column column={column} boardId={boardId} />
-              </li>
-            ))}
-          </ul>
-          <AddAnotherColumn setIsOpen={handleOpenModal} />
-        </div>
-      </div>
+      <section className={css.wrapperList}>
+        <ul className={css.columnsList}>
+          {columns.map((column) => (
+            <li key={column.id} className={css.itemList}>
+              <Column column={column} boardId={boardId} />
+            </li>
+          ))}
+        </ul>
+        <AddAnotherColumn setIsOpen={handleOpenModal} />
+      </section>
+
       {isOpen && (
         <AddColumn onAddColumn={handleSaveColumn} setIsOpen={setIsOpen} />
       )}

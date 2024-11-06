@@ -4,9 +4,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 334px;
+  max-width: 335px;
+  /* width: 100%; */
   margin: 0 auto;
   /* padding: 20px; */
+  /* background-color: burlywood; */
 }
 
 /* Add Card Button */
@@ -16,7 +18,7 @@
   justify-content: center;
   gap: 8px;
   width: 100%;
-  max-width: 335px;
+  /* width: 335px; */
   height: 56px;
   background-color: #bedbb0;
   border-radius: 8px;
