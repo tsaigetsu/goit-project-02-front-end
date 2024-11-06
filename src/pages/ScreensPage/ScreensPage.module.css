@@ -1,22 +1,38 @@
 .wrapperScreenPage {
   box-sizing: border-box;
-  /* position: absolute;
-  top: 68px;
-  left: 260px;
-  overflow-x: auto; */
   width: 100%;
 }
 .screensPage__content {
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  /* padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); Пример тени */
 }
 .headerDashboard {
 }
 .mainDashboard {
-  /* position: absolute;
-  top: 68px; */
 }
+
+/* Mobile */
+/* .container {
+  min-width: 320px;
+  max-width: 375px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+} */
+
+/* Tablet */
+/* @media only screen and (min-width: 768px) {
+  .wrapperScreenPage {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+} */
+
+/* Desktop */
+/* @media only screen and (min-width: 1280px) {
+  .wrapperScreenPage {
+    max-width: 1280px;
+    padding: 0 100px;
+  }
+} */

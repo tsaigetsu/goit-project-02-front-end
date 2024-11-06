@@ -1,6 +1,6 @@
-import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import ScreensPage from "../ScreensPage/ScreensPage";
+import Header from "../../components/Header/Header.jsx";
 import css from "./HomePage.module.css";
 import { SidebarContext } from "../../components/Layout/Layout.jsx";
 import { useContext } from "react";
@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <Layout>
       <section className={css.homePage}>
-        <Sidebar />
+        <Sidebar className={isSidebarOpen ? "aside open" : "aside"} />
         <div className={css.homePage__content}>
           <Header />
           <ScreensPage />
@@ -24,3 +24,10 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+{
+  /* <Layout>
+  <Sidebar className={isSidebarOpen ? "aside open" : "aside"} />
+  <ScreensPage />
+</Layout>; */
+}

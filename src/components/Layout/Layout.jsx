@@ -10,9 +10,8 @@
 
 // export default Layout;
 
-
-import React, { useState, createContext } from "react";
-import Header from "../Header/Header.jsx";
+import { useState, createContext } from "react";
+// import Header from "../Header/Header.jsx";
 
 export const SidebarContext = createContext({
   isSidebarOpen: false,
@@ -27,20 +26,17 @@ function Layout({ children }) {
   };
 
   const handleLayoutClick = (event) => {
-    if (isSidebarOpen && event.target.classList.contains("s.overlay"))
-    {
+    if (isSidebarOpen && event.target.classList.contains("s.overlay")) {
       toggleSidebar();
     }
   };
 
   return (
     <div>
-        <SidebarContext.Provider value={{ isSidebarOpen, toggleSidebar }}>
-          <Header />
-        <div onClick={handleLayoutClick}>
-            {children}
-        </div>
-        </SidebarContext.Provider>
+      <SidebarContext.Provider value={{ isSidebarOpen, toggleSidebar }}>
+        {/* <Header /> */}
+        <div onClick={handleLayoutClick}>{children}</div>
+      </SidebarContext.Provider>
     </div>
   );
 }
