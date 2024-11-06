@@ -71,5 +71,6 @@ img {
 
 body {
   font-family: "Poppins", sans-serif;
+  margin: 0;
   background: linear-gradient(to bottom, white, rgb(171, 244, 171));
 }

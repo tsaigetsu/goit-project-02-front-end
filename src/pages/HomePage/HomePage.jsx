@@ -8,7 +8,7 @@ import Layout from "../../components/Layout/Layout.jsx"; // Імпортуйте
 
 const HomePage = () => {
   const { isSidebarOpen } = useContext(SidebarContext);
-  console.log(isSidebarOpen);
+  // console.log(isSidebarOpen);
 
   return (
     <Layout>

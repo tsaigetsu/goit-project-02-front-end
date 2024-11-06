@@ -12,7 +12,7 @@ export default function Header() {
   // Створення контексту
   const ThemeContext = createContext("light");
 
-  const { toggleSidebar } = useContext(SidebarContext);
+  const { toggleSidebar, isSidebarOpen } = useContext(SidebarContext);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -36,10 +36,10 @@ export default function Header() {
                     </button> */}
           <button
             onClick={() => {
-              console.log("Hamburger button clicked");
+              // console.log("Hamburger button clicked");
               toggleSidebar();
             }}
-            className={css.hamburgerButton}
+            className={`${css.hamburgerButton} ${isSidebarOpen ? css.hide : ''}`}
           >
             <span className={css.hamburgerIcon}></span>
           </button>
