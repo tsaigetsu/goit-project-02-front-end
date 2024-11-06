@@ -25,9 +25,3 @@ const HomePage = () => {
 
 export default HomePage;
 
-{
-  /* <Layout>
-  <Sidebar className={isSidebarOpen ? "aside open" : "aside"} />
-  <ScreensPage />
-</Layout>; */
-}

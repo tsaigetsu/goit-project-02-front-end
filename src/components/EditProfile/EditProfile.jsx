@@ -19,7 +19,10 @@ const validateFormSchema = Yup.object().shape({
     .min(8, "Password must be at least 8 characters"),
 });
 // пропсе принимаем из хедера при нажатии на аватарку
-const EditProfile = ({ setVisibleModal }) => {
+const EditProfile = ({ isOpen, onClose }) => {
+
+   if (!isOpen) return null;
+
   const [visiblePassword, setVisiblePassword] = useState(true);
 
   const {
@@ -37,9 +40,9 @@ const EditProfile = ({ setVisibleModal }) => {
     mode: "onChange",
   });
 
-  const handleCloseModal = () => {
-    setVisibleModal(false);
-  };
+  // const handleCloseModal = () => {
+  //   setVisibleModal(false);
+  // };
 
   const onSubmit = (data) => {
     console.log(data);
@@ -54,7 +57,7 @@ const EditProfile = ({ setVisibleModal }) => {
         <button
           type="button"
           className={css.closeBtn}
-          onClick={handleCloseModal}
+          onClick={onClose}
         >
           <svg width="18" height="18">
             <use href="/src/assets/symbol-defs.svg#icon-x-close" />
