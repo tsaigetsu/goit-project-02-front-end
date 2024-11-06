@@ -1,21 +1,22 @@
-/* .aside {
-  display: none;
-  position: fixed;
-  z-index: 20;
-  top: 0;
-  left: 0;
-  width: 100%;
+.aside {
+  /* display: none; */
+  /* position: fixed; */
+  /* z-index: 20; */
+  /* top: 0;
+  left: 0; */
+  width: 260px;
   height: 100%;
   @media only screen and (min-width: 1440px) {
     display: block;
     width: 260px;
   }
-} */
+}
+
 /* .openMenu {
     display: block;
 } */
-/* 
-.overlay {
+
+/* .overlay {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -24,7 +25,7 @@
   @media only screen and (min-width: 1440px) {
     display: none;
   }
-}
+} */
 .nav {
   display: flex;
   flex-direction: column;
@@ -38,8 +39,7 @@
   @media only screen and (min-width: 1440px) {
     width: 260px;
   }
-} */
-
+}
 .aside {
   position: fixed;
   top: 0;
@@ -60,7 +60,6 @@
   }
 }
 
-
 /* Стилі для планшетів (від 768px) */
 @media (min-width: 768px) and (max-width: 1439px) {
   .aside {
@@ -79,7 +78,6 @@
   .aside {
     display: block;
     width: 260px;
-
   }
 
   .overlay {
@@ -87,13 +85,11 @@
   }
 }
 
-
-
 .overlay {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(21, 21, 21, 0.50);
+  background: rgba(21, 21, 21, 0.5);
   z-index: 999;
 }
 
@@ -104,7 +100,7 @@
   position: relative;
   width: 225px;
   height: 100%;
-  background-color: #FFF;
+  background-color: #fff;
   padding-top: 14px;
   z-index: 1000;
 }

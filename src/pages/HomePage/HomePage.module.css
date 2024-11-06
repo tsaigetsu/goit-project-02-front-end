@@ -1,3 +1,10 @@
-.wrapperHomePage {
-  position: relative;
+.homePage {
+  display: flex;
+  height: 100vh;
+}
+
+.homePage__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

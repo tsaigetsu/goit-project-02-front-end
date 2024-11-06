@@ -6,7 +6,7 @@ const HeaderDashboard = ({ titleBoard }) => {
     <>
       <div className={css.wrapperHeaderDashboard}>
         <div className={css.container}>
-          <p className={css.titleBoard}>Project office{titleBoard}</p>
+          <p className={css.titleBoard}>{titleBoard}</p>
           <button className={css.btnFilters}>
             <SvgIcon id="icon-filter" width="16" height="16" />
             <span>Filters</span>

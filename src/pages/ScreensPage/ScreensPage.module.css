@@ -1,14 +1,22 @@
 .wrapperScreenPage {
   box-sizing: border-box;
-  position: absolute;
-  width: 100%;
+  /* position: absolute;
   top: 68px;
   left: 260px;
+  overflow-x: auto; */
+  width: 100%;
 }
-
+.screensPage__content {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  /* padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); Пример тени */
+}
 .headerDashboard {
 }
 .mainDashboard {
-  position: absolute;
-  top: 68px;
+  /* position: absolute;
+  top: 68px; */
 }

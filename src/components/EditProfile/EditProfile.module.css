@@ -6,7 +6,7 @@
   color: #fff;
   margin-bottom: 24px;
 }
-.overlay {
+/* .overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,7 +14,7 @@
   bottom: 0;
   background-color: rgba(37, 37, 37, 0.75);
   z-index: 1000;
-}
+} */
 .mainContainer {
   position: fixed;
   top: 0;

@@ -4,21 +4,24 @@ import css from "./Column.module.css";
 import EditColumn from "../EditColumn/EditColumn";
 import { ModalDelete } from "../ModalDelete/ModalDelete";
 import CardManager from "../CardManager/CardManager";
+import { onDeleteColumn } from "../../redux/columns/operations";
+import { useDispatch } from "react-redux";
 
-// import CardList from "../CardList/CardList";
-
-const Column = ({ title }) => {
+const Column = ({ column, boardId }) => {
   // const cards = useSelector(selectCards);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [isFormVisible, setIsFormVisible] = useState(true);
+
   const onDelete = () => {
-    // dispatch(deleteColumn(column.id));
-    closeModal();
-    // if (value !== '') {
-    //   dispatch(changeFilter(''));
-    // }
+    if (column.id && boardId) {
+      dispatch(onDeleteColumn({ columnId: column.id, boardId }));
+      closeModal();
+      // if (value !== '') {
+      //   dispatch(changeFilter(''));
+      // }
+    }
   };
   const onEdit = () => {
     setIsEdit(true);
@@ -37,7 +40,7 @@ const Column = ({ title }) => {
       <div className={css.section}>
         <div className={css.wrapper}>
           <div className={css.container}>
-            <p>{title}</p>
+            <p>{column.title || "Untitled Column"}</p>
             <div className={css.boxIcon}>
               <button className={css.btnIcon} onClick={onEdit}>
                 <SvgIcon id="icon-pencil-01" width="16" height="16" />
@@ -47,9 +50,16 @@ const Column = ({ title }) => {
               </button>
             </div>
           </div>
-          <CardManager />
+          <CardManager columnId={column.id} />
 
-          {isEdit && <EditColumn setIsEdit={setIsEdit} isEdit={isEdit} />}
+          {isEdit && (
+            <EditColumn
+              column={column}
+              boardId={boardId}
+              setIsEdit={setIsEdit}
+              // isEdit={isEdit}
+            />
+          )}
         </div>
       </div>
       <ModalDelete
@@ -57,7 +67,7 @@ const Column = ({ title }) => {
         onClose={closeModal}
         onConfirm={onDelete}
         typeItems={"column"}
-        // titleItems={column.title}
+        titleItems={column.title || "Untitled Column"}
       />
     </>
   );

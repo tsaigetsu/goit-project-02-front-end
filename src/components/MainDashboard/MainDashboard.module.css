@@ -30,7 +30,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: rgb(46, 54, 50);
+  background-color: #1f1f1f;
 }
 .text {
   font-family: "Poppins", sans-serif;
@@ -39,8 +39,8 @@
   line-height: 1.28571;
   letter-spacing: -0.02em;
   text-align: center;
+
   color: rgba(255, 255, 255, 0.5);
-  color: rgba(46, 38, 38, 0.5);
 
   max-width: 486px;
   height: 72px;
