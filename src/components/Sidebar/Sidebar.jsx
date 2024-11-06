@@ -32,24 +32,23 @@ import s from "./Sidebar.module.css";
 import { useContext } from "react";
 import { SidebarContext } from "../Layout/Layout.jsx";
 
-const Sidebar = () => {
+const Sidebar = ({ onSelectBoard }) => {
   const { isSidebarOpen, toggleSidebar } = useContext(SidebarContext);
 
   const handleClick = (event) => {
     event.stopPropagation();
-        if (event.target.classList.contains(s.overlay)) {
+    if (event.target.classList.contains(s.overlay)) {
       toggleSidebar();
     }
   };
 
-
   return (
-    <aside className={`${s.aside} ${isSidebarOpen ? s.open : ''}`}>
+    <aside className={`${s.aside} ${isSidebarOpen ? s.open : ""}`}>
       <div className={s.overlay} onClick={handleClick} />
       <nav className={s.nav}>
         <div className={s.topElements}>
           <LogoComponent className={s.top} />
-          <SidebarBoardList className={s.list} />
+          <SidebarBoardList className={s.list} onSelectBoard={onSelectBoard} />
         </div>
         <div className={s.bottomElements}>
           <NeedHelpComponent className={s.bottom} />
