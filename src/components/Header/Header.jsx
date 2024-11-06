@@ -1,8 +1,8 @@
 import SvgIcon from "../../components/SvgIcon/SvgIcon.jsx";
 import { useState, createContext, useContext } from "react";
 import css from "./Header.module.css";
-// import Sidebar from "../Sidebar/Sidebar.jsx";
 import { SidebarContext } from "../Layout/Layout.jsx";
+import UserInfo from "../UserInfo/UserInfo.jsx";
 
 // Компонент заголовка
 export default function Header() {
@@ -64,11 +64,7 @@ export default function Header() {
                 </div>
               )}
             </div>
-
-            <div className={css.userInfo}>
-              <p>Name</p>
-              <button className={css.userInfoModal}></button>
-            </div>
+            <UserInfo />
           </div>
         </header>
       </ThemeContext.Provider>
