@@ -2,13 +2,11 @@ import { useState } from "react";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import css from "./AddColumn.module.css";
 
-
-
-const AddColumn = ({ onAddColumn, setIsAddColumnVisible }) => {
+const AddColumn = ({ onAddColumn, setIsOpen }) => {
   const [title, setTitle] = useState("");
 
   const closeModal = () => {
-    setIsAddColumnVisible(false);
+    setIsOpen(false);
   };
   console.log(title);
 
@@ -36,7 +34,7 @@ const AddColumn = ({ onAddColumn, setIsAddColumnVisible }) => {
           />
           <button
             className={css.btnAdd}
-            type="submit"
+            type="button"
             onClick={handleAddColumn}
           >
             <SvgIcon id="icon-normalBtnBlack" width="28" height="28" />
