@@ -13,8 +13,9 @@ import {
 } from "../../redux/boards/operations.js";
 import icons from "../../data/icons.json";
 
-const SidebarBoardList = () => {
+const SidebarBoardList = ({ onSelectBoard }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeBoardId, setActiveBoardId] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -35,6 +36,12 @@ const SidebarBoardList = () => {
     dispatch(addBoardsThunk(newBoard));
     onClose();
   };
+
+  const handleSelectBoard = (id, title) => {
+    setActiveBoardId(id);
+    onSelectBoard({ id, title });
+  };
+
   const getIconNameById = (id) => {
     const icon = icons.find((icon) => icon.id === id);
     return icon ? icon.iconName : "icon-default";
@@ -55,7 +62,7 @@ const SidebarBoardList = () => {
             />
           </button>
         </div>
-        <ul>
+        <ul className={s.ul}>
           {data.map((item) => (
             <SidebarBoardItem
               key={item._id}
@@ -63,6 +70,8 @@ const SidebarBoardList = () => {
               id={item._id}
               iconId={getIconNameById(item.iconId)}
               onDelete={() => dispatch(deleteBoardThunk(item._id))}
+              onSelect={() => handleSelectBoard(item._id, item.title)}
+              isActive={item._id === activeBoardId}
             />
           ))}
         </ul>

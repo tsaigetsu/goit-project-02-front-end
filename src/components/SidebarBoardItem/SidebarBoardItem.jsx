@@ -1,10 +1,20 @@
 import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./SidebarBoardItem.module.css";
 
-const SidebarBoardItem = ({ iconId, id, name, onDelete }) => {
+const SidebarBoardItem = ({
+  iconId,
+  id,
+  name,
+  onDelete,
+  onSelect,
+  isActive,
+}) => {
   return (
     <>
-      <li className={`${s.li} ${s.isActiveProject}`}>
+      <li
+        className={`${s.li} ${isActive ? s.isActiveProject : ""}`}
+        onClick={onSelect}
+      >
         {/* добавить динамику для второго класса */}
         <div className={s.boardName}>
           <SvgIcon
