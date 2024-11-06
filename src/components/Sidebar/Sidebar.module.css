@@ -1,31 +1,3 @@
-.aside {
-  /* display: none; */
-  /* position: fixed; */
-  /* z-index: 20; */
-  /* top: 0;
-  left: 0; */
-  width: 260px;
-  height: 100%;
-  /* @media only screen and (min-width: 1440px) {
-    display: block;
-    width: 260px;
-  } */
-}
-
-/* .openMenu {
-    display: block;
-} */
-
-/* .overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(21, 21, 21, 0.5);
-  z-index: 999;
-  @media only screen and (min-width: 1440px) {
-    display: none;
-  }
-} */
 .nav {
   display: flex;
   flex-direction: column;
@@ -36,18 +8,15 @@
   background-color: #fff;
   padding-top: 14px;
   z-index: 1000;
-  /* @media only screen and (min-width: 1440px) {
-    width: 260px;
-  } */
 }
 .aside {
   position: fixed;
   top: 0;
   left: 0;
-  display: none;
   width: 100%;
   height: 100%;
   background-color: #fff;
+  transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
 }
 
@@ -58,7 +27,6 @@
   }
 
   .aside.open {
-    display: block;
     transform: translateX(0);
   }
 }
@@ -71,7 +39,6 @@
   }
 
   .aside.open {
-    display: block;
     transform: translateX(0);
     /* Показуємо сайдбар, коли додано клас open */
   }
@@ -80,7 +47,7 @@
 /* Стилі для десктопів (від 1440px) */
 @media (min-width: 1440px) {
   .aside {
-    display: block;
+    transform: translateX(0);
     position: relative;
     width: 260px;
   }
@@ -88,27 +55,12 @@
   .overlay {
     display: none;
   }
-  .nav {
-    width: 260px;
-  }
 }
 
 .overlay {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(21, 21, 21, 0.5);
+  background-color: rgba(21, 21, 21, 0.5);
   z-index: 999;
 }
-/* 
-.nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  width: 225px;
-  height: 100%;
-  background-color: #fff;
-  padding-top: 14px;
-  z-index: 1000;
-} */
