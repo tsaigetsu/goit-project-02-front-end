@@ -55,7 +55,7 @@ const SidebarBoardList = () => {
             />
           </button>
         </div>
-        <ul>
+        <ul className={s.ul}>
           {data.map((item) => (
             <SidebarBoardItem
               key={item._id}
