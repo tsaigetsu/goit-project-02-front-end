@@ -1,9 +1,10 @@
 import css from "./EditProfile.module.css";
 
 import * as Yup from "yup";
-import { useForm } from "react-hook-form";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const validateFormSchema = Yup.object().shape({
   name: Yup.string()
@@ -19,11 +20,10 @@ const validateFormSchema = Yup.object().shape({
     .min(8, "Password must be at least 8 characters"),
 });
 // пропсе принимаем из хедера при нажатии на аватарку
-const EditProfile = ({ isOpen, onClose }) => {
-
-   if (!isOpen) return null;
-
+const EditProfile = ({ isOpen, onClose, user }) => {
   const [visiblePassword, setVisiblePassword] = useState(true);
+  if (!isOpen) return null;
+  const { name, email } = user;
 
   const {
     register,
@@ -32,8 +32,8 @@ const EditProfile = ({ isOpen, onClose }) => {
     formState: { errors, touchedFields },
   } = useForm({
     defaultValues: {
-      name: "", //указываем текущее значение
-      email: "", //указываем текущее значение
+      name: { name }, //указываем текущее значение
+      email: { email }, //указываем текущее значение
       password: "",
     },
     resolver: yupResolver(validateFormSchema),
@@ -54,11 +54,7 @@ const EditProfile = ({ isOpen, onClose }) => {
     <div className={css.mainContainer}>
       <div className={css.container}>
         <p className={css.title}>Edit profile</p>
-        <button
-          type="button"
-          className={css.closeBtn}
-          onClick={onClose}
-        >
+        <button type="button" className={css.closeBtn} onClick={onClose}>
           <svg width="18" height="18">
             <use href="/src/assets/symbol-defs.svg#icon-x-close" />
           </svg>
