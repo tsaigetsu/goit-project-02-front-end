@@ -10,9 +10,22 @@ import AuthPage from "./pages/AuthPage/AuthPage";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import LoginForm from "./components/LoginForm/LoginForm";
 import HomePage from "./pages/HomePage/HomePage";
+import { currentUserThunk } from "./redux/auth/operations";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsRefreshing } from "./redux/auth/selectors";
+import Loader from "./components/Loader/Loader";
 
 function App() {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+  useEffect(() => {
+    dispatch(currentUserThunk());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Routes>
       <Route path="/" element={<Navigate to="/welcome" replace />} />
 

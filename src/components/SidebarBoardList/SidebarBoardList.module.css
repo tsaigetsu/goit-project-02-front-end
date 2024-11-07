@@ -39,3 +39,20 @@
     stroke: #121212;
     fill: none;
 }
+
+.ul {
+    max-height: calc(61px * 2); 
+    overflow-y: auto;
+  }
+  
+  @media (min-width: 768px) {
+    .ul {
+      max-height: calc(61px * 3); 
+    }
+  }
+  
+  @media (min-width: 1440px) {
+    .ul {
+      max-height: calc(61px*6); 
+    }
+  }
