@@ -1,5 +1,6 @@
 import css from "./ScreensPage.module.css";
-import { selectBoards, selectedBoard } from "../../redux/boards/selectors.js";
+import { selectBoards } from "../../redux/boards/selectors.js";
+// import { selectedBoard } from "../../redux/boards/selectors.js";
 import { useState } from "react";
 import HeaderDashboard from "../../components/HeaderDashboard/HeaderDashboard.jsx";
 import MainDashboard from "../../components/MainDashboard/MainDashboard.jsx";
@@ -11,7 +12,7 @@ const ScreensPage = ({ board }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState(null); // Стан для фільтра
   const boards = useSelector(selectBoards);
-  const boardById = useSelector(selectedBoard);
+  // const boardById = useSelector(selectedBoard);
   console.log("board", board);
   const onOpen = () => {
     setIsOpen(true);
