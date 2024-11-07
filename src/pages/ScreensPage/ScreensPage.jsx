@@ -1,12 +1,15 @@
 import css from "./ScreensPage.module.css";
-import { selectBoards } from "../../redux/boards/selectors";
+import { selectBoards, selectedBoard } from "../../redux/boards/selectors";
 import { useSelector, useState } from "react";
 import HeaderDashboard from "../../components/HeaderDashboard/HeaderDashboard.jsx";
 import MainDashboard from "../../components/MainDashboard/MainDashboard.jsx";
+import DefaultText from "../../components/DefaultText/DefaultText.jsx";
+import NewBoardForm from "../../components/NewBoardForm/NewBoardForm.jsx";
 
 const ScreensPage = ({ board }) => {
   const [isOpen, setIsOpen] = useState(false);
-  // const board = useSelector(selectBoards);
+  const boards = useSelector(selectBoards);
+  // const board = useSelector(selectedBoard);
   console.log("board", board);
   const onOpen = () => {
     setIsOpen(true);
@@ -19,15 +22,7 @@ const ScreensPage = ({ board }) => {
     <>
       <section className={css.wrapperScreenPage}>
         {boards.length === 0 ? (
-          <p className={css.text}>
-            Before starting your project, it is essential
-            <span>
-              <button className={css.spanBtn}>to create a board</button>
-            </span>
-            to visualize and track all the necessary tasks and milestones. This
-            board serves as a powerful tool to organize the workflow and ensure
-            effective collaboration among team members.
-          </p>
+          <DefaultText />
         ) : (
           <div className={css.screensPage__content}>
             <HeaderDashboard
