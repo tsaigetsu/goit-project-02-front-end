@@ -10,6 +10,7 @@ const initialState = {
   token: "",
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
 };
 
 const slice = createSlice({
@@ -37,8 +38,9 @@ const slice = createSlice({
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
       })
-      .addCase(loginThunk.rejected, (state) => {
+      .addCase(loginThunk.rejected, (state, action) => {
         state.isLoggedIn = false;
+        state.error = action.payload;
       })
       .addCase(currentUserThunk.fulfilled, (state, action) => {
         state.isLoggedIn = true;

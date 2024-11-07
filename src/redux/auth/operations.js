@@ -18,8 +18,6 @@ export const registerThunk = createAsyncThunk(
       setToken(data.data.accessToken);
       return data;
     } catch (error) {
-      console.log(error.message);
-
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -33,7 +31,6 @@ export const loginThunk = createAsyncThunk(
       setToken(data.data.accessToken);
       return data;
     } catch (error) {
-      console.log(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
