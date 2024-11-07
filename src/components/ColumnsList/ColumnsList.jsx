@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 import Column from "../Column/Column";
 import css from "./ColumnsList.module.css";
-import { selectColumnsByBoard } from "../../redux/columns/slice";
+import { selectColumnsByBoard } from "../../redux/columns/slice.js";
 
 const ColumnsList = ({ boardId }) => {
-  const columns = useSelector((state) => selectColumnsByBoard(state));
+  const columns = useSelector(selectColumnsByBoard);
 
   console.log("columns", columns);
-
+  console.log("boardId", boardId);
   // useEffect(() => {
   //   dispatch(fetchCardsThunk());
   // }, [dispatch]);
