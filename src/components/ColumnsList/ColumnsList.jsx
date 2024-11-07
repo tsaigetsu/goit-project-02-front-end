@@ -10,8 +10,8 @@ import { onCreateColumn } from "../../redux/columns/operations";
 const ColumnsList = ({ boardId }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const columns = useSelector((state) => selectColumnsByBoard(state, boardId));
-  
+  const columns = useSelector((state) => selectColumnsByBoard(state));
+
   console.log("columns", columns);
 
   // useEffect(() => {
@@ -23,10 +23,10 @@ const ColumnsList = ({ boardId }) => {
   };
   const handleSaveColumn = (newTitle) => {
     console.log("Adding column with title:", newTitle);
-    const newColumn = { title: newTitle };
-    console.log("NewColumn:", newTitle);
-    console.log("boardId:", boardId);
-    dispatch(onCreateColumn({ boardId, newColumn }));
+    const newColumn = { title: newTitle, boardId: boardId };
+    console.log("NewColumn:", newColumn);
+    // console.log("boardId:", boardId);
+    dispatch(onCreateColumn(newColumn));
     setIsOpen(false);
   };
   return (
@@ -34,7 +34,7 @@ const ColumnsList = ({ boardId }) => {
       <section className={css.wrapperList}>
         <ul className={css.columnsList}>
           {columns.map((column) => (
-            <li key={column.id} className={css.itemList}>
+            <li key={column._id} className={css.itemList}>
               <Column column={column} boardId={boardId} />
             </li>
           ))}

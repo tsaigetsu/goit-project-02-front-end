@@ -4,16 +4,18 @@ import { api } from "../../api.js";
 
 export const onCreateColumn = createAsyncThunk(
   "addColumn",
-  async ({ boardId, newColumn }, thunkAPI) => {
-    console.log("Attempting to add column:", { boardId, newColumn }); // Логируем входные параметры
+  async (newColumn, thunkAPI) => {
+    console.log("Attempting to add column:", { newColumn });
     try {
       const response = await api.post("columns", newColumn);
+      console.log("API response:", response.data);
+      const CreatedColumn = response.date;
       toast.success("Column created successfully!", {
         duration: 4000,
         position: "top-center",
         icon: "✔️",
       });
-      return { boardId, column: response.data };
+      return { boardId: CreatedColumn.boardId, column: CreatedColumn };
     } catch (error) {
       toast.error("Failed to create column: " + error.message, {
         duration: 5000,
