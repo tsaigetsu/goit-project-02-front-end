@@ -45,3 +45,17 @@ export const deleteBoardThunk = createAsyncThunk(
     }
   }
 );
+
+export const getBoardByIdThunk = createAsyncThunk(
+  "boards/getBoardById",
+  async (boardId, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`/boards/${boardId}`);
+      console.log(response);
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);

@@ -3,11 +3,13 @@ import {
   addBoardsThunk,
   deleteBoardThunk,
   fetchBoardsThunk,
+  getBoardByIdThunk,
 } from "./operations";
 import { logoutThunk } from "../auth/operations.js";
 
 const initialState = {
   boards: [],
+  selectedBoard: null,
   loading: false,
   error: null,
 };
@@ -31,11 +33,17 @@ const slice = createSlice({
       .addCase(logoutThunk.fulfilled, () => {
         return initialState;
       })
+      .addCase(getBoardByIdThunk.fulfilled, (state, action) => {
+        state.selectedBoard = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
       .addMatcher(
         isAnyOf(
           fetchBoardsThunk.pending,
           deleteBoardThunk.pending,
-          addBoardsThunk.pending
+          addBoardsThunk.pending,
+          getBoardByIdThunk.pending
         ),
         (state) => {
           state.loading = true;
@@ -46,7 +54,8 @@ const slice = createSlice({
         isAnyOf(
           fetchBoardsThunk.rejected,
           deleteBoardThunk.rejected,
-          addBoardsThunk.rejected
+          addBoardsThunk.rejected,
+          getBoardByIdThunk.rejected
         ),
         (state) => {
           state.loading = false;
@@ -57,7 +66,8 @@ const slice = createSlice({
         isAnyOf(
           fetchBoardsThunk.fulfilled,
           deleteBoardThunk.fulfilled,
-          addBoardsThunk.fulfilled
+          addBoardsThunk.fulfilled,
+          getBoardByIdThunk.fulfilled
         ),
         (state) => {
           state.loading = false;
