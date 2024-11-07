@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./NewBoardForm.module.css";
 import icons from "../../data/icons.json";
-import backgrounds from "../../data/backgroungs.json";
+import backgrounds from "../../data/backgrounds.json";
 
 // const icons = [
 //     { id: "ic1", iconName: "icon-Project" },
