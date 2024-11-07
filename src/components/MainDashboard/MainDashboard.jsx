@@ -13,6 +13,7 @@ const MainDashboard = ({ board }) => {
   const error = useSelector(selectError);
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
+  console.log("bardId", board.id);
 
   useEffect(() => {
     if (board.id) {
@@ -47,6 +48,8 @@ const MainDashboard = ({ board }) => {
               ensure effective collaboration among team members.
             </p>
           ) : (
+            // <div className={css.wrapperText}>
+            // </div>
             <div className={css.columnsWrapper}>
               <ColumnsList boardId={board.id} />
             </div>
