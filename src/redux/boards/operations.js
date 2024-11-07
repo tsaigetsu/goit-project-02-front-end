@@ -45,3 +45,17 @@ export const deleteBoardThunk = createAsyncThunk(
     }
   }
 );
+
+export const getBoardByIdThunk = createAsyncThunk(
+  "boards/getBoardById",
+  async (boardId, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`/boards/${boardId}`);
+      console.log("redux, get board by id", response.data.data);
+
+      return response.data.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
