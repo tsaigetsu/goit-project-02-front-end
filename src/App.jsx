@@ -13,14 +13,14 @@ import HomePage from "./pages/HomePage/HomePage";
 import { currentUserThunk } from "./redux/auth/operations";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsRefreshing } from "./redux/auth/selectors";
+import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
 import Loader from "./components/Loader/Loader";
 import toast from "react-hot-toast";
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  const isLoggedIn = useSelector(isLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(currentUserThunk());
