@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import SvgIcon from '../SvgIcon/SvgIcon'; 
 import css from './Filters.module.css';
 
 const Filters = ({ onBackgroundChange, onFilterChange }) => {
@@ -10,18 +9,22 @@ const Filters = ({ onBackgroundChange, onFilterChange }) => {
   };
 
   const handleBackgroundChange = (color) => {
-    onBackgroundChange(color);
-
-    // Тут можна додати функцію для збереження фону на сервері
-    saveBackgroundToServer(color);
+    if (onBackgroundChange) {
+      onBackgroundChange(color);
+      // Можна зберігати фон на сервері окремо, якщо необхідно
+      saveBackgroundToServer(color);
+    }
   };
 
   const handleFilterChange = (priority) => {
-    onFilterChange(priority);
+    if (onFilterChange) {
+      onFilterChange(priority);
+      toggleModal(); // Закриваємо модалку після вибору
+    }
   };
 
   const saveBackgroundToServer = (color) => {
-    // Код для відправки даних на сервер:
+    // Код для відправки даних на сервер
     fetch('/api/saveBackground', {
       method: 'POST',
       headers: {
@@ -40,7 +43,6 @@ const Filters = ({ onBackgroundChange, onFilterChange }) => {
   return (
     <div className={css.filtersWrapper}>
       <button onClick={toggleModal} className={css.btnFilters}>
-        <SvgIcon id="icon-filter" width="16" height="16" />
         <span>Filters</span>
       </button>
       {isModalOpen && (
