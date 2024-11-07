@@ -8,11 +8,12 @@ import { onDeleteColumn } from "../../redux/columns/operations";
 import { useDispatch } from "react-redux";
 
 const Column = ({ column, boardId }) => {
-  // const cards = useSelector(selectCards);
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const cards = useSelector(selectCards);
   // const [isFormVisible, setIsFormVisible] = useState(true);
+  console.log("title", column);
 
   const onDelete = () => {
     if (column.id && boardId) {

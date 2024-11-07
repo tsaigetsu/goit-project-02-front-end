@@ -7,7 +7,7 @@ import NewBoardForm from "../NewBoardForm/NewBoardForm";
 import { selectBoards } from "../../redux/boards/selectors";
 import { fetchBoardsThunk } from "../../redux/boards/operations";
 
-const MainDashboard = ({ boardId }) => {
+const MainDashboard = ({ board }) => {
   const boards = useSelector(selectBoards);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
@@ -15,10 +15,10 @@ const MainDashboard = ({ boardId }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (boardId) {
-      dispatch(fetchBoardsThunk(boardId));
+    if (board.id) {
+      dispatch(fetchBoardsThunk(board.id));
     }
-  }, [dispatch, boardId]);
+  }, [dispatch, board.id]);
 
   if (loading) return <p>Loading columns...</p>;
   if (error) return <p>Error loading columns: {error}</p>;
@@ -48,7 +48,7 @@ const MainDashboard = ({ boardId }) => {
             </p>
           ) : (
             <div className={css.columnsWrapper}>
-              <ColumnsList boardId={boardId} />
+              <ColumnsList boardId={board.id} />
             </div>
           )}
           {isOpen && (

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { onAddColumn, onDeleteColumn, onEditColumn } from "./operations";
+import { onCreateColumn, onDeleteColumn, onEditColumn } from "./operations";
 // import { logout } from "../auth/operations.js";
 
 const columnsSlice = createSlice({
@@ -12,10 +12,10 @@ const columnsSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-      .addCase(onAddColumn.pending, (state) => {
+      .addCase(onCreateColumn.pending, (state) => {
         state.loading = true;
       })
-      .addCase(onAddColumn.fulfilled, (state, action) => {
+      .addCase(onCreateColumn.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
         const { boardId, column } = action.payload;
@@ -25,7 +25,7 @@ const columnsSlice = createSlice({
         state.columnsByBoard[boardId].push(column);
       })
 
-      .addCase(onAddColumn.rejected, (state, action) => {
+      .addCase(onCreateColumn.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

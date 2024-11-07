@@ -1,20 +1,13 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
+import { api } from "../../api.js";
 
-axios.defaults.baseURL =
-  "https://goit-project-02-back-end.onrender.com/api-docs/";
-
-export const onAddColumn = createAsyncThunk(
-  "columns/addColumn",
+export const onCreateColumn = createAsyncThunk(
+  "addColumn",
   async ({ boardId, newColumn }, thunkAPI) => {
     console.log("Attempting to add column:", { boardId, newColumn }); // Логируем входные параметры
     try {
-      const response = await axios.post(
-        // "/boards/${boardId}/columns",
-        `columns`,
-        newColumn
-      );
+      const response = await api.post("columns", newColumn);
       toast.success("Column created successfully!", {
         duration: 4000,
         position: "top-center",
@@ -33,13 +26,10 @@ export const onAddColumn = createAsyncThunk(
 );
 
 export const onDeleteColumn = createAsyncThunk(
-  "columns/deleteColumn",
+  "deleteColumn",
   async ({ boardId, columnId }, thunkAPI) => {
     try {
-      await axios.delete(
-        // `/boards/${boardId}/columns/${columnId}`
-        ` columns/${columnId}`
-      );
+      await api.delete(`columns/${columnId}`);
       toast.success("Column deleted!", {
         duration: 4000,
         position: "top-center",
@@ -58,14 +48,10 @@ export const onDeleteColumn = createAsyncThunk(
 );
 
 export const onEditColumn = createAsyncThunk(
-  "column/editColumn",
+  "editColumn",
   async ({ boardId, columnId, updateColumn }, thunkAPI) => {
     try {
-      const response = await axios.patch(
-        // `/boards/${boardId}/columns/${columnId}`,
-        ` columns/${columnId}`,
-        updateColumn
-      );
+      const response = await api.patch(` columns/${columnId}`, updateColumn);
       toast.success("Column updated successfully!", {
         duration: 4000,
         position: "top-center",
