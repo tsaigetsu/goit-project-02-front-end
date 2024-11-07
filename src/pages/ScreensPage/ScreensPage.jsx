@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 const ScreensPage = ({ board }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [filter, setFilter] = useState(null); // Стан для фільтра
   const boards = useSelector(selectBoards);
   const boardById = useSelector(selectedBoard);
   console.log("board", board);
@@ -28,9 +29,11 @@ const ScreensPage = ({ board }) => {
           <div className={css.screensPage__content}>
             <HeaderDashboard
               titleBoard={board.title}
+              onFilterChange={setFilter} // Передаємо функцію оновлення фільтра
               className={css.headerDashboard}
             />
-            <MainDashboard board={boardById} className={css.mainDashboard} />
+            <MainDashboard board={board} filter={filter} className={css.mainDashboard} />
+
           </div>
         )}
       </section>
