@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./NewBoardForm.module.css";
 import icons from "../../data/icons.json";
+import backgrounds from "../../data/backgroungs.json";
 
 // const icons = [
 //     { id: "ic1", iconName: "icon-Project" },
@@ -17,23 +18,23 @@ import icons from "../../data/icons.json";
 //     { id: "ic7", iconName: "icon-colors" },
 //     { id: "ic8", iconName: "icon-hexagon-01" }
 // ];
-const backgrounds = [
-  { id: "bg1", url: "/src/assets/images/jpgs/desktop/flowers2x.jpg" },
-  { id: "bg2", url: "/src/assets/images/jpgs/desktop/skyMountrain2x.jpg" },
-  { id: "bg3", url: "/src/assets/images/jpgs/desktop/pinkTree2x.jpg" },
-  { id: "bg4", url: "/src/assets/images/jpgs/desktop/moon2x.jpg" },
-  { id: "bg5", url: "/src/assets/images/jpgs/desktop/jungleLeafes2x.jpg" },
-  { id: "bg6", url: "/src/assets/images/jpgs/desktop/sky2x.jpg" },
-  { id: "bg7", url: "/src/assets/images/jpgs/desktop/seaMountain2x.jpg" },
-  { id: "bg8", url: "/src/assets/images/jpgs/desktop/ballons2x.jpg" },
-  { id: "bg9", url: "/src/assets/images/jpgs/desktop/orangeMoon2x.jpg" },
-  { id: "bg10", url: "/src/assets/images/jpgs/desktop/ship2x.jpg" },
-  { id: "bg11", url: "/src/assets/images/jpgs/desktop/flyingBallons2x.jpg" },
-  { id: "bg12", url: "/src/assets/images/jpgs/desktop/dessert2x.jpg" },
-  { id: "bg13", url: "/src/assets/images/jpgs/desktop/beach2.jpg" },
-  { id: "bg14", url: "/src/assets/images/jpgs/desktop/lotBallons2x.jpg" },
-  { id: "bg15", url: "/src/assets/images/jpgs/desktop/carNightSky2x.jpg" },
-];
+// const backgrounds = [
+//   { id: "bg1", url: "/src/assets/images/jpgs/desktop/flowers2x.jpg" },
+//   { id: "bg2", url: "/src/assets/images/jpgs/desktop/skyMountrain2x.jpg" },
+//   { id: "bg3", url: "/src/assets/images/jpgs/desktop/pinkTree2x.jpg" },
+//   { id: "bg4", url: "/src/assets/images/jpgs/desktop/moon2x.jpg" },
+//   { id: "bg5", url: "/src/assets/images/jpgs/desktop/jungleLeafes2x.jpg" },
+//   { id: "bg6", url: "/src/assets/images/jpgs/desktop/sky2x.jpg" },
+//   { id: "bg7", url: "/src/assets/images/jpgs/desktop/seaMountain2x.jpg" },
+//   { id: "bg8", url: "/src/assets/images/jpgs/desktop/ballons2x.jpg" },
+//   { id: "bg9", url: "/src/assets/images/jpgs/desktop/orangeMoon2x.jpg" },
+//   { id: "bg10", url: "/src/assets/images/jpgs/desktop/ship2x.jpg" },
+//   { id: "bg11", url: "/src/assets/images/jpgs/desktop/flyingBallons2x.jpg" },
+//   { id: "bg12", url: "/src/assets/images/jpgs/desktop/dessert2x.jpg" },
+//   { id: "bg13", url: "/src/assets/images/jpgs/desktop/beach2.jpg" },
+//   { id: "bg14", url: "/src/assets/images/jpgs/desktop/lotBallons2x.jpg" },
+//   { id: "bg15", url: "/src/assets/images/jpgs/desktop/carNightSky2x.jpg" },
+// ];
 
 const schema = yup.object().shape({
   title: yup

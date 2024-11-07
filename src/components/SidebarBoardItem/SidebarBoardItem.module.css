@@ -8,6 +8,7 @@
 }
 .projectIcon {
     stroke: rgba(22, 22, 22, 0.5);
+    fill: none;
 }
 .p {
     color: rgba(22, 22, 22, 0.50);
