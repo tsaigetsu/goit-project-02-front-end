@@ -4,7 +4,7 @@ import HeaderDashboard from "../../components/HeaderDashboard/HeaderDashboard.js
 import MainDashboard from "../../components/MainDashboard/MainDashboard.jsx";
 
 const ScreensPage = ({ board }) => {
-  console.log(board, "screens");
+  console.log("board", board);
 
   return (
     <>
