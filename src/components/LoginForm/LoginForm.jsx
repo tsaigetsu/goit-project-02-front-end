@@ -48,12 +48,10 @@ const LoginForm = () => {
     mode: "onChange",
   });
 
-  const onSubmit = async (data) => {
-    const result = await dispatch(loginThunk(data));
+  const onSubmit = (data) => {
+    dispatch(loginThunk(data));
 
-    if (!result.error) {
-      reset();
-    }
+    reset();
   };
 
   useEffect(() => {
