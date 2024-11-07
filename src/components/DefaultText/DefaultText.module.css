@@ -1,0 +1,26 @@
+.wrapperText {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.text {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  max-width: 486px;
+  height: 72px;
+}
+.spanBtn {
+  background-color: transparent;
+  color: #bedbb0;
+  border: none;
+  padding: 0 5px;
+}

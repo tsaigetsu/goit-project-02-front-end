@@ -1,15 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
-import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn";
+import { useSelector } from "react-redux";
 import Column from "../Column/Column";
 import css from "./ColumnsList.module.css";
 import { selectColumnsByBoard } from "../../redux/columns/slice";
-import { useState } from "react";
-import AddColumn from "../AddColumn/AddColumn";
-import { onCreateColumn } from "../../redux/columns/operations";
 
 const ColumnsList = ({ boardId }) => {
-  const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
   const columns = useSelector((state) => selectColumnsByBoard(state));
 
   console.log("columns", columns);
@@ -18,17 +12,6 @@ const ColumnsList = ({ boardId }) => {
   //   dispatch(fetchCardsThunk());
   // }, [dispatch]);
 
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  };
-  const handleSaveColumn = (newTitle) => {
-    console.log("Adding column with title:", newTitle);
-    const newColumn = { title: newTitle, boardId: boardId };
-    console.log("NewColumn:", newColumn);
-    // console.log("boardId:", boardId);
-    dispatch(onCreateColumn(newColumn));
-    setIsOpen(false);
-  };
   return (
     <>
       <section className={css.wrapperList}>
@@ -39,12 +22,7 @@ const ColumnsList = ({ boardId }) => {
             </li>
           ))}
         </ul>
-        <AddAnotherColumn setIsOpen={handleOpenModal} />
       </section>
-
-      {isOpen && (
-        <AddColumn onAddColumn={handleSaveColumn} setIsOpen={setIsOpen} />
-      )}
     </>
   );
 };
