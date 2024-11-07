@@ -13,7 +13,7 @@ import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn";
 import AddColumn from "../AddColumn/AddColumn";
 import { onCreateColumn } from "../../redux/columns/operations";
 
-const MainDashboard = ({ board }) => {
+const MainDashboard = ({ board, filter }) => {
   const [isOpen, setIsOpen] = useState(false);
   // const columns = useSelector(selectColumnsByBoard);
   const loading = useSelector(selectLoading);
@@ -50,7 +50,7 @@ const MainDashboard = ({ board }) => {
         {!columns.length === 0 ? (
           <div>
             <div className={css.columnsWrapper}>
-              <ColumnsList boardId={boardId} />
+              <ColumnsList boardId={boardId} filter={filter} />
             </div>
           </div>
         ) : (
