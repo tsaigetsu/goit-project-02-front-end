@@ -5,7 +5,7 @@ import { onCreateColumn, onDeleteColumn, onEditColumn } from "./operations";
 const columnsSlice = createSlice({
   name: "columns",
   initialState: {
-    columnsByBoard: [],
+    columnsByBoard: {},
     loading: false,
     error: null,
   },
@@ -18,8 +18,12 @@ const columnsSlice = createSlice({
       .addCase(onCreateColumn.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        const column = action.payload;
-        state.columnsByBoard.push(column);
+        const newColumn = action.payload;
+        const { boardId } = newColumn.CreatedColumn;
+        if (!state.columnsByBoard[boardId]) {
+          state.columnsByBoard[boardId] = [];
+        }
+        state.columnsByBoard[boardId].push(newColumn);
         // state.columnsByBoard.push(column);
       })
 
@@ -73,8 +77,3 @@ const columnsSlice = createSlice({
 });
 
 export const columnsReducer = columnsSlice.reducer;
-export const selectColumnsByBoard = (state) =>
-  state.columns.columnsByBoard ?? [];
-
-export const selectLoading = (state) => state.columns.loading;
-export const selectError = (state) => state.columns.error;

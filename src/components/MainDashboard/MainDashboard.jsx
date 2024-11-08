@@ -7,7 +7,7 @@ import {
   // selectColumnsByBoard,
   selectError,
   selectLoading,
-} from "../../redux/columns/slice.js";
+} from "../../redux/columns/selectors.js";
 
 import { getBoardByIdThunk } from "../../redux/boards/operations.js";
 // import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn.jsx";
@@ -16,16 +16,16 @@ import { onCreateColumn } from "../../redux/columns/operations.js";
 
 const MainDashboard = ({ board, filter }) => {
   const [isOpen, setIsOpen] = useState(false);
-  // const columns = [1, 2, 3];
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const { _id } = board;
+  // const columns = useSelector(selectColumnsByBoard);
+  const columns = useSelector((state) => selectColumnsByBoard(state, _id));
   const dispatch = useDispatch();
-  const columns = useSelector((state) => selectColumnsByBoard(state));
-  console.log("bardId", _id);
-  console.log("columns to boarder", columns);
+  // console.log("bardId", _id);
+  console.log("columns by board", columns);
   console.log("Board", board);
-  console.log("isOpen", isOpen);
+  // console.log("isOpen", isOpen);
 
   useEffect(() => {
     if (_id) {

@@ -1,15 +1,12 @@
-import { useSelector } from "react-redux";
 import Column from "../Column/Column";
 import css from "./ColumnsList.module.css";
-import { selectColumnsByBoard } from "../../redux/columns/slice.js";
+import { selectColumnsByBoard } from "../../redux/columns/selectors.js";
 import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn.jsx";
+import { useSelector } from "react-redux";
 
-const ColumnsList = ({ boardId, filter, setIsOpen }) => {
-  const columns = useSelector((state) => selectColumnsByBoard(state));
-  //const columns = useSelector(selectColumnsByBoard); ПРОВЕРИТЬ РАБОТУ И ВЫБРАТЬ ОДИН ИЗ ДВУХ
-
+const ColumnsList = ({ boardId, filter, setIsOpen, columns }) => {
   console.log("columns", columns);
-  console.log("boardId", boardId);
+
   // useEffect(() => {
   //   dispatch(fetchCardsThunk());
   // }, [dispatch]);
