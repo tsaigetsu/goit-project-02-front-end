@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PropTypes from "prop-types";
 import SvgIcon from "../SvgIcon/SvgIcon";
-import s from './EditBoardForm.module.css';
+import s from "./EditBoardForm.module.css";
 import icons from "../../data/icons.json";
 import backgrounds from "../../data/backgrounds.json";
 
@@ -191,12 +191,12 @@ const EditBoardForm = ({
 };
 
 EditBoardForm.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-    initialTitle: PropTypes.string,
-    initialIcon: PropTypes.string,
-    initialBackground: PropTypes.string,
-    onSave: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  initialTitle: PropTypes.string,
+  initialIcon: PropTypes.string,
+  initialBackground: PropTypes.string,
+  onSave: PropTypes.func.isRequired,
 };
 
 export default EditBoardForm;
