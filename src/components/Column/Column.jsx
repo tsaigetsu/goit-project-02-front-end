@@ -10,7 +10,7 @@ import CardManager from "../CardManager/CardManager";
 const Column = ({ column, boardId }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { title, _id } = column;
+  const { title, _id } = column.CreatedColumn;
 
   console.log("title", title);
   console.log(column);
