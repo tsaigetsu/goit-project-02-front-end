@@ -13,22 +13,16 @@ import HomePage from "./pages/HomePage/HomePage";
 import { currentUserThunk } from "./redux/auth/operations";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
+import { selectIsRefreshing } from "./redux/auth/selectors";
 import Loader from "./components/Loader/Loader";
-import toast from "react-hot-toast";
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(currentUserThunk());
   }, [dispatch]);
-
-  useEffect(() => {
-    if (isLoggedIn) toast.success("Welcome to your account!");
-  }, [isLoggedIn]);
 
   return isRefreshing ? (
     <Loader />

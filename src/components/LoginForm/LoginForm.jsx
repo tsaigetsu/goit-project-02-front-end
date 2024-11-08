@@ -8,8 +8,7 @@ import { useEffect, useState } from "react";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "../../redux/auth/operations.js";
-import { selectError, selectIsLoggedIn } from "../../redux/auth/selectors.js";
-import toast from "react-hot-toast";
+import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
 
 const validateFormSchema = Yup.object().shape({
   email: Yup.string()
@@ -31,7 +30,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const error = useSelector(selectError);
+
   const navigate = useNavigate();
 
   const {
@@ -53,12 +52,6 @@ const LoginForm = () => {
 
     reset();
   };
-
-  useEffect(() => {
-    if (error) {
-      toast.error("Incorrect email or password");
-    }
-  }, [error]);
 
   useEffect(() => {
     if (isLoggedIn) {
