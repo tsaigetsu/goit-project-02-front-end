@@ -1,8 +1,8 @@
 import Column from "../Column/Column";
 import css from "./ColumnsList.module.css";
-import { selectColumnsByBoard } from "../../redux/columns/selectors.js";
+// import { selectColumnsByBoard } from "../../redux/columns/selectors.js";
 import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn.jsx";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const ColumnsList = ({ boardId, filter, setIsOpen, columns }) => {
   console.log("columns", columns);

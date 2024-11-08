@@ -10,10 +10,10 @@ import CardManager from "../CardManager/CardManager";
 const Column = ({ column, boardId }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { title, _id } = column.CreatedColumn;
+  const { title, _id } = column;
 
   console.log("title", title);
-  console.log(column);
+  // console.log(column);
 
   const onDelete = () => {
     // if (column._id && boardId) {

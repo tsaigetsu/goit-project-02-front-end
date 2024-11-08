@@ -8,9 +8,10 @@
   flex-wrap: nowrap;
   gap: 18px;
   align-items: flex-start;
-  /* min-width: 320px;
-  max-width: 375px; */
+  min-width: 320px;
+  max-width: 375px;
   width: 100%;
+  margin: o auto;
   /* background-color: rgb(217, 255, 0); */
 }
 .columnsList {
@@ -29,7 +30,7 @@
 .itemList {
   /* flex: 0 0 auto; */
   flex: 0 1 100%;
-  min-width: 335px;
+  max-width: 335px;
   /* width: 100%; */
   /* background-color: brown; */
   height: 100%;

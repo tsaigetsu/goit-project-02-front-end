@@ -2,49 +2,41 @@ import { useEffect, useState } from "react";
 import css from "./MainDashboard.module.css";
 import ColumnsList from "../ColumnsList/ColumnsList.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectColumnsByBoard,
-  // selectColumnsByBoard,
-  selectError,
-  selectLoading,
-} from "../../redux/columns/selectors.js";
-
+// import { selectError, selectLoading } from "../../redux/columns/selectors.js";
 import { getBoardByIdThunk } from "../../redux/boards/operations.js";
-// import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn.jsx";
 import AddColumn from "../AddColumn/AddColumn.jsx";
 import { onCreateColumn } from "../../redux/columns/operations.js";
+import { selectedBoard } from "../../redux/boards/selectors.js";
 
-const MainDashboard = ({ board, filter }) => {
+const MainDashboard = ({ boardId, filter }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
-  const { _id } = board;
-  // const columns = useSelector(selectColumnsByBoard);
-  const columns = useSelector((state) => selectColumnsByBoard(state, _id));
   const dispatch = useDispatch();
-  // console.log("bardId", _id);
-  console.log("columns by board", columns);
-  console.log("Board", board);
-  // console.log("isOpen", isOpen);
+  // const loading = useSelector(selectLoading);
+  // const error = useSelector(selectError);
 
   useEffect(() => {
-    if (_id) {
-      dispatch(getBoardByIdThunk(_id));
+    if (boardId) {
+      dispatch(getBoardByIdThunk(boardId));
     }
-  }, [dispatch, _id]);
+  }, [boardId, dispatch]);
+
+  const board = useSelector((state) => selectedBoard(state));
+  console.log("Board", board);
+  console.log("boardId", boardId);
+  console.log("columns by board", board.columns);
+  // const columns = board.columns;
 
   const handleSaveColumn = (newTitle) => {
-    const newColumn = { title: newTitle, boardId: _id };
-    console.log("newColumn", newColumn);
-
+    const newColumn = { title: newTitle, boardId: boardId };
     dispatch(onCreateColumn(newColumn));
     setIsOpen(false);
-    // const currentBoard = dispatch(getBoardByIdThunk(id));
-    // console.log(currentBoard);
   };
 
-  if (loading) return <p>Loading columns...</p>;
-  if (error) return <p>Error loading columns: {error}</p>;
+  // if (!board) {
+  //   return <p>Loading board...</p>; // Відображаємо повідомлення, поки дані завантажуються
+  // }
+  // if (loading) return <p>Loading columns...</p>;
+  // if (error) return <p>Error loading columns: {error}</p>;
 
   return (
     <>
@@ -52,8 +44,8 @@ const MainDashboard = ({ board, filter }) => {
         <div>
           <div className={css.columnsWrapper}>
             <ColumnsList
-              columns={columns}
-              boardId={_id}
+              // columns={columns}
+              boardId={boardId}
               filter={filter}
               setIsOpen={setIsOpen}
             />

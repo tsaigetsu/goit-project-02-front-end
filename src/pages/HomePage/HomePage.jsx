@@ -20,7 +20,12 @@ const HomePage = () => {
         />
         <div className={css.homePage__content}>
           <Header />
-          {selectedBoard && <ScreensPage board={selectedBoard} />}
+          {selectedBoard && (
+            <ScreensPage
+              boardId={selectedBoard.id}
+              title={selectedBoard.title}
+            />
+          )}
         </div>
       </section>
     </Layout>
