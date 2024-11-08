@@ -13,7 +13,10 @@ import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
 const validateFormSchema = Yup.object().shape({
   email: Yup.string()
     .required("Email is required")
-    .email("Invalid email address"),
+    .matches(
+      /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+      "Invalid email format"
+    ),
   password: Yup.string()
     .required("Password is required")
     .matches(
@@ -30,6 +33,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const navigate = useNavigate();
 
   const {
@@ -48,7 +52,6 @@ const LoginForm = () => {
 
   const onSubmit = (data) => {
     dispatch(loginThunk(data));
-    console.log(data);
 
     reset();
   };

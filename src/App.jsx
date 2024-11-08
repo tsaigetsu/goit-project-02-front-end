@@ -19,6 +19,7 @@ import Loader from "./components/Loader/Loader";
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+
   useEffect(() => {
     dispatch(currentUserThunk());
   }, [dispatch]);

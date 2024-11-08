@@ -5,7 +5,7 @@ import { onCreateColumn, onDeleteColumn, onEditColumn } from "./operations";
 const columnsSlice = createSlice({
   name: "columns",
   initialState: {
-    columnsByBoard: {}, // { [boardId]: [{ id, title, ... }] }
+    columnsByBoard: [],
     loading: false,
     error: null,
   },

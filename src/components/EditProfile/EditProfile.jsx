@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import SvgIcon from "../SvgIcon/SvgIcon";
 
 const validateFormSchema = Yup.object().shape({
   name: Yup.string()
@@ -19,11 +20,11 @@ const validateFormSchema = Yup.object().shape({
     .required("Password is required")
     .min(8, "Password must be at least 8 characters"),
 });
-// пропсе принимаем из хедера при нажатии на аватарку
-const EditProfile = ({ isOpen, onClose, user }) => {
+
+const EditProfile = ({ isOpen, onClose }) => {
   const [visiblePassword, setVisiblePassword] = useState(true);
   if (!isOpen) return null;
-  const { name, email } = user;
+  // const { name, email, photo } = user;
 
   const {
     register,
@@ -32,8 +33,8 @@ const EditProfile = ({ isOpen, onClose, user }) => {
     formState: { errors, touchedFields },
   } = useForm({
     defaultValues: {
-      name: { name }, //указываем текущее значение
-      email: { email }, //указываем текущее значение
+      name: "", //указываем текущее значение
+      email: "", //указываем текущее значение
       password: "",
     },
     resolver: yupResolver(validateFormSchema),
@@ -53,23 +54,23 @@ const EditProfile = ({ isOpen, onClose, user }) => {
   return (
     <div className={css.mainContainer}>
       <div className={css.container}>
-        <p className={css.title}>Edit profile</p>
+        <div className={css.wrapperTitle}>
+          <p className={css.title}>Edit profile</p>
+        </div>
         <button type="button" className={css.closeBtn} onClick={onClose}>
-          <svg width="18" height="18">
-            <use href="/src/assets/symbol-defs.svg#icon-x-close" />
-          </svg>
+          <SvgIcon id="icon-x-close" width="18" height="18" />
         </button>
 
         <div className={css.wrapperAvatar}>
           <div className={css.avatar}>
-            <img
-              src="https://goedgezind.b-cdn.net/app/uploads/digitale-fotoherinneringen-vrouw-maakt-foto-camera.jpg"
-              alt="User Avatar"
-            />
+            <SvgIcon id="icon-user-black" width="68" height="68" />
+            {/* { ? (
+            ) : (
+              <img src={photo} alt="User Avatar" />
+            )} */}
+
             <button className={css.btnAvatar}>
-              <svg width="10" height="10">
-                <use href="/src/assets/symbol-defs.svg#icon-plus" />
-              </svg>
+              <SvgIcon id="icon-plus" width="10" height="10" />
             </button>
           </div>
         </div>
@@ -113,9 +114,7 @@ const EditProfile = ({ isOpen, onClose, user }) => {
                 className={css.toggleBtn}
                 onClick={() => setVisiblePassword(!visiblePassword)}
               >
-                <svg width="18" height="18">
-                  <use href="/src/assets/symbol-defs.svg#icon-eye" />
-                </svg>
+                <SvgIcon id="icon-eye" width="18" height="18" />
               </button>
             </label>
           </div>

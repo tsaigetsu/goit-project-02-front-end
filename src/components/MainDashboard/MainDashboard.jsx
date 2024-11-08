@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import css from "./MainDashboard.module.css";
-import ColumnsList from "../ColumnsList/ColumnsList";
+import ColumnsList from "../ColumnsList/ColumnsList.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectColumnsByBoard,
   selectError,
   selectLoading,
-} from "../../redux/columns/slice";
+} from "../../redux/columns/slice.js";
 
-import { fetchBoardsThunk } from "../../redux/boards/operations";
-import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn";
-import AddColumn from "../AddColumn/AddColumn";
-import { onCreateColumn } from "../../redux/columns/operations";
+import { getBoardByIdThunk } from "../../redux/boards/operations.js";
+import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn.jsx";
+import AddColumn from "../AddColumn/AddColumn.jsx";
+import { onCreateColumn } from "../../redux/columns/operations.js";
 
-const MainDashboard = ({ board }) => {
+const MainDashboard = ({ board, filter }) => {
   const [isOpen, setIsOpen] = useState(false);
   // const columns = useSelector(selectColumnsByBoard);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
-  const boardId = board.id;
+  const boardId = board._id;
   const dispatch = useDispatch();
   const columns = useSelector((state) => selectColumnsByBoard(state));
   console.log("bardId", boardId);
@@ -26,7 +26,7 @@ const MainDashboard = ({ board }) => {
 
   useEffect(() => {
     if (boardId) {
-      dispatch(fetchBoardsThunk(boardId));
+      dispatch(getBoardByIdThunk(boardId));
     }
   }, [dispatch, boardId]);
 
@@ -47,10 +47,11 @@ const MainDashboard = ({ board }) => {
   return (
     <>
       <div className={css.wrapperMainDashboard}>
-        {!columns.length === 0 ? (
+        {columns.length > 0 ? (
           <div>
             <div className={css.columnsWrapper}>
-              <ColumnsList boardId={boardId} />
+              <ColumnsList columns={columns} boardId={boardId} filter={filter} />
+
             </div>
           </div>
         ) : (

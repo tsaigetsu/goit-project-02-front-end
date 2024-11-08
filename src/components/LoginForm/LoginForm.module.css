@@ -31,8 +31,9 @@
 }
 
 .link {
+  font-size: 18px;
   color: #ffffff;
-  opacity: 0.3;
+  opacity: 30%;
 }
 
 .link:hover,
