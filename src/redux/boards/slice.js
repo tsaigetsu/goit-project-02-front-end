@@ -4,6 +4,7 @@ import {
   deleteBoardThunk,
   fetchBoardsThunk,
   getBoardByIdThunk,
+  updateBoardThunk,
 } from "./operations";
 import { logoutThunk } from "../auth/operations.js";
 
@@ -37,6 +38,17 @@ const slice = createSlice({
         state.selectedBoard = action.payload;
         state.loading = false;
         state.error = null;
+      })
+      .addCase(updateBoardThunk.fulfilled, (state, action) => {
+        const index = state.boards.findIndex(
+          (board) => board.id === action.payload.id
+        );
+        if (index !== -1) {
+          state.boards[index] = action.payload;
+        }
+      })
+      .addCase(updateBoardThunk.rejected, (state, action) => {
+        console.error("Failed to update board:", action.payload);
       })
       .addMatcher(
         isAnyOf(
