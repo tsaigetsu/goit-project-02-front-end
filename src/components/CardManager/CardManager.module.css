@@ -11,21 +11,20 @@
 
 /* Add Card Button */
 .cardManagerButton {
-  display: flex;
+   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 100%;
-  max-width: 335px;
+  width: 335px;
   height: 56px;
-  background-color: #BEDBB0;
+  background-color: #BEDBB0; 
   border-radius: 8px;
   border: none;
   font-size: 14px;
   font-weight: 500;
-  color: #161616;
+  color: #161616; 
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
 .createIcon {
@@ -42,14 +41,10 @@
 
 .cardManagerButton:hover {
   background-color: #b0dba4;
-  transform: scale(1.02); /* Slight scale effect on hover */
+  transform: scale(1.02); 
 }
 
-/* SVG Icon Style */
-.svgPlusBlackWhite {
- 
-}
 
 .svgPlusBlackWhite:hover {
-  background-color: #333; /* Darker shade for hover */
+  background-color: #333; 
 }
