@@ -1,22 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddCardPopup from "../AddCardPopup/AddCardPopup.jsx";
 import EditCardPopup from "../EditCardPopup/EditCardPopup.jsx";
 import CardList from "../CardList/CardList.jsx";
 import SvgIcon from "../SvgIcon/SvgIcon.jsx";
 import s from "./CardManager.module.css";
-import { useState, useEffect } from 'react';
-import AddCardPopup from '../AddCardPopup/AddCardPopup.jsx';
-import EditCardPopup from '../EditCardPopup/EditCardPopup.jsx';
-import CardList from '../CardList/CardList.jsx';
-import SvgIcon from '../SvgIcon/SvgIcon.jsx';
-import s from './CardManager.module.css';
 
 const CardManager = () => {
   const [tasks, setTasks] = useState([]);
   const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
-
 
   const fetchTasks = async () => {
     const response = await fetch('/tasks'); // Запит до бекенду
@@ -39,26 +32,20 @@ const CardManager = () => {
     });
 
     if (response.ok) {
-      const createTask = await response.json();
-      setTasks([...tasks, createTask]);
+      const createdTask = await response.json(); // змінив змінну на createdTask
+      setTasks([...tasks, createdTask]);
       setIsAddPopupOpen(false);
     }
   };
 
-  const handleEditCard = (updatedCard) => {
-    setCards(
-      cards.map((card) => (card.id === updatedCard.id ? updatedCard : card))
-    );
-    setIsEditPopupOpen(false);
-    setSelectedCard(null);
-  const handleEditCard = async (updateTask) => {
+  const handleEditCard = async (updatedTask) => {
     // Оновлюємо картку на бекенді
-    const response = await fetch(`/:taskId/${updateTask.id}`, {
+    const response = await fetch(`/tasks/${updatedTask.id}`, { // змінив шлях до правильного
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(updateTask),
+      body: JSON.stringify(updatedTask),
     });
 
     if (response.ok) {
@@ -71,7 +58,7 @@ const CardManager = () => {
 
   const handleDeleteCard = async (id) => {
     // Видаляємо картку з бекенду
-    const response = await fetch(`//:taskId${id}`, {
+    const response = await fetch(`/tasks/${id}`, { // змінив шлях до правильного
       method: 'DELETE',
     });
 
@@ -92,7 +79,7 @@ const CardManager = () => {
   return (
     <div className={s.cardManager}>
       <CardList
-        cards={cards}
+        cards={tasks} // виправив використання tasks замість cards
         onEdit={openEditPopup}
         onDelete={handleDeleteCard}
       />
@@ -106,11 +93,6 @@ const CardManager = () => {
         />
         Add another card
       </button>
-        <SvgIcon id="icon-normalBtnBlack" className={s.createIcon} width="28" height="28" />
-        Add another card
-      </button>
-      
-      <CardList cards={tasks} onEdit={openEditPopup} onDelete={handleDeleteCard} />
 
       {isAddPopupOpen && (
         <AddCardPopup onClose={() => setIsAddPopupOpen(false)} onAdd={handleAddCard} />
