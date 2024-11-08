@@ -10,12 +10,24 @@ import {
   addBoardsThunk,
   deleteBoardThunk,
   fetchBoardsThunk,
+  getBoardByIdThunk,
+  updateBoardThunk,
 } from "../../redux/boards/operations.js";
 import icons from "../../data/icons.json";
+import EditBoardForm from "../EditBoardForm/EditBoardForm.jsx";
 
 const SidebarBoardList = ({ onSelectBoard }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeBoardId, setActiveBoardId] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedBoardData, setSelectedBoardData] = useState(null);
+
+  const handleEdit = (boardId) => {
+    dispatch(getBoardByIdThunk(boardId)).then((data) => {
+      setSelectedBoardData(data);
+      setIsEditModalOpen(true);
+    });
+  };
 
   const dispatch = useDispatch();
 
@@ -46,6 +58,18 @@ const SidebarBoardList = ({ onSelectBoard }) => {
     const icon = icons.find((icon) => icon.id === id);
     return icon ? icon.iconName : "icon-default";
   };
+  const handleSaveChanges = (updatedBoard) => {
+    dispatch(
+      updateBoardThunk({
+        boardId: selectedBoardData._id,
+        title: updatedBoard.title,
+        iconId: updatedBoard.iconId,
+        backgroundId: updatedBoard.backgroundId,
+      })
+    );
+    setIsEditModalOpen(false);
+  };
+
   return (
     <>
       <div className={s.myBoards}>
@@ -72,6 +96,7 @@ const SidebarBoardList = ({ onSelectBoard }) => {
               onDelete={() => dispatch(deleteBoardThunk(item._id))}
               onSelect={() => handleSelectBoard(item._id, item.title)}
               isActive={item._id === activeBoardId}
+              onEdit={handleEdit}
             />
           ))}
         </ul>
@@ -81,6 +106,17 @@ const SidebarBoardList = ({ onSelectBoard }) => {
           isOpen={isModalOpen}
           onClose={onClose}
           onSave={handleSaveBoard}
+        />
+      )}
+      {isEditModalOpen && selectedBoardData && (
+        <EditBoardForm
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          initialTitle={selectedBoardData.title}
+          initialIcon={selectedBoardData.iconId}
+          initialBackground={selectedBoardData.backgroundId}
+          onSave={handleSaveChanges}
+          boardId={selectedBoardData.boardId}
         />
       )}
     </>
