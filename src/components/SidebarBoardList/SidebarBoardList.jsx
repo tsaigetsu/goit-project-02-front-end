@@ -116,7 +116,6 @@ const SidebarBoardList = ({ onSelectBoard }) => {
           initialIcon={selectedBoardData.iconId}
           initialBackground={selectedBoardData.backgroundId}
           onSave={handleSaveChanges}
-          boardId={selectedBoardData.boardId}
         />
       )}
     </>
