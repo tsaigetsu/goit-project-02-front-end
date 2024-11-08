@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api, clearToken, setToken } from "../../api.js";
+import toast from "react-hot-toast";
 
 export const logoutThunk = createAsyncThunk("logout", async (_, thunkAPI) => {
   try {
@@ -16,8 +17,10 @@ export const registerThunk = createAsyncThunk(
     try {
       const { data } = await api.post("/auth/register", credentials);
       setToken(data.data.accessToken);
+      toast.success("Welcome! You are successfully registered.");
       return data;
     } catch (error) {
+      toast.error("This email is already registered");
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -29,8 +32,10 @@ export const loginThunk = createAsyncThunk(
     try {
       const { data } = await api.post("/auth/login", credentials);
       setToken(data.data.accessToken);
+      toast.success("Welcome! You are logged in.");
       return data;
     } catch (error) {
+      toast.error("Incorrect email or password");
       return thunkAPI.rejectWithValue(error.message);
     }
   }

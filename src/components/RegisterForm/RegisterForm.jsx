@@ -20,7 +20,10 @@ const validateFormSchema = Yup.object().shape({
     .max(32, "Name must not exceed 32 characters"),
   email: Yup.string()
     .required("Email is required")
-    .email("Invalid email address"),
+    .matches(
+      /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+      "Invalid email format"
+    ),
   password: Yup.string()
     .required("Password is required")
     .matches(
