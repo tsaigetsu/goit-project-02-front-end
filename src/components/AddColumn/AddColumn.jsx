@@ -2,7 +2,7 @@ import { useState } from "react";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import css from "./AddColumn.module.css";
 
-const AddColumn = ({ onAddColumn, setIsOpen }) => {
+const AddColumn = ({ onCreateColumn, setIsOpen }) => {
   const [title, setTitle] = useState("");
 
   const closeModal = () => {
@@ -12,7 +12,7 @@ const AddColumn = ({ onAddColumn, setIsOpen }) => {
 
   const handleAddColumn = () => {
     if (title.trim()) {
-      onAddColumn(title);
+      onCreateColumn(title);
       setTitle("");
       closeModal();
     }

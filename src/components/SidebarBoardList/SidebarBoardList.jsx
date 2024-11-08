@@ -37,9 +37,9 @@ const SidebarBoardList = ({ onSelectBoard }) => {
     onClose();
   };
 
-  const handleSelectBoard = (id, title) => {
-    setActiveBoardId(id);
-    onSelectBoard({ id, title });
+  const handleSelectBoard = (board) => {
+    setActiveBoardId(board.id);
+    onSelectBoard(board);
   };
 
   const getIconNameById = (id) => {
@@ -70,7 +70,7 @@ const SidebarBoardList = ({ onSelectBoard }) => {
               id={item._id}
               iconId={getIconNameById(item.iconId)}
               onDelete={() => dispatch(deleteBoardThunk(item._id))}
-              onSelect={() => handleSelectBoard(item._id, item.title)}
+              onSelect={() => handleSelectBoard(item)}
               isActive={item._id === activeBoardId}
             />
           ))}

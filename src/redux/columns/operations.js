@@ -9,13 +9,14 @@ export const onCreateColumn = createAsyncThunk(
     try {
       const response = await api.post("columns", newColumn);
       console.log("API response:", response.data);
-      const CreatedColumn = response.date;
+      const CreatedColumn = response.data.data;
+      console.log("CreatedColumn", response.data);
       toast.success("Column created successfully!", {
         duration: 4000,
         position: "top-center",
         icon: "✔️",
       });
-      return { boardId: CreatedColumn.boardId, column: CreatedColumn };
+      return { CreatedColumn };
     } catch (error) {
       toast.error("Failed to create column: " + error.message, {
         duration: 5000,

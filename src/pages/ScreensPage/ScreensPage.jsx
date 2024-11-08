@@ -11,7 +11,7 @@ const ScreensPage = ({ board }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState(null); // Стан для фільтра
   const boards = useSelector(selectBoards);
-  const boardById = useSelector(selectedBoard);
+  // const boardById = useSelector(selectedBoard);
   console.log("board", board);
   const onOpen = () => {
     setIsOpen(true);

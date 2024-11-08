@@ -4,62 +4,65 @@ import ColumnsList from "../ColumnsList/ColumnsList.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectColumnsByBoard,
+  // selectColumnsByBoard,
   selectError,
   selectLoading,
 } from "../../redux/columns/slice.js";
 
 import { getBoardByIdThunk } from "../../redux/boards/operations.js";
-import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn.jsx";
+// import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn.jsx";
 import AddColumn from "../AddColumn/AddColumn.jsx";
 import { onCreateColumn } from "../../redux/columns/operations.js";
 
 const MainDashboard = ({ board, filter }) => {
   const [isOpen, setIsOpen] = useState(false);
-  // const columns = useSelector(selectColumnsByBoard);
+  // const columns = [1, 2, 3];
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
-  const boardId = board._id;
+  const { _id } = board;
   const dispatch = useDispatch();
   const columns = useSelector((state) => selectColumnsByBoard(state));
-  console.log("bardId", boardId);
-  console.log("columns", columns);
+  console.log("bardId", _id);
+  console.log("columns to boarder", columns);
+  console.log("Board", board);
+  console.log("isOpen", isOpen);
 
   useEffect(() => {
-    if (boardId) {
-      dispatch(getBoardByIdThunk(boardId));
+    if (_id) {
+      dispatch(getBoardByIdThunk(_id));
     }
-  }, [dispatch, boardId]);
+  }, [dispatch, _id]);
 
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  };
   const handleSaveColumn = (newTitle) => {
-    console.log("Adding column with title:", newTitle);
-    const newColumn = { title: newTitle, boardId: boardId };
-    console.log("NewColumn:", newColumn);
-    // console.log("boardId:", boardId);
+    const newColumn = { title: newTitle, boardId: _id };
+    console.log("newColumn", newColumn);
+
     dispatch(onCreateColumn(newColumn));
     setIsOpen(false);
+    // const currentBoard = dispatch(getBoardByIdThunk(id));
+    // console.log(currentBoard);
   };
+
   if (loading) return <p>Loading columns...</p>;
   if (error) return <p>Error loading columns: {error}</p>;
 
   return (
     <>
       <div className={css.wrapperMainDashboard}>
-        {columns.length > 0 ? (
-          <div>
-            <div className={css.columnsWrapper}>
-              <ColumnsList columns={columns} boardId={boardId} filter={filter} />
-
-            </div>
+        <div>
+          <div className={css.columnsWrapper}>
+            <ColumnsList
+              columns={columns}
+              boardId={_id}
+              filter={filter}
+              setIsOpen={setIsOpen}
+            />
           </div>
-        ) : (
-          <AddAnotherColumn setIsOpen={handleOpenModal} />
-        )}
+        </div>
+        {/* <AddAnotherColumn setIsOpen={() => setIsOpen(true)} /> */}
       </div>
       {isOpen && (
-        <AddColumn onAddColumn={handleSaveColumn} setIsOpen={setIsOpen} />
+        <AddColumn onCreateColumn={handleSaveColumn} setIsOpen={setIsOpen} />
       )}
     </>
   );
