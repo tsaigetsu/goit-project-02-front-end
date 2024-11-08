@@ -1,0 +1,12 @@
+.homePage {
+  display: flex;
+  /* flex-direction: column; */
+  height: 100vh;
+}
+
+.homePage__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* flex-grow: 1; */
+}

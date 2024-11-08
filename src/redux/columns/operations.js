@@ -1,33 +1,21 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
+import { api } from "../../api.js";
 
-axios.defaults.baseURL =
-  "https://goit-project-02-back-end.onrender.com/api-docs/";
-
-// export const fetchColumns = createAsyncThunk(
-//   "columns/fetchAllColumns",
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get("/columns");
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-export const addColumn = createAsyncThunk(
-  "columns/addColumn",
+export const onCreateColumn = createAsyncThunk(
+  "addColumn",
   async (newColumn, thunkAPI) => {
+    console.log("Attempting to add column:", { newColumn });
     try {
-      const response = await axios.post("/columns", newColumn);
+      const response = await api.post("columns", newColumn);
+      console.log("API response:", response.data);
+      const CreatedColumn = response.date;
       toast.success("Column created successfully!", {
         duration: 4000,
         position: "top-center",
         icon: "✔️",
       });
-      return response.data;
+      return { boardId: CreatedColumn.boardId, column: CreatedColumn };
     } catch (error) {
       toast.error("Failed to create column: " + error.message, {
         duration: 5000,
@@ -39,17 +27,17 @@ export const addColumn = createAsyncThunk(
   }
 );
 
-export const deleteColumn = createAsyncThunk(
-  "columns/deleteColumn",
-  async (columnId, thunkAPI) => {
+export const onDeleteColumn = createAsyncThunk(
+  "deleteColumn",
+  async ({ boardId, columnId }, thunkAPI) => {
     try {
-      const response = await axios.delete(`/columns/${columnId}`);
+      await api.delete(`columns/${columnId}`);
       toast.success("Column deleted!", {
         duration: 4000,
         position: "top-center",
         icon: "✔️",
       });
-      return response.data;
+      return { boardId, columnId };
     } catch (error) {
       toast.error("Failed to delete column: " + error.message, {
         duration: 5000,
@@ -61,20 +49,17 @@ export const deleteColumn = createAsyncThunk(
   }
 );
 
-export const editColumn = createAsyncThunk(
-  "column/editColumn",
-  async (updateColumn, thunkAPI) => {
+export const onEditColumn = createAsyncThunk(
+  "editColumn",
+  async ({ boardId, columnId, updateColumn }, thunkAPI) => {
     try {
-      const response = await axios.patch(
-        `/columns/${updateColumn.columnId}`,
-        updateColumn.updateColumn
-      );
+      const response = await api.patch(` columns/${columnId}`, updateColumn);
       toast.success("Column updated successfully!", {
         duration: 4000,
         position: "top-center",
         icon: "✔️",
       });
-      return response.data;
+      return { boardId, updatedColumn: response.data };
     } catch (error) {
       toast.error("Failed to update column: " + error.message, {
         duration: 5000,

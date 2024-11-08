@@ -1,3 +1,28 @@
+/* .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(37, 37, 37, 0.75);
+  z-index: 1000;
+} */
+.mainContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(37, 37, 37, 0.75);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.wrapperTitle {
+  text-align: left;
+}
 .title {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
@@ -5,17 +30,18 @@
   letter-spacing: -0.02em;
   color: #fff;
   margin-bottom: 24px;
-}
-
-.mainContainer {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  justify-content: left;
 }
-
 .container {
-  position: relative;
+  /* position: relative; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
   padding: 24px;
   background-color: #151515;
   border-radius: 8px;
@@ -89,6 +115,10 @@
   font-size: 14px;
   letter-spacing: -0.02em;
   color: #fff;
+  display: flex;
+  justify-content: space-between;
+  /* align-content: center; */
+  align-items: center;
 }
 
 .input::placeholder {
@@ -117,6 +147,7 @@
   border: none;
   font-size: 14px;
   font-weight: 500;
+  margin: 0;
 }
 
 .btn:hover,
@@ -154,10 +185,11 @@
   margin-bottom: 14px;
 }
 .avatar {
+  stroke: ;
   position: relative;
   display: inline-block;
-  width: 68px;
-  height: 68px;
+  /* width: 68px;
+  height: 68px; */
 }
 .avatar img {
   border: none;
@@ -180,6 +212,7 @@
   cursor: pointer;
   padding: 0;
   outline: none;
+  margin: 0;
 }
 .btnAvatar:hover {
   background-color: #9dc888;

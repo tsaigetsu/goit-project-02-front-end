@@ -1,29 +1,40 @@
+import { useState } from "react";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import css from "./AddColumn.module.css";
 
-//принимает в пропсах стейт контролирующий открытие и закрытие окна isModalOpen, setIsModalOpen
-const AddColumn = ({ setIsModalOpen }) => {
-  //закрываем кнопкой {х}
+const AddColumn = ({ onAddColumn, setIsOpen }) => {
+  const [title, setTitle] = useState("");
+
   const closeModal = () => {
-    setIsModalOpen(false);
+    setIsOpen(false);
   };
-  //при добавлении колонки, закрываем окно и добавляем колонку
+  console.log(title);
+
   const handleAddColumn = () => {
-    // const newColumn = { title: "" };
-    setIsModalOpen(false);
+    if (title.trim()) {
+      onAddColumn(title);
+      setTitle("");
+      closeModal();
+    }
   };
   return (
     <>
-      <div className={css.section}>
+      <div className={css.overlay}>
         <div className={css.container}>
           <p className={css.title}>Add column</p>
           <button className={css.btnClose} onClick={closeModal}>
             <SvgIcon id="icon-x-close" width="18" height="18" />
           </button>
-          <input type="text" className={css.inputTitle} placeholder="Title" />
+          <input
+            type="text"
+            className={css.inputTitle}
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
           <button
             className={css.btnAdd}
-            type="submit"
+            type="button"
             onClick={handleAddColumn}
           >
             <SvgIcon id="icon-normalBtnBlack" width="28" height="28" />

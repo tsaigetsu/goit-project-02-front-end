@@ -1,0 +1,38 @@
+.wrapperScreenPage {
+  box-sizing: border-box;
+  width: 100%;
+}
+.screensPage__content {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+.headerDashboard {
+}
+.mainDashboard {
+}
+
+/* Mobile */
+/* .container {
+  min-width: 320px;
+  max-width: 375px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+} */
+
+/* Tablet */
+/* @media only screen and (min-width: 768px) {
+  .wrapperScreenPage {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+} */
+
+/* Desktop */
+/* @media only screen and (min-width: 1280px) {
+  .wrapperScreenPage {
+    max-width: 1280px;
+    padding: 0 100px;
+  }
+} */

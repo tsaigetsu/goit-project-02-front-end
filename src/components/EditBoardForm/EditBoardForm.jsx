@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState } from 'react';
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -6,34 +5,36 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import PropTypes from 'prop-types';
 import SvgIcon from "../SvgIcon/SvgIcon";
 import s from './EditBoardForm.module.css';
+import icons from "../../data/icons.json";
+import backgrounds from "../../data/backgrounds.json";
 
-const icons = [
-    { id: "ic1", iconName: "icon-Project" },
-    { id: "ic2", iconName: "icon-star-04" },
-    { id: "ic3", iconName: "icon-loading-03" },
-    { id: "ic4", iconName: "icon-puzzle-piece-02" },
-    { id: "ic5", iconName: "icon-container" },
-    { id: "ic6", iconName: "icon-lightning-02" },
-    { id: "ic7", iconName: "icon-colors" },
-    { id: "ic8", iconName: "icon-hexagon-01" }
-];
-const backgrounds = [
-    { id: "bg1", url: "/src/assets/images/jpgs/desktop/flowers2x.jpg" },
-    { id: "bg2", url: "/src/assets/images/jpgs/desktop/skyMountrain2x.jpg" },
-    { id: "bg3", url: "/src/assets/images/jpgs/desktop/pinkTree2x.jpg" },
-    { id: "bg4", url: "/src/assets/images/jpgs/desktop/moon2x.jpg" },
-    { id: "bg5", url: "/src/assets/images/jpgs/desktop/jungleLeafes2x.jpg" },
-    { id: "bg6", url: "/src/assets/images/jpgs/desktop/sky2x.jpg" },
-    { id: "bg7", url: "/src/assets/images/jpgs/desktop/seaMountain2x.jpg" },
-    { id: "bg8", url: "/src/assets/images/jpgs/desktop/ballons2x.jpg" },
-    { id: "bg9", url: "/src/assets/images/jpgs/desktop/orangeMoon2x.jpg" },
-    { id: "bg10", url: "/src/assets/images/jpgs/desktop/ship2x.jpg" },
-    { id: "bg11", url: "/src/assets/images/jpgs/desktop/flyingBallons2x.jpg" },
-    { id: "bg12", url: "/src/assets/images/jpgs/desktop/dessert2x.jpg" },
-    { id: "bg13", url: "/src/assets/images/jpgs/desktop/beach2.jpg" },
-    { id: "bg14", url: "/src/assets/images/jpgs/desktop/lotBallons2x.jpg" },
-    { id: "bg15", url: "/src/assets/images/jpgs/desktop/carNightSky2x.jpg" }
-];
+// const icons = [
+//     { id: "ic1", iconName: "icon-Project" },
+//     { id: "ic2", iconName: "icon-star-04" },
+//     { id: "ic3", iconName: "icon-loading-03" },
+//     { id: "ic4", iconName: "icon-puzzle-piece-02" },
+//     { id: "ic5", iconName: "icon-container" },
+//     { id: "ic6", iconName: "icon-lightning-02" },
+//     { id: "ic7", iconName: "icon-colors" },
+//     { id: "ic8", iconName: "icon-hexagon-01" }
+// ];
+// const backgrounds = [
+//     { id: "bg1", url: "/src/assets/images/jpgs/desktop/flowers2x.jpg" },
+//     { id: "bg2", url: "/src/assets/images/jpgs/desktop/skyMountrain2x.jpg" },
+//     { id: "bg3", url: "/src/assets/images/jpgs/desktop/pinkTree2x.jpg" },
+//     { id: "bg4", url: "/src/assets/images/jpgs/desktop/moon2x.jpg" },
+//     { id: "bg5", url: "/src/assets/images/jpgs/desktop/jungleLeafes2x.jpg" },
+//     { id: "bg6", url: "/src/assets/images/jpgs/desktop/sky2x.jpg" },
+//     { id: "bg7", url: "/src/assets/images/jpgs/desktop/seaMountain2x.jpg" },
+//     { id: "bg8", url: "/src/assets/images/jpgs/desktop/ballons2x.jpg" },
+//     { id: "bg9", url: "/src/assets/images/jpgs/desktop/orangeMoon2x.jpg" },
+//     { id: "bg10", url: "/src/assets/images/jpgs/desktop/ship2x.jpg" },
+//     { id: "bg11", url: "/src/assets/images/jpgs/desktop/flyingBallons2x.jpg" },
+//     { id: "bg12", url: "/src/assets/images/jpgs/desktop/dessert2x.jpg" },
+//     { id: "bg13", url: "/src/assets/images/jpgs/desktop/beach2.jpg" },
+//     { id: "bg14", url: "/src/assets/images/jpgs/desktop/lotBallons2x.jpg" },
+//     { id: "bg15", url: "/src/assets/images/jpgs/desktop/carNightSky2x.jpg" }
+// ];
 
 const schema = yup.object().shape({
     title: yup
@@ -43,22 +44,18 @@ const schema = yup.object().shape({
         .max(32, "Title cannot exceed 32 characters"),
 });
 
-const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBackground, onSave, boardId }) => {
+const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBackground, onSave }) => {
     const [isExiting, setIsExiting] = useState(false);
     const [hasText, setHasText] = useState((!!initialTitle));
 
-    const { register, handleSubmit, setValue, watch, formState: { errors }, reset } = useForm({
+    const { register, handleSubmit, setValue, watch, formState: { errors }, reset, clearErrors } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
             title: initialTitle || "",
             icon: initialIcon || icons[0].id,
-            background: initialBackground || 'none'
+            background: initialBackground || 'nobg'
         },
     });
-
-    const onInputChange = (e) => {
-        setHasText(e.target.value.length > 0);
-    };
 
     const selectedIcon = watch("icon");
     const selectedBackground = watch("background");
@@ -72,29 +69,22 @@ const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBack
         }, 300);
     };
 
+    const onInputChange = (e) => {
+        setHasText(e.target.value.length > 0);
+        clearErrors("title");
+    };
+
     const onSubmit = async (data) => {
         const payload = {
             title: data.title,
             iconId: data.icon,
-            backgroundId: data.background === "none" ? null : data.background
+            backgroundId: data.background
         };
         
-        try {
-            const response = await axios.patch(`/boards/${boardId}`, payload);
-        
-            console.log("Board updated:", response.data);
-            onSave(response.data);
-            handleFormClose();
-        } catch (error) {
-            console.error("Error updating board:", error);
-        }
+        console.log("Board created:", payload);
+        onSave(payload);
+        handleFormClose();
     };
-    
-    // const onSubmit = (data) => {
-    //     console.log("Updated Data: ", data);
-    //     onSave(data);
-    //     handleFormClose();
-    // };
 
     if (!isOpen && !isExiting) return null;
 
@@ -154,13 +144,13 @@ const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBack
                     {/* Список фонів як радіо-кнопки */}
                     <label>Background</label>
                     <div className={s.backgrounds}>
-                        <label className={`${s.backgroundIcon} ${selectedBackground === "none" ? s.selected : ""}`}>
+                        <label className={`${s.backgroundIcon} ${selectedBackground === "nobg" ? s.selected : ""}`}>
                             <input
                                 type="radio"
-                                value="none"
+                                value="nobg"
                                 {...register("background")}
-                                checked={selectedBackground === "none"}
-                                onChange={() => setValue("background", "none")}
+                                checked={selectedBackground === "nobg"}
+                                onChange={() => setValue("background", "nobg")}
                             />
                             <SvgIcon
                                 width="16"
@@ -173,7 +163,7 @@ const EditBoardForm = ({ isOpen, onClose, initialTitle, initialIcon, initialBack
                             <label
                                 key={bg.id}
                                 className={`${s.backgroundButton} ${selectedBackground === bg.id ? s.selected : ""}`}
-                                style={{ backgroundImage: bg.url ? `url(${bg.url})` : "none" }}>
+                                style={{ backgroundImage: bg.url ? `url(${bg.url})` : "nobg" }}>
                                 <input
                                     type="radio"
                                     value={bg.id}
@@ -207,7 +197,6 @@ EditBoardForm.propTypes = {
     initialIcon: PropTypes.string,
     initialBackground: PropTypes.string,
     onSave: PropTypes.func.isRequired,
-    boardId: PropTypes.string.isRequired,
 };
 
 export default EditBoardForm;

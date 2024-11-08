@@ -1,5 +1,5 @@
 .section {
-  position: relative;
+  /* position: relative; */
 }
 
 .btnAdd {
@@ -13,7 +13,7 @@
   font-size: 14px;
   letter-spacing: -0.02em;
   color: #161616;
-  width: 100%;
+  width: 334px;
   border-radius: 8px;
   background-color: #bedbb0;
   border: none;

@@ -1,9 +1,11 @@
 import css from "./EditProfile.module.css";
 
 import * as Yup from "yup";
-import { useForm } from "react-hook-form";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import SvgIcon from "../SvgIcon/SvgIcon";
 
 const validateFormSchema = Yup.object().shape({
   name: Yup.string()
@@ -18,10 +20,11 @@ const validateFormSchema = Yup.object().shape({
     .required("Password is required")
     .min(8, "Password must be at least 8 characters"),
 });
-//в пропсе принимаем обьект юзера и вытягивем значение name и email
-const EditProfile = () => {
+
+const EditProfile = ({ isOpen, onClose }) => {
   const [visiblePassword, setVisiblePassword] = useState(true);
-  const [visibleModal, setVisibleModal] = useState(true);
+  if (!isOpen) return null;
+  // const { name, email, photo } = user;
 
   const {
     register,
@@ -38,6 +41,10 @@ const EditProfile = () => {
     mode: "onChange",
   });
 
+  // const handleCloseModal = () => {
+  //   setVisibleModal(false);
+  // };
+
   const onSubmit = (data) => {
     console.log(data);
     //сохраняем новые данные юзера
@@ -47,27 +54,23 @@ const EditProfile = () => {
   return (
     <div className={css.mainContainer}>
       <div className={css.container}>
-        <p className={css.title}>Edit profile</p>
-        <button
-          type="button"
-          className={css.closeBtn}
-          onClick={() => setVisibleModal(!visibleModal)}
-        >
-          <svg width="18" height="18">
-            <use href="/src/assets/symbol-defs.svg#icon-x-close" />
-          </svg>
+        <div className={css.wrapperTitle}>
+          <p className={css.title}>Edit profile</p>
+        </div>
+        <button type="button" className={css.closeBtn} onClick={onClose}>
+          <SvgIcon id="icon-x-close" width="18" height="18" />
         </button>
 
         <div className={css.wrapperAvatar}>
           <div className={css.avatar}>
-            <img
-              src="https://goedgezind.b-cdn.net/app/uploads/digitale-fotoherinneringen-vrouw-maakt-foto-camera.jpg"
-              alt="User Avatar"
-            />
+            <SvgIcon id="icon-user-black" width="68" height="68" />
+            {/* { ? (
+            ) : (
+              <img src={photo} alt="User Avatar" />
+            )} */}
+
             <button className={css.btnAvatar}>
-              <svg width="10" height="10">
-                <use href="/src/assets/symbol-defs.svg#icon-plus" />
-              </svg>
+              <SvgIcon id="icon-plus" width="10" height="10" />
             </button>
           </div>
         </div>
@@ -111,9 +114,7 @@ const EditProfile = () => {
                 className={css.toggleBtn}
                 onClick={() => setVisiblePassword(!visiblePassword)}
               >
-                <svg width="18" height="18">
-                  <use href="/src/assets/symbol-defs.svg#icon-eye" />
-                </svg>
+                <SvgIcon id="icon-eye" width="18" height="18" />
               </button>
             </label>
           </div>

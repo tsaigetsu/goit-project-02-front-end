@@ -3,20 +3,25 @@ import SvgIcon from "../SvgIcon/SvgIcon";
 import css from "./Column.module.css";
 import EditColumn from "../EditColumn/EditColumn";
 import { ModalDelete } from "../ModalDelete/ModalDelete";
-import AddAnotherCard from "../AddAnotherCard/AddAnotherCard";
-// import CardList from "../CardList/CardList";
+import CardManager from "../CardManager/CardManager";
+// import { onDeleteColumn } from "../../redux/columns/operations";
+// import { useDispatch } from "react-redux";
 
-const Column = ({ column }) => {
-  // const cards = useSelector(selectCards);
+const Column = ({ column, boardId }) => {
   // const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const cards = useSelector(selectCards);
   // const [isFormVisible, setIsFormVisible] = useState(true);
+  console.log("title", column);
+
   const onDelete = () => {
-    // dispatch(deleteColumn(column.id));
-    closeModal();
-    // if (value !== '') {
-    //   dispatch(changeFilter(''));
+    // if (column._id && boardId) {
+    //   dispatch(onDeleteColumn({ columnId: column._id, boardId }));
+    //   closeModal();
+    //   // if (value !== '') {
+    //   //   dispatch(changeFilter(''));
+    //   // }
     // }
   };
   const onEdit = () => {
@@ -36,7 +41,7 @@ const Column = ({ column }) => {
       <div className={css.section}>
         <div className={css.wrapper}>
           <div className={css.container}>
-            <p>назва колонки</p>
+            <p>{column.title || "Untitled Column"}</p>
             <div className={css.boxIcon}>
               <button className={css.btnIcon} onClick={onEdit}>
                 <SvgIcon id="icon-pencil-01" width="16" height="16" />
@@ -46,14 +51,15 @@ const Column = ({ column }) => {
               </button>
             </div>
           </div>
-          {/* <CardList /> */}
-          {/* {cards.length > 0 && !error && (
-            <CardList isFormVisible={isFormVisible} />
-          )} */}
+          <CardManager columnId={column._id} />
 
-          <AddAnotherCard />
           {isEdit && (
-            <EditColumn column={column} setIsEdit={setIsEdit} isEdit={isEdit} />
+            <EditColumn
+              column={column}
+              boardId={boardId}
+              setIsEdit={setIsEdit}
+              // isEdit={isEdit}
+            />
           )}
         </div>
       </div>
@@ -62,7 +68,7 @@ const Column = ({ column }) => {
         onClose={closeModal}
         onConfirm={onDelete}
         typeItems={"column"}
-        // titleItems={column.title}
+        titleItems={column.title || "Untitled Column"}
       />
     </>
   );

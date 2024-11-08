@@ -1,40 +1,64 @@
 .aside {
-    /* display: none; */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    @media only screen and (min-width: 1440px) {
-        display: block;
-        width: 260px;
-    }
-}
-/* .openMenu {
-    display: block;
-} */
-
-.overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(21, 21, 21, 0.50);
-    z-index: 999;
-    @media only screen and (min-width: 1440px) {
-        display: none;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
 }
 .nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  width: 225px;
+  height: 100%;
+  background-color: #fff;
+  padding-top: 14px;
+  z-index: 1000;
+}
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(21, 21, 21, 0.5);
+  z-index: 999;
+}
+
+/* Стилі для відкритого сайдбару на мобільних (до 768px) */
+@media (max-width: 767px) {
+  .aside {
+    transform: translateX(-100%);
+  }
+
+  .aside.open {
+    transform: translateX(0);
+  }
+}
+
+/* Стилі для планшетів (від 768px) */
+@media (min-width: 768px) and (max-width: 1439px) {
+  .aside {
+    transform: translateX(-100%);
+    /* Приховуємо сайдбар */
+  }
+
+  .aside.open {
+    transform: translateX(0);
+    /* Показуємо сайдбар, коли додано клас open */
+  }
+}
+
+/* Стилі для десктопів (від 1440px) */
+@media (min-width: 1440px) {
+  .aside {
+    transform: translateX(0);
     position: relative;
-    width: 225px;
-    height: 100%;
-    background-color: #FFF;
-    padding-top: 14px;
-    z-index: 1000;
-    @media only screen and (min-width: 1440px) {
-        width: 260px;
-    }
+    width: 260px;
+  }
+
+  .overlay {
+    display: none;
+  }
 }

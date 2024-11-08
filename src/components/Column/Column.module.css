@@ -1,14 +1,41 @@
-.section {
+/* Mobile */
+/* .container {
+  min-width: 320px;
+  max-width: 375px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+} */
+
+/* Tablet */
+/* @media only screen and (min-width: 768px) {
+  .wrapperScreenPage {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+} */
+
+/* Desktop */
+/* @media only screen and (min-width: 1440px) {
+  .wrapperScreenPage {
+    max-width: 1440px;
+    padding: 0 100px;
+  }
+} */
+
+/* Mobile */
+/* .section {
   position: relative;
   height: auto;
-}
+  width: 100%;
+  background-color: rgb(71, 148, 255);
+} */
 .wrapper {
   display: flex;
   flex-direction: column;
-
-  width: 334px;
-  height: 654px;
-
+  width: 335px;
+  /* height: 654px; */
+  /* background-color: rgb(160, 95, 150); */
   overflow: hidden;
 }
 .container {
@@ -25,6 +52,7 @@
   color: #fff;
   flex-shrink: 0;
   margin-bottom: 14px;
+  width: 100%;
 }
 .boxIcon {
   display: flex;
@@ -45,34 +73,4 @@
 .btnIcon:hover,
 .btnIcon:focus {
   stroke: #bedbb0;
-}
-
-.testUL {
-  overflow-y: auto;
-  flex-grow: 1;
-  padding-right: 24px; /* Оставляем место для скролла */
-  margin-right: -24px; /* Скролл выходит за правый край */
-  margin-bottom: 14px;
-}
-
-.testUL::-webkit-scrollbar {
-  width: 8px;
-  position: relative;
-}
-.testUL::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 4px;
-  margin-right: -8px;
-}
-.testUL::-webkit-scrollbar-track {
-  background: transparent;
-  margin-right: -8px;
-}
-.test {
-  min-height: 154px;
-  width: 100%;
-  background-color: aquamarine;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 8px;
 }

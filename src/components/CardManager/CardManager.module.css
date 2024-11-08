@@ -4,9 +4,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 375px;
+  max-width: 335px;
+  /* width: 100%; */
   margin: 0 auto;
-  padding: 20px;
+  /* padding: 20px; */
+  /* background-color: burlywood; */
 }
 
 /* Add Card Button */
@@ -15,9 +17,10 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 335px;
+  width: 100%;
+  /* width: 335px; */
   height: 56px;
-  background-color: #BEDBB0; 
+  background-color: #bedbb0;
   border-radius: 8px;
   border: none;
   font-size: 14px;
@@ -28,22 +31,23 @@
 }
 
 .createIcon {
-  
   fill: none;
-  stroke:#161616;
+  stroke: #161616;
   background-color: #161616;
-  border-radius: 10%; 
-  display: inline-flex; 
+  border-radius: 10%;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
 }
-
 
 .cardManagerButton:hover {
   background-color: #b0dba4;
   transform: scale(1.02); 
 }
 
+/* SVG Icon Style */
+.svgPlusBlackWhite {
+}
 
 .svgPlusBlackWhite:hover {
   background-color: #333; 

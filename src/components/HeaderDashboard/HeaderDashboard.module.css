@@ -1,0 +1,56 @@
+.wrapperHeaderDashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 24px;
+  background-color: #1f1f1f;
+  height: 74px;
+}
+
+.titleBoard {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  /* background-color: rgb(66, 24, 106); */
+}
+
+.btnFilters {
+  stroke: white;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-content: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.8);
+  width: 64px;
+  height: 20px;
+  background-color: transparent;
+  padding: 4px;
+  border: none;
+  margin: 0;
+}
+/*Tablet */
+@media only screen and (min-width: 768px) {
+  .wrapperHeaderDashboard {
+    height: 80px;
+  }
+}
+
+/* Desktop */
+@media only screen and (min-width: 1440px) {
+  .wrapperHeaderDashboard {
+    height: 48px;
+  }
+}

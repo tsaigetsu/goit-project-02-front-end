@@ -1,0 +1,58 @@
+/* Mobile */
+
+.wrapperList {
+  padding: 0 20px 24px;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 18px;
+  align-items: flex-start;
+  /* min-width: 320px;
+  max-width: 375px; */
+  width: 100%;
+  /* background-color: rgb(217, 255, 0); */
+}
+.columnsList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 18px;
+  width: 100%;
+  height: 100vh;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* background-color: aqua; */
+}
+
+.itemList {
+  /* flex: 0 0 auto; */
+  flex: 0 1 100%;
+  min-width: 335px;
+  /* width: 100%; */
+  /* background-color: brown; */
+  height: 100%;
+}
+@media only screen and (max-width: 374px) {
+  .itemList {
+    flex-basis: 90%; /* Уменьшаем ширину карточек до 90% от ширины родителя */
+    min-width: auto; /* Снимаем фиксированную минимальную ширину */
+  }
+}
+
+/* Tablet */
+@media only screen and (min-width: 768px) {
+  .wrapperList {
+    padding: 0 18px 32px 32px;
+    /* max-width: 768px; */
+    /* width: 100%; */
+  }
+}
+/* Desktop */
+@media only screen and (min-width: 1440px) {
+  .wrapperList {
+    padding: 0 0 24px 24px;
+    /* max-width: 1440px; */
+  }
+}

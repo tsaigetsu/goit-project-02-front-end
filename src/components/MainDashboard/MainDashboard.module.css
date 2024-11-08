@@ -1,0 +1,16 @@
+.wrapperMainDashboard {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* .columnsWrapper {
+  background-color: #1f1f1f;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+} */
