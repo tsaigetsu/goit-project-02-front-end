@@ -10,9 +10,9 @@ import CardManager from "../CardManager/CardManager";
 const Column = ({ column, boardId }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { title, _id } = column;
+  // const { title, _id } = column;
 
-  console.log("title", title);
+  // console.log("title", title);
   // console.log(column);
 
   const onDelete = () => {
@@ -41,7 +41,7 @@ const Column = ({ column, boardId }) => {
       <div className={css.section}>
         <div className={css.wrapper}>
           <div className={css.container}>
-            <p>{title || "Untitled Column"}</p>
+            {/* <p>{title || "Untitled Column"}</p> */}
             <div className={css.boxIcon}>
               <button className={css.btnIcon} onClick={onEdit}>
                 <SvgIcon id="icon-pencil-01" width="16" height="16" />
@@ -51,7 +51,9 @@ const Column = ({ column, boardId }) => {
               </button>
             </div>
           </div>
-          <CardManager columnId={_id} />
+          <CardManager
+          //  columnId={_id}
+          />
 
           {isEdit && (
             <EditColumn
@@ -68,7 +70,7 @@ const Column = ({ column, boardId }) => {
         onClose={closeModal}
         onConfirm={onDelete}
         typeItems={"column"}
-        titleItems={column.title || "Untitled Column"}
+        // titleItems={column.title || "Untitled Column"}
       />
     </>
   );

@@ -78,7 +78,6 @@ export const onGetColumn = createAsyncThunk(
   async (columns, thunkAPI) => {
     try {
       return columns;
-      // return response.data.data
     } catch (error) {
       toast.error("Failed to create column: " + error.message, {
         duration: 5000,

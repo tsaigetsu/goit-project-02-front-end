@@ -1,9 +1,12 @@
 import s from "./CardList.module.css";
 
-const CardList = ({ cards, onEdit, onDelete }) => {
-  return (
-    <div className={s.cardList}>
-      {cards.map((card) => (
+const CardList = () =>
+  // { cards, onEdit, onDelete }
+
+  {
+    return (
+      <div className={s.cardList}>
+        {/* {cards.map((card) => (
         <div key={card.id} className={s.card}>
           <h3>{card.title}</h3>
           <p>{card.description}</p>
@@ -12,9 +15,9 @@ const CardList = ({ cards, onEdit, onDelete }) => {
           <button onClick={() => onEdit(card)}>Edit</button>
           <button onClick={() => onDelete(card.id)}>Delete</button>
         </div>
-      ))}
-    </div>
-  );
-};
+      ))} */}
+      </div>
+    );
+  };
 
 export default CardList;

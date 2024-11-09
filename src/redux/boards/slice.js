@@ -10,7 +10,6 @@ import { logoutThunk } from "../auth/operations.js";
 
 const initialState = {
   boards: [],
-  columns: [],
   selectedBoard: null,
   loading: false,
   error: null,
