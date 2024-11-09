@@ -8,13 +8,16 @@ import DefaultText from "../../components/DefaultText/DefaultText.jsx";
 import NewBoardForm from "../../components/NewBoardForm/NewBoardForm.jsx";
 import { useSelector } from "react-redux";
 
+
 const ScreensPage = () => {
+
   const [isOpen, setIsOpen] = useState(false);
-  const [filter, setFilter] = useState(null); // Стан для фільтра
   const boards = useSelector(selectBoards);
+
 
   const board = useSelector(selectedBoard);
   console.log("board", board);
+
 
   const onOpen = () => {
     setIsOpen(true);
@@ -31,6 +34,7 @@ const ScreensPage = () => {
         ) : (
           <div className={css.screensPage__content}>
             <HeaderDashboard
+
               // titleBoard={board.title}
               onFilterChange={setFilter} // Передаємо функцію оновлення фільтра
               className={css.headerDashboard}
@@ -40,6 +44,7 @@ const ScreensPage = () => {
               filter={filter}
               className={css.mainDashboard}
             />
+
           </div>
         )}
       </section>

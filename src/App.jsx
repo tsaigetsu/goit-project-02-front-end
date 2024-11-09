@@ -51,6 +51,7 @@ function App() {
       >
         <Route path=":boardId" element={<ScreensPage />} />
       </Route>
+      {/* <Route path="/home" element={<HomePage />}/> */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

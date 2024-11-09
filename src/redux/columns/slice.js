@@ -1,3 +1,4 @@
+
 import { createSlice } from "@reduxjs/toolkit";
 import {
   onCreateColumn,
@@ -7,16 +8,16 @@ import {
 } from "./operations";
 // import { logout } from "../auth/operations.js";
 
-const columnsSlice = createSlice({
-  name: "columns",
-  initialState: {
-    columnsByBoard: [],
-    loading: false,
-    error: null,
-  },
-  extraReducers: (builder) => {
-    builder
 
+// const columnsSlice = createSlice({
+//   name: "columns",
+//   initialState: {
+//     columnsByBoard: {},
+//     loading: false,
+//     error: null,
+//   },
+//   extraReducers: (builder) => {
+//     builder
       .addCase(onCreateColumn.pending, (state) => {
         state.loading = true;
       })
@@ -61,27 +62,27 @@ const columnsSlice = createSlice({
       .addCase(onEditColumn.fulfilled, (state, action) => {
         state.loading = false;
 
-        state.error = null;
-        const { boardId, updatedColumn } = action.payload;
-        const columns = state.columnsByBoard[boardId];
-        const columnIndex = columns.findIndex(
-          (col) => col.id === updatedColumn.id
-        );
-        if (columnIndex !== -1) {
-          columns[columnIndex] = updatedColumn;
-        }
-      })
-      .addCase(onEditColumn.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
-    // .addCase(logout.fulfilled, (state) => {
-    //   state.items = [];
-    //   state.error = null;
-    //   state.loading = false;
-    // });
-  },
-});
+//         state.error = null;
+//         const { boardId, updatedColumn } = action.payload;
+//         const columns = state.columnsByBoard[boardId];
+//         const columnIndex = columns.findIndex(
+//           (col) => col.id === updatedColumn.id
+//         );
+//         if (columnIndex !== -1) {
+//           columns[columnIndex] = updatedColumn;
+//         }
+//       })
+//       .addCase(onEditColumn.rejected, (state, action) => {
+//         state.loading = false;
+//         state.error = action.payload;
+//       });
+//     // .addCase(logout.fulfilled, (state) => {
+//     //   state.items = [];
+//     //   state.error = null;
+//     //   state.loading = false;
+//     // });
+//   },
+// });
 
 export const columnsReducer = columnsSlice.reducer;
 export const selectColumnsByBoard = (state) => {
@@ -92,3 +93,4 @@ export const selectColumnsByBoard = (state) => {
 
 // export const selectLoading = (state) => state.columns.loading;
 // export const selectError = (state) => state.columns.error;
+

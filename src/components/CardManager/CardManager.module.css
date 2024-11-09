@@ -4,8 +4,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 335px;
-  /* width: 100%; */
+  /* width: 335px; */
+  width: 100%;
   margin: 0 auto;
   /* padding: 20px; */
   /* background-color: burlywood; */
@@ -13,7 +13,7 @@
 
 /* Add Card Button */
 .cardManagerButton {
-  display: flex;
+   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -25,9 +25,9 @@
   border: none;
   font-size: 14px;
   font-weight: 500;
-  color: #161616;
+  color: #161616; 
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
 .createIcon {
@@ -42,7 +42,7 @@
 
 .cardManagerButton:hover {
   background-color: #b0dba4;
-  transform: scale(1.02); /* Slight scale effect on hover */
+  transform: scale(1.02); 
 }
 
 /* SVG Icon Style */
@@ -50,5 +50,5 @@
 }
 
 .svgPlusBlackWhite:hover {
-  background-color: #333; /* Darker shade for hover */
+  background-color: #333; 
 }

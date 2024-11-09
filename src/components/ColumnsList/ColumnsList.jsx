@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import Column from "../Column/Column";
 import css from "./ColumnsList.module.css";
 import { selectColumnsByBoard } from "../../redux/columns/slice.js";
@@ -9,6 +8,7 @@ const ColumnsList = ({ filter }) => {
   return (
     <section className={css.wrapperList}>
       <ul className={css.columnsList}>
+
         {columns &&
           columns.map((column) => {
             // Фільтруємо задачі у колонці

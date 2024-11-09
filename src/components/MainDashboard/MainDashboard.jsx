@@ -2,10 +2,13 @@ import { useState } from "react";
 import css from "./MainDashboard.module.css";
 import ColumnsList from "../ColumnsList/ColumnsList.jsx";
 import { useDispatch, useSelector } from "react-redux";
+
 import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn.jsx";
+
 import AddColumn from "../AddColumn/AddColumn.jsx";
 import { onCreateColumn } from "../../redux/columns/operations.js";
 import { selectedBoard } from "../../redux/boards/selectors.js";
+
 
 const MainDashboard = ({ filter }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +36,7 @@ const MainDashboard = ({ filter }) => {
         <AddAnotherColumn setIsOpen={handleOpenModal} />
       </div>
       {isOpen && (
-        <AddColumn onAddColumn={handleSaveColumn} setIsOpen={setIsOpen} />
+        <AddColumn onCreateColumn={handleSaveColumn} setIsOpen={setIsOpen} />
       )}
     </>
   );

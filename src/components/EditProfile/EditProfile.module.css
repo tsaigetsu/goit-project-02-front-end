@@ -1,12 +1,4 @@
-/* .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(37, 37, 37, 0.75);
-  z-index: 1000;
-} */
+/* .overlay */
 .mainContainer {
   position: fixed;
   top: 0;
@@ -20,7 +12,26 @@
   align-items: center;
   height: 100vh;
 }
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  padding: 24px;
+  background-color: #151515;
+  border-radius: 8px;
+  min-width: 320px;
+  max-width: 335px;
+  height: fit-content;
+  box-sizing: border-box;
+}
 .wrapperTitle {
+  display: flex;
+  justify-content: flex-start;
   text-align: left;
 }
 .title {
@@ -33,22 +44,6 @@
   display: flex;
   justify-content: left;
 }
-.container {
-  /* position: relative; */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  padding: 24px;
-  background-color: #151515;
-  border-radius: 8px;
-  width: 400px;
-  height: fit-content;
-  box-sizing: border-box;
-}
 
 .exitBtn {
   width: 18px;
@@ -56,13 +51,6 @@
   border: none;
   outline: none;
   background-color: transparent;
-}
-
-@media only screen and (min-width: 768px) {
-  .container {
-    width: 424px;
-    padding: 40px;
-  }
 }
 
 .linkContainer {
@@ -117,7 +105,6 @@
   color: #fff;
   display: flex;
   justify-content: space-between;
-  /* align-content: center; */
   align-items: center;
 }
 
@@ -140,13 +127,17 @@
   color: #ffffff;
 }
 .btn {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: #161616;
   height: 49px;
   padding: 14px 0px;
   border-radius: 8px;
   background-color: #bedbb0;
   border: none;
-  font-size: 14px;
-  font-weight: 500;
+
   margin: 0;
 }
 
@@ -185,11 +176,10 @@
   margin-bottom: 14px;
 }
 .avatar {
-  stroke: ;
+  width: 68px;
+  height: 68px;
   position: relative;
   display: inline-block;
-  /* width: 68px;
-  height: 68px; */
 }
 .avatar img {
   border: none;
@@ -228,4 +218,9 @@
   outline: none;
   border: none;
   background-color: transparent;
+}
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 400px;
+  }
 }
