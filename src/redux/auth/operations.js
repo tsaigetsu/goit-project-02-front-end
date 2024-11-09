@@ -17,10 +17,18 @@ export const registerThunk = createAsyncThunk(
     try {
       const { data } = await api.post("/auth/register", credentials);
       setToken(data.data.accessToken);
-      toast.success("Welcome! You are successfully registered.");
+      toast.success("Welcome! You are successfully registered.", {
+        duration: 4000,
+        position: "bottom-center",
+        icon: "✔️",
+      });
       return data;
     } catch (error) {
-      toast.error("This email is already registered");
+      toast.error("This email is already registered", {
+        duration: 5000,
+        position: "bottom-center",
+        icon: "❌",
+      });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -32,10 +40,18 @@ export const loginThunk = createAsyncThunk(
     try {
       const { data } = await api.post("/auth/login", credentials);
       setToken(data.data.accessToken);
-      toast.success("Welcome! You are logged in.");
+      toast.success("Welcome! You are logged in.", {
+        duration: 4000,
+        position: "bottom-center",
+        icon: "✔️",
+      });
       return data;
     } catch (error) {
-      toast.error("Incorrect email or password");
+      toast.error("Incorrect email or password", {
+        duration: 5000,
+        position: "bottom-center",
+        icon: "❌",
+      });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -83,11 +99,16 @@ export const updateUserAvatar = createAsyncThunk(
       console.log("Successfully update UserData", response.data);
       toast.success("User updated successfully!", {
         duration: 4000,
-        position: "top-center",
+        position: "bottom-center",
         icon: "✔️",
       });
       return response.data.data; // Возвращаем обновленные данные пользователя
     } catch (error) {
+      toast.error("Failed to update user: " + error.message, {
+        duration: 5000,
+        position: "bottom-center",
+        icon: "❌",
+      });
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
