@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { onCreateColumn, onDeleteColumn, onEditColumn } from "./operations";
+import {
+  onCreateColumn,
+  onDeleteColumn,
+  onEditColumn,
+  onGetColumn,
+} from "./operations";
 // import { logout } from "../auth/operations.js";
 
 const columnsSlice = createSlice({
@@ -26,7 +31,9 @@ const columnsSlice = createSlice({
 
         state.columnsByBoard = [...state.columnsByBoard, column];
       })
-
+      .addCase(onGetColumn.fulfilled, (state, { payload }) => {
+        state.columnsByBoard = payload; //добавить пендинг и реджектед
+      })
       .addCase(onCreateColumn.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;

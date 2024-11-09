@@ -14,7 +14,7 @@ import {
 } from "../../redux/boards/operations.js";
 import icons from "../../data/icons.json";
 import EditBoardForm from "../EditBoardForm/EditBoardForm.jsx";
-import { selectColumnsByBoard } from "../../redux/columns/slice.js";
+import { onGetColumn } from "../../redux/columns/operations.js";
 
 const SidebarBoardList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,17 +42,12 @@ const SidebarBoardList = () => {
     setActiveBoardId(boardId);
     try {
       const board = await dispatch(getBoardByIdThunk(boardId)).unwrap();
+      await dispatch(onGetColumn(board.columns)).unwrap();
+
       selectedBoard(board);
-      const columns = board.columns;
-      console.log("есть ли у нас колонки?", columns);
-      selectColumnsByBoard(selectedBoard.columns);
-      console.log("а теперь?", columns);
     } catch (err) {
       err.message;
     }
-
-    // onSelectBoard({ id, title });
-    // console.log("select", { id, title });
   };
 
   const getIconNameById = (id) => {

@@ -71,3 +71,20 @@ export const onEditColumn = createAsyncThunk(
     }
   }
 );
+
+export const onGetColumn = createAsyncThunk(
+  "getColumn",
+  async (columns, thunkAPI) => {
+    try {
+      return columns;
+      // return response.data.data
+    } catch (error) {
+      toast.error("Failed to create column: " + error.message, {
+        duration: 5000,
+        position: "top-center",
+        icon: "❌",
+      });
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
