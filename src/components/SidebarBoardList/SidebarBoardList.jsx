@@ -1,40 +1,40 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NewBoardForm from "../NewBoardForm/NewBoardForm";
 import SidebarBoardItem from "../SidebarBoardItem/SidebarBoardItem";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./SidebarBoardList.module.css";
-import { useEffect } from "react";
 import { selectBoards } from "../../redux/boards/selectors.js";
 import {
   addBoardsThunk,
   deleteBoardThunk,
   fetchBoardsThunk,
+  getBoardByIdThunk,
+  updateBoardThunk,
 } from "../../redux/boards/operations.js";
 import icons from "../../data/icons.json";
+import EditBoardForm from "../EditBoardForm/EditBoardForm.jsx";
 
 const SidebarBoardList = ({ onSelectBoard }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [activeBoardId, setActiveBoardId] = useState(null);
-
+  const [selectedBoardData, setSelectedBoardData] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchBoardsThunk());
   }, [dispatch]);
 
-  const data = useSelector((state) => selectBoards(state));
-  console.log("data", data);
+  const boards = useSelector(selectBoards);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
-  const onClose = () => setIsModalOpen(false);
-
-  const handleSaveBoard = (newBoard) => {
-    dispatch(addBoardsThunk(newBoard));
-    onClose();
+  const handleSaveBoard = async (newBoard) => {
+    await dispatch(addBoardsThunk(newBoard));
+    setIsModalOpen(false);
   };
 
   const handleSelectBoard = (id, title) => {
@@ -46,10 +46,26 @@ const SidebarBoardList = ({ onSelectBoard }) => {
     const icon = icons.find((icon) => icon.id === id);
     return icon ? icon.iconName : "icon-default";
   };
+
+  const handleEdit = async (boardId) => {
+    const data = await dispatch(getBoardByIdThunk(boardId));
+    setSelectedBoardData(data.payload);
+    setIsEditModalOpen(true);
+  };
+
+  const handleSaveChanges = (updatedBoard) => {
+    dispatch(
+      updateBoardThunk({
+        boardId: selectedBoardData._id,
+        ...updatedBoard,
+      })
+    );
+    setIsEditModalOpen(false);
+  };
+
   return (
     <>
       <div className={s.myBoards}>
-        {/* нужен скролл */}
         <p className={s.myBoardsText}>My boards</p>
         <div className={s.createBoard}>
           <p className={s.createBoardText}>Create a new board</p>
@@ -63,15 +79,16 @@ const SidebarBoardList = ({ onSelectBoard }) => {
           </button>
         </div>
         <ul className={s.ul}>
-          {data.map((item) => (
+          {boards.map((board) => (
             <SidebarBoardItem
-              key={item._id}
-              name={item.title}
-              id={item._id}
-              iconId={getIconNameById(item.iconId)}
-              onDelete={() => dispatch(deleteBoardThunk(item._id))}
-              onSelect={() => handleSelectBoard(item._id, item.title)}
-              isActive={item._id === activeBoardId}
+              key={board._id}
+              name={board.title}
+              id={board._id}
+              iconId={getIconNameById(board.iconId)}
+              onDelete={() => dispatch(deleteBoardThunk(board._id))}
+              onSelect={() => handleSelectBoard(board._id, board.title)}
+              isActive={board._id === activeBoardId}
+              onEdit={() => handleEdit(board._id)}
             />
           ))}
         </ul>
@@ -79,8 +96,18 @@ const SidebarBoardList = ({ onSelectBoard }) => {
       {isModalOpen && (
         <NewBoardForm
           isOpen={isModalOpen}
-          onClose={onClose}
+          onClose={() => setIsModalOpen(false)}
           onSave={handleSaveBoard}
+        />
+      )}
+      {isEditModalOpen && selectedBoardData && (
+        <EditBoardForm
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          initialTitle={selectedBoardData.title}
+          initialIcon={selectedBoardData.iconId}
+          initialBackground={selectedBoardData.backgroundId}
+          onSave={handleSaveChanges}
         />
       )}
     </>
