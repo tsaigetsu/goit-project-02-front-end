@@ -13,7 +13,7 @@ export default function UserInfo() {
 
   return (
     <div className={css.userInfo}>
-      <p>{userData.name}</p>
+      {/* <p>{userData.name}</p> */}
       <button onClick={handleEditModal} className={css.userInfoModal}>
         <img src={userData.photo} alt="img Avatar" />
       </button>

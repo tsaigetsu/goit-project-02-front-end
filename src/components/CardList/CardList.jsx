@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import s from './CardList.module.css';
+import s from "./CardList.module.css";
 
 const CardList = ({ cards, onEdit, onDelete }) => {
   return (

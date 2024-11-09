@@ -56,7 +56,7 @@ const SidebarBoardList = () => {
   };
 
   const handleEdit = async (boardId) => {
-    const data = await dispatch(getBoardByIdThunk(boardId));
+    const data = await dispatch(getBoardByIdThunk(boardId).unwrap());
     setSelectedBoardData(data.payload);
     setIsEditModalOpen(true);
   };

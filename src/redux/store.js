@@ -13,7 +13,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { boardsReducer } from "./boards/slice.js";
 
-import { userReducer } from "./user/userSlice.js";
+// import { userReducer } from "./user/userSlice.js";
 import { columnsReducer } from "./columns/slice.js";
 
 const persistConfig = {
@@ -28,7 +28,7 @@ export const store = configureStore({
     boards: boardsReducer,
     auth: persistReducer(persistConfig, authReducer),
     columns: columnsReducer,
-    user: userReducer,
+    // user: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

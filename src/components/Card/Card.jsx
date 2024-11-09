@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import s from './Card.module.css';
+import s from "./Card.module.css";
 
 const Card = ({ card, onEdit, onDelete }) => {
   return (
@@ -15,5 +14,3 @@ const Card = ({ card, onEdit, onDelete }) => {
 };
 
 export default Card;
-
-

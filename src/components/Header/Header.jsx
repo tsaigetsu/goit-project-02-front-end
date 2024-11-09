@@ -4,11 +4,9 @@ import css from "./Header.module.css";
 import { SidebarContext } from "../Layout/Layout.jsx";
 import UserInfo from "../UserInfo/UserInfo.jsx";
 
-
 export default function Header() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
 
   const ThemeContext = createContext("light");
 
@@ -18,20 +16,18 @@ export default function Header() {
     setIsModalOpen(!isModalOpen);
   };
 
-
   const changeTheme = (newTheme) => {
-    setIsModalOpen(false); 
+    setIsModalOpen(false);
     localStorage.setItem("theme", newTheme);
     setTheme(newTheme);
   };
 
-    const modalRef = useRef(null); 
+  const modalRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setIsModalOpen(false);   
-
+        setIsModalOpen(false);
       }
     };
 
@@ -44,7 +40,7 @@ export default function Header() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isModalOpen]);   
+  }, [isModalOpen]);
 
   return (
     <div
@@ -56,7 +52,9 @@ export default function Header() {
             onClick={() => {
               toggleSidebar();
             }}
-            className={`${css.hamburgerButton} ${isSidebarOpen ? css.hide : ''}`}
+            className={`${css.hamburgerButton} ${
+              isSidebarOpen ? css.hide : ""
+            }`}
           >
             <span className={css.hamburgerIcon}></span>
           </button>

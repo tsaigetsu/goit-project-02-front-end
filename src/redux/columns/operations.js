@@ -18,8 +18,6 @@ export const onCreateColumn = createAsyncThunk(
         icon: "✔️",
       });
       return { boardId: CreatedColumn.boardId, column: CreatedColumn };
-      // return response.data.data
-
     } catch (error) {
       toast.error("Failed to create column: " + error.message, {
         duration: 5000,
@@ -57,7 +55,7 @@ export const onEditColumn = createAsyncThunk(
   "editColumn",
   async ({ boardId, columnId, updateColumn }, thunkAPI) => {
     try {
-      const response = await api.patch(` columns/${columnId}`, updateColumn);
+      const response = await api.patch(`columns/${columnId}`, updateColumn);
       toast.success("Column updated successfully!", {
         duration: 4000,
         position: "top-center",
