@@ -5,9 +5,9 @@ const SidebarBoardItem = ({
   iconId,
   id,
   name,
-  onDelete,
   onSelect,
   isActive,
+  onDelete,
   onEdit,
 }) => {
   return (

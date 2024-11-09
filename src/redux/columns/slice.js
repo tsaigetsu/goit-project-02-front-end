@@ -1,6 +1,13 @@
-// import { createSlice } from "@reduxjs/toolkit";
-// import { onCreateColumn, onDeleteColumn, onEditColumn } from "./operations";
-// // import { logout } from "../auth/operations.js";
+
+import { createSlice } from "@reduxjs/toolkit";
+import {
+  onCreateColumn,
+  onDeleteColumn,
+  onEditColumn,
+  onGetColumn,
+} from "./operations";
+// import { logout } from "../auth/operations.js";
+
 
 // const columnsSlice = createSlice({
 //   name: "columns",
@@ -11,48 +18,49 @@
 //   },
 //   extraReducers: (builder) => {
 //     builder
+      .addCase(onCreateColumn.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(onCreateColumn.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        const { boardId, column } = action.payload;
+        if (!state.columnsByBoard[boardId]) {
+          state.columnsByBoard[boardId] = [];
+        }
+        console.log("column1234", column);
 
-//       .addCase(onCreateColumn.pending, (state) => {
-//         state.loading = true;
-//       })
-//       .addCase(onCreateColumn.fulfilled, (state, action) => {
-//         state.loading = false;
-//         state.error = null;
-//         const newColumn = action.payload;
-//         const { boardId } = newColumn.CreatedColumn;
-//         if (!state.columnsByBoard[boardId]) {
-//           state.columnsByBoard[boardId] = [];
-//         }
-//         state.columnsByBoard[boardId].push(newColumn);
-//         // state.columnsByBoard.push(column);
-//       })
-
-//       .addCase(onCreateColumn.rejected, (state, action) => {
-//         state.loading = false;
-//         state.error = action.payload;
-//       })
-//       .addCase(onDeleteColumn.pending, (state) => {
-//         state.loading = true;
-//       })
-//       .addCase(onDeleteColumn.fulfilled, (state, action) => {
-//         state.loading = false;
-//         state.error = null;
-//         const { boardId, columnId } = action.payload;
-//         if (state.columnsByBoard[boardId]) {
-//           state.columnsByBoard[boardId] = state.columnsByBoard[boardId].filter(
-//             (column) => column.id !== columnId
-//           );
-//         }
-//       })
-//       .addCase(onDeleteColumn.rejected, (state, action) => {
-//         state.loading = false;
-//         state.error = action.payload;
-//       })
-//       .addCase(onEditColumn.pending, (state) => {
-//         state.loading = true;
-//       })
-//       .addCase(onEditColumn.fulfilled, (state, action) => {
-//         state.loading = false;
+        state.columnsByBoard = [...state.columnsByBoard, column];
+      })
+      .addCase(onGetColumn.fulfilled, (state, { payload }) => {
+        state.columnsByBoard = payload; //добавить пендинг и реджектед
+      })
+      .addCase(onCreateColumn.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(onDeleteColumn.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(onDeleteColumn.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        const { boardId, columnId } = action.payload;
+        if (state.columnsByBoard[boardId]) {
+          state.columnsByBoard[boardId] = state.columnsByBoard[boardId].filter(
+            (column) => column.id !== columnId
+          );
+        }
+      })
+      .addCase(onDeleteColumn.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(onEditColumn.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(onEditColumn.fulfilled, (state, action) => {
+        state.loading = false;
 
 //         state.error = null;
 //         const { boardId, updatedColumn } = action.payload;
@@ -76,4 +84,13 @@
 //   },
 // });
 
-// export const columnsReducer = columnsSlice.reducer;
+export const columnsReducer = columnsSlice.reducer;
+export const selectColumnsByBoard = (state) => {
+  console.log("staate", state);
+
+  return state.columns.columnsByBoard;
+};
+
+// export const selectLoading = (state) => state.columns.loading;
+// export const selectError = (state) => state.columns.error;
+

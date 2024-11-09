@@ -8,24 +8,15 @@ import Layout from "../../components/Layout/Layout.jsx"; // Імпортуйте
 
 const HomePage = () => {
   const { isSidebarOpen } = useContext(SidebarContext);
-  const [selectedBoard, setSelectedBoard] = useState(null);
   // console.log(isSidebarOpen);
 
   return (
     <Layout>
       <section className={css.homePage}>
-        <Sidebar
-          className={isSidebarOpen ? "aside open" : "aside"}
-          onSelectBoard={setSelectedBoard}
-        />
+        <Sidebar className={isSidebarOpen ? "aside open" : "aside"} />
         <div className={css.homePage__content}>
           <Header />
-          {selectedBoard && (
-            <ScreensPage
-              boardId={selectedBoard.id}
-              title={selectedBoard.title}
-            />
-          )}
+          <ScreensPage />
         </div>
       </section>
     </Layout>

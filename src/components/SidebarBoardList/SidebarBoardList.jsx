@@ -4,7 +4,7 @@ import NewBoardForm from "../NewBoardForm/NewBoardForm";
 import SidebarBoardItem from "../SidebarBoardItem/SidebarBoardItem";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./SidebarBoardList.module.css";
-import { selectBoards } from "../../redux/boards/selectors.js";
+import { selectBoards, selectedBoard } from "../../redux/boards/selectors.js";
 import {
   addBoardsThunk,
   deleteBoardThunk,
@@ -14,8 +14,9 @@ import {
 } from "../../redux/boards/operations.js";
 import icons from "../../data/icons.json";
 import EditBoardForm from "../EditBoardForm/EditBoardForm.jsx";
+import { onGetColumn } from "../../redux/columns/operations.js";
 
-const SidebarBoardList = ({ onSelectBoard }) => {
+const SidebarBoardList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [activeBoardId, setActiveBoardId] = useState(null);
@@ -37,9 +38,16 @@ const SidebarBoardList = ({ onSelectBoard }) => {
     setIsModalOpen(false);
   };
 
-  const handleSelectBoard = (id, title) => {
-    setActiveBoardId(id);
-    onSelectBoard({ id, title });
+  const handleSelectBoard = async (boardId) => {
+    setActiveBoardId(boardId);
+    try {
+      const board = await dispatch(getBoardByIdThunk(boardId)).unwrap();
+      await dispatch(onGetColumn(board.columns)).unwrap();
+
+      selectedBoard(board);
+    } catch (err) {
+      err.message;
+    }
   };
 
   const getIconNameById = (id) => {
@@ -62,7 +70,9 @@ const SidebarBoardList = ({ onSelectBoard }) => {
     );
     setIsEditModalOpen(false);
   };
-
+  const handleDelete = (boardId) => {
+    dispatch(deleteBoardThunk(boardId));
+  };
   return (
     <>
       <div className={s.myBoards}>
@@ -85,8 +95,8 @@ const SidebarBoardList = ({ onSelectBoard }) => {
               name={board.title}
               id={board._id}
               iconId={getIconNameById(board.iconId)}
-              onDelete={() => dispatch(deleteBoardThunk(board._id))}
-              onSelect={() => handleSelectBoard(board._id, board.title)}
+              onDelete={() => handleDelete(board._id)}
+              onSelect={() => handleSelectBoard(board._id)}
               isActive={board._id === activeBoardId}
               onEdit={() => handleEdit(board._id)}
             />

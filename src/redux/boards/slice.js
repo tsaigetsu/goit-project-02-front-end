@@ -10,6 +10,7 @@ import { logoutThunk } from "../auth/operations.js";
 
 const initialState = {
   boards: [],
+  columns: [],
   selectedBoard: null,
   loading: false,
   error: null,
@@ -35,6 +36,7 @@ const slice = createSlice({
         return initialState;
       })
       .addCase(getBoardByIdThunk.fulfilled, (state, action) => {
+        console.log("payload", action.payload);
         state.selectedBoard = action.payload;
         state.loading = false;
         state.error = null;
