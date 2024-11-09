@@ -15,7 +15,7 @@ export default function UserInfo() {
     <div className={css.userInfo}>
       {/* <p>{userData.name}</p> */}
       <button onClick={handleEditModal} className={css.userInfoModal}>
-        <img src={userData.photo} alt="img Avatar" />
+        {/* <img src={userData.photo} alt="img Avatar" /> */}
       </button>
       {isEditModal && (
         <EditProfile
