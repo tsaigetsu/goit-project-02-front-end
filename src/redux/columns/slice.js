@@ -22,7 +22,9 @@ const columnsSlice = createSlice({
         if (!state.columnsByBoard[boardId]) {
           state.columnsByBoard[boardId] = [];
         }
-        state.columnsByBoard[boardId].push(column);
+        console.log("column1234", column);
+
+        state.columnsByBoard = [...state.columnsByBoard, column];
       })
 
       .addCase(onCreateColumn.rejected, (state, action) => {
@@ -75,8 +77,11 @@ const columnsSlice = createSlice({
 });
 
 export const columnsReducer = columnsSlice.reducer;
-export const selectColumnsByBoard = (state, boardId) =>
-  state.columns.columnsByBoard[boardId] ?? [];
+export const selectColumnsByBoard = (state) => {
+  console.log("staate", state);
 
-export const selectLoading = (state) => state.columns.loading;
-export const selectError = (state) => state.columns.error;
+  return state.columns.columnsByBoard;
+};
+
+// export const selectLoading = (state) => state.columns.loading;
+// export const selectError = (state) => state.columns.error;

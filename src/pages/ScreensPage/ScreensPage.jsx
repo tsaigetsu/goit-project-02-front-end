@@ -1,5 +1,5 @@
 import css from "./ScreensPage.module.css";
-import { selectBoards } from "../../redux/boards/selectors.js";
+import { selectBoards, selectedBoard } from "../../redux/boards/selectors.js";
 // import { selectedBoard } from "../../redux/boards/selectors.js";
 import { useState } from "react";
 import HeaderDashboard from "../../components/HeaderDashboard/HeaderDashboard.jsx";
@@ -8,12 +8,14 @@ import DefaultText from "../../components/DefaultText/DefaultText.jsx";
 import NewBoardForm from "../../components/NewBoardForm/NewBoardForm.jsx";
 import { useSelector } from "react-redux";
 
-const ScreensPage = ({ board }) => {
+const ScreensPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState(null); // Стан для фільтра
   const boards = useSelector(selectBoards);
-  // const boardById = useSelector(selectedBoard);
+
+  const board = useSelector(selectedBoard);
   console.log("board", board);
+
   const onOpen = () => {
     setIsOpen(true);
   };
@@ -29,12 +31,15 @@ const ScreensPage = ({ board }) => {
         ) : (
           <div className={css.screensPage__content}>
             <HeaderDashboard
-              titleBoard={board.title}
+              // titleBoard={board.title}
               onFilterChange={setFilter} // Передаємо функцію оновлення фільтра
               className={css.headerDashboard}
             />
-            <MainDashboard board={board} filter={filter} className={css.mainDashboard} />
-
+            <MainDashboard
+              // board={board}
+              filter={filter}
+              className={css.mainDashboard}
+            />
           </div>
         )}
       </section>
