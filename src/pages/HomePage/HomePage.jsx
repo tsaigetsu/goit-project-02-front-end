@@ -3,7 +3,7 @@ import ScreensPage from "../ScreensPage/ScreensPage";
 import Header from "../../components/Header/Header.jsx";
 import css from "./HomePage.module.css";
 import { SidebarContext } from "../../components/Layout/Layout.jsx";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Layout from "../../components/Layout/Layout.jsx"; // Імпортуйте Layout
 
 const HomePage = () => {

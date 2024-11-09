@@ -1,7 +1,7 @@
 import { useState } from "react";
 import css from "./Filters.module.css";
 
-const Filters = ({ onBackgroundChange, onFilterChange }) => {
+const Filters = ({ onBackgroundChange, onFilterChange}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {

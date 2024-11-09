@@ -7,7 +7,7 @@ import CardManager from "../CardManager/CardManager";
 // import { onDeleteColumn } from "../../redux/columns/operations";
 // import { useDispatch } from "react-redux";
 
-const Column = ({ column, boardId }) => {
+const Column = ({ title, columnId, boardId }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const { title, _id } = column;
@@ -38,33 +38,34 @@ const Column = ({ column, boardId }) => {
   };
   return (
     <>
-      <div className={css.section}>
-        <div className={css.wrapper}>
-          <div className={css.container}>
-            {/* <p>{title || "Untitled Column"}</p> */}
-            <div className={css.boxIcon}>
-              <button className={css.btnIcon} onClick={onEdit}>
-                <SvgIcon id="icon-pencil-01" width="16" height="16" />
-              </button>
-              <button className={css.btnIcon} onClick={openModal}>
-                <SvgIcon id="icon-trash-04" width="16" height="16" />
-              </button>
+      <li className={css.itemList}>
+        <div className={css.section}>
+          <div className={css.wrapper}>
+            <div className={css.container}>
+              <p>{title || "Untitled Column"}</p>
+              <div className={css.boxIcon}>
+                <button className={css.btnIcon} onClick={onEdit}>
+                  <SvgIcon id="icon-pencil-01" width="16" height="16" />
+                </button>
+                <button className={css.btnIcon} onClick={openModal}>
+                  <SvgIcon id="icon-trash-04" width="16" height="16" />
+                </button>
+              </div>
             </div>
-          </div>
-          <CardManager
-          //  columnId={_id}
-          />
+            <CardManager columnId={columnId} />
 
-          {isEdit && (
-            <EditColumn
-              column={column}
-              boardId={boardId}
-              setIsEdit={setIsEdit}
-              // isEdit={isEdit}
-            />
-          )}
+            {isEdit && (
+              <EditColumn
+                columnId={columnId}
+                boardId={boardId}
+                setIsEdit={setIsEdit}
+                // isEdit={isEdit}
+              />
+            )}
+          </div>
         </div>
-      </div>
+      </li>
+
       <ModalDelete
         isOpen={isModalOpen}
         onClose={closeModal}
