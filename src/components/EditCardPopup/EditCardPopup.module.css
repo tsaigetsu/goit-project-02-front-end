@@ -1,98 +1,148 @@
 /* Overlay для модального вікна */
-.popup {
-  width: 100%;
+.popupOverlay{
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Затінення фону */
+  width: 100%;
+  height: 100%;
+  background: var(--popup-bg-color);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
 }
 
-/* Основний контент попапу */
-.popupContent {
-  max-width: 375px; 
-  background-color: #161616; 
-  border-radius: 8px;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Тінь */
+
+@media screen and (min-width: 320px) {
+.popup {
   position: relative;
-  padding: 16px;
+  max-width: 335px;
+  background-color: var(--popup-bg-color);
+  color: var(--popup-text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --font-family: "Poppins", sans-serif;
+  flex-direction: column;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  border-radius: 8px;
+}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .popup{
+    max-width: 350px;
+  }
+}
+
+
+/* Іконка закриття */
+.svgCloseIcon,
+.closeButton {
+  fill: none;
+  stroke: #161616; 
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &&:hover {
+   transition: transform 0.3s;
+}
+}
+
+
+/* Основний контент попапу */
+@media screen and (min-width: 320px) {
+.popupContent {
+  max-width: 287px; 
+  max-height: 522px;
+  background-color: var(--popup-bg-color);
+  color: var(--popup-text-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);  /* Тінь*/
+  position: relative;
+  padding: 24px;
   display: flex;
   flex-direction: column;
+}
+}
+
+@media screen and (min-width: 768px) and (min-width: 1440px) {
+  .popupContent {
+    max-width: 302px; 
+}
 }
 
 /* Заголовок попапу */
 .TitleCard {
   font-size: 18px;
   font-weight: 500;
-  margin: 0;
-}
+  letter-spacing: -0.02em;
+  padding-bottom: 24px;
+ }
 
-/* Іконка закриття без анімації */
-.svgCloseIcon {
-  fill: none;
-  stroke: #ffffff;
-}
-
-.closeButton {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: none;
-  border: none;
-  color: #ffffff;
-  font-size: 20px;
-  cursor: pointer;
-}
 
 /* Поле введення для заголовка */
-.inputTitle {
-  width: 100%;
-  padding: 12px;
+.inputTitle,
+.textareaDeskr {
   background-color: transparent;
-  border: 1px solid #BEDBB0; 
-  border-radius: 6px;
-  color: #ffffff; 
+  color: #161616;
+  border-color: var( --priority-color-high); 
+  opacity: 0.7;
+  max-width: 287px;
+  height: auto;
+  padding: 12px;
+  border-radius: 8px;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 400;
-  line-height: 129%;
+  line-height: 150%;
   letter-spacing: -0.02em;
-  margin: 14px 0;
-  transition: border-color 0.3s ease;
+  margin-bottom:  14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  /*  при фокусі */
+  &&:focus {
+    opacity: 1;
+    outline: #9DC888;
+  }
 }
 
-.inputTitle:focus {
-  border-color: #8FA1D0; /* Колір рамки при фокусі */
+
+@media screen and (min-width: 768px) {
+.inputTitle,
+.textareaDeskr {
+    max-width: 302px; 
+}
 }
 
-/* Текстове поле для опису */
-textarea {
-  height: 100px;
-  resize: none; 
-  padding: 12px;
-  border: 1px solid #BEDBB0;
-  border-radius: 6px;
-  color: #ffffff;
-  background-color: transparent;
-  font-size: 16px;
-  margin: 14px 0;
-}
+@media screen and (min-width: 1440px) {
+  .inputTitle,
+  .textareaDeskr {
+      max-width: 302px; 
+  }
+  }
 
 /* Секція вибору кольору */
 .labelColor {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .labelTitle {
   margin-bottom: 4px;
-  color: #FFFFFF80; 
+  color: #16161680;
   font-size: 12px;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+
 }
 
 input[type="radio"] {
@@ -101,7 +151,6 @@ input[type="radio"] {
   width: 0;
   height: 0;
 }
-
 
 .labelColors {
   display: flex;
@@ -124,19 +173,14 @@ input[type="radio"] {
   transform: scale(1.2); 
 }
 
-.violet { background-color: #8FA1D0; }
-.pink { background-color: #E09CB5; }
-.green { background-color: #BEDBB0; }
-.black { background-color: #FFFFFF4D; }
-
 .colorCircle.active {
   box-shadow: 0 0 0 2px #8FA1D0, 0 0 0 4px #000; 
   box-shadow: inset 0 0 0 2px; 
 }
 
 /* Секція вибору дати */
-.deadline {
-  margin-bottom: 24px;
+.deadlineWrapper {
+  margin-bottom: 40px;
   /* display: flex; */
   align-items: center;
 }
@@ -145,8 +189,7 @@ input[type="radio"] {
   display: flex;
 }
 
-
-.dateDisplay {
+.dateDisplayCalendar {
   color: #BEDBB0;
   font-weight: 500;
   font-size: 14px;
@@ -158,33 +201,44 @@ input[type="radio"] {
   fill: none;
   stroke: #BEDBB0;
 }
-/* Кнопка редагування */
+
+.violet-theme .iconChevronDown {
+  fill: none;
+  stroke: #5255BC;
+}
+
+/* Кнопка додавання картки */
 .addButton {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 100%;
-  height: 56px;
-  background-color: #BEDBB0; 
+  width: 302px;
+  height: 49px;
+  background-color: var(--background-button-colorB); 
   border-radius: 8px;
   border: none;
   font-size: 14px;
   font-weight: 500;
-  color: #161616; 
+  color: var(--popup-text-color); 
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.addButton:hover {
-  background-color: #9DC888; 
+.addButton:hover,
+.addButton:focus {
+  opacity: 1;
+  background-color: #9DC888;
 }
 
 .icon-normalBtnBlack {
   fill: none;
-  stroke: #161616; 
-}
-
-.addButton:active {
-  background-color: #7AA56B; 
+  stroke: var(--popup-text-color); 
+  color: var(--background-pop-up-colorB);
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
