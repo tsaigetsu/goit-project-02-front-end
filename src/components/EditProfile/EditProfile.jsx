@@ -71,8 +71,30 @@ const EditProfile = ({ userData, onClose }) => {
     fileInputRef.current.click(); // Программно вызываем клик на скрытый инпут
   };
 
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        onClose(); // Вызываем функцию закрытия модалки
+      }
+    };
+
+    // Подписываемся на событие `keydown` при монтировании компонента
+    document.addEventListener("keydown", handleEscape);
+
+    // Очищаем подписку при размонтировании компонента
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [onClose]);
+
+  // Обработчик для клика по бекдропу
+  const handleBackdropClick = (event) => {
+    if (event.target === event.currentTarget) {
+      onClose(); // Закрываем модалку при клике по бекдропу
+    }
+  };
   return (
-    <div className={css.mainContainer}>
+    <div className={css.mainContainer} onClick={handleBackdropClick}>
       <div className={css.container}>
         <div className={css.wrapperTitle}>
           <p className={css.title}>Edit profile</p>
