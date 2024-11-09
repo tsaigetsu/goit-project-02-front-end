@@ -13,6 +13,8 @@ const MainDashboard = ({ filter }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const board = useSelector(selectedBoard);
+  console.log("selectedBoard", board);
+
   const handleOpenModal = () => {
     setIsOpen(true);
   };

@@ -22,12 +22,13 @@ const ColumnsList = () =>
               // });
 
               return (
-                <li key={column._id} className={css.itemList}>
-                  <Column
-                    column={column}
-                    // column={{ ...column, tasks: filteredTasks }}
-                  />
-                </li>
+                <Column
+                  key={column._id}
+                  title={column.title}
+                  columnId={column._id}
+                  boardId={column.boardId}
+                  // column={{ ...column, tasks: filteredTasks }}
+                />
               );
             })}
         </ul>
