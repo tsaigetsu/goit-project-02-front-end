@@ -1,37 +1,81 @@
+/* .overlay */
+/* .mainContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(37, 37, 37, 0.75);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+} */
+
 .filtersWrapper {
-    position: relative;
+  /* position: relative; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(37, 37, 37, 0.75);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .btnFilters {
-    display: flex;
-    align-items: center;
-    background: transparent;
-    border: none;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .modal {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #1a1a1a;
-    color: white;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  padding: 24px;
+  background-color: #151515;
+  border-radius: 8px;
+  min-width: 320px;
+  max-width: 335px;
+  height: fit-content;
+  box-sizing: border-box;
+
+  /* position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; */
 }
 
 .modalContent {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .closeButton {
-    align-self: flex-end;
-    background: none;
+    stroke: #fff;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    outline: none;
     border: none;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
+    background-color: transparent;
 }
