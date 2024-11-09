@@ -92,3 +92,18 @@ export const updateUserAvatar = createAsyncThunk(
     }
   }
 );
+
+export const updateTheme = createAsyncThunk(
+  "user/updateTheme", 
+  async (newTheme, thunkAPI) => {
+    try {
+      const response = await api.patch('/user/profile', { theme: newTheme }); 
+      console.log("Theme updated successfully", response.data);
+      toast.success("Theme updated successfully!");
+      return response.data.data; 
+    } catch (error) {
+      toast.error("Error updating theme");
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
