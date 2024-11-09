@@ -1,11 +1,17 @@
-import { useState } from "react";
+// import { useState } from "react";
+import SvgIcon from "../SvgIcon/SvgIcon";
 import css from "./Filters.module.css";
 
-const Filters = ({ onBackgroundChange, onFilterChange}) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const Filters = ({
+  onBackgroundChange,
+  onFilterChange,
+  setIsModalOpen,
+  isModalOpen,
+}) => {
+  console.log("open modal filter", isModalOpen);
 
   const toggleModal = () => {
-    setIsModalOpen((prevState) => !prevState);
+    setIsModalOpen(false);
   };
 
   const handleBackgroundChange = (color) => {
@@ -41,16 +47,18 @@ const Filters = ({ onBackgroundChange, onFilterChange}) => {
   };
 
   return (
-    <div className={css.filtersWrapper}>
-      <button onClick={toggleModal} className={css.btnFilters}>
-        <span>Filters</span>
-      </button>
-      {isModalOpen && (
+    <>
+      <div className={css.filtersWrapper}>
         <div className={css.modal}>
           <div className={css.modalContent}>
-            <button className={css.closeButton} onClick={toggleModal}>
-              X
+            <button
+              type="button"
+              className={css.closeButton}
+              onClick={toggleModal}
+            >
+              <SvgIcon id="icon-x-close" width="18" height="18" />
             </button>
+
             <h2>Filters</h2>
             <div>
               <h3>Background</h3>
@@ -74,8 +82,8 @@ const Filters = ({ onBackgroundChange, onFilterChange}) => {
             </div>
           </div>
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 };
 
