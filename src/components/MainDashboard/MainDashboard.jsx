@@ -9,14 +9,16 @@ import AddColumn from "../AddColumn/AddColumn.jsx";
 import { onCreateColumn } from "../../redux/columns/operations.js";
 import { selectedBoard } from "../../redux/boards/selectors.js";
 
-
 const MainDashboard = ({ filter }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const board = useSelector(selectedBoard);
+  console.log("selectedBoard", board);
+
   const handleOpenModal = () => {
     setIsOpen(true);
   };
+
   const handleSaveColumn = (newTitle) => {
     console.log("Adding column with title:", newTitle);
     const newColumn = { title: newTitle, boardId: board._id };

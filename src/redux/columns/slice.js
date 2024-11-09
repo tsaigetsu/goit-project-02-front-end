@@ -10,7 +10,7 @@ import {
 const columnsSlice = createSlice({
   name: "columns",
   initialState: {
-    columnsByBoard: {},
+    columnsByBoard: [],
     loading: false,
     error: null,
   },
@@ -84,8 +84,6 @@ const columnsSlice = createSlice({
 
 export const columnsReducer = columnsSlice.reducer;
 export const selectColumnsByBoard = (state) => {
-  console.log("staate", state);
-
   return state.columns.columnsByBoard;
 };
 

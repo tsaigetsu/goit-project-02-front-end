@@ -1,26 +1,42 @@
 .wrapperText {
   width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
+  background-color: #f6f6f7;
 }
 
 .text {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 1.28571;
+  font-size: 12px;
+  line-height: 1.33333;
   letter-spacing: -0.02em;
   text-align: center;
-
-  color: rgba(255, 255, 255, 0.5);
-
-  max-width: 486px;
-  height: 72px;
+  color: rgba(22, 22, 22, 0.7);
+  max-width: 335px;
+  /* height: 80px; */
 }
 .spanBtn {
   background-color: transparent;
   color: #bedbb0;
   border: none;
   padding: 0 5px;
+}
+/* Tablet */
+@media only screen and (min-width: 768px) {
+  .text {
+    font-size: 14px;
+    line-height: 1.28571;
+    max-width: 486px;
+    /* height: 72px; */
+  }
+}
+/* Desktop */
+@media only screen and (min-width: 1440px) {
+  .text {
+    width: 486px;
+    /* height: 72px; */
+  }
 }

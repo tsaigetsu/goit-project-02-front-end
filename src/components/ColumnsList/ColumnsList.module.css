@@ -27,21 +27,6 @@
   /* background-color: aqua; */
 }
 
-.itemList {
-  /* flex: 0 0 auto; */
-  flex: 0 1 100%;
-  max-width: 335px;
-  /* width: 100%; */
-  /* background-color: brown; */
-  height: 100%;
-}
-@media only screen and (max-width: 374px) {
-  .itemList {
-    flex-basis: 90%; /* Уменьшаем ширину карточек до 90% от ширины родителя */
-    min-width: auto; /* Снимаем фиксированную минимальную ширину */
-  }
-}
-
 /* Tablet */
 @media only screen and (min-width: 768px) {
   .wrapperList {

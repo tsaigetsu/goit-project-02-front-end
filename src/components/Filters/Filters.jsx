@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
-import css from './Filters.module.css';
+// import { useState } from "react";
+import SvgIcon from "../SvgIcon/SvgIcon";
+import css from "./Filters.module.css";
 
-const Filters = ({ onBackgroundChange, onFilterChange }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const Filters = ({
+  onBackgroundChange,
+  onFilterChange,
+  setIsModalOpen,
+  isModalOpen,
+}) => {
+  console.log("open modal filter", isModalOpen);
 
   const toggleModal = () => {
-    setIsModalOpen(prevState => !prevState);
+    setIsModalOpen(false);
   };
 
   const handleBackgroundChange = (color) => {
@@ -25,47 +31,59 @@ const Filters = ({ onBackgroundChange, onFilterChange }) => {
 
   const saveBackgroundToServer = (color) => {
     // Код для відправки даних на сервер
-    fetch('/api/saveBackground', {
-      method: 'POST',
+    fetch("/api/saveBackground", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ background: color }),
-    }).then(response => {
+    }).then((response) => {
       if (response.ok) {
-        console.log('Background saved successfully');
+        console.log("Background saved successfully");
       } else {
-        console.error('Failed to save background');
+        console.error("Failed to save background");
       }
     });
   };
 
   return (
-    <div className={css.filtersWrapper}>
-      <button onClick={toggleModal} className={css.btnFilters}>
-        <span>Filters</span>
-      </button>
-      {isModalOpen && (
+    <>
+      <div className={css.filtersWrapper}>
         <div className={css.modal}>
           <div className={css.modalContent}>
-            <button className={css.closeButton} onClick={toggleModal}>X</button>
+            <button
+              type="button"
+              className={css.closeButton}
+              onClick={toggleModal}
+            >
+              <SvgIcon id="icon-x-close" width="18" height="18" />
+            </button>
+
             <h2>Filters</h2>
             <div>
               <h3>Background</h3>
-              <button onClick={() => handleBackgroundChange('default')}>Default Background</button>
-              <button onClick={() => handleBackgroundChange('none')}>Remove Background</button>
+              <button onClick={() => handleBackgroundChange("default")}>
+                Default Background
+              </button>
+              <button onClick={() => handleBackgroundChange("none")}>
+                Remove Background
+              </button>
             </div>
             <div>
               <h3>Label Color</h3>
-              <button onClick={() => handleFilterChange('none')}>Without priority</button>
-              <button onClick={() => handleFilterChange('low')}>Low</button>
-              <button onClick={() => handleFilterChange('medium')}>Medium</button>
-              <button onClick={() => handleFilterChange('high')}>High</button>
+              <button onClick={() => handleFilterChange("none")}>
+                Without priority
+              </button>
+              <button onClick={() => handleFilterChange("low")}>Low</button>
+              <button onClick={() => handleFilterChange("medium")}>
+                Medium
+              </button>
+              <button onClick={() => handleFilterChange("high")}>High</button>
             </div>
           </div>
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 };
 

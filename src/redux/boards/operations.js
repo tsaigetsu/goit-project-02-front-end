@@ -44,7 +44,7 @@ export const getBoardByIdThunk = createAsyncThunk(
   "boards/getBoardById",
   async (boardId, { rejectWithValue }) => {
     try {
-      const response = await api.get(`/boards/${boardId}`);
+      const response = await api.get(`boards/${boardId}`);
       console.log("redux, get board by id", response.data.data);
 
       return response.data.data;
@@ -57,7 +57,7 @@ export const updateBoardThunk = createAsyncThunk(
   "boards/updateBoard",
   async ({ boardId, title, iconId, backgroundId }, { rejectWithValue }) => {
     try {
-      const response = await api.patch(`/boards/${boardId}`, {
+      const response = await api.patch(`boards/${boardId}`, {
         title,
         iconId,
         backgroundId,

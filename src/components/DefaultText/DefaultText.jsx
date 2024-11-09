@@ -7,8 +7,7 @@ const DefaultText = () => {
         <p className={css.text}>
           Before starting your project, it is essential
           <span>
-            to create a board
-            <button className={css.spanBtn}></button>
+            <button className={css.spanBtn}>to create a board</button>
           </span>
           to visualize and track all the necessary tasks and milestones. This
           board serves as a powerful tool to organize the workflow and ensure
