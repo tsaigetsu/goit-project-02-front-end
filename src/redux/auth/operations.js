@@ -59,3 +59,36 @@ export const currentUserThunk = createAsyncThunk(
     }
   }
 );
+
+export const fetchUserProfile = createAsyncThunk(
+  "user/fetchUserProfile",
+  async (_, thunkAPI) => {
+    try {
+      const response = await api.get("/user/profile"); // Эндпоинт не требует ID
+
+      console.log("Successfully user", response.data.data);
+
+      return response.data.data; // Возвращаем данные пользователя
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const updateUserAvatar = createAsyncThunk(
+  "user/updateUserAvatar",
+  async (formData, thunkAPI) => {
+    try {
+      const response = await api.patch(`/user/profile`, formData);
+      console.log("Successfully update UserData", response.data);
+      toast.success("User updated successfully!", {
+        duration: 4000,
+        position: "top-center",
+        icon: "✔️",
+      });
+      return response.data.data; // Возвращаем обновленные данные пользователя
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);

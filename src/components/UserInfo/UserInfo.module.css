@@ -1,18 +1,29 @@
 .userInfoModal {
-    all: unset;
-    box-sizing: border-box;
-    width: 32px;
-    height: 32px;
-    background-color: gray;
-    border-radius: 5px;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+  margin: 0;
+}
+.userInfoModal img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.2s ease;
+  border-radius: 8px;
 }
 
-.userInfoModal:hover {
-    border: 1px solid purple;
+.userInfoModal:hover img {
+  transform: scale(1.05);
 }
 
 .userInfo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
