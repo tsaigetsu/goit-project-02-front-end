@@ -8,6 +8,7 @@ const SidebarBoardItem = ({
   onDelete,
   onSelect,
   isActive,
+  onEdit,
 }) => {
   return (
     <>
@@ -26,7 +27,7 @@ const SidebarBoardItem = ({
           <p className={s.p}>{name}</p>
         </div>
         <div className={s.boardBtns}>
-          <button className={s.btn}>
+          <button className={s.btn} onClick={() => onEdit(id)}>
             <SvgIcon
               id="icon-pencil-01"
               className={s.boardIcon}

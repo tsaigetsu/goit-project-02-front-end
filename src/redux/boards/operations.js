@@ -59,3 +59,18 @@ export const getBoardByIdThunk = createAsyncThunk(
     }
   }
 );
+export const updateBoardThunk = createAsyncThunk(
+  "boards/updateBoard",
+  async ({ boardId, title, iconId, backgroundId }, { rejectWithValue }) => {
+    try {
+      const response = await api.patch(`/boards/${boardId}`, {
+        title,
+        iconId,
+        backgroundId,
+      });
+      return response.data.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Failed to update board");
+    }
+  }
+);

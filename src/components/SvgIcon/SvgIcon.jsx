@@ -1,8 +1,8 @@
 import sprite from "../../assets/symbol-defs.svg";
 
-const SvgIcon = ({ id, className = "", ...props }) => {
+const SvgIcon = ({ id, className = "", stroke, ...props }) => {
   return (
-    <svg className={`icon ${className}`} {...props}>
+    <svg className={`icon ${className}`} stroke={stroke} {...props}>
       <use xlinkHref={`${sprite}#${id}`} />
     </svg>
   );
