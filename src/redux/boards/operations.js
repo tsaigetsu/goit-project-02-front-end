@@ -6,8 +6,10 @@ export const fetchBoardsThunk = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const response = await api.get("boards");
+      console.log("Server response:", response);
       return response.data.data;
     } catch (error) {
+      console.error("Error in getBoardByIdThunk:", error);
       return thunkApi.rejectWithValue(error.message);
     }
   }
