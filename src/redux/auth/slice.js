@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { currentUserThunk, logoutThunk } from "./operations.js";
+import {
+  currentUserThunk,
+  fetchUserProfile,
+  logoutThunk,
+  updateUserAvatar,
+} from "./operations.js";
 import { loginThunk, registerThunk } from "./operations.js";
 
 const initialState = {
@@ -11,6 +16,7 @@ const initialState = {
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
+  isEditModal: false,
 };
 
 const slice = createSlice({
@@ -45,13 +51,37 @@ const slice = createSlice({
       .addCase(currentUserThunk.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.isRefreshing = false;
-        state.user.name = action.payload.name;
-        state.user.email = action.payload.email;
+        state.user = action.payload;
       })
       .addCase(currentUserThunk.pending, (state) => {
         state.isRefreshing = true;
       })
       .addCase(currentUserThunk.rejected, (state) => {
+        state.isRefreshing = false;
+      })
+      .addCase(fetchUserProfile.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+        state.user = action.payload;
+      })
+      .addCase(fetchUserProfile.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(fetchUserProfile.rejected, (state) => {
+        state.isRefreshing = false;
+      })
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+        state.user = {
+          ...state.user, // сохраняем существующие свойства
+          ...action.payload, // добавляем или обновляем переданные свойства
+        };
+      })
+      .addCase(updateUserAvatar.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(updateUserAvatar.rejected, (state) => {
         state.isRefreshing = false;
       });
   },

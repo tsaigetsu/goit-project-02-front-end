@@ -1,5 +1,5 @@
 import css from "./ScreensPage.module.css";
-import { selectBoards, selectedBoard } from "../../redux/boards/selectors.js";
+import { selectBoards } from "../../redux/boards/selectors.js";
 import { useState } from "react";
 import HeaderDashboard from "../../components/HeaderDashboard/HeaderDashboard.jsx";
 import MainDashboard from "../../components/MainDashboard/MainDashboard.jsx";
@@ -10,8 +10,8 @@ import { useSelector } from "react-redux";
 const ScreensPage = ({ boardId, title }) => {
   const [isOpen, setIsOpen] = useState(false);
   const boards = useSelector(selectBoards);
-  // const boardById = useSelector(selectedBoard);
-  console.log("boardID", boardId);
+
+  // console.log("boardID", boardId);
   const onOpen = () => {
     setIsOpen(true);
   };

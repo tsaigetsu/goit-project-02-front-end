@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api, clearToken, setToken } from "../../api.js";
+import toast from "react-hot-toast";
 
 export const logoutThunk = createAsyncThunk("logout", async (_, thunkAPI) => {
   try {
@@ -51,6 +52,39 @@ export const currentUserThunk = createAsyncThunk(
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchUserProfile = createAsyncThunk(
+  "user/fetchUserProfile",
+  async (_, thunkAPI) => {
+    try {
+      const response = await api.get("/user/profile"); // Эндпоинт не требует ID
+
+      console.log("Successfully user", response.data.data);
+
+      return response.data.data; // Возвращаем данные пользователя
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const updateUserAvatar = createAsyncThunk(
+  "user/updateUserAvatar",
+  async (formData, thunkAPI) => {
+    try {
+      const response = await api.patch(`/user/profile`, formData);
+      console.log("Successfully update UserData", response.data);
+      toast.success("User updated successfully!", {
+        duration: 4000,
+        position: "top-center",
+        icon: "✔️",
+      });
+      return response.data.data; // Возвращаем обновленные данные пользователя
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );

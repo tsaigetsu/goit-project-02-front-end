@@ -1,11 +1,11 @@
 import css from "./EditProfile.module.css";
-
 import * as Yup from "yup";
-
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import SvgIcon from "../SvgIcon/SvgIcon";
+import { useDispatch } from "react-redux";
+import { updateUserAvatar } from "../../redux/auth/operations.js";
 
 const validateFormSchema = Yup.object().shape({
   name: Yup.string()
@@ -21,34 +21,54 @@ const validateFormSchema = Yup.object().shape({
     .min(8, "Password must be at least 8 characters"),
 });
 
-const EditProfile = ({ isOpen, onClose }) => {
+const EditProfile = ({ userData, onClose }) => {
+  const dispatch = useDispatch();
   const [visiblePassword, setVisiblePassword] = useState(true);
-  if (!isOpen) return null;
-  // const { name, email, photo } = user;
-
+  const fileInputRef = useRef(null);
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors, touchedFields },
+    formState: { errors },
   } = useForm({
     defaultValues: {
-      name: "", //указываем текущее значение
-      email: "", //указываем текущее значение
-      password: "",
+      name: userData?.name || "",
+      email: userData?.email || "",
+      password: "", // Пусть будет пустым, если не передан пароль
     },
     resolver: yupResolver(validateFormSchema),
     mode: "onChange",
   });
-
-  // const handleCloseModal = () => {
-  //   setVisibleModal(false);
-  // };
+  useEffect(() => {
+    if (userData) {
+      reset({
+        name: userData.name || "",
+        email: userData.email || "",
+      });
+    }
+  }, [userData, reset]);
 
   const onSubmit = (data) => {
-    console.log(data);
-    //сохраняем новые данные юзера
-    reset();
+    console.log("Data", data);
+    const updatedUserData = {
+      name: data.name,
+      email: data.email,
+    };
+    dispatch(updateUserAvatar(updatedUserData)); //сохраняем новые данные юзера
+    onClose();
+  };
+  // Обработчик выбора файла
+  const handleAvatarChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("photo", file);
+      dispatch(updateUserAvatar(formData)); // Отправляем новый аватар на сервер
+    }
+  };
+  // Функция для открытия диалога выбора файла
+  const handleClick = () => {
+    fileInputRef.current.click(); // Программно вызываем клик на скрытый инпут
   };
 
   return (
@@ -63,15 +83,22 @@ const EditProfile = ({ isOpen, onClose }) => {
 
         <div className={css.wrapperAvatar}>
           <div className={css.avatar}>
-            <SvgIcon id="icon-user-black" width="68" height="68" />
-            {/* { ? (
+            {!userData?.photo ? (
+              <SvgIcon id="icon-user-black" width="68" height="68" />
             ) : (
-              <img src={photo} alt="User Avatar" />
-            )} */}
+              <img src={userData.photo} alt="User Avatar" />
+            )}
 
-            <button className={css.btnAvatar}>
+            <button className={css.btnAvatar} onClick={handleClick}>
               <SvgIcon id="icon-plus" width="10" height="10" />
             </button>
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef} // Привязываем ссылку к инпуту
+              style={{ display: "none" }} // Скрываем input
+              onChange={handleAvatarChange} // Обработчик изменения файла
+            />
           </div>
         </div>
 
@@ -84,7 +111,7 @@ const EditProfile = ({ isOpen, onClose }) => {
                 placeholder="Enter your name"
                 className={css.input}
               />
-              {errors.name && touchedFields.name && (
+              {errors.name && (
                 <div className={css.error}>{errors.name.message}</div>
               )}
             </label>
@@ -95,7 +122,7 @@ const EditProfile = ({ isOpen, onClose }) => {
                 placeholder="Enter your email"
                 className={css.input}
               />
-              {errors.email && touchedFields.email && (
+              {errors.email && (
                 <div className={css.error}>{errors.email.message}</div>
               )}
             </label>
@@ -106,7 +133,7 @@ const EditProfile = ({ isOpen, onClose }) => {
                 placeholder="Create a password"
                 className={css.input}
               />
-              {errors.password && touchedFields.password && (
+              {errors.password && (
                 <div className={css.error}>{errors.password.message}</div>
               )}
               <button

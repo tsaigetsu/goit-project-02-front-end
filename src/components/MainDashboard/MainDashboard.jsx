@@ -11,8 +11,12 @@ import { selectedBoard } from "../../redux/boards/selectors.js";
 const MainDashboard = ({ boardId, filter }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
+  const board = useSelector((state) => selectedBoard(state));
   // const loading = useSelector(selectLoading);
   // const error = useSelector(selectError);
+  // console.log("Board", board);
+  // console.log("boardId", boardId);
+  // console.log("columns by board", board.columns);
 
   useEffect(() => {
     if (boardId) {
@@ -20,11 +24,7 @@ const MainDashboard = ({ boardId, filter }) => {
     }
   }, [boardId, dispatch]);
 
-  const board = useSelector((state) => selectedBoard(state));
-  console.log("Board", board);
-  console.log("boardId", boardId);
-  console.log("columns by board", board.columns);
-  // const columns = board.columns;
+  const columns = board.columns;
 
   const handleSaveColumn = (newTitle) => {
     const newColumn = { title: newTitle, boardId: boardId };
@@ -32,9 +32,6 @@ const MainDashboard = ({ boardId, filter }) => {
     setIsOpen(false);
   };
 
-  // if (!board) {
-  //   return <p>Loading board...</p>; // Відображаємо повідомлення, поки дані завантажуються
-  // }
   // if (loading) return <p>Loading columns...</p>;
   // if (error) return <p>Error loading columns: {error}</p>;
 
@@ -44,14 +41,13 @@ const MainDashboard = ({ boardId, filter }) => {
         <div>
           <div className={css.columnsWrapper}>
             <ColumnsList
-              // columns={columns}
+              columns={columns}
               boardId={boardId}
               filter={filter}
               setIsOpen={setIsOpen}
             />
           </div>
         </div>
-        {/* <AddAnotherColumn setIsOpen={() => setIsOpen(true)} /> */}
       </div>
       {isOpen && (
         <AddColumn onCreateColumn={handleSaveColumn} setIsOpen={setIsOpen} />
