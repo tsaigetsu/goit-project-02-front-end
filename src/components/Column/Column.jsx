@@ -4,25 +4,29 @@ import css from "./Column.module.css";
 import EditColumn from "../EditColumn/EditColumn";
 import { ModalDelete } from "../ModalDelete/ModalDelete";
 import CardManager from "../CardManager/CardManager";
-// import { onDeleteColumn } from "../../redux/columns/operations";
-// import { useDispatch } from "react-redux";
+import { onDeleteColumn } from "../../redux/columns/operations";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { selectColumnsByBoard } from "../../redux/columns/slice";
 
 const Column = ({ title, columnId, boardId }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const columns = useSelector(selectColumnsByBoard);
   // const { title, _id } = column;
 
   // console.log("title", title);
-  // console.log(column);
+  console.log("columns", columns);
 
   const onDelete = () => {
-    // if (column._id && boardId) {
-    //   dispatch(onDeleteColumn({ columnId: column._id, boardId }));
-    //   closeModal();
-    //   // if (value !== '') {
-    //   //   dispatch(changeFilter(''));
-    //   // }
-    // }
+    if (columnId && boardId) {
+      dispatch(onDeleteColumn({ columnId, boardId }));
+      closeModal();
+      // if (value !== '') {
+      //   dispatch(changeFilter(''));
+      // }
+    }
   };
   const onEdit = () => {
     setIsEdit(true);
@@ -36,6 +40,7 @@ const Column = ({ title, columnId, boardId }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <>
       <li className={css.itemList}>
@@ -71,7 +76,7 @@ const Column = ({ title, columnId, boardId }) => {
         onClose={closeModal}
         onConfirm={onDelete}
         typeItems={"column"}
-        // titleItems={column.title || "Untitled Column"}
+        titleItems={title || "Untitled Column"}
       />
     </>
   );

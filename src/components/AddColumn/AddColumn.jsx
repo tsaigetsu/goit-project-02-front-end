@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import css from "./AddColumn.module.css";
 
@@ -17,9 +17,32 @@ const AddColumn = ({ onCreateColumn, setIsOpen }) => {
       closeModal();
     }
   };
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsOpen(); // Вызываем функцию закрытия модалки
+      }
+    };
+
+    // Подписываемся на событие `keydown` при монтировании компонента
+    document.addEventListener("keydown", handleEscape);
+
+    // Очищаем подписку при размонтировании компонента
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [setIsOpen]);
+
+  // Обработчик для клика по бекдропу
+  const handleBackdropClick = (event) => {
+    if (event.target === event.currentTarget) {
+      setIsOpen(); // Закрываем модалку при клике по бекдропу
+    }
+  };
   return (
     <>
-      <div className={css.overlay}>
+      <div className={css.overlay} onClick={handleBackdropClick}>
         <div className={css.container}>
           <p className={css.title}>Add column</p>
           <button className={css.btnClose} onClick={closeModal}>
