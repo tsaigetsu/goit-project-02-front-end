@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTheme, fetchUserProfile } from "../../redux/auth/Operations.js";
+import { updateTheme, fetchUserProfile } from "../../redux/auth/operations.js";
 
 const ThemeContext = createContext(null);
 
