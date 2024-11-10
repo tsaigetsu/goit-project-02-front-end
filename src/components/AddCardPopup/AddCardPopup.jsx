@@ -1,62 +1,49 @@
 
-// // ПОТРІБНО ТЕСТУВАННЯ РОБОТИ КОДУ  З     BACKEND !!!
-import { useState } from 'react';
-import SvgIcon from '../SvgIcon/SvgIcon';
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 import CalendarPicker from '../CalendarPicker/CalendarPicker';
-import s from './AddCardPopup.module.css';
+import "react-datepicker/dist/react-datepicker.css"; //
+import SvgIcon from "../SvgIcon/SvgIcon.jsx";
+import { useDispatch } from "react-redux";
+import { addCard } from "../../redux/cards/actions.js";
+import s from "./AddCardPopup.module.css";
 
-const AddCardPopup = ({ closeModal, onAdd, userId, columnId, accessToken }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [labelColor, setLabelColor] = useState('');
-  const [priority, setPriority] = useState(''); 
-  const [deadline, setDeadline] = useState(new Date());
-  const [showDateInput, setShowDateInput] = useState(false);
+const AddCardPopup = ({ closeModal, columnId }) => {
 
-  const handleAdd = async () => {
-    const createTask = {
-      title,
-      description,
-      priority,
-      deadline: deadline.toISOString().split('T')[0],
-      userId,
-      columnId,
-    };
+  const valuesFields = {
+    title: "",
+    description: "",
+    labelColor: "",
+    deadline: null,
+  };
 
-    try {
-      const response = await fetch('/tasks', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`, 
-        },
-        body: JSON.stringify(createTask),
-      });
 
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
-      }
+  const validatSchema = Yup.object({
+    title: Yup.string().required("Required"),
+    description: Yup.string(),
+    labelColor: Yup.string().required("Required"),
+    deadline: Yup.date().required("Required"),
+  });
 
-      const data = await response.json();
-      onAdd(data);
-      closeModal();
-    } catch (error) {
-      console.error('Error creating task:', error.message);
-    }
+  const setupDate = Date.now();
+
+  const dispatch = useDispatch();
+
+  const handleAdd = (values) => {
+    const { title, description, deadline, priority } = values;
+    const data = { title, description, deadline, priority };
+    dispatch(addCard({ columnId, data }));
+    closeModal();
   };
 
   const colorPriority = [
-    { color: "#8FA1D0", priority: "low" },
-    { color: "#E09CB5", priority: "medium" },
-    { color: "#BEDBB0", priority: "high" },
-    { color: "#1616164D", priority: "without" },
+    { color: "#8FA1DO", priority: "Low" },
+    { color: "#E09CB5", priority: "Medium" },
+    { color: "#BEDBB0", priority: "High" },
+    { color: "#1616164D", priority: "Without priority" },
   ];
 
-  const toggleDateInput = () => {
-    setShowDateInput(!showDateInput);
-  };
-
-  const formatDate = (date) => {
+    const formatDate = (date) => {
     const options = { month: 'long', day: 'numeric' };
     const today = new Date();
     const selectedDate = new Date(date);
@@ -72,72 +59,90 @@ const AddCardPopup = ({ closeModal, onAdd, userId, columnId, accessToken }) => {
 
   return (
     <div
-    className={s.popupOverlay} onClick={(e) => {
-      if (e.target === e.currentTarget) closeModal();
-    }}
-  >
-    <div className={s.popup}>
-      <div className={s.popupContent}>
-        <button className={s.closeButton} onClick={closeModal}>
-          <SvgIcon id="icon-x-close" className={s.svgCloseIcon} width="18" height="18" />
-        </button>
-        <p className={s.TitleCard }>Add сard</p>
-        <input
-          className={s.inputTitle}
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea
-          className={s.textareaDeskr}
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <div className={s.labelColor}>
-          <label className={s.labelTitle}>Label color</label>
-          <div className={s.labelColors}>
-            {colorPriority.map(({ color, priority }) => (
-              <button
-                key={color}
-                type="button"
-                className={`${s.colorCircle} ${labelColor === color ? s.active : ""}`}
-                style={{ backgroundColor: color }}
-                onClick={() => {
-                  setLabelColor(color);
-                  setPriority(priority);
-                }}
-              />
-            ))}
-          </div>
-        </div>
+      className={s.popupOverlay}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) closeModal();
+      }}
+    >
+      <div className={s.popup}>
+        <div className={s.popupContent}>
+          <h2 className={s.TitleCard}>Add card</h2>
+          <button className={s.closeButton} onClick={closeModal}>
+            <SvgIcon id="icon-close" className={s.svgCloseIcon} />
+          </button>
 
-         {/* Використання CalendarPicker для вибору дати */}
-        <div className={s.deadlineWrapper}>
-          <label className={s.labelTitle}>Deadline</label>
-          <div className={s.CalendarPicker}>
-            <CalendarPicker
-              selectedDate={deadline}
-              onDateChange={setDeadline}
-              showDateInput={showDateInput}
-              toggleDateInput={toggleDateInput}
-              formatDate={formatDate}
-              calendarClassName={s.dateDisplayCalendar}
-            />
-            <SvgIcon id="icon-chevron-down" className={s.iconChevronDown} width="14" height="14" />
-          </div>
-        </div>
+          <Formik
+            valuesFields={valuesFields}
+            validatSchema={validatSchema}
+            onSubmit={handleAdd}
+          >
+            {({ setFieldValue, values }) => (
+              <Form className={s.formCard}>
+                <div className={s.inputWrapper}>
+                  <Field name="title" placeholder="Title" className={s.inputTitle} />
+                </div>
 
-        <button className={s.addButton} onClick={handleAdd}>
-          <SvgIcon id="icon-normalBtnBlack" className={s.createIcon} width="28" height="28" />
-          Add
-        </button>
+                <div className={s.inputWrapper}>
+                  <Field
+                    as="textarea"
+                    name="description"
+                    placeholder="Description"
+                    className={s.textareaDeskr}
+                  />
+                </div>
+
+                <div className={s.labelColor}>
+                  <label className={s.labelTitle}>Label color</label>
+                  <div className={s.labelColors}>
+                    {colorPriority.map(({ color, priority }) => (
+                      <button
+                        key={color}
+                        type="button"
+                        className={`${s.colorCircle} ${
+                          values.labelColor === color ? s.active : ""
+                        }`}
+                        style={{ backgroundColor: color }}
+                        onClick={() => {
+                          setFieldValue("labelColor", color);
+                          setFieldValue("priority", priority);
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div className={s.deadlineWrapper}>
+                  <label htmlFor="deadline" className={s}>Deadline</label>
+                  <div className={s.CalendarPicker}>
+                    <CalendarPicker
+                     selected={values.deadline}
+                     onChange={(date) => setFieldValue("deadline", date)}
+                     placeholderText="Select Date"
+                     dateFormat={formatDate}
+                     minDate={setupDate}
+                     showPopperArrow={false}
+                     onFocus={(e) => e.target.blur()}
+                     onKeyDown={(e) => e.preventDefault()}
+                     calendarClassName={s.dateDisplayCalendar}
+                    /> 
+                   <SvgIcon id="icon-chevron-down" className={s.iconChevronDown} width="14" height="14" />
+
+                  </div>
+                </div>
+
+                <button type="submit" className={s.addButton} >
+                <div className={s.btnDiv}>
+                  <SvgIcon id="icon-plus" className={s.iconNormalBtnBlack} />
+                </div> 
+                <p className={s.btntext}>Add</p>
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
     </div>
-  </div>
   );
 };
 
 export default AddCardPopup;
-
