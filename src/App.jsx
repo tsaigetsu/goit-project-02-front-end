@@ -24,9 +24,10 @@ function App() {
     dispatch(currentUserThunk());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <Loader />
-  ) : (
+  // return isRefreshing ? (
+  //   <Loader />
+  // ) : (
+  return(
     <Routes>
       <Route path="/" element={<Navigate to="/welcome" replace />} />
 
@@ -54,7 +55,8 @@ function App() {
       {/* <Route path="/home" element={<HomePage />}/> */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
-  );
+  )
+  // );
 }
 
 export default App;

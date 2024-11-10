@@ -5,9 +5,11 @@ import SidebarBoardList from "../SidebarBoardList/SidebarBoardList";
 import s from "./Sidebar.module.css";
 import { useContext } from "react";
 import { SidebarContext } from "../Layout/Layout.jsx";
+// import ThemeContext from "../Layout/ThemeContext.jsx";
 
 const Sidebar = ({ onSelectBoard }) => {
   const { isSidebarOpen, toggleSidebar } = useContext(SidebarContext);
+  // const { theme } = useContext(ThemeContext);
 
   const handleClick = (event) => {
     event.stopPropagation();
@@ -15,7 +17,7 @@ const Sidebar = ({ onSelectBoard }) => {
       toggleSidebar();
     }
   };
-
+// my-component ${s["theme-" + theme]} ${s.sidebarContainer} - додати в aside в className щоб змінювалися стилі по темі
   return (
     <aside className={`${s.aside} ${isSidebarOpen ? s.open : ""}`}>
       <div className={s.overlay} onClick={handleClick} />
@@ -29,7 +31,7 @@ const Sidebar = ({ onSelectBoard }) => {
           <LogOutBtn className={s.bottom} />
         </div>
       </nav>
-    </aside>
+      </aside>
   );
 };
 
