@@ -31,7 +31,7 @@ export const onCreateColumn = createAsyncThunk(
 
 export const onDeleteColumn = createAsyncThunk(
   "deleteColumn",
-  async ({columnId }, thunkAPI) => {
+  async ({ columnId }, thunkAPI) => {
     try {
       await api.delete(`columns/${columnId}`);
       toast.success("Column deleted!", {
@@ -53,15 +53,21 @@ export const onDeleteColumn = createAsyncThunk(
 
 export const onEditColumn = createAsyncThunk(
   "editColumn",
-  async ({ boardId, columnId, updateColumn }, thunkAPI) => {
+  async ({ columnId, updateColumn }, thunkAPI) => {
     try {
+      console.log("updateColumn", updateColumn);
+      console.log("columnId", columnId);
+
       const response = await api.patch(`columns/${columnId}`, updateColumn);
+      console.log("upDateColumn", response.data.data);
+
       toast.success("Column updated successfully!", {
         duration: 4000,
         position: "bottom-center",
         icon: "✔️",
       });
-      return { boardId, updatedColumn: response.data };
+
+      return { updatedColumn: response.data.data};
     } catch (error) {
       toast.error("Failed to update column: " + error.message, {
         duration: 5000,

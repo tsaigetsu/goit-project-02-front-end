@@ -71,6 +71,11 @@ export const currentUserThunk = createAsyncThunk(
 
       return response.data.data;
     } catch (error) {
+      toast.error("Unauthorized - User is not authenticated", {
+        duration: 5000,
+        position: "bottom-center",
+        icon: "❌",
+      });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
