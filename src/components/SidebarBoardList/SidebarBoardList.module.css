@@ -34,7 +34,15 @@
     border: none;
     border-radius: 6px;
     background-color: #BEDBB0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.createBoardBtn:hover {
+  background-color: #9dc888;
+}
+
 .createIcon {
     stroke: #121212;
     fill: none;
@@ -56,3 +64,7 @@
       max-height: calc(61px*6); 
     }
   }
+
+.ul li {
+  cursor: pointer;
+}
