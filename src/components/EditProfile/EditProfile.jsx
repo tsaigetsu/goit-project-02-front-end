@@ -154,6 +154,7 @@ const EditProfile = ({ userData, onClose }) => {
                 type={visiblePassword ? "text" : "password"}
                 placeholder="Create a password"
                 className={css.input}
+                autoFocus
               />
               {errors.password && (
                 <div className={css.error}>{errors.password.message}</div>
