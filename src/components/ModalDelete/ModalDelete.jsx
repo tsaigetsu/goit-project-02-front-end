@@ -19,9 +19,10 @@ export const ModalDelete = ({
       <div className={style.modalContent}>
         <h2>Confirm Delete</h2>
         <p>
-          Are you sure you want to delete
+          Are you sure you want
           <br />
-          {typeItems}
+          to delete {typeItems}
+          <br />
           {titleItems}?
         </p>
         <div className={style.buttons}>

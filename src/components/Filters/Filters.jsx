@@ -2,14 +2,7 @@
 import SvgIcon from "../SvgIcon/SvgIcon";
 import css from "./Filters.module.css";
 
-const Filters = ({
-  onBackgroundChange,
-  onFilterChange,
-  setIsModalOpen,
-  isModalOpen,
-}) => {
-  console.log("open modal filter", isModalOpen);
-
+const Filters = ({ onBackgroundChange, onFilterChange, setIsModalOpen }) => {
   const toggleModal = () => {
     setIsModalOpen(false);
   };

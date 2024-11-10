@@ -31,7 +31,7 @@ export const onCreateColumn = createAsyncThunk(
 
 export const onDeleteColumn = createAsyncThunk(
   "deleteColumn",
-  async ({ boardId, columnId }, thunkAPI) => {
+  async ({columnId }, thunkAPI) => {
     try {
       await api.delete(`columns/${columnId}`);
       toast.success("Column deleted!", {
@@ -39,7 +39,7 @@ export const onDeleteColumn = createAsyncThunk(
         position: "bottom-center",
         icon: "✔️",
       });
-      return { boardId, columnId };
+      return { columnId };
     } catch (error) {
       toast.error("Failed to delete column: " + error.message, {
         duration: 5000,

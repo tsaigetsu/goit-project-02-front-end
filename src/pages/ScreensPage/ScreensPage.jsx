@@ -34,7 +34,6 @@ const ScreensPage = () => {
               className={css.headerDashboard}
             />
             <MainDashboard
-              // board={board}
               // filter={filter}
               className={css.mainDashboard}
             />
