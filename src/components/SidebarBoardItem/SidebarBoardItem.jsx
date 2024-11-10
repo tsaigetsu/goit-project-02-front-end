@@ -27,7 +27,8 @@ const SidebarBoardItem = ({
           <p className={s.p}>{name}</p>
         </div>
         <div className={s.boardBtns}>
-          <button className={s.btn} onClick={() => onEdit(id)}>
+          {/* <button className={s.btn} onClick={() => onEdit(id)}> */}
+          <button className={s.btn} onClick={(e) => { e.stopPropagation(); onEdit(id); }}>
             <SvgIcon
               id="icon-pencil-01"
               className={s.boardIcon}

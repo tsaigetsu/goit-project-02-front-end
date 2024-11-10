@@ -26,7 +26,8 @@ const ModalNeedHelp = ({ isOpen, onClose }) => {
         register,
         handleSubmit,
         formState: { errors },
-        reset
+        reset,
+        setFocus
     } = useForm({
             resolver: yupResolver(validationSchema),
             defaultValues: {
@@ -37,6 +38,7 @@ const ModalNeedHelp = ({ isOpen, onClose }) => {
     
     useEffect(() => {
         if (isOpen) {
+            setFocus("email");
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "";
@@ -45,7 +47,7 @@ const ModalNeedHelp = ({ isOpen, onClose }) => {
         return () => {
             document.body.style.overflow = "";
         };
-    }, [isOpen]);
+    }, [isOpen, setFocus]);
     
     const handleFormClose = () => {
         setIsExiting(true);
