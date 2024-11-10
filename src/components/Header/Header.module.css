@@ -1,4 +1,4 @@
-.theme-light {
+/* .theme-light {
   --header-color: #FCFCFC;
   --text-color: #161616;
   --text-hover-color: #BEDBB0;
@@ -47,8 +47,11 @@
     --newBoard-btn-hover: #979CEA;
     --hamburger-btn-color: #161616;
 }
+ */
 
-
+    @media screen and (min-width: 768px) and (max-width: 1439px) {}
+  
+    @media screen and (min-width: 1440px) {}
 
 .header {
   display: flex;
@@ -66,7 +69,7 @@
   /* padding-left: 360px; */
 }
 
-.themeSelector p {
+.themeButton p {
   font-size: 14px;
   display: flex;
   justify-content: center;
@@ -85,6 +88,12 @@
   display: flex;
   align-items: center;
   color: var(--icons-color-1);
+  transition: transform 0.3s ease;
+}
+
+.themeButton:hover {
+  transform: scale(1.1);
+  color: var(--text-hover-color);
 }
 
 
@@ -97,6 +106,7 @@
   border-radius: 5px;
   padding: 18px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 11;
 }
 
 .modal ul {
@@ -108,6 +118,7 @@
 .modal li {
   color: var(--btn-text-color);
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .modal li:not(:last-child) {
@@ -116,6 +127,7 @@
 
 .modal li:hover {
   color: var(--text-hover-color);
+  transform: scale(1.1);
 }
 
 .theme {

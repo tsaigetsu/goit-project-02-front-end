@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import Loader from "./components/Loader/Loader";
+import { ThemeProvider } from "./components/Layout/ThemeContext.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,7 +28,8 @@ function App() {
   // return isRefreshing ? (
   //   <Loader />
   // ) : (
-  return(
+  return (
+    <ThemeProvider>
     <Routes>
       <Route path="/" element={<Navigate to="/welcome" replace />} />
 
@@ -54,7 +56,8 @@ function App() {
       </Route>
       {/* <Route path="/home" element={<HomePage />}/> */}
       <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+      </Routes>
+      </ThemeProvider>
   )
   // );
 }
