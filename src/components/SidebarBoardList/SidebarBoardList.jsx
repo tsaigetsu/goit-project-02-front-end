@@ -55,24 +55,47 @@ const SidebarBoardList = () => {
     return icon ? icon.iconName : "icon-default";
   };
 
+  // const handleEdit = async (boardId) => {
+  //   const data = await dispatch(getBoardByIdThunk(boardId).unwrap());
+  //   setSelectedBoardData(data.payload);
+  //   setIsEditModalOpen(true);
+  // };
   const handleEdit = async (boardId) => {
-    const data = await dispatch(getBoardByIdThunk(boardId).unwrap());
-    setSelectedBoardData(data.payload);
-    setIsEditModalOpen(true);
-  };
+    try {
+        const boardData = await dispatch(getBoardByIdThunk(boardId)).unwrap();
+        console.log("Fetched Board Data:", boardData);
+        setSelectedBoardData(boardData);
+        setIsEditModalOpen(true);
+    } catch (err) {
+        console.error("Error fetching board data:", err.message);
+    }
+};
 
-  const handleSaveChanges = (updatedBoard) => {
-    dispatch(
-      updateBoardThunk({
-        boardId: selectedBoardData._id,
-        ...updatedBoard,
-      })
-    );
-    setIsEditModalOpen(false);
+  // const handleSaveChanges = (updatedBoard) => {
+  //   dispatch(
+  //     updateBoardThunk({
+  //       boardId: selectedBoardData._id,
+  //       ...updatedBoard,
+  //     })
+  //   );
+  //   setIsEditModalOpen(false);
+  // };
+  const handleSaveChanges = async (updatedBoard) => {
+    try {
+        await dispatch(updateBoardThunk({
+            boardId: selectedBoardData._id,
+            ...updatedBoard,
+        }));
+        setIsEditModalOpen(false);
+    } catch (err) {
+        console.error("Error updating board:", err.message);
+    }
   };
+  
   const handleDelete = (boardId) => {
     dispatch(deleteBoardThunk(boardId));
   };
+  
   return (
     <>
       <div className={s.myBoards}>

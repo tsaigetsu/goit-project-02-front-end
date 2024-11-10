@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -28,6 +28,7 @@ const NewBoardForm = ({ isOpen, onClose, onSave }) => {
         formState: { errors },
         reset,
         clearErrors,
+        setFocus
     } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
@@ -36,6 +37,12 @@ const NewBoardForm = ({ isOpen, onClose, onSave }) => {
             background: "nobg",
         },
     });
+
+    useEffect(() => {
+        if (isOpen) {
+            setFocus("title");
+        };
+        }, [isOpen, setFocus]);
 
     const selectedIcon = watch("icon");
     const selectedBackground = watch("background");
