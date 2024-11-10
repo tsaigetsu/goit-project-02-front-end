@@ -1,7 +1,6 @@
-
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import CalendarPicker from '../CalendarPicker/CalendarPicker';
+import CalendarPicker from "../CalendarPicker/CalendarPicker";
 import "react-datepicker/dist/react-datepicker.css"; //
 import SvgIcon from "../SvgIcon/SvgIcon.jsx";
 import { useDispatch } from "react-redux";
@@ -9,7 +8,6 @@ import { addCard } from "../../redux/cards/actions.js";
 import s from "./AddCardPopup.module.css";
 
 const AddCardPopup = ({ closeModal, columnId }) => {
-
   const valuesFields = {
     title: "",
     description: "",
@@ -17,8 +15,7 @@ const AddCardPopup = ({ closeModal, columnId }) => {
     deadline: null,
   };
 
-
-  const validatSchema = Yup.object({
+  const validateSchema = Yup.object({
     title: Yup.string().required("Required"),
     description: Yup.string(),
     labelColor: Yup.string().required("Required"),
@@ -43,8 +40,8 @@ const AddCardPopup = ({ closeModal, columnId }) => {
     { color: "#1616164D", priority: "Without priority" },
   ];
 
-    const formatDate = (date) => {
-    const options = { month: 'long', day: 'numeric' };
+  const formatDate = (date) => {
+    const options = { month: "long", day: "numeric" };
     const today = new Date();
     const selectedDate = new Date(date);
     if (
@@ -52,9 +49,9 @@ const AddCardPopup = ({ closeModal, columnId }) => {
       selectedDate.getMonth() === today.getMonth() &&
       selectedDate.getFullYear() === today.getFullYear()
     ) {
-      return `Today, ${selectedDate.toLocaleDateString('en-US', options)}`;
+      return `Today, ${selectedDate.toLocaleDateString("en-US", options)}`;
     }
-    return selectedDate.toLocaleDateString('en-US', options);
+    return selectedDate.toLocaleDateString("en-US", options);
   };
 
   return (
@@ -73,13 +70,17 @@ const AddCardPopup = ({ closeModal, columnId }) => {
 
           <Formik
             valuesFields={valuesFields}
-            validatSchema={validatSchema}
+            validatSchema={validateSchema}
             onSubmit={handleAdd}
           >
             {({ setFieldValue, values }) => (
               <Form className={s.formCard}>
                 <div className={s.inputWrapper}>
-                  <Field name="title" placeholder="Title" className={s.inputTitle} />
+                  <Field
+                    name="title"
+                    placeholder="Title"
+                    className={s.inputTitle}
+                  />
                 </div>
 
                 <div className={s.inputWrapper}>
@@ -112,29 +113,35 @@ const AddCardPopup = ({ closeModal, columnId }) => {
                 </div>
 
                 <div className={s.deadlineWrapper}>
-                  <label htmlFor="deadline" className={s}>Deadline</label>
+                  <label htmlFor="deadline" className={s}>
+                    Deadline
+                  </label>
                   <div className={s.CalendarPicker}>
                     <CalendarPicker
-                     selected={values.deadline}
-                     onChange={(date) => setFieldValue("deadline", date)}
-                     placeholderText="Select Date"
-                     dateFormat={formatDate}
-                     minDate={setupDate}
-                     showPopperArrow={false}
-                     onFocus={(e) => e.target.blur()}
-                     onKeyDown={(e) => e.preventDefault()}
-                     calendarClassName={s.dateDisplayCalendar}
-                    /> 
-                   <SvgIcon id="icon-chevron-down" className={s.iconChevronDown} width="14" height="14" />
-
+                      selected={values.deadline}
+                      onChange={(date) => setFieldValue("deadline", date)}
+                      placeholderText="Select Date"
+                      dateFormat={formatDate}
+                      minDate={setupDate}
+                      showPopperArrow={false}
+                      onFocus={(e) => e.target.blur()}
+                      onKeyDown={(e) => e.preventDefault()}
+                      calendarClassName={s.dateDisplayCalendar}
+                    />
+                    <SvgIcon
+                      id="icon-chevron-down"
+                      className={s.iconChevronDown}
+                      width="14"
+                      height="14"
+                    />
                   </div>
                 </div>
 
-                <button type="submit" className={s.addButton} >
-                <div className={s.btnDiv}>
-                  <SvgIcon id="icon-plus" className={s.iconNormalBtnBlack} />
-                </div> 
-                <p className={s.btntext}>Add</p>
+                <button type="submit" className={s.addButton}>
+                  <div className={s.btnDiv}>
+                    <SvgIcon id="icon-plus" className={s.iconNormalBtnBlack} />
+                  </div>
+                  <p className={s.btntext}>Add</p>
                 </button>
               </Form>
             )}
