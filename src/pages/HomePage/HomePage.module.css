@@ -1,3 +1,54 @@
+.theme-light {
+  --header-color: #FCFCFC;
+  --text-color: #161616;
+  --text-hover-color: #BEDBB0;
+  --background-color: #FDFDFD;
+  --background-help: #F6F6F7;
+  --background-sidebar: #FFFFFF;
+  --btn-color: #BEDBB0;
+  --btn--hover-color: #9DC888;
+  --icons-color-1: #161616;
+  --icons-color-2: #16161680;
+  --icons-hover-color: #BEDBB0;
+  --hamburger-btn-color: #161616 ;
+}
+
+.theme-dark {
+  --header-color: #161616;
+    --text-color: #FFFFFF;
+    --text-hover-color: #BEDBB0;
+    --btn-text-color: #FFFFFF;
+    --background-color: #1F1F1F;
+    --background-help: #1F1F1F;
+    --background-sidebar: #121212;
+    --btn-color: #BEDBB0;
+    --btn--hover-color: #9DC888;
+    --icons-color-1: #FFFFFF;
+    --icons-color-2: #FFFFFF80;
+    --icons-hover-color: #BEDBB0;
+    --hamburger-btn-color: #FFFFFF;
+}
+
+.theme-violet {
+    --header-color: #FFFFFF;
+    --text-color: #161616;
+    --text-hover-color: #5255BC;
+    --input-text-color: #161616;
+    --background-color: #D6D8FF;
+    --background-help: #B8BCFD;
+    --background-sidebar: #5255BC;
+    --btn-color: #5255BC;
+    --btn--hover-color: #7B7EDE;
+    --icons-color-1: #161616;
+    --icons-color-2: #16161680;
+    --icons-hover-color: #5255BC;
+    --logOut-icon-hover: #B8BCFD;
+    --newBoard-btn: #B8BCFD;
+    --newBoard-btn-hover: #979CEA;
+    --hamburger-btn-color: #161616;
+}
+
+
 .homePage {
   display: flex;
   /* flex-direction: column; */
