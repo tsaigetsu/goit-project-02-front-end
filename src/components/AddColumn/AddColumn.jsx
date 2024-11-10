@@ -54,6 +54,7 @@ const AddColumn = ({ onCreateColumn, setIsOpen }) => {
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            autoFocus
           />
           <button
             className={css.btnAdd}

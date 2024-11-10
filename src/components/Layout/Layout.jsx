@@ -11,6 +11,7 @@
 // export default Layout;
 
 import { useState, createContext } from "react";
+import { ThemeProvider } from "./ThemeContext.jsx"
 // import Header from "../Header/Header.jsx";
 
 export const SidebarContext = createContext({
@@ -32,12 +33,13 @@ function Layout({ children }) {
   };
 
   return (
+    <ThemeProvider> 
     <div>
       <SidebarContext.Provider value={{ isSidebarOpen, toggleSidebar }}>
-        {/* <Header /> */}
         <div onClick={handleLayoutClick}>{children}</div>
       </SidebarContext.Provider>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
 
