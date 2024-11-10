@@ -5,7 +5,7 @@ import CalendarPicker from '../CalendarPicker/CalendarPicker';
 import "react-datepicker/dist/react-datepicker.css"; //
 import SvgIcon from "../SvgIcon/SvgIcon.jsx";
 import { useDispatch } from "react-redux";
-import { addCard } from "../../redux/cards/actions.js";
+import { addCard } from "../../redux/cards/operations.js";
 import s from "./AddCardPopup.module.css";
 
 const AddCardPopup = ({ closeModal, columnId }) => {
@@ -37,10 +37,10 @@ const AddCardPopup = ({ closeModal, columnId }) => {
   };
 
   const colorPriority = [
-    { color: "#8FA1DO", priority: "Low" },
-    { color: "#E09CB5", priority: "Medium" },
-    { color: "#BEDBB0", priority: "High" },
-    { color: "#1616164D", priority: "Without priority" },
+    { color: "#8fa1d0", priority: "Low" },
+    { color: "#e09cb5", priority: "Medium" },
+    { color: "#bedbb0", priority: "High" },
+    { color: "#1616164d", priority: "Without priority" },
   ];
 
     const formatDate = (date) => {
