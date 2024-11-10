@@ -40,13 +40,13 @@
 }
 
 .modalContainer {
-  background: #151515;
+  background: var(--header-color);
   padding: 24px;
   border-radius: 8px;
-  border: 1px solid rgba(190, 219, 176, 0.5);
-  width: 350px;
+  border: 0.1px solid var(--btn-color);
+  max-width: 335px;
   height: 433px;
-  color: #fff;
+  color: var(--text-color);
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   opacity: 0;
@@ -67,24 +67,23 @@
   background: none;
   border: none;
   font-size: 24px;
-  color: #f0f0f0;
+  color: var(--hamburger-btn-color);
   outline: none;
 }
 
 .closeBtnIcon {
-  stroke: #f0f0f0;
+  stroke: var(--icons-color-1);
   fill: white;
   transition: stroke 0.3s ease, filter 0.3s ease;
 }
 
 .modalCloseBtn:hover .closeBtnIcon {
-  stroke: #85c764;
-  filter: brightness(4) drop-shadow(0 0 10px rgba(153, 232, 105, 0.9))
-    drop-shadow(0 0 2px rgba(153, 232, 105, 1));
+  stroke: var(--icons-color-2);
+  filter: brightness(4) drop-shadow(0 0 10px var(--btn--hover-color)) drop-shadow(0 0 2px var(--btn--hover-color));
 }
 
 .modalContainer h2 {
-  color: #fff;
+  color: var(--text-color);
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-style: normal;
@@ -101,7 +100,7 @@
 }
 
 .inputGroup input {
-  width: 302px;
+  width: 287px;
   height: 49px;
   padding-top: 14px;
   padding-bottom: 14px;
@@ -110,12 +109,12 @@
   display: flex;
   margin-bottom: 4px;
   border-radius: 8px;
-  border: 1px solid #bedbb0;
-  background: #1f1f1f;
+  border: 1px solid var(--btn-color);
+  background: var(--header-color);
   opacity: 0.4;
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
 
-  color: #fff;
+  color: var(--text-color);
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-style: normal;
@@ -127,7 +126,7 @@
 .inputGroup input:focus,
 .inputGroup input.focused {
   outline: none;
-  border-color: #bedbb0;
+  border-color: var(--btn--hover-color);
   opacity: 1;
 }
 
@@ -174,11 +173,12 @@
 }
 
 .radioIcon {
-  stroke: rgba(255, 255, 255, 0.5);
+  stroke: var(--icons-color-2);
+  fill: none;
 }
 
 .iconButton input[type="radio"]:checked + svg {
-  stroke: rgba(255, 255, 255, 1);
+  stroke: var(--icons-color-1);
 }
 
 /* Контейнер для фонов */
@@ -193,16 +193,16 @@
 
 .backgroundIcon {
   padding: 4px 5px;
-  background: #1f1f1f;
+  background: var(--background-help);
 }
 
 .backgroundIcon.selected {
-  border-color: #a3d9a5;
-  box-shadow: 0 0 8px #aed998;
+  border-color: var(--btn--hover-color);
+  box-shadow: 0 0 8px var(--btn--hover-color);
 }
 
 .backgroundIcon svg {
-  stroke: rgba(255, 255, 255, 0.1);
+  stroke: var(--icons-color-2);
   fill: none;
 }
 
@@ -228,13 +228,13 @@
 }
 
 .backgroundButton.selected {
-  border-color: #a3d9a5;
-  box-shadow: 0 0 8px #e3eadf;
+  border-color: var(--btn--hover-color);
+  box-shadow: 0 0 8px var(--btn--hover-color);
 }
 
 /* Кнопка создания / редактирования */
 .createBtn {
-  width: 302px;
+  width: 287px;
   height: 49px;
   display: flex;
   padding: 10px 0px 11px 0px;
@@ -243,9 +243,9 @@
   border: none;
   gap: 8px;
   border-radius: 8px;
-  background-color: #bedbb0;
-
-  color: #161616;
+  background-color: var(--btn-color);
+  
+  color: var(--plus-fill);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -256,9 +256,26 @@
 .createBtnIcon {
   width: 28px;
   height: 28px;
-  fill: #1e1e1e;
+  fill: var(--plus-fill);
+  stroke: var(--plus-stroke);
 }
 
 .createBtn:hover {
-  background-color: #9dc888;
+  background-color: var(--btn--hover-color);
+}
+
+/* Media. Tablet + Desktop */
+
+@media screen and (min-width: 768px) {
+  .modalContainer {
+    max-width: 350px;
+  }
+
+  .inputGroup input {
+    width: 302px;
+  }
+
+  .createBtn {
+    width: 302px;
+  }
 }
