@@ -32,6 +32,34 @@
 .columnsList:active {
   cursor: grabbing;
 }
+
+/* Стилизация всей полосы прокрутки */
+.columnsList::-webkit-scrollbar {
+  height: 12px; /* Толщина скроллбара */
+}
+
+/* Стилизация дорожки скроллбара */
+.columnsList::-webkit-scrollbar-track {
+  background: #151515; /* Цвет фона дорожки */
+  border-radius: 12px; /*Закругленные края */
+}
+
+/* Стилизация ползунка скроллбара */
+.columnsList::-webkit-scrollbar-thumb {
+  height: 637px;
+  width: 12px;
+  background: #302f2f; /*  Цвет ползунка*/
+  border-radius: 12px; /* Закругленные края ползунка */
+  /* border: 2px solid #f0f0f0; Обводка вокруг ползунка */
+}
+
+/* Стилизация при наведении на ползунок */
+.columnsList::-webkit-scrollbar-thumb:hover {
+  /* Цвет ползунка при наведении */
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(90deg);
+}
+
 /* Tablet */
 @media only screen and (min-width: 768px) {
   .wrapperList {
