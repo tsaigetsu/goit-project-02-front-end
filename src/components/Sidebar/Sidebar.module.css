@@ -108,6 +108,9 @@
     position: relative;
     width: 260px;
   }
+  .nav {
+    width: 260px;
+  }
 
   .overlay {
     display: none;
