@@ -28,12 +28,7 @@ const Column = ({ title, columnId, boardId }) => {
       // }
     }
   };
-  const onEdit = () => {
-    setIsEdit(true);
-    // if (value !== "") {
-    //   dispatch(changeFilter(""));
-    // }
-  };
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -49,7 +44,11 @@ const Column = ({ title, columnId, boardId }) => {
             <div className={css.container}>
               <p>{title || "Untitled Column"}</p>
               <div className={css.boxIcon}>
-                <button className={css.btnIcon} onClick={onEdit}>
+                <button
+                  className={css.btnIcon}
+                  // onChange={onEdit}
+                  onClick={() => setIsEdit(true)}
+                >
                   <SvgIcon id="icon-pencil-01" width="16" height="16" />
                 </button>
                 <button className={css.btnIcon} onClick={openModal}>
@@ -61,6 +60,7 @@ const Column = ({ title, columnId, boardId }) => {
 
             {isEdit && (
               <EditColumn
+                title={title}
                 columnId={columnId}
                 boardId={boardId}
                 setIsEdit={setIsEdit}

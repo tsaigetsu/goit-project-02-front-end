@@ -26,8 +26,6 @@ const columnsSlice = createSlice({
         if (!state.columnsByBoard[boardId]) {
           state.columnsByBoard[boardId] = [];
         }
-        console.log("column1234", column);
-
         state.columnsByBoard = [...state.columnsByBoard, column];
       })
       .addCase(onGetColumn.fulfilled, (state, { payload }) => {
@@ -43,12 +41,10 @@ const columnsSlice = createSlice({
       .addCase(onDeleteColumn.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        const { boardId, columnId } = action.payload;
-        if (state.columnsByBoard[boardId]) {
-          state.columnsByBoard[boardId] = state.columnsByBoard[boardId].filter(
-            (column) => column.id !== columnId
-          );
-        }
+        const index = state.columnsByBoard.findIndex(
+          (contact) => contact.id === action.payload._id
+        );
+        state.columnsByBoard.splice(index, 1);
       })
       .addCase(onDeleteColumn.rejected, (state, action) => {
         state.loading = false;
@@ -59,15 +55,13 @@ const columnsSlice = createSlice({
       })
       .addCase(onEditColumn.fulfilled, (state, action) => {
         state.loading = false;
-
         state.error = null;
-        const { boardId, updatedColumn } = action.payload;
-        const columns = state.columnsByBoard[boardId];
-        const columnIndex = columns.findIndex(
-          (col) => col.id === updatedColumn.id
-        );
-        if (columnIndex !== -1) {
-          columns[columnIndex] = updatedColumn;
+        const columns = state.columnsByBoard;
+        const updateColumn = action.payload.updatedColumn;
+        const index = columns.findIndex((col) => col._id === updateColumn._id);
+
+        if (index !== -1) {
+          columns[index] = updateColumn;
         }
       })
       .addCase(onEditColumn.rejected, (state, action) => {
