@@ -1,81 +1,195 @@
-/* .overlay */
-/* .mainContainer {
+.overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(37, 37, 37, 0.75);
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-} */
-
-.filtersWrapper {
-  /* position: relative; */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(37, 37, 37, 0.75);
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.btnFilters {
-  display: flex;
-  align-items: center;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.modal {
-  position: absolute;
   top: 50%;
   left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
   transform: translate(-50%, -50%);
-  padding: 24px;
-  background-color: #151515;
-  border-radius: 8px;
-  min-width: 320px;
-  max-width: 335px;
-  height: fit-content;
-  box-sizing: border-box;
-
-  /* position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #1a1a1a;
-  color: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000; */
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
 }
 
-.modalContent {
+.filtersContent {
+  position: relative;
   display: flex;
   flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: var(--background-pop-up-colorB);
+  border: 1px solid rgba(190, 219, 176, 0.5);
+  border-radius: 8px;
+  width: 300px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: var(--main-text-colorB);
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+.noScroll {
+  overflow: hidden;
+  /* Заборона прокручування сторінки */
 }
 
 .closeButton {
-    stroke: #fff;
-    width: 18px;
-    height: 18px;
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    outline: none;
-    border: none;
-    background-color: transparent;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  stroke: white;
+  z-index: 1100;
+}
+
+h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 18px;
+  width: 100%;
+  letter-spacing: 0.1ex;
+}
+
+h3 {
+  margin: 4px 4px;
+  font-size: 14px;
+  font-weight: 100;
+  letter-spacing: 0.1ex;
+}
+
+
+/* Стилі для кнопок фону */
+/*.backgroundOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.backgroundButton {
+  background: transparent;
+  border: 1px solid var(--main-text-colorB);
+  padding: 8px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  color: var(--main-text-colorB);
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.backgroundButton:hover {
+  background-color: var(--button-hover-color);
+}
+*/
+
+
+/* Стилі для опцій пріоритету */
+.priorityOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.priorityLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 100;
+}
+
+.radioLabel {
+  font-size: 12px;
+  opacity: 50%;
+  letter-spacing: 0.1ex;
+}
+
+/* Прибираємо opacity для активної мітки */
+.filterRadio:checked+.radioLabel {
+  opacity: 100%;
+}
+
+/* Стилі для радіокнопок */
+.filterRadio {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+}
+
+.filterRadio--none {
+  background-color: var(--background-topbar-colorV);
+  opacity: 30%;
+}
+
+.filterRadio--low {
+  background-color: var(--priority-color-low);
+}
+
+.filterRadio--medium {
+  background-color: var(--priority-color-mid);
+}
+
+.filterRadio--high {
+  background-color: var(--priority-color-high);
+}
+
+/* Внутрішній бордер */
+.filterRadio:checked::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--background-pop-up-colorB);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Внутрішній кольоровий кружечок залежно від вибору */
+.filterRadio--none:checked::after,
+.filterRadio--low:checked::after,
+.filterRadio--medium:checked::after,
+.filterRadio--high:checked::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Зміна кольору для кожної кнопки у вибраному стані */
+.filterRadio--none:checked::after {
+  background-color: var(--background-topbar-colorV);
+}
+
+.filterRadio--low:checked::after {
+  background-color: var(--priority-color-low);
+}
+
+.filterRadio--medium:checked::after {
+  background-color: var(--priority-color-mid);
+}
+
+.filterRadio--high:checked::after {
+  background-color: var(--priority-color-high);
 }

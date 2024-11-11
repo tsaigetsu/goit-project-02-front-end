@@ -1,6 +1,6 @@
 .needHelp {
     margin: 14px 14px 24px;
-    background-color: #F6F6F7;
+    background-color: var(--background-help);
     border-radius: 8px;
     padding: 20px;
 }
@@ -10,7 +10,7 @@
     margin-bottom: 14px;
 }
 .p {
-    color: #161616;
+    color: var(--active-color-sidebar);
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -19,10 +19,10 @@
     margin-bottom: 18px;
 }
 .pSpan {
-    color: #BEDBB0;
+    color: var(--text-hover-color);
 }
 .btnIcon {
-    stroke: #161616;
+    stroke: var(--active-color-sidebar);
     fill: none;
 }
 .btn {
@@ -31,7 +31,7 @@
     display: flex;
     gap: 8px;
     align-items: center;
-    color: #161616;
+    color: var(--active-color-sidebar);
     font-size: 12px;
     font-weight: 500;
     line-height: normal;

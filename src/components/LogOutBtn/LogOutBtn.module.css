@@ -9,12 +9,15 @@
     padding-right: 7px;
     width: 98px;
     height: 32px;
+    color: var(--active-color-sidebar);
 }
 .logOutIcon {
-    stroke: #BEDBB0;
+    stroke: var(--logOut-icon);
     fill: none;
 }
-
+.btn:hover {
+    color: var(--logOut-icon-hover);
+}
 .btn:hover .logOutIcon {
-    stroke: rgba(157, 200, 136, 1);
+    stroke: var(--logOut-icon-hover);
 }

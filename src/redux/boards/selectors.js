@@ -1,5 +1,2 @@
 export const selectBoards = (state) => state.boards.boards;
-export const selectedBoard = (state) => {
-  console.log("selectedBoard", state.boards.selectedBoard);
-  return state.boards.selectedBoard;
-};
+export const selectedBoard = (state) => state.boards.selectedBoard;
