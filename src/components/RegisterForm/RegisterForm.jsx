@@ -90,6 +90,7 @@ const RegisterForm = () => {
                 type="text"
                 placeholder="Enter your name"
                 className={css.input}
+                autoFocus
               />
               {errors.name && (
                 <div className={css.error}>{errors.name.message}</div>
@@ -121,12 +122,21 @@ const RegisterForm = () => {
                 className={css.toggleBtn}
                 onClick={() => setVisiblePassword(!visiblePassword)}
               >
-                <SvgIcon
-                  id="icon-eye"
-                  className={css.toggleBtnIcon}
-                  width="18"
-                  height="18"
-                />
+                {visiblePassword ? (
+                  <SvgIcon
+                    id="icon-eye"
+                    className={css.toggleBtnIcon}
+                    width="18"
+                    height="18"
+                  />
+                ) : (
+                  <SvgIcon
+                    id="icon-eye-off"
+                    className={css.toggleBtnIcon}
+                    width="18"
+                    height="18"
+                  />
+                )}
               </button>
             </label>
           </div>
