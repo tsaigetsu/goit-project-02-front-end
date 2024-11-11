@@ -14,9 +14,9 @@ const ScreensPage = () => {
   const board = useSelector(selectedBoard);
   console.log("board", board);
 
-  // const onOpen = () => {
-  //   setIsOpen(true);
-  // };
+  const onOpen = () => {
+    setIsOpen(true);
+  };
 
   const onClose = () => {
     setIsOpen(false);
@@ -35,7 +35,7 @@ const ScreensPage = () => {
     <>
       <section className={css.wrapperScreenPage}>
         {boards.length === 0 || board === null ? (
-          <DefaultText />
+          <DefaultText onOpen={onOpen} />
         ) : (
           <div className={css.screensPage__content}>
             <HeaderDashboard
