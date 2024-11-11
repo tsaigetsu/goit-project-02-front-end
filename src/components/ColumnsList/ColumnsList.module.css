@@ -6,6 +6,8 @@
   margin: o auto;
   /* background-color: rgb(217, 255, 0); */
   padding: 20px;
+  max-height: 100%;
+  /* margin-left: 30px; */
 }
 .columnsList {
   display: flex;
@@ -18,12 +20,13 @@
 
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: 18px;
+  gap: 32px;
   align-items: flex-start;
   min-width: 320px;
   width: 100%;
   list-style: none;
-  height: calc(100vh - 140px);
+  /* height: calc(100vh - 116px); */
+  height: 100%;
   margin: 0;
   /* background-color: aqua; */
   /* margin: o auto; */
@@ -40,7 +43,7 @@
 
 /* Стилизация дорожки скроллбара */
 .columnsList::-webkit-scrollbar-track {
-  background: #151515; /* Цвет фона дорожки */
+  background: #121212; /* Цвет фона дорожки */
   border-radius: 12px; /*Закругленные края */
 }
 

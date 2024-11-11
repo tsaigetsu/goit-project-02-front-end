@@ -5,6 +5,8 @@ import {
   onEditColumn,
   onGetColumn,
 } from "./operations";
+import { addCard, deleteCard } from "../cards/operations";
+// import AddCardPopup from "../../components/AddCardPopup/AddCardPopup";
 // import { logout } from "../auth/operations.js";
 
 const columnsSlice = createSlice({
@@ -42,7 +44,7 @@ const columnsSlice = createSlice({
         state.loading = false;
         state.error = null;
         const index = state.columnsByBoard.findIndex(
-          (contact) => contact.id === action.payload._id
+          (column) => column.id === action.payload._id
         );
         state.columnsByBoard.splice(index, 1);
       })
@@ -67,7 +69,89 @@ const columnsSlice = createSlice({
       .addCase(onEditColumn.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(addCard.fulfilled, (state, action) => {
+        const task = action.payload.data;
+        const { columnId } = task;
+        console.log("action.payload.data", action.payload.data);
+
+        if (!state.columnsByBoard.columns[columnId]) {
+          state.columnsByBoard.columns[columnId] = [];
+        }
+        state.columnsByBoard.columns[columnId] = [
+          ...state.columnsByBoard.columns[columnId],
+          task,
+        ];
+      })
+      // Видалення картки
+      .addCase(deleteCard.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+
+        console.log("action.payload._id", action.payload);
+        const cardIdToDelete = action.payload.cardId; // Предположим, что `cardId` приходит в респонсе
+        console.log("cardIdToDelete", cardIdToDelete);
+
+        // Проходим по всем колонкам и ищем карточку
+        state.columnsByBoard.forEach((column) => {
+          // Если карточка с таким id найдена в колонке
+          const cardIndex = column.cards.findIndex(
+            (card) => card._id === cardIdToDelete
+          );
+
+          if (cardIndex !== -1) {
+            // Удаляем карточку из массива cards
+            column.cards.splice(cardIndex, 1);
+          }
+        });
       });
+
+    // .addCase(updateCard.fulfilled, (state, action) => {
+    //   const { _id, columnId, title, description, deadline, priority } =
+    //     action.payload.data;
+
+    //   const column = state.columns.find((col) => col._id === columnId);
+
+    //   if (column) {
+    //     const cardIndex = column.cards.findIndex((card) => card._id === _id);
+
+    //     if (cardIndex !== -1) {
+    //       column.cards[cardIndex] = {
+    //         _id,
+    //         title,
+    //         description,
+    //         deadline,
+    //         priority,
+    //         columnId,
+    //       };
+    //     }
+    //   }
+    // })
+
+    // .addCase(filterCardsByPriority.fulfilled, (state, action) => {
+    //   state.columns = action.payload;
+    // })
+
+    // .addCase(replaceCard.fulfilled, (state, action) => {
+    //   const { data, oldColumnId } = action.payload;
+
+    //   // Знаходимо стару колонку та видаляємо картку з неї
+    //   const oldColumn = state.columns.find((col) => col._id === oldColumnId);
+    //   if (oldColumn) {
+    //     oldColumn.cards = oldColumn.cards.filter(
+    //       (card) => card._id !== data._id
+    //     );
+    //   }
+
+    //   // Додаємо картку в нову колонку
+    //   const newColumn = state.columns.find(
+    //     (col) => col._id === data.columnId
+    //   );
+    //   if (newColumn) {
+    //     newColumn.cards.push(data);
+    //   }
+    // })
+
     // .addCase(logout.fulfilled, (state) => {
     //   state.items = [];
     //   state.error = null;

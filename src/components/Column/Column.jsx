@@ -6,18 +6,11 @@ import { ModalDelete } from "../ModalDelete/ModalDelete";
 import CardManager from "../CardManager/CardManager";
 import { onDeleteColumn } from "../../redux/columns/operations";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { selectColumnsByBoard } from "../../redux/columns/slice";
 
 const Column = ({ title, columnId, boardId }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const columns = useSelector(selectColumnsByBoard);
-  // const { title, _id } = column;
-
-  // console.log("title", title);
-  console.log("columns", columns);
 
   const onDelete = () => {
     if (columnId && boardId) {
@@ -57,18 +50,18 @@ const Column = ({ title, columnId, boardId }) => {
               </div>
             </div>
             <CardManager columnId={columnId} />
-
-            {isEdit && (
-              <EditColumn
-                title={title}
-                columnId={columnId}
-                boardId={boardId}
-                setIsEdit={setIsEdit}
-                // isEdit={isEdit}
-              />
-            )}
           </div>
         </div>
+
+        {isEdit && (
+          <EditColumn
+            title={title}
+            columnId={columnId}
+            boardId={boardId}
+            setIsEdit={setIsEdit}
+            // isEdit={isEdit}
+          />
+        )}
       </li>
 
       <ModalDelete

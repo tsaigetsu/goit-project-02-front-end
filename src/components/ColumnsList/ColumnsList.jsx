@@ -17,17 +17,12 @@ const ColumnsList = () =>
     const [isOpen, setIsOpen] = useState(false);
     const columns = useSelector(selectColumnsByBoard);
     const board = useSelector(selectedBoard);
-    console.log("selectedBoard", board);
-    console.log("colummmns", columns);
-    console.log("upDate Columns after delete ", columns);
 
     const handleOpenModal = () => {
       setIsOpen(true);
     };
     const handleSaveColumn = (newTitle) => {
-      console.log("Adding column with title:", newTitle);
       const newColumn = { title: newTitle, boardId: board._id };
-      console.log("NewColumn:", newColumn);
       dispatch(onCreateColumn(newColumn));
       setIsOpen(false);
     };
