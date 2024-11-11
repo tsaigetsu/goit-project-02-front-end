@@ -154,7 +154,7 @@ const NewBoardForm = ({ isOpen, onClose, onSave }) => {
                                 className={s.radioIcon}
                             />
                         </label>
-                        {backgrounds.map((bg) => (
+                        {/* {backgrounds.map((bg) => (
                             <label
                                 key={bg.id}
                                 className={`${s.backgroundButton} ${
@@ -168,6 +168,23 @@ const NewBoardForm = ({ isOpen, onClose, onSave }) => {
                                     {...register("background")}
                                     checked={selectedBackground === bg.id}
                                     onChange={() => setValue("background", bg.id)}
+                                />
+                            </label>
+                        ))} */}
+                        {Object.keys(backgrounds.desktop).map((bgId) => (
+                            <label
+                                key={bgId}
+                                className={`${s.backgroundButton} ${selectedBackground === bgId ? s.selected : ""}`}
+                                style={{
+                                    backgroundImage: `url(${backgrounds.desktop[bgId].normal})`
+                                }}
+                            >
+                                <input
+                                    type="radio"
+                                    value={bgId}
+                                    {...register("background")}
+                                    checked={selectedBackground === bgId}
+                                    onChange={() => setValue("background", bgId)}
                                 />
                             </label>
                         ))}
@@ -196,3 +213,22 @@ NewBoardForm.propTypes = {
 };
 
 export default NewBoardForm;
+
+
+// [
+//     { "id": "bg1", "url": "/src/assets/images/jpgs/desktop/flowers2x.jpg" },
+//     { "id": "bg2", "url": "/src/assets/images/jpgs/desktop/skyMountrain2x.jpg" },
+//     { "id": "bg3", "url": "/src/assets/images/jpgs/desktop/pinkTree2x.jpg" },
+//     { "id": "bg4", "url": "/src/assets/images/jpgs/desktop/moon2x.jpg" },
+//     { "id": "bg5", "url": "/src/assets/images/jpgs/desktop/jungleLeafes2x.jpg" },
+//     { "id": "bg6", "url": "/src/assets/images/jpgs/desktop/sky2x.jpg" },
+//     { "id": "bg7", "url": "/src/assets/images/jpgs/desktop/seaMountain2x.jpg" },
+//     { "id": "bg8", "url": "/src/assets/images/jpgs/desktop/ballons2x.jpg" },
+//     { "id": "bg9", "url": "/src/assets/images/jpgs/desktop/orangeMoon2x.jpg" },
+//     { "id": "bg10", "url": "/src/assets/images/jpgs/desktop/ship2x.jpg" },
+//     { "id": "bg11", "url": "/src/assets/images/jpgs/desktop/flyingBallons2x.jpg" },
+//     { "id": "bg12", "url": "/src/assets/images/jpgs/desktop/dessert2x.jpg" },
+//     { "id": "bg13", "url": "/src/assets/images/jpgs/desktop/beach2.jpg" },
+//     { "id": "bg14", "url": "/src/assets/images/jpgs/desktop/lotBallons2x.jpg" },
+//     { "id": "bg15", "url": "/src/assets/images/jpgs/desktop/carNightSky2x.jpg" }
+// ]

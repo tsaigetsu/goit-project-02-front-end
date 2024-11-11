@@ -4,7 +4,8 @@ import NewBoardForm from "../NewBoardForm/NewBoardForm";
 import SidebarBoardItem from "../SidebarBoardItem/SidebarBoardItem";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./SidebarBoardList.module.css";
-import { selectBoards, selectedBoard } from "../../redux/boards/selectors.js";
+// import { selectBoards, selectedBoard } from "../../redux/boards/selectors.js";
+import { selectBoards } from "../../redux/boards/selectors.js";
 import {
   addBoardsThunk,
   deleteBoardThunk,
@@ -44,7 +45,8 @@ const SidebarBoardList = () => {
       const board = await dispatch(getBoardByIdThunk(boardId)).unwrap();
       await dispatch(onGetColumn(board.columns)).unwrap();
 
-      selectedBoard(board);
+      // selectedBoard(board);
+      setSelectedBoardData(board);
     } catch (err) {
       err.message;
     }
@@ -86,7 +88,8 @@ const SidebarBoardList = () => {
             boardId: selectedBoardData._id,
             ...updatedBoard,
         }));
-        setIsEditModalOpen(false);
+      setIsEditModalOpen(false);
+      setSelectedBoardData(null); 
     } catch (err) {
         console.error("Error updating board:", err.message);
     }
@@ -94,6 +97,9 @@ const SidebarBoardList = () => {
   
   const handleDelete = (boardId) => {
     dispatch(deleteBoardThunk(boardId));
+    if (boardId === activeBoardId) {
+      setActiveBoardId(null);
+    }
   };
   
   return (
