@@ -6,6 +6,7 @@ import MainDashboard from "../../components/MainDashboard/MainDashboard.jsx";
 import DefaultText from "../../components/DefaultText/DefaultText.jsx";
 import NewBoardForm from "../../components/NewBoardForm/NewBoardForm.jsx";
 import { useSelector } from "react-redux";
+import backgrounds from "../../data/backgrounds.json";
 
 const ScreensPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,13 +14,23 @@ const ScreensPage = () => {
   const board = useSelector(selectedBoard);
   console.log("board", board);
 
-  const onOpen = () => {
-    setIsOpen(true);
-  };
+  // const onOpen = () => {
+  //   setIsOpen(true);
+  // };
 
   const onClose = () => {
     setIsOpen(false);
   };
+
+  const handleSaveBoard = (newBoard) => {
+    console.log("New board saved:", newBoard);
+    setIsOpen(false);
+  };
+
+  const backgroundUrl = (board?.backgroundId && board.backgroundId !== 'nobg') 
+  ? backgrounds.desktop[board.backgroundId].normal 
+  : null;
+
   return (
     <>
       <section className={css.wrapperScreenPage}>
@@ -34,14 +45,15 @@ const ScreensPage = () => {
               className={css.headerDashboard}
             />
             <MainDashboard
-              // filter={filter}
+                // filter={filter}
+                background={backgroundUrl}
               className={css.mainDashboard}
             />
           </div>
         )}
       </section>
       {isOpen && (
-        <NewBoardForm isOpen={isOpen} onClose={onClose} onSave={onOpen} />
+        <NewBoardForm isOpen={isOpen} onClose={onClose} onSave={handleSaveBoard} />
       )}
     </>
   );

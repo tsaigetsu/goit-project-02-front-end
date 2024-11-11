@@ -2,6 +2,8 @@
   height: 100vh;
   display: flex;
   width: 100%;
-  background-color: #1f1f1f;
+  background-color: var(--background-color);
+  background-size: cover;
+  background-position: center;
   height: calc(100vh - 130px);
 }
