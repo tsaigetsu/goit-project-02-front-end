@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -28,6 +28,7 @@ const NewBoardForm = ({ isOpen, onClose, onSave }) => {
         formState: { errors },
         reset,
         clearErrors,
+        setFocus
     } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
@@ -36,6 +37,12 @@ const NewBoardForm = ({ isOpen, onClose, onSave }) => {
             background: "nobg",
         },
     });
+
+    useEffect(() => {
+        if (isOpen) {
+            setFocus("title");
+        };
+        }, [isOpen, setFocus]);
 
     const selectedIcon = watch("icon");
     const selectedBackground = watch("background");
@@ -189,67 +196,3 @@ NewBoardForm.propTypes = {
 };
 
 export default NewBoardForm;
-
-// import { useState } from "react";
-// import "./App.css";
-// import NewBoardForm from "./components/NewBoardForm/NewBoardForm";
-// import EditBoardForm from './components/EditBoardForm/EditBoardForm';
-
-// function App() {
-//   const [isCreateOpen, setIsCreateOpen] = useState(false);
-//   const [isEditOpen, setIsEditOpen] = useState(false);
-
-//   // Начальные данные для EditBoardForm
-//   const initialData = {
-//     title: "My Saved Board",
-//     icon: "icon-star-04",
-//     background: "/src/assets/images/jpgs/desktop/sky2x.jpg",
-//   };
-
-//   // Функции для открытия и закрытия форм
-//     const handleCreateOpen = () => setIsCreateOpen(true);
-//     const handleCreateClose = () => setIsCreateOpen(false);
-
-//     const handleEditOpen = () => setIsEditOpen(true);
-//     const handleEditClose = () => setIsEditOpen(false);
-
-//     const handleSave = (data) => {
-//         console.log("Board saved:", data);
-//         handleCreateClose();
-//     };
-
-//     const handleUpdate = (data) => {
-//         console.log("Board updated:", data);
-//         handleEditClose();
-//     };
-
-//   return (
-//     <div className="App">
-//       <button onClick={handleCreateOpen}>Create new board</button>
-//       <button onClick={handleEditOpen}>Edit board</button>
-
-//       {/* NewBoardForm */}
-//       {isCreateOpen && (
-//         <NewBoardForm
-//           isOpen={isCreateOpen}
-//           onClose={handleCreateClose}
-//           onSave={handleSave}
-//         />
-//       )}
-
-//       {/* EditBoardForm */}
-//       {isEditOpen && (
-//         <EditBoardForm
-//           isOpen={isEditOpen}
-//           onClose={handleEditClose}
-//           initialTitle={initialData.title}
-//           initialIcon={initialData.icon}
-//           initialBackground={initialData.background}
-//           onSave={handleUpdate}
-//         />
-//       )}
-//     </div>
-//   );
-// };
-
-// export default App;

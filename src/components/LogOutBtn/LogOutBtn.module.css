@@ -14,3 +14,7 @@
     stroke: #BEDBB0;
     fill: none;
 }
+
+.btn:hover .logOutIcon {
+    stroke: rgba(157, 200, 136, 1);
+}

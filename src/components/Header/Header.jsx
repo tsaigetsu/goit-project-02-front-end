@@ -9,7 +9,7 @@ import ThemeContext from "../Layout/ThemeContext.jsx";
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { toggleSidebar, isSidebarOpen } = useContext(SidebarContext);
-  const { theme, changeTheme } = useContext(ThemeContext);
+  const { changeTheme } = useContext(ThemeContext);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -39,9 +39,8 @@ export default function Header() {
 
   return (
       <div
-        className={`my-component ${css["theme-" + theme]} ${css.headerContainer}`}
+        className={`${css.headerContainer}`}
       >
-        <ThemeContext.Provider value={{ theme, changeTheme }}>
           <header className={css.header}>
             <button
               onClick={() => {
@@ -54,8 +53,9 @@ export default function Header() {
           <div className={css.themeSelector}>
             <div className={css.themeSelector}>
               <div className={css.theme}>
+                {/* <p>Theme</p> */}
+              <button className={css.themeButton} onClick={toggleModal}>
                 <p>Theme</p>
-                <button className={css.themeButton} onClick={toggleModal}>
                   <SvgIcon
                     id="checkMark"
                     className={css.welcomeIcon}
@@ -78,7 +78,6 @@ export default function Header() {
               <UserInfo />
             </div>
           </header>
-        </ThemeContext.Provider>
       </div>
   );
 }

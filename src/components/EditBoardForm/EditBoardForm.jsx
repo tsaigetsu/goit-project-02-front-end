@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -35,6 +35,7 @@ const EditBoardForm = ({
     formState: { errors },
     reset,
     clearErrors,
+    setFocus
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -43,6 +44,12 @@ const EditBoardForm = ({
       background: initialBackground || "nobg",
     },
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      setFocus("title");
+    };
+  }, [isOpen, setFocus]);
 
   const selectedIcon = watch("icon");
   const selectedBackground = watch("background");
@@ -68,7 +75,7 @@ const EditBoardForm = ({
       backgroundId: data.background,
     };
 
-    console.log("Board created:", payload);
+    console.log("Submitting updated board data:", payload);
     onSave(payload);
     handleFormClose();
   };

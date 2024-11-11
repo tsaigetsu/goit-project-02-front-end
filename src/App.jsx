@@ -14,7 +14,8 @@ import { currentUserThunk } from "./redux/auth/operations";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
-// import Loader from "./components/Loader/Loader";
+import Loader from "./components/Loader/Loader";
+import { ThemeProvider } from "./components/Layout/ThemeContext.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,35 +28,39 @@ function App() {
   // return isRefreshing ? (
   //   <Loader />
   // ) : (
-  return(
-    <Routes>
-      <Route path="/" element={<Navigate to="/welcome" replace />} />
+  return (
+    <ThemeProvider>
+      <Routes>
+        <Route path="/" element={<Navigate to="/welcome" replace />} />
 
-      <Route
-        path="/welcome"
-        element={<PublicRoute component={<WelcomePage />} redirectTo="/home" />}
-      />
+        <Route
+          path="/welcome"
+          element={
+            <PublicRoute component={<WelcomePage />} redirectTo="/home" />
+          }
+        />
 
-      <Route
-        path="/auth/:id"
-        element={<PublicRoute component={<AuthPage />} redirectTo="/home" />}
-      >
-        <Route path="login" element={<LoginForm />} />
-        <Route path="register" element={<RegisterForm />} />
-      </Route>
+        <Route
+          path="/auth/:id"
+          element={<PublicRoute component={<AuthPage />} redirectTo="/home" />}
+        >
+          <Route path="login" element={<LoginForm />} />
+          <Route path="register" element={<RegisterForm />} />
+        </Route>
 
-      <Route
-        path="/home"
-        element={
-          <PrivateRoute component={<HomePage />} redirectTo="/welcome" />
-        }
-      >
-        <Route path=":boardId" element={<ScreensPage />} />
-      </Route>
-      {/* <Route path="/home" element={<HomePage />}/> */}
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
-  )
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute component={<HomePage />} redirectTo="/welcome" />
+          }
+        >
+          <Route path=":boardId" element={<ScreensPage />} />
+        </Route>
+        {/* <Route path="/home" element={<HomePage />}/> */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </ThemeProvider>
+  );
   // );
 }
 
