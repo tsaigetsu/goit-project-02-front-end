@@ -14,7 +14,7 @@ import { currentUserThunk } from "./redux/auth/operations";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
-import Loader from "./components/Loader/Loader";
+//import Loader from "./components/Loader/Loader";
 import { ThemeProvider } from "./components/Layout/ThemeContext.jsx";
 
 function App() {
