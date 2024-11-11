@@ -1,18 +1,27 @@
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+const CalendarPicker = ({
+  selected,
+  onChange,
+  isCalendarOpen,
+  toggleDateInput,
+  formatDate,
+  calendarClassName,
+}) => {
+  //
+  console.log("toggleDateInput", toggleDateInput);
 
-const CalendarPicker = ({ selectedDate, onDateChange, showDateInput, toggleDateInput, formatDate, calendarClassName }) => {
   return (
     <div>
       <div onClick={toggleDateInput} className={calendarClassName}>
-        {selectedDate ? formatDate(selectedDate) : 'Select a date'}
+        {selected ? formatDate(selected) : "Select a date"}
       </div>
-      {showDateInput && (
+      {isCalendarOpen && (
         <DatePicker
-          selected={selectedDate}
+          selected={selected}
           onChange={(date) => {
-            onDateChange(date);
+            onChange(date);
             toggleDateInput();
           }}
           minDate={new Date()}

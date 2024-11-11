@@ -33,11 +33,13 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  width: 335px;
+  justify-content: flex-start;
+  width: 351px;
   /* min-width: 320px; */
   /* height: 654px; */
   /* background-color: rgb(160, 95, 150); */
   overflow: hidden;
+  height: 80%;
 }
 .container {
   display: flex;
@@ -53,7 +55,7 @@
   color: #fff;
   flex-shrink: 0;
   margin-bottom: 14px;
-  width: 100%;
+  width: 335px;
 }
 .boxIcon {
   display: flex;
@@ -82,7 +84,7 @@
   min-width: 335px;
   /* width: 100%; */
   /* background-color: brown; */
-  height: 56px;
+  /* height: 100%; */
 }
 @media only screen and (max-width: 374px) {
   .itemList {

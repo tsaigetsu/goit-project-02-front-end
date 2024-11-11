@@ -71,11 +71,6 @@ export const currentUserThunk = createAsyncThunk(
 
       return response.data.data;
     } catch (error) {
-      toast.error("Unauthorized - User is not authenticated", {
-        duration: 5000,
-        position: "bottom-center",
-        icon: "❌",
-      });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -120,13 +115,13 @@ export const updateUserAvatar = createAsyncThunk(
 );
 
 export const updateTheme = createAsyncThunk(
-  "user/updateTheme", 
+  "user/updateTheme",
   async (newTheme, thunkAPI) => {
     try {
-      const response = await api.patch('/user/profile', { theme: newTheme }); 
+      const response = await api.patch("/user/profile", { theme: newTheme });
       console.log("Theme updated successfully", response.data);
       toast.success("Theme updated successfully!");
-      return response.data.data; 
+      return response.data.data;
     } catch (error) {
       toast.error("Error updating theme");
       return thunkAPI.rejectWithValue(error.response.data);

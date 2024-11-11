@@ -1,23 +1,28 @@
 import s from "./CardList.module.css";
+import Card from "../Card/Card.jsx";
 
-const CardList = () =>
-  // { cards, onEdit, onDelete }
-
-  {
-    return (
-      <div className={s.cardList}>
-        {/* {cards.map((card) => (
-        <div key={card.id} className={s.card}>
-          <h3>{card.title}</h3>
-          <p>{card.description}</p>
-          <p>Label Color: {card.labelColor}</p>
-          <p>Deadline: {card.deadline}</p>
-          <button onClick={() => onEdit(card)}>Edit</button>
-          <button onClick={() => onDelete(card.id)}>Delete</button>
-        </div>
-      ))} */}
+const CardList = ({ cards }) => {
+  console.log("cards", cards);
+  return (
+    <>
+      <div className={s.wrapperList}>
+        {cards.map((card) => {
+          return (
+            <Card
+              key={card._id}
+              id={card._id}
+              title={card.title}
+              priority={card.priority}
+              description={card.description}
+              deadline={card.deadline}
+              // column={{ ...column, tasks: filteredTasks }}
+              columnId={card.columnId}
+            />
+          );
+        })}
       </div>
-    );
-  };
+    </>
+  );
+};
 
 export default CardList;
