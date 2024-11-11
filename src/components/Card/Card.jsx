@@ -4,6 +4,7 @@ import SvgIcon from "../SvgIcon/SvgIcon.jsx";
 import s from "./Card.module.css";
 import { useDispatch } from "react-redux";
 import { deleteCard } from "../../redux/cards/operations.js";
+// import InProgressModal from "../InProgressModal/InProgressModal.jsx";
 
 const Card = ({ id, title, description, deadline, columnId, priority }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
