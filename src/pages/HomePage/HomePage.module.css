@@ -10,7 +10,9 @@
   --icons-color-1: #161616;
   --icons-color-2: #16161680;
   --icons-hover-color: #BEDBB0;
-  --hamburger-btn-color: #161616 ;
+  --hamburger-btn-color: #161616;
+  --plus-fill: #161616;
+  --plus-stroke: #FFF;
 }
 
 .theme-dark {
@@ -27,6 +29,8 @@
     --icons-color-2: #FFFFFF80;
     --icons-hover-color: #BEDBB0;
     --hamburger-btn-color: #FFFFFF;
+    --plus-fill: #161616;
+    --plus-stroke: #FFF;
 }
 
 .theme-violet {
@@ -46,6 +50,8 @@
     --newBoard-btn: #B8BCFD;
     --newBoard-btn-hover: #979CEA;
     --hamburger-btn-color: #161616;
+    --plus-fill: #FFF;
+    --plus-stroke: #161616;
 }
 
 

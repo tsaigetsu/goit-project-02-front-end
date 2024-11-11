@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SvgIcon from "../SvgIcon/SvgIcon";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import * as yup from "yup";
 import s from "./ModalNeedHelp.module.css";
@@ -67,7 +67,6 @@ const ModalNeedHelp = ({ isOpen, onClose }) => {
     const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-        // Эмулируем отправку на сервер
         await new Promise((resolve) => setTimeout(resolve, 1000));
         console.log("Need help:", data);
         reset();
@@ -81,7 +80,7 @@ const ModalNeedHelp = ({ isOpen, onClose }) => {
 
     if (!isOpen && !isExiting) return null;
 
-    return ReactDOM.createPortal(
+    return (
         <div className={`${s.overlay} ${isExiting ? s.fadeOut : ""}`}
             onClick={handleFormClose}
         >
@@ -127,8 +126,7 @@ const ModalNeedHelp = ({ isOpen, onClose }) => {
                     </button>
                 </form>
             </div>
-        </div>,
-        document.body
+        </div>
     );
 };
 
