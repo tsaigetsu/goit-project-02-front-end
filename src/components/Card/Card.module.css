@@ -1,35 +1,124 @@
-.card {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-    display: flex;
+.color {
+  width: 335px;
+  align-content: flex-end;
+  background-color: #8fa1d0;
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 8px;
+  border: none;
+}
+
+.cardWrapper {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  border: 1px solid #ccc;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  
-  }
-  
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .label-color {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-  }
-  
-  .deadline {
-    font-size: 12px;
-    color: #888;
-  }
+  /* z-index: 1000; */
+  border: none;
+  background-color: rgba(190, 89, 89, 0.5);
+  padding: 14px 24px;
+  /* margin-bottom: 10px; */
+  /* border-radius: 8px; */
+  background-color: #121212;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  height: 154px;
+}
+.titleCard {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.description {
+  max-height: 38px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33333;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 14px;
+
+  white-space: wrap; /* Запрещает перенос текста на новую строку */
+  overflow: hidden; /* Скрывает текст, выходящий за границы */
+  text-overflow: ellipsis; /* Добавляет троеточие */
+  width: 290px; /*Укажите ширину контейнера*/
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 8px;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+}
+.cardFooter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  stroke-width: 1px;
+  stroke: rgba(255, 255, 255, 0.1);
+  padding-top: 14px;
+}
+
+.label-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.deadline {
+  font-size: 12px;
+  color: #888;
+}
+.box {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+}
+.boxPriority,
+.boxDeadline {
+  display: flex;
+  flex-direction: column;
+}
+.priority {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 4px;
+}
+.ellipse {
+  border-radius: 100%;
+  fill: #8fa1d0;
+  background-color: #8fa1d0;
+  width: 12px;
+  height: 12px;
+}
+.titlePriority,
+.titleDeadline {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.boxIcons {
+  display: flex;
+  flex-direction: row;
+  /* width: 64px; */
+  gap: 8px;
+  fill: none;
+  stroke: white;
+}
+.btnIcon {
+  border: none;
+  background-color: transparent;
+}

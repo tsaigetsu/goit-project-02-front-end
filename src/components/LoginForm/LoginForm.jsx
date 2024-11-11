@@ -91,6 +91,7 @@ const LoginForm = () => {
                 type="text"
                 placeholder="Enter your email"
                 className={css.input}
+                autoFocus
               />
               {errors.email && (
                 <div className={css.error}>{errors.email.message}</div>
@@ -111,12 +112,21 @@ const LoginForm = () => {
                 className={css.toggleBtn}
                 onClick={() => setVisiblePassword(!visiblePassword)}
               >
-                <SvgIcon
-                  id="icon-eye"
-                  className={css.toggleBtnIcon}
-                  width="18"
-                  height="18"
-                />
+                {visiblePassword ? (
+                  <SvgIcon
+                    id="icon-eye"
+                    className={css.toggleBtnIcon}
+                    width="18"
+                    height="18"
+                  />
+                ) : (
+                  <SvgIcon
+                    id="icon-eye-off"
+                    className={css.toggleBtnIcon}
+                    width="18"
+                    height="18"
+                  />
+                )}
               </button>
             </label>
           </div>

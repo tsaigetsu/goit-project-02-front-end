@@ -1,34 +1,31 @@
 @font-face {
   font-family: "Poppins";
-  src:
-    url("/fonts/Poppins-Medium.ttf") format("ttf"),
+  src: url("/fonts/Poppins-Medium.ttf") format("ttf"),
     url("/fonts/Poppins-Regular.ttf") format("ttf"),
     url("/fonts/Poppins-SemiBold.ttf") format("ttf");
 }
 
 :root {
-
-
   /*BG colors*/
   --background-pop-up-colorB: #151515;
   --background-sidebar-colorB: #121212;
   --background-topbar-colorB: #161616;
-  --background-colorV: #ECEDFD;
-  --background-sidebar-colorV: #5255BC;
-  --background-topbar-colorV: #FFFFFF;
+  --background-colorV: #ecedfd;
+  --background-sidebar-colorV: #5255bc;
+  --background-topbar-colorV: #ffffff;
 
   /*Text colors*/
   --main-text-colorB: #ffffff;
   --main-text-colorV: #161616;
 
   /*Button-colors*/
-  --background-button-colorB: #BEDBB0;
-  --background-button-colorV: #5255BC;
+  --background-button-colorB: #bedbb0;
+  --background-button-colorV: #5255bc;
 
   /*Priority colors*/
-  --priority-color-low: #8FA1D0;
-  --priority-color-mid: #E09CB5;
-  --priority-color-high: #BEDBB0;
+  --priority-color-low: #8fa1d0;
+  --priority-color-mid: #e09cb5;
+  --priority-color-high: #bedbb0;
 }
 
 /* Reset styles */
@@ -73,4 +70,9 @@ body {
   font-family: "Poppins", sans-serif;
   margin: 0;
   background: linear-gradient(to bottom, white, rgb(171, 244, 171));
+}
+html,
+body {
+  overflow-y: hidden; /* Отключает вертикальный скролл */
+  height: 100%; /* Устанавливает высоту на 100% */
 }

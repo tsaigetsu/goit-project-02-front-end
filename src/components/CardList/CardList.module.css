@@ -1,15 +1,35 @@
- .cardList {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin: 10px;
-    width: 200px;
-    background-color: #f9f9f9;
-  }
-  
-  
+.wrapperList {
+  padding-right: 8px;
+  /* background-color: aquamarine; */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+  max-height: 618px; /* Максимальная высота контейнера */
+  overflow-y: auto; /* Вертикальная полоса прокрутки появляется при необходимости */
+}
+
+/* Стили для самой полосы прокрутки */
+.wrapperList::-webkit-scrollbar {
+  width: 8px; /* Ширина вертикальной полосы прокрутки */
+}
+
+/* Стили для ползунка (thumb) */
+.wrapperList::-webkit-scrollbar-thumb {
+  background-color: #121212; /* Цвет ползунка */
+  border-radius: 12px; /* Скругленные углы ползунка */
+  /*border: 2px solid #f5f5f5; /* Обводка вокруг ползунка */
+  width: 8px;
+  height: 142px;
+}
+
+/* Стили для фона полосы прокрутки */
+.wrapperList::-webkit-scrollbar-track {
+  background-color: #302f2f; /* Цвет фона полосы прокрутки */
+  border-radius: 10px;
+}
+
+/* Эффект при наведении на ползунок */
+.wrapperList::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Темнее при наведении */
+}
