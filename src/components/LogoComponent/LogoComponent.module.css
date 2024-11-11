@@ -6,11 +6,22 @@
     margin-left: 14px;
 }
 .logoText {
-    color: #161616;
-    font-family: Poppins,sans-serif;
+    color: var(--active-color-sidebar);
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     letter-spacing: -0.64px;
+}
+.logoContainer {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: var(--plus-fill);
+}
+.logoIcon {
+    fill: var(--logo-color);
 }

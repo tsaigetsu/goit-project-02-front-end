@@ -10,9 +10,19 @@
   --icons-color-1: #161616;
   --icons-color-2: #16161680;
   --icons-hover-color: #BEDBB0;
+  --logOut-icon:#BEDBB0;
+  --logOut-icon-hover: #9DC888;
+  --newBoard-btn: #BEDBB0;
+  --newBoard-btn-hover: #9DC888;
   --hamburger-btn-color: #161616;
   --plus-fill: #161616;
   --plus-stroke: #FFF;
+  --unactive-color-sidebar: rgba(22, 22, 22, 0.50);;
+  --lines-sidebar: rgba(22, 22, 22, 0.10);
+  --active-color-sidebar: #161616;
+  --active-board-bg-sidebar: #F6F6F7;
+  --active-line-sidebar: #BEDBB0;
+  --logo-color: #FFFFFF;
 }
 
 .theme-dark {
@@ -28,9 +38,19 @@
     --icons-color-1: #FFFFFF;
     --icons-color-2: #FFFFFF80;
     --icons-hover-color: #BEDBB0;
+    --logOut-icon:#BEDBB0;
+    --logOut-icon-hover: #9DC888;
+    --newBoard-btn: #BEDBB0;
+    --newBoard-btn-hover: #9DC888;
     --hamburger-btn-color: #FFFFFF;
     --plus-fill: #161616;
     --plus-stroke: #FFF;
+    --unactive-color-sidebar: rgba(255, 255, 255, 0.50);
+    --lines-sidebar: rgba(255, 255, 255, 0.10);
+    --active-color-sidebar: #FFFFFF;
+    --active-board-bg-sidebar: #1F1F1F;
+    --active-line-sidebar: #BEDBB0;
+    --logo-color: #FFFFFF;
 }
 
 .theme-violet {
@@ -46,18 +66,24 @@
     --icons-color-1: #161616;
     --icons-color-2: #16161680;
     --icons-hover-color: #5255BC;
+    --logOut-icon:#FFFFFF;
     --logOut-icon-hover: #B8BCFD;
     --newBoard-btn: #B8BCFD;
     --newBoard-btn-hover: #979CEA;
     --hamburger-btn-color: #161616;
     --plus-fill: #FFF;
     --plus-stroke: #161616;
+    --unactive-color-sidebar: rgba(255, 255, 255, 0.50);
+    --lines-sidebar: rgba(255, 255, 255, 0.10);
+    --active-color-sidebar: #FFFFFF;
+    --active-board-bg-sidebar: rgba(255, 255, 255, 0.50);
+    --active-line-sidebar: #FFFFFF;
+    --logo-color: #5255BC;
 }
 
 
 .homePage {
   display: flex;
-  /* flex-direction: column; */
   height: 100vh;
 }
 
@@ -65,6 +91,5 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* flex-grow: 1; */
 }
 
