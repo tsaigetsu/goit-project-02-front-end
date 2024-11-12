@@ -37,6 +37,7 @@
   --create-col-fill: #161616;
   --create-col-stroke: #fff;
   --card-line: rgba(22, 22, 22, 0.10);
+  --avatar-btn: #BEDBB0;
 }
 
 .theme-dark {
@@ -79,6 +80,7 @@
     --create-col-fill: #fff;
     --create-col-stroke: #121212;
     --card-line: rgba(255, 255, 255, 0.10);
+    --avatar-btn: #BEDBB0;
 }
 
 .theme-violet {
@@ -120,6 +122,7 @@
     --create-col-fill: #5255BC;
     --create-col-stroke: #fff;
     --card-line: rgba(22, 22, 22, 0.10);
+    --avatar-btn: #ECEDFD;
 }
 
 
