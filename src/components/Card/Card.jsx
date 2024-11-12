@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { deleteCard } from "../../redux/cards/operations.js";
 import EditCardPopup from "../EditCardPopup/EditCardPopup.jsx";
 
-const Card = React.memo(({ card}) => {
+const Card = React.memo(({ card }) => {
   const [isEdit, setIsEdit] = useState(false);
   const { _id, title, description, deadline, columnId, priority } = card;
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,25 +23,18 @@ const Card = React.memo(({ card}) => {
     (item) => item.priority === priority
   );
 
-   const onDelete = useCallback(() => {
+  const onDelete = useCallback(() => {
     if (columnId && _id) {
       dispatch(deleteCard(_id));
       closeModal();
     }
   }, [columnId, _id, dispatch]);
 
-  
-// import InProgressModal from "../InProgressModal/InProgressModal.jsx";
-
-const Card = React.memo(({ id, title, description, deadline, columnId, priority }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useDispatch();
-  // console.log("card id", id);
+  // import InProgressModal from "../InProgressModal/InProgressModal.jsx";
 
   const closeModal = useCallback(() => {
     setIsModalOpen(false);
   }, []);
-
 
   const openModal = useCallback(() => {
     setIsModalOpen(true);
