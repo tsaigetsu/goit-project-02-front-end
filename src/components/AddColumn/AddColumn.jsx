@@ -46,7 +46,12 @@ const AddColumn = ({ onCreateColumn, setIsOpen }) => {
         <div className={css.container}>
           <p className={css.title}>Add column</p>
           <button className={css.btnClose} onClick={closeModal}>
-            <SvgIcon id="icon-x-close" width="18" height="18" />
+            <SvgIcon
+              id="icon-x-close"
+              className={css.svgCloseBtn}
+              width="18"
+              height="18"
+            />
           </button>
           <input
             type="text"

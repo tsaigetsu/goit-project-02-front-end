@@ -17,12 +17,26 @@
   --hamburger-btn-color: #161616;
   --plus-fill: #161616;
   --plus-stroke: #FFF;
-  --unactive-color-sidebar: rgba(22, 22, 22, 0.50);;
+  --inactive-color-sidebar: rgba(22, 22, 22, 0.50);
   --lines-sidebar: rgba(22, 22, 22, 0.10);
   --active-color-sidebar: #161616;
   --active-board-bg-sidebar: #F6F6F7;
   --active-line-sidebar: #BEDBB0;
   --logo-color: #FFFFFF;
+  --default-text-color: rgba(22, 22, 22, 0.70);
+  --background-topbar-colorV:rgba(22, 22, 22, 0.30);
+  --priority-color-low: #8FA1D0;
+  --priority-color-mid:#E09CB5;
+  --priority-color-high: #BEDBB0;
+  --filters-modal-bg: #FCFCFC;
+  --create-col-btn:#FFF;
+  --create-col-btn-hover: #9DC888;
+  --svg-btns-color: rgba(22, 22, 22, 0.5);
+  --modal-text-color: #161616;
+  --input-bg-color: transparent;
+  --create-col-fill: #161616;
+  --create-col-stroke: #fff;
+  --card-line: rgba(22, 22, 22, 0.10);
 }
 
 .theme-dark {
@@ -45,12 +59,26 @@
     --hamburger-btn-color: #FFFFFF;
     --plus-fill: #161616;
     --plus-stroke: #FFF;
-    --unactive-color-sidebar: rgba(255, 255, 255, 0.50);
+    --inactive-color-sidebar: rgba(255, 255, 255, 0.50);
     --lines-sidebar: rgba(255, 255, 255, 0.10);
     --active-color-sidebar: #FFFFFF;
     --active-board-bg-sidebar: #1F1F1F;
     --active-line-sidebar: #BEDBB0;
     --logo-color: #FFFFFF;
+    --default-text-color: rgba(255, 255, 255, 0.50);
+    --background-topbar-colorV:rgba(22, 22, 22, 0.30);
+    --priority-color-low: #8FA1D0;
+    --priority-color-mid:#E09CB5;
+    --priority-color-high: #BEDBB0;
+    --filters-modal-bg: #151515;
+    --create-col-btn:#121212;
+    /* --create-col-btn-hover: #9DC888; пока непонятно */
+    --svg-btns-color: rgba(255, 255, 255, 0.5);
+    --modal-text-color: #fff;
+    --input-bg-color: #1F1F1F;
+    --create-col-fill: #fff;
+    --create-col-stroke: #121212;
+    --card-line: rgba(255, 255, 255, 0.10);
 }
 
 .theme-violet {
@@ -59,7 +87,7 @@
     --text-hover-color: #5255BC;
     --input-text-color: #161616;
     --background-color: #D6D8FF;
-    --background-help: #B8BCFD;
+    --background-help: rgba(236, 237, 253, 0.40);
     --background-sidebar: #5255BC;
     --btn-color: #5255BC;
     --btn--hover-color: #7B7EDE;
@@ -73,12 +101,25 @@
     --hamburger-btn-color: #161616;
     --plus-fill: #FFF;
     --plus-stroke: #161616;
-    --unactive-color-sidebar: rgba(255, 255, 255, 0.50);
+    --inactive-color-sidebar: rgba(255, 255, 255, 0.50);
     --lines-sidebar: rgba(255, 255, 255, 0.10);
     --active-color-sidebar: #FFFFFF;
     --active-board-bg-sidebar: rgba(255, 255, 255, 0.50);
     --active-line-sidebar: #FFFFFF;
     --logo-color: #5255BC;
+    --default-text-color: rgba(22, 22, 22, 0.70);
+    --background-topbar-colorV:rgba(22, 22, 22, 0.30);
+    --priority-color-low: #8FA1D0;
+    --priority-color-mid:#E09CB5;
+    --priority-color-high: #BEDBB0;
+    --filters-modal-bg: #FCFCFC;
+    --create-col-btn:#FFF;
+    --svg-btns-color: rgba(22, 22, 22, 0.5);
+    --modal-text-color: #161616;
+    --input-bg-color: transparent;
+    --create-col-fill: #5255BC;
+    --create-col-stroke: #fff;
+    --card-line: rgba(22, 22, 22, 0.10);
 }
 
 

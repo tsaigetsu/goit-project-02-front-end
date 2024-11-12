@@ -50,11 +50,17 @@ const Card = React.memo(({ id, title, description, deadline, columnId, priority 
             </div>
             <div className={s.boxIcons}>
               <button className={s.btnIcon}>
-                <SvgIcon id="icon-bell-01" width="16" height="16" />
+                <SvgIcon
+                  id="icon-bell-01"
+                  className={s.svgIcon}
+                  width="16"
+                  height="16"
+                />
               </button>
               <button className={s.btnIcon}>
                 <SvgIcon
                   id="icon-arrow-circle-broken-right"
+                  className={s.svgIcon}
                   width="16"
                   height="16"
                 />
@@ -63,10 +69,20 @@ const Card = React.memo(({ id, title, description, deadline, columnId, priority 
                 className={s.btnIcon}
                 // {onClick={onEdit}}
               >
-                <SvgIcon id="icon-pencil-01" width="16" height="16" />
+                <SvgIcon
+                  id="icon-pencil-01"
+                  className={s.svgIcon}
+                  width="16"
+                  height="16"
+                />
               </button>
               <button className={s.btnIcon} onClick={openModal}>
-                <SvgIcon id="icon-trash-04" width="16" height="16" />
+                <SvgIcon
+                  id="icon-trash-04"
+                  className={s.svgIcon}
+                  width="16"
+                  height="16"
+                />
               </button>
             </div>
           </div>

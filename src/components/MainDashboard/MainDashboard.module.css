@@ -2,8 +2,8 @@
   height: 100vh;
   display: flex;
   width: 100%;
-  background-color: var(--background-color);
+  background-color: var(--background-help);
   background-size: cover;
   background-position: center;
-  height: calc(100vh - 130px);
+  height: calc(100vh - 120px);
 }
