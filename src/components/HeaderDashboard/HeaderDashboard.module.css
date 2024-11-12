@@ -5,7 +5,7 @@
   align-items: center;
   width: 100%;
   padding: 10px 24px;
-  background-color: #1f1f1f;
+  background-color: transparent;
   height: 74px;
 }
 
@@ -14,7 +14,7 @@
   font-weight: 500;
   font-size: 18px;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--text-color);
 }
 .container {
   display: flex;
@@ -24,20 +24,19 @@
 }
 
 .btnFilters {
-  stroke: white;
+  stroke: var(--default-text-color);
+  fill: none;
   display: flex;
   gap: 8px;
   justify-content: center;
-  align-content: center;
-  font-family: "Poppins", sans-serif;
+  align-items: center;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--default-text-color);
   width: 64px;
   height: 20px;
   background-color: transparent;
-  padding: 4px;
   border: none;
   margin: 0;
 }

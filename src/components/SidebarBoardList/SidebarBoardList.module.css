@@ -1,5 +1,5 @@
 .myBoardsText {
-    color: rgba(22, 22, 22, 0.50);
+    color: var(--inactive-color-sidebar);
     font-family: Poppins, sans-serif;
     font-size: 12px;
     font-style: normal;
@@ -13,14 +13,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(22, 22, 22, 0.10);
-    border-bottom: 1px solid rgba(22, 22, 22, 0.10);
+    border-top: 1px solid var(--lines-sidebar);
+    border-bottom: 1px solid var(--lines-sidebar);
     margin: 0 14px 8px;
 }
 
 .createBoardText {
     width: 76px;
-    color: #161616;
+    color: var(--active-color-sidebar);
     font-family: Poppins, sans-serif;
     font-size: 14px;
     font-style: normal;
@@ -33,18 +33,18 @@
     height: 36px;
     border: none;
     border-radius: 6px;
-    background-color: #BEDBB0;
+    background-color: var(--newBoard-btn);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .createBoardBtn:hover {
-  background-color: #9dc888;
+  background-color: var(--newBoard-btn-hover);
 }
 
 .createIcon {
-    stroke: #121212;
+    stroke: var(--plus-fill);
     fill: none;
 }
 
@@ -61,7 +61,7 @@
   
   @media (min-width: 1440px) {
     .ul {
-      max-height: calc(61px*6); 
+      max-height: calc(61px*4); 
     }
   }
 

@@ -7,12 +7,11 @@
     padding-left: 14px;
 }
 .projectIcon {
-    stroke: rgba(22, 22, 22, 0.5);
+    stroke: var(--inactive-color-sidebar);
     fill: none;
 }
 .p {
-    color: rgba(22, 22, 22, 0.50);
-    /* font-family: Poppins; */
+    color: var(--inactive-color-sidebar);
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -35,7 +34,7 @@
     display: none;
 }
 .isActiveProject {
-    background-color: #F6F6F7;
+    background-color: var(--active-board-bg-sidebar);
     .btn {
         display: block;
         border: none;
@@ -44,19 +43,19 @@
         height: 16px;
     }
     .projectIcon {
-        stroke: #161616;
+        stroke: var(--active-color-sidebar);
         fill: none;
     }
     .p {
-        color: #161616;
+        color: var(--active-color-sidebar);
     }
     .boardIcon {
-        stroke: rgba(22, 22, 22, 0.5);
+        stroke: var(--inactive-color-sidebar);
         fill: none;
     }
     .activeLine {
         display: block;
-        background-color: #BEDBB0;
+        background-color: var(--active-line-sidebar);
         width: 4px;
         height: 61px;
         border-radius: 8px 0 0 8px;

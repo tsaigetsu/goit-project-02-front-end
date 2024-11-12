@@ -162,7 +162,7 @@ const EditBoardForm = ({
                 className={s.radioIcon}
               />
             </label>
-            {backgrounds.map((bg) => (
+            {/* {backgrounds.map((bg) => (
               <label
                 key={bg.id}
                 className={`${s.backgroundButton} ${
@@ -176,6 +176,23 @@ const EditBoardForm = ({
                   {...register("background")}
                   checked={selectedBackground === bg.id}
                   onChange={() => setValue("background", bg.id)}
+                />
+              </label>
+            ))} */}
+            {Object.keys(backgrounds.desktop).map((bgId) => (
+              <label
+                key={bgId}
+                className={`${s.backgroundButton} ${selectedBackground === bgId ? s.selected : ""}`}
+                style={{
+                  backgroundImage: `url(${backgrounds.desktop[bgId].normal})`
+                }}
+              >
+                <input
+                  type="radio"
+                  value={bgId}
+                  {...register("background")}
+                  checked={selectedBackground === bgId}
+                  onChange={() => setValue("background", bgId)}
                 />
               </label>
             ))}

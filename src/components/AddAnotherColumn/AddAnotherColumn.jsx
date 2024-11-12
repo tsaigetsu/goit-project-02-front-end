@@ -15,7 +15,12 @@ const AddAnotherColumn = ({ setIsOpen }) => {
           onClick={handleOpenModalAddColumn}
         >
           <div className={css.svg}>
-            <SvgIcon id="icon-plus" width="14" height="14" />
+            <SvgIcon
+              id="icon-plus"
+              className={css.svgIcon}
+              width="14"
+              height="14"
+            />
           </div>
           Add another column
         </button>

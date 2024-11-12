@@ -14,7 +14,8 @@ import {
 } from "../../redux/boards/operations.js";
 import icons from "../../data/icons.json";
 import EditBoardForm from "../EditBoardForm/EditBoardForm.jsx";
-// import { onGetColumn } from "../../redux/columns/operations.js";
+
+import toast from "react-hot-toast";
 
 const SidebarBoardList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,14 +40,17 @@ const SidebarBoardList = () => {
   };
 
   const handleSelectBoard = async (boardId) => {
-    setActiveBoardId(boardId);
     try {
-      await dispatch(getBoardByIdThunk(boardId)).unwrap();
-      // await dispatch(onGetColumn(board.columns)).unwrap();
+      const board = await dispatch(getBoardByIdThunk(boardId)).unwrap();
 
-      // selectedBoard(board);
-    } catch (err) {
-      err.message;
+      setSelectedBoardData(board);
+      setActiveBoardId(boardId);
+    } catch (error) {
+      toast.error(error.message, {
+        duration: 5000,
+        position: "bottom-center",
+        icon: "❌",
+      });
     }
   };
 
@@ -55,31 +59,20 @@ const SidebarBoardList = () => {
     return icon ? icon.iconName : "icon-default";
   };
 
-  // const handleEdit = async (boardId) => {
-  //   const data = await dispatch(getBoardByIdThunk(boardId).unwrap());
-  //   setSelectedBoardData(data.payload);
-  //   setIsEditModalOpen(true);
-  // };
   const handleEdit = async (boardId) => {
     try {
       const boardData = await dispatch(getBoardByIdThunk(boardId)).unwrap();
-      console.log("Fetched Board Data:", boardData);
       setSelectedBoardData(boardData);
       setIsEditModalOpen(true);
-    } catch (err) {
-      console.error("Error fetching board data:", err.message);
+    } catch (error) {
+      toast.error(error.message, {
+        duration: 5000,
+        position: "bottom-center",
+        icon: "❌",
+      });
     }
   };
 
-  // const handleSaveChanges = (updatedBoard) => {
-  //   dispatch(
-  //     updateBoardThunk({
-  //       boardId: selectedBoardData._id,
-  //       ...updatedBoard,
-  //     })
-  //   );
-  //   setIsEditModalOpen(false);
-  // };
   const handleSaveChanges = async (updatedBoard) => {
     try {
       await dispatch(
@@ -89,13 +82,33 @@ const SidebarBoardList = () => {
         })
       );
       setIsEditModalOpen(false);
-    } catch (err) {
-      console.error("Error updating board:", err.message);
+      setSelectedBoardData(null);
+    } catch (error) {
+      toast.error(error.message, {
+        duration: 5000,
+        position: "bottom-center",
+        icon: "❌",
+      });
     }
   };
 
-  const handleDelete = (boardId) => {
-    dispatch(deleteBoardThunk(boardId));
+  const handleDelete = async (boardId) => {
+    console.log("boardId", boardId);
+    try {
+      await dispatch(deleteBoardThunk(boardId));
+
+      dispatch(fetchBoardsThunk());
+
+      if (boardId === activeBoardId) {
+        setActiveBoardId(null);
+      }
+    } catch (error) {
+      toast.error(error.message, {
+        duration: 5000,
+        position: "bottom-center",
+        icon: "❌",
+      });
+    }
   };
 
   return (

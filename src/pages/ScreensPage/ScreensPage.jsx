@@ -1,11 +1,17 @@
+import React, { useState, useMemo, useCallback } from "react";
 import css from "./ScreensPage.module.css";
 import { selectBoards, selectedBoard } from "../../redux/boards/selectors.js";
-import { useState } from "react";
 import HeaderDashboard from "../../components/HeaderDashboard/HeaderDashboard.jsx";
 import MainDashboard from "../../components/MainDashboard/MainDashboard.jsx";
 import DefaultText from "../../components/DefaultText/DefaultText.jsx";
 import NewBoardForm from "../../components/NewBoardForm/NewBoardForm.jsx";
 import { useSelector } from "react-redux";
+import backgrounds from "../../data/backgrounds.json";
+
+// Мемоизируем компоненты для предотвращения лишних ререндеров
+const MemoizedHeaderDashboard = React.memo(HeaderDashboard);
+const MemoizedMainDashboard = React.memo(MainDashboard);
+const MemoizedDefaultText = React.memo(DefaultText);
 
 const ScreensPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,27 +19,76 @@ const ScreensPage = () => {
   const board = useSelector(selectedBoard);
   console.log("board!!!!!", board);
 
-  const onOpen = () => {
-    setIsOpen(true);
-  };
+  // Мемоизация для backgroundUrl
+  // const backgroundUrl = useMemo(() => {
+  //   return board?.backgroundId && board.backgroundId !== "nobg"
+  //     ? backgrounds.desktop[board.backgroundId]?.normal
+  //     : null;
+  // }, [board]);
+  const backgroundStyles = useMemo(() => {
+    if (!board?.backgroundId || board.backgroundId === "nobg") {
+      return {
+        "--background-mobile-normal": "none",
+        "--background-mobile-large": "none",
+        "--background-tablet-normal": "none",
+        "--background-tablet-large": "none",
+        "--background-desktop-normal": "none",
+        "--background-desktop-large": "none",
+      };
+    }
 
-  const onClose = () => {
+    const bg = backgrounds;
+    const backgroundId = board.backgroundId;
+
+    return {
+      "--background-mobile-normal": `url(${
+        bg.mobile[backgroundId]?.normal || ""
+      })`,
+      "--background-mobile-large": `url(${
+        bg.mobile[backgroundId]?.large || ""
+      })`,
+      "--background-tablet-normal": `url(${
+        bg.tablet[backgroundId]?.normal || ""
+      })`,
+      "--background-tablet-large": `url(${
+        bg.tablet[backgroundId]?.large || ""
+      })`,
+      "--background-desktop-normal": `url(${
+        bg.desktop[backgroundId]?.normal || ""
+      })`,
+      "--background-desktop-large": `url(${
+        bg.desktop[backgroundId]?.large || ""
+      })`,
+    };
+  }, [board]);
+
+  // Мемоизация функций с использованием useCallback
+  const onOpen = useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
+  const onClose = useCallback(() => {
     setIsOpen(false);
-  };
+  }, []);
+
+  const handleSaveBoard = useCallback(() => {
+    // console.log("New board saved:", newBoard);
+    setIsOpen(false);
+  }, []);
+
   return (
     <>
-      <section className={css.wrapperScreenPage}>
+      <section className={css.wrapperScreenPage} style={backgroundStyles}>
         {boards.length === 0 || board === null || board === undefined ? (
-          <DefaultText />
+          <MemoizedDefaultText onOpen={onOpen} />
         ) : (
           <div className={css.screensPage__content}>
-            <HeaderDashboard
+            <MemoizedHeaderDashboard
               title={board.title}
               // onFilterChange={setFilter}
-              // Передаємо функцію оновлення фільтра
               className={css.headerDashboard}
             />
-            <MainDashboard
+            <MemoizedMainDashboard
               // filter={filter}
               className={css.mainDashboard}
               boardId={board._id}
@@ -42,10 +97,14 @@ const ScreensPage = () => {
         )}
       </section>
       {isOpen && (
-        <NewBoardForm isOpen={isOpen} onClose={onClose} onSave={onOpen} />
+        <NewBoardForm
+          isOpen={isOpen}
+          onClose={onClose}
+          onSave={handleSaveBoard}
+        />
       )}
     </>
   );
 };
 
-export default ScreensPage;
+export default React.memo(ScreensPage);

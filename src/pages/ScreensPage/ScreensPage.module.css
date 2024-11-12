@@ -1,15 +1,60 @@
 .wrapperScreenPage {
+  min-height: 100vh;
   box-sizing: border-box;
   width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--background-help);
 }
+
+/* Mobile - normal resolution */
+@media (max-width: 767px) and (min-resolution: 1dppx) {
+  .wrapperScreenPage {
+    background-image: var(--background-mobile-normal);
+  }
+}
+
+/* Mobile - high resolution */
+@media (max-width: 767px) and (min-resolution: 2dppx) {
+  .wrapperScreenPage {
+    background-image: var(--background-mobile-large);
+  }
+}
+
+/* Tablet - normal resolution */
+@media (min-width: 768px) and (max-width: 1439px) and (min-resolution: 1dppx) {
+  .wrapperScreenPage {
+    background-image: var(--background-tablet-normal);
+  }
+}
+
+/* Tablet - high resolution */
+@media (min-width: 768px) and (max-width: 1439px) and (min-resolution: 2dppx) {
+  .wrapperScreenPage {
+    background-image: var(--background-tablet-large);
+  }
+}
+
+/* Desktop - normal resolution */
+@media (min-width: 1440px) and (min-resolution: 1dppx) {
+  .wrapperScreenPage {
+    background-image: var(--background-desktop-normal);
+  }
+}
+
+/* Desktop - high resolution */
+@media (min-width: 1440px) and (min-resolution: 2dppx) {
+  .wrapperScreenPage {
+    background-image: var(--background-desktop-large);
+  }
+}
+
 .screensPage__content {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
-}
-.headerDashboard {
-}
-.mainDashboard {
+  background-color: transparent;
+  flex-grow: 1;
 }
 
 /* Mobile */

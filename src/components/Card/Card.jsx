@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { ModalDelete } from "../ModalDelete/ModalDelete.jsx";
 import SvgIcon from "../SvgIcon/SvgIcon.jsx";
 import s from "./Card.module.css";
@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { deleteCard } from "../../redux/cards/operations.js";
 import EditCardPopup from "../EditCardPopup/EditCardPopup.jsx";
 
-const Card = ({ card }) => {
+const Card = React.memo(({ card}) => {
   const [isEdit, setIsEdit] = useState(false);
   const { _id, title, description, deadline, columnId, priority } = card;
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,20 +23,31 @@ const Card = ({ card }) => {
     (item) => item.priority === priority
   );
 
-  const onDelete = () => {
+   const onDelete = useCallback(() => {
     if (columnId && _id) {
       dispatch(deleteCard(_id));
       closeModal();
     }
-  };
+  }, [columnId, _id, dispatch]);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  
+// import InProgressModal from "../InProgressModal/InProgressModal.jsx";
 
-  const closeModal = () => {
+const Card = React.memo(({ id, title, description, deadline, columnId, priority }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  // console.log("card id", id);
+
+  const closeModal = useCallback(() => {
     setIsModalOpen(false);
-  };
+  }, []);
+
+
+  const openModal = useCallback(() => {
+    setIsModalOpen(true);
+  }, []);
+
+  // console.log("Rendering card:", id);
 
   return (
     <>
@@ -74,11 +85,17 @@ const Card = ({ card }) => {
             </div>
             <div className={s.boxIcons}>
               <button className={s.btnIcon}>
-                <SvgIcon id="icon-bell-01" width="16" height="16" />
+                <SvgIcon
+                  id="icon-bell-01"
+                  className={s.svgIcon}
+                  width="16"
+                  height="16"
+                />
               </button>
               <button className={s.btnIcon}>
                 <SvgIcon
                   id="icon-arrow-circle-broken-right"
+                  className={s.svgIcon}
                   width="16"
                   height="16"
                 />
@@ -87,7 +104,12 @@ const Card = ({ card }) => {
                 <SvgIcon id="icon-pencil-01" width="16" height="16" />
               </button>
               <button className={s.btnIcon} onClick={openModal}>
-                <SvgIcon id="icon-trash-04" width="16" height="16" />
+                <SvgIcon
+                  id="icon-trash-04"
+                  className={s.svgIcon}
+                  width="16"
+                  height="16"
+                />
               </button>
             </div>
           </div>
@@ -104,6 +126,9 @@ const Card = ({ card }) => {
       />
     </>
   );
-};
+});
+
+// Устанавливаем displayName для компонента
+Card.displayName = "Card";
 
 export default Card;

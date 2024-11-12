@@ -12,7 +12,12 @@ const AddAnotherCard = () => {
     <>
       <div className={css.section}>
         <button className={css.btnAdd} type="submit" onClick={handleAddCard}>
-          <SvgIcon id="icon-normalBtnBlack" width="28" height="28" />
+          <SvgIcon
+            id="icon-normalBtnBlack"
+            className={css.svgIcon}
+            width="28"
+            height="28"
+          />
           Add another card
         </button>
         {isCardVisible && <AddCardPopup setIsCardVisible={setIsCardVisible} />}

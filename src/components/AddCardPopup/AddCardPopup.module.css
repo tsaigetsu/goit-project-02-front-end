@@ -7,17 +7,15 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  /* background: var(--popup-bg-color); */
-  /* background-color: rgba(21, 21, 21, 0.5); */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  background-color: rgba(21, 21, 21, 0.50);
 }
 
 @media screen and (min-width: 320px) {
   .popup {
-    stroke: white;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -25,21 +23,17 @@
     bottom: auto;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    /* position: relative; */
     min-width: 335px;
-    /* background: var(--popup-bg-color);
-    color: var(--popup-text-color); */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Poppins", sans-serif;
     flex-direction: column;
     font-weight: 400;
     font-size: 14px;
     line-height: 150%;
     letter-spacing: -0.02em;
     border-radius: 8px;
-    background: #151515;
+    background-color: var(--filters-modal-bg);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Тінь*/
   }
 }
@@ -67,30 +61,30 @@
   }
 }
 
-@media screen and (min-width: 768px) and (min-width: 1440px) {
+/* @media screen and (min-width: 768px) and (min-width: 1440px) {
   .popupContent {
-    /* max-width: 302px; */
+    max-width: 302px;
   }
-}
+} */
 
 /* Заголовок попапу */
-.TitleCard {
+.titleCard {
   font-size: 18px;
   font-weight: 500;
   letter-spacing: -0.02em;
   padding-bottom: 24px;
+  color: var(--modal-text-color);
 }
 /* закриття */
 .closeButton {
   position: absolute;
   top: 14px;
   right: 14px;
-  stroke: white;
+  stroke: var(--modal-text-color);
   background-color: transparent;
   border: none;
   cursor: pointer;
   fill: none;
-  stroke: white;
 
   /* &&:hover {
       transition: transform 0.3s;
@@ -111,44 +105,26 @@
 /* Поле введення для заголовка */
 .inputTitle,
 .textareaDesk {
-  background-color: transparent;
-  /* color: #161616; */
-  color: white;
-  border-color: var(--priority-color-high);
-  opacity: 0.7;
+  background-color: var(--input-bg-color);
+  color: var(--modal-text-color);
+  border: 1px solid var(--btn-color);
   /* max-width: 287px; */
   width: 100%;
   height: auto;
   padding: 12px;
   border-radius: 8px;
-  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.02em;
-  margin-bottom: 14px;
   transition: background-color 0.3s ease, transform 0.2s ease;
-
-  /*  при фокусі */
-  &&:focus {
-    opacity: 1;
-    outline: #9dc888;
-  }
+  resize: none;
+  outline: none;
+}
+.textareaDesk {
+  height: 154px ;
 }
 
-@media screen and (min-width: 768px) {
-  .inputTitle,
-  .textareaDesk {
-    /* max-width: 302px; */
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .inputTitle,
-  .textareaDesk {
-    /* max-width: 302px; */
-  }
-}
 
 /* Секція вибору кольору */
 .labelColor {
@@ -194,7 +170,7 @@ input[type="radio"] {
 }
 
 .dateDisplayCalendar {
-  color: #bedbb0;
+  color: var(--btn-color);
   font-weight: 500;
   font-size: 14px;
   display: flex;
@@ -203,7 +179,7 @@ input[type="radio"] {
 
 .iconChevronDown {
   fill: none;
-  stroke: #bedbb0;
+  stroke: var(--btn-color);
 }
 
 .violet-theme .iconChevronDown {
@@ -214,19 +190,18 @@ input[type="radio"] {
 /* Кнопка додавання картки */
 .addButton {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 8px;
-  width: 100%;
-  padding: 10px;
-  /* height: 49px; */
-  background-color: var(--background-button-colorB);
-  border-radius: 8px;
-  border: none;
-  font-size: 14px;
+  padding: 10px 0;
   font-weight: 500;
-  color: var(--popup-text-color);
-  color: #161616;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--plus-fill);
+  width: 100%;
+  border-radius: 8px;
+  background-color: var(--btn-color);
+  border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
   outline: none;
@@ -234,8 +209,7 @@ input[type="radio"] {
 
 .addButton:hover,
 .addButton:focus {
-  opacity: 1;
-  background-color: #9dc888;
+  background-color: var(--btn--hover-color);
 }
 
 .iconNormalBtnBlack {
@@ -269,7 +243,7 @@ input[type="radio"] {
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--svg-btns-color);
 }
 .labelColor {
   letter-spacing: -0.02em;
@@ -282,9 +256,6 @@ input[type="radio"] {
   justify-content: flex-start;
   gap: 12px;
 }
-.deadlineWrapper {
-}
-
 .CalendarPicker {
   display: flex;
   flex-direction: row;

@@ -4,7 +4,14 @@ import s from "./LogoComponent.module.css";
 const LogoComponent = () => {
   return (
     <h1 className={s.header}>
-      <SvgIcon id="icon-icon" className="logoIcon" width="32" height="32" />
+      <div className={s.logoContainer}>
+        <SvgIcon
+          id="icon-lightning"
+          className={s.logoIcon}
+          width="20"
+          height="20"
+        />{" "}
+      </div>
       <p className={s.logoText}>Task Pro</p>
     </h1>
   );

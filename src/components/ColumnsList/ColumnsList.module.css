@@ -16,8 +16,7 @@
   white-space: nowrap;
   user-select: none;
   position: relative;
-  padding: 0 20px 24px;
-
+  padding: 0 0 24px;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 32px;
@@ -75,7 +74,10 @@
 @media only screen and (min-width: 1440px) {
   .wrapperList {
     padding: 0 0 24px 24px;
-    max-width: 1440px;
+  }
+
+  .columnsList {
+    max-width: calc(100vw - 260px - 40px);
   }
 }
 

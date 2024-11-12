@@ -32,26 +32,36 @@ const Column = ({ title, columnId, boardId }) => {
   return (
     <>
       <li className={css.itemList}>
-        <div className={css.section}>
-          <div className={css.wrapper}>
-            <div className={css.container}>
-              <p>{title || "Untitled Column"}</p>
-              <div className={css.boxIcon}>
-                <button
-                  className={css.btnIcon}
-                  // onChange={onEdit}
-                  onClick={() => setIsEdit(true)}
-                >
-                  <SvgIcon id="icon-pencil-01" width="16" height="16" />
-                </button>
-                <button className={css.btnIcon} onClick={openModal}>
-                  <SvgIcon id="icon-trash-04" width="16" height="16" />
-                </button>
-              </div>
+        {/* <div className={css.section}> */}
+        <div className={css.wrapper}>
+          <div className={css.container}>
+            <p className={css.columnName}>{title || "Untitled Column"}</p>
+            <div className={css.boxIcon}>
+              <button
+                className={css.btnIcon}
+                // onChange={onEdit}
+                onClick={() => setIsEdit(true)}
+              >
+                <SvgIcon
+                  id="icon-pencil-01"
+                  className={css.svgBtn}
+                  width="16"
+                  height="16"
+                />
+              </button>
+              <button className={css.btnIcon} onClick={openModal}>
+                <SvgIcon
+                  id="icon-trash-04"
+                  className={css.svgBtn}
+                  width="16"
+                  height="16"
+                />
+              </button>
             </div>
-            <CardManager columnId={columnId} />
           </div>
+          <CardManager columnId={columnId} />
         </div>
+        {/* </div> */}
 
         {isEdit && (
           <EditColumn
