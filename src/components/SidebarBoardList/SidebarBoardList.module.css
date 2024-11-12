@@ -61,7 +61,7 @@
   
   @media (min-width: 1440px) {
     .ul {
-      max-height: calc(61px*6); 
+      max-height: calc(61px*4); 
     }
   }
 
