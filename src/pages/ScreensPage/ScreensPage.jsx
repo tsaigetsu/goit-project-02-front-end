@@ -17,14 +17,9 @@ const ScreensPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const boards = useSelector(selectBoards);
   const board = useSelector(selectedBoard);
-  console.log("board", board);
+  // console.log("board", board);
 
   // Мемоизация для backgroundUrl
-  // const backgroundUrl = useMemo(() => {
-  //   return board?.backgroundId && board.backgroundId !== "nobg"
-  //     ? backgrounds.desktop[board.backgroundId]?.normal
-  //     : null;
-  // }, [board]);
   const backgroundStyles = useMemo(() => {
     if (!board?.backgroundId || board.backgroundId === "nobg") {
       return {
