@@ -5,7 +5,7 @@ import { api } from "../../api.js";
 export const onCreateColumn = createAsyncThunk(
   "addColumn",
   async (newColumn, thunkAPI) => {
-    console.log("Attempting to add column:", { newColumn });
+    console.log("Attempting to add column:", newColumn);
     try {
       const response = await api.post("columns", newColumn);
 
@@ -31,7 +31,7 @@ export const onCreateColumn = createAsyncThunk(
 
 export const onDeleteColumn = createAsyncThunk(
   "deleteColumn",
-  async ({ columnId }, thunkAPI) => {
+  async (columnId, thunkAPI) => {
     try {
       await api.delete(`columns/${columnId}`);
       toast.success("Column deleted!", {
@@ -39,7 +39,7 @@ export const onDeleteColumn = createAsyncThunk(
         position: "bottom-center",
         icon: "✔️",
       });
-      return { columnId };
+      return columnId;
     } catch (error) {
       toast.error("Failed to delete column: " + error.message, {
         duration: 5000,
@@ -79,21 +79,7 @@ export const onEditColumn = createAsyncThunk(
   }
 );
 
-export const onGetColumn = createAsyncThunk(
-  "getColumn",
-  async (columns, thunkAPI) => {
-    try {
-      return columns;
-    } catch (error) {
-      toast.error("Failed to create column: " + error.message, {
-        duration: 5000,
-        position: "top-center",
-        icon: "❌",
-      });
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+
 
 export const filterCardsByPriority = createAsyncThunk(
   "columns/filterCardsByPriority",

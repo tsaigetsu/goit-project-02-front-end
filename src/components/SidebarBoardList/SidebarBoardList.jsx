@@ -4,7 +4,7 @@ import NewBoardForm from "../NewBoardForm/NewBoardForm";
 import SidebarBoardItem from "../SidebarBoardItem/SidebarBoardItem";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import s from "./SidebarBoardList.module.css";
-import { selectBoards, selectedBoard } from "../../redux/boards/selectors.js";
+import { selectBoards } from "../../redux/boards/selectors.js";
 import {
   addBoardsThunk,
   deleteBoardThunk,
@@ -14,7 +14,7 @@ import {
 } from "../../redux/boards/operations.js";
 import icons from "../../data/icons.json";
 import EditBoardForm from "../EditBoardForm/EditBoardForm.jsx";
-import { onGetColumn } from "../../redux/columns/operations.js";
+// import { onGetColumn } from "../../redux/columns/operations.js";
 
 const SidebarBoardList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,17 +34,17 @@ const SidebarBoardList = () => {
   };
 
   const handleSaveBoard = async (newBoard) => {
-    await dispatch(addBoardsThunk(newBoard));
+    dispatch(addBoardsThunk(newBoard));
     setIsModalOpen(false);
   };
 
   const handleSelectBoard = async (boardId) => {
     setActiveBoardId(boardId);
     try {
-      const board = await dispatch(getBoardByIdThunk(boardId)).unwrap();
-      await dispatch(onGetColumn(board.columns)).unwrap();
+      await dispatch(getBoardByIdThunk(boardId)).unwrap();
+      // await dispatch(onGetColumn(board.columns)).unwrap();
 
-      selectedBoard(board);
+      // selectedBoard(board);
     } catch (err) {
       err.message;
     }
@@ -62,14 +62,14 @@ const SidebarBoardList = () => {
   // };
   const handleEdit = async (boardId) => {
     try {
-        const boardData = await dispatch(getBoardByIdThunk(boardId)).unwrap();
-        console.log("Fetched Board Data:", boardData);
-        setSelectedBoardData(boardData);
-        setIsEditModalOpen(true);
+      const boardData = await dispatch(getBoardByIdThunk(boardId)).unwrap();
+      console.log("Fetched Board Data:", boardData);
+      setSelectedBoardData(boardData);
+      setIsEditModalOpen(true);
     } catch (err) {
-        console.error("Error fetching board data:", err.message);
+      console.error("Error fetching board data:", err.message);
     }
-};
+  };
 
   // const handleSaveChanges = (updatedBoard) => {
   //   dispatch(
@@ -82,20 +82,22 @@ const SidebarBoardList = () => {
   // };
   const handleSaveChanges = async (updatedBoard) => {
     try {
-        await dispatch(updateBoardThunk({
-            boardId: selectedBoardData._id,
-            ...updatedBoard,
-        }));
-        setIsEditModalOpen(false);
+      await dispatch(
+        updateBoardThunk({
+          boardId: selectedBoardData._id,
+          ...updatedBoard,
+        })
+      );
+      setIsEditModalOpen(false);
     } catch (err) {
-        console.error("Error updating board:", err.message);
+      console.error("Error updating board:", err.message);
     }
   };
-  
+
   const handleDelete = (boardId) => {
     dispatch(deleteBoardThunk(boardId));
   };
-  
+
   return (
     <>
       <div className={s.myBoards}>

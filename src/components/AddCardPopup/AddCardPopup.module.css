@@ -277,8 +277,10 @@ input[type="radio"] {
 }
 .labelColors {
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
 }
 .deadlineWrapper {
 }
@@ -296,4 +298,28 @@ input[type="radio"] {
   letter-spacing: -0.02em;
   cursor: pointer;
   z-index: 1100;
+}
+
+.priority-selector {
+  display: flex;
+  gap: 10px; /* Расстояние между кружочками */
+}
+
+.priorityLabel {
+  width: 14px;
+  height: 14px;
+}
+
+.priorityCircle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: transform 0.2s, border 0.2s;
+  cursor: pointer;
+}
+
+.priorityCircle.selected {
+  transform: scale(0.9); /* Делает кружок меньше */
+  border-width: 2px; /* Толщина бордера */
 }

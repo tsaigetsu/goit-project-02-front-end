@@ -11,7 +11,7 @@ const ScreensPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const boards = useSelector(selectBoards);
   const board = useSelector(selectedBoard);
-  console.log("board", board);
+  console.log("board!!!!!", board);
 
   const onOpen = () => {
     setIsOpen(true);
@@ -23,7 +23,7 @@ const ScreensPage = () => {
   return (
     <>
       <section className={css.wrapperScreenPage}>
-        {boards.length === 0 || board === null ? (
+        {boards.length === 0 || board === null || board === undefined ? (
           <DefaultText />
         ) : (
           <div className={css.screensPage__content}>
@@ -36,6 +36,7 @@ const ScreensPage = () => {
             <MainDashboard
               // filter={filter}
               className={css.mainDashboard}
+              boardId={board._id}
             />
           </div>
         )}

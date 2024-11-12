@@ -4,15 +4,20 @@ import SvgIcon from "../SvgIcon/SvgIcon.jsx";
 import s from "./CardManager.module.css";
 import AddCardPopup from "../AddCardPopup/AddCardPopup.jsx";
 import { useSelector } from "react-redux";
-import { selectCardsInColumn } from "../../redux/columns/selectors.js";
+import { selectCardsFromColumn } from "../../redux/cards/selectors.js";
+// import { selectedBoard } from "../../redux/boards/slice.js";
 
 const CardManager = ({ columnId }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const cards = useSelector((state) => selectCardsInColumn(state, columnId));
+  // const board = useSelector(selectedBoard);
+  // const { tasks } = board;
+
+  const tasks = useSelector((state) => selectCardsFromColumn(state, columnId));
+  console.log("cards", tasks);
 
   return (
     <div className={s.cardManager}>
-      {cards.length > 0 && <CardList cards={cards} />}
+      {tasks.length > 0 && <CardList columnId={columnId} />}
 
       <button className={s.cardManagerButton} onClick={() => setIsOpen(true)}>
         <SvgIcon
