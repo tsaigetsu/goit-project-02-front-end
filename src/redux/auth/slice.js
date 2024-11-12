@@ -48,6 +48,8 @@ const slice = createSlice({
       .addCase(currentUserThunk.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        console.log("currentUserThunk", action.payload);
+
         state.user = action.payload;
       })
       .addCase(currentUserThunk.pending, (state) => {
