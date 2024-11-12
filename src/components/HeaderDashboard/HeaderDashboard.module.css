@@ -5,7 +5,7 @@
   align-items: center;
   width: 100%;
   padding: 10px 24px;
-  background-color: var(--background-help);
+  background-color: transparent;
   height: 74px;
 }
 

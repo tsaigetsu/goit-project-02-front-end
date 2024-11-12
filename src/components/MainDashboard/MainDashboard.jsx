@@ -1,12 +1,9 @@
 import css from "./MainDashboard.module.css";
 import ColumnsList from "../ColumnsList/ColumnsList.jsx";
 
-const MainDashboard = ({ filter, background }) => {
+const MainDashboard = ({ filter }) => {
   return (
-    <div
-      className={css.wrapperMainDashboard}
-      style={{ backgroundImage: background ? `url(${background})` : "none" }}
-    >
+    <div className={css.wrapperMainDashboard} >
       <ColumnsList filter={filter} />
     </div>
   );
