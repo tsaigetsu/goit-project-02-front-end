@@ -5,7 +5,8 @@ import ScreensPage from "../ScreensPage/ScreensPage";
 import Header from "../../components/Header/Header.jsx";
 import css from "./HomePage.module.css";
 import { SidebarContext } from "../../components/Layout/Layout.jsx";
-import Layout from "../../components/Layout/Layout.jsx"; 
+// import { useContext } from "react";
+import Layout from "../../components/Layout/Layout.jsx";
 import ThemeContext from "../../components/Layout/ThemeContext.jsx";
 
 const HomePage = () => {
@@ -20,7 +21,7 @@ const HomePage = () => {
   );
 
   const themeClass = useMemo(() => css[`theme-${theme}`], [theme]);
-  
+
   return (
     <Layout>
       <section className={`${css.homePage} ${themeClass}`}>

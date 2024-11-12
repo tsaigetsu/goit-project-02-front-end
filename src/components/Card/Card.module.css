@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   /* z-index: 1000; */
   border: none;
   padding: 14px 24px;
@@ -93,8 +93,6 @@
 }
 .ellipse {
   border-radius: 100%;
-  fill: #8fa1d0;
-  background-color: #8fa1d0;
   width: 12px;
   height: 12px;
 }

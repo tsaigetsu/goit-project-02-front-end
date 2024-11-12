@@ -1,22 +1,24 @@
 import s from "./CardList.module.css";
 import Card from "../Card/Card.jsx";
+import { useSelector } from "react-redux";
+import { selectCardsFromColumn } from "../../redux/cards/selectors.js";
+// import { useSelector } from "react-redux";
+// import { selectedBoard } from "../../redux/boards/selectors.js";
 
-const CardList = ({ cards }) => {
-  console.log("cards", cards);
+const CardList = ({ columnId }) => {
+  const tasks = useSelector((state) => selectCardsFromColumn(state, columnId));
+  console.log("cards", tasks);
+
   return (
     <>
       <div className={s.wrapperList}>
-        {cards.map((card) => {
+        {tasks.map((card) => {
           return (
             <Card
               key={card._id}
-              id={card._id}
-              title={card.title}
-              priority={card.priority}
-              description={card.description}
-              deadline={card.deadline}
+              card={card}
+
               // column={{ ...column, tasks: filteredTasks }}
-              columnId={card.columnId}
             />
           );
         })}
