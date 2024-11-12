@@ -72,7 +72,10 @@
 @media only screen and (min-width: 1440px) {
   .wrapperList {
     padding: 0 0 24px 24px;
-    max-width: 1440px;
+  }
+
+  .columnsList {
+    max-width: calc(100vw - 260px - 40px);
   }
 }
 
