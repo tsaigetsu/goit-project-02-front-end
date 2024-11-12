@@ -8,7 +8,7 @@ const AddColumn = ({ onCreateColumn, setIsOpen }) => {
   const closeModal = () => {
     setIsOpen(false);
   };
-  console.log(title);
+  // console.log(title);
 
   const handleAddColumn = () => {
     if (title.trim()) {

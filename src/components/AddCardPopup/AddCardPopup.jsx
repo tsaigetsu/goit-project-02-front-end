@@ -1,3 +1,4 @@
+import { useEffect, useState, useCallback } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import CalendarPicker from "../CalendarPicker/CalendarPicker";
@@ -6,7 +7,7 @@ import SvgIcon from "../SvgIcon/SvgIcon.jsx";
 import { useDispatch } from "react-redux";
 import { addCard } from "../../redux/cards/operations.js";
 import s from "./AddCardPopup.module.css";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 const AddCardPopup = ({ setIsOpen, columnId }) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
@@ -60,10 +61,15 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
     return selected.toLocaleDateString("en-US", options);
   };
 
+   // Функция для переключения календаря
+  const toggleDateInput = useCallback(() => {
+    setIsCalendarOpen(true);
+  }, []);
+
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") {
-        setIsOpen(); // Вызываем функцию закрытия модалки
+        setIsOpen(false); // Вызываем функцию закрытия модалки
       }
     };
 
@@ -75,6 +81,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
       document.removeEventListener("keydown", handleEscape);
     };
   }, [setIsOpen]);
+
   return (
     <div
       className={s.popupOverlay}
@@ -145,12 +152,14 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
 
                     <div
                       className={s.CalendarPicker}
-                      onClick={() => {
-                        setIsCalendarOpen(true);
-                      }}
+                      // onClick={() => {
+                      //   setIsCalendarOpen(true);
+                      // }}
+                      onClick={toggleDateInput}
                     >
                       <CalendarPicker
                         // toggleDateInput={}
+                        toggleDateInput={toggleDateInput}
                         isCalendarOpen={isCalendarOpen}
                         selected={values.deadline}
                         onChange={(date) => {
