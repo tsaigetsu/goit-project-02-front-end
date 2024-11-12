@@ -26,7 +26,7 @@ const Card = React.memo(({ id, title, description, deadline, columnId, priority 
     setIsModalOpen(true);
   }, []);
 
-  console.log("Rendering card:", id);
+  // console.log("Rendering card:", id);
 
   return (
     <>

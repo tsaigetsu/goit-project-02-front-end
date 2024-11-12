@@ -20,10 +20,34 @@ const ScreensPage = () => {
   console.log("board", board);
 
   // Мемоизация для backgroundUrl
-  const backgroundUrl = useMemo(() => {
-    return board?.backgroundId && board.backgroundId !== "nobg"
-      ? backgrounds.desktop[board.backgroundId]?.normal
-      : null;
+  // const backgroundUrl = useMemo(() => {
+  //   return board?.backgroundId && board.backgroundId !== "nobg"
+  //     ? backgrounds.desktop[board.backgroundId]?.normal
+  //     : null;
+  // }, [board]);
+  const backgroundStyles = useMemo(() => {
+    if (!board?.backgroundId || board.backgroundId === "nobg") {
+      return {
+        "--background-mobile-normal": "none",
+        "--background-mobile-large": "none",
+        "--background-tablet-normal": "none",
+        "--background-tablet-large": "none",
+        "--background-desktop-normal": "none",
+        "--background-desktop-large": "none",
+      };
+    }
+
+    const bg = backgrounds;
+    const backgroundId = board.backgroundId;
+
+    return {
+      "--background-mobile-normal": `url(${bg.mobile[backgroundId]?.normal || ""})`,
+      "--background-mobile-large": `url(${bg.mobile[backgroundId]?.large || ""})`,
+      "--background-tablet-normal": `url(${bg.tablet[backgroundId]?.normal || ""})`,
+      "--background-tablet-large": `url(${bg.tablet[backgroundId]?.large || ""})`,
+      "--background-desktop-normal": `url(${bg.desktop[backgroundId]?.normal || ""})`,
+      "--background-desktop-large": `url(${bg.desktop[backgroundId]?.large || ""})`,
+    };
   }, [board]);
 
   // Мемоизация функций с использованием useCallback
@@ -35,31 +59,17 @@ const ScreensPage = () => {
     setIsOpen(false);
   }, []);
 
-  const handleSaveBoard = useCallback((newBoard) => {
-    console.log("New board saved:", newBoard);
+  const handleSaveBoard = useCallback(() => {
+    // console.log("New board saved:", newBoard);
     setIsOpen(false);
   }, []);
 
-  // const onOpen = () => {
-  //   setIsOpen(true);
-  // };
-
-  // const onClose = () => {
-  //   setIsOpen(false);
-  // };
-
-  // const handleSaveBoard = (newBoard) => {
-  //   console.log("New board saved:", newBoard);
-  //   setIsOpen(false);
-  // };
-
-  // const backgroundUrl = (board?.backgroundId && board.backgroundId !== 'nobg') 
-  // ? backgrounds.desktop[board.backgroundId].normal 
-  // : null;
-
   return (
     <>
-      <section className={css.wrapperScreenPage}>
+      <section
+        className={css.wrapperScreenPage}
+        style={backgroundStyles}
+      >
         {boards.length === 0 || board === null ? (
           <MemoizedDefaultText onOpen={onOpen} />
         ) : (
@@ -71,7 +81,6 @@ const ScreensPage = () => {
             />
             <MemoizedMainDashboard
                 // filter={filter}
-                background={backgroundUrl}
               className={css.mainDashboard}
             />
           </div>
