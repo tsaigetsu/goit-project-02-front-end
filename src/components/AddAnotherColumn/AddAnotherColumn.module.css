@@ -6,15 +6,11 @@
 }
 
 .btnAdd {
-  /* box-sizing: border-box; */
-  /* position: absolute;
-  top: 39px;
-  left: 20px; */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  background-color: #121212;
+  background-color: var(--create-col-btn);
   border-radius: 8px;
   width: 334px;
   padding: 14px 78px;
@@ -23,15 +19,18 @@
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--hamburger-btn-color);
   stroke: black;
   margin: 0;
 }
 .svg {
-  background-color: white;
+  background-color: var(--create-col-fill);
   border-radius: 8px;
   width: 28px;
   height: 28px;
   padding: 7px;
   align-content: center;
+}
+.svgIcon {
+  stroke: var(--create-col-stroke);
 }

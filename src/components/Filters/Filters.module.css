@@ -21,7 +21,6 @@
   justify-content: center;
   padding: 24px;
   background-color: var(--background-pop-up-colorB);
-  border: 1px solid rgba(190, 219, 176, 0.5);
   border-radius: 8px;
   width: 300px;
   max-height: 80vh;
@@ -46,7 +45,7 @@
   cursor: pointer;
   width: 18px;
   height: 18px;
-  stroke: white;
+  stroke: var(--modal-text-color);
   z-index: 1100;
 }
 
@@ -131,6 +130,7 @@ h3 {
   cursor: pointer;
   appearance: none;
 }
+ /* есть подозрения что радиобатоны надо заменить на свгшки */
 
 .filterRadio--none {
   background-color: var(--background-topbar-colorV);

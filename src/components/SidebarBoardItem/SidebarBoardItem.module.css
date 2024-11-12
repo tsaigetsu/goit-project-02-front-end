@@ -7,11 +7,11 @@
     padding-left: 14px;
 }
 .projectIcon {
-    stroke: var(--unactive-color-sidebar);
+    stroke: var(--inactive-color-sidebar);
     fill: none;
 }
 .p {
-    color: var(--unactive-color-sidebar);
+    color: var(--inactive-color-sidebar);
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -50,7 +50,7 @@
         color: var(--active-color-sidebar);
     }
     .boardIcon {
-        stroke: var(--unactive-color-sidebar);
+        stroke: var(--inactive-color-sidebar);
         fill: none;
     }
     .activeLine {
