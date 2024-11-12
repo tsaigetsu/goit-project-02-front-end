@@ -9,8 +9,7 @@ const CalendarPicker = ({
   formatDate,
   calendarClassName,
 }) => {
-  //
-  console.log("toggleDateInput", toggleDateInput);
+  // console.log("toggleDateInput", toggleDateInput);
 
   return (
     <div>

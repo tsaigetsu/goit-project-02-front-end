@@ -21,22 +21,22 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchBoardsThunk.fulfilled, (state, action) => {
-        state.boards = action.payload;
+        state.boards = action.payload || [];
       })
       .addCase(addBoardsThunk.fulfilled, (state, action) => {
-        state.boards.push(action.payload);
+        if (action.payload) {
+          state.boards.push(action.payload);
+        }
       })
       .addCase(deleteBoardThunk.fulfilled, (state, action) => {
         state.boards = state.boards.filter(
           (board) => board.id !== action.payload
         );
       })
-      .addCase(logoutThunk.fulfilled, () => {
-        return initialState;
-      })
+      .addCase(logoutThunk.fulfilled, () => initialState)
       .addCase(getBoardByIdThunk.fulfilled, (state, action) => {
-        console.log("payload", action.payload);
-        state.selectedBoard = action.payload;
+        // console.log("payload", action.payload);
+        state.selectedBoard = action.payload || null;
         state.loading = false;
         state.error = null;
       })
@@ -49,14 +49,17 @@ const slice = createSlice({
         }
       })
       .addCase(updateBoardThunk.rejected, (state, action) => {
-        console.error("Failed to update board:", action.payload);
+        console.error("Failed to update board:", action.error?.message);
+        state.loading = false;
+        state.error = action.error?.message;
       })
       .addMatcher(
         isAnyOf(
           fetchBoardsThunk.pending,
           deleteBoardThunk.pending,
           addBoardsThunk.pending,
-          getBoardByIdThunk.pending
+          getBoardByIdThunk.pending,
+          updateBoardThunk.pending
         ),
         (state) => {
           state.loading = true;
@@ -68,11 +71,12 @@ const slice = createSlice({
           fetchBoardsThunk.rejected,
           deleteBoardThunk.rejected,
           addBoardsThunk.rejected,
-          getBoardByIdThunk.rejected
+          getBoardByIdThunk.rejected,
+          updateBoardThunk.rejected
         ),
-        (state) => {
+        (state, action) => {
           state.loading = false;
-          state.error = true;
+          state.error = action.error?.message || "Something went wrong";
         }
       )
       .addMatcher(
@@ -80,7 +84,8 @@ const slice = createSlice({
           fetchBoardsThunk.fulfilled,
           deleteBoardThunk.fulfilled,
           addBoardsThunk.fulfilled,
-          getBoardByIdThunk.fulfilled
+          getBoardByIdThunk.fulfilled,
+          updateBoardThunk.fulfilled
         ),
         (state) => {
           state.loading = false;

@@ -50,7 +50,7 @@
   z-index: 1100;
 }
 
-h2 {
+.filtersContent h2 {
   margin: 0;
   font-size: 18px;
   font-weight: 100;
@@ -60,7 +60,7 @@ h2 {
   letter-spacing: 0.1ex;
 }
 
-h3 {
+.priorityOptions h3 {
   margin: 4px 4px;
   font-size: 14px;
   font-weight: 100;
