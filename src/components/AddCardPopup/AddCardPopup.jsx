@@ -91,7 +91,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
     >
       <div className={s.popup}>
         <div className={s.popupContent}>
-          <h2 className={s.TitleCard}>Add card</h2>
+          <h2 className={s.titleCard}>Add card</h2>
           <button
             className={s.closeButton}
             onClick={() => {
@@ -146,7 +146,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                     </div>
                   </div>
                   <div className={s.deadlineWrapper}>
-                    <label htmlFor="deadline" className={s}>
+                    <label htmlFor="deadline" className={s.labelTitle}>
                       Deadline
                     </label>
 
@@ -187,15 +187,13 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                 </div>
 
                 <button type="submit" className={s.addButton}>
-                  <div className={s.btnDiv}>
-                    <SvgIcon
-                      id="icon-normalBtnBlack"
-                      width="28"
-                      height="28"
-                      className={s.iconNormalBtnBlack}
-                    />
-                  </div>
-                  <p className={s.btnText}>Add</p>
+                  <SvgIcon
+                    id="icon-normalBtnBlack"
+                    width="28"
+                    height="28"
+                    className={s.iconNormalBtnBlack}
+                  />
+                  Add
                 </button>
               </Form>
             )}
