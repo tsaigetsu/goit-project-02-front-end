@@ -21,37 +21,31 @@
   width: 335px;
   /* width: 335px; */
   height: 56px;
-  background-color: #bedbb0;
+  background-color: var(--btn-color);
   border-radius: 8px;
   border: none;
   font-size: 14px;
   font-weight: 500;
-  color: #161616;
+  color: var(--plus-fill);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.createIcon {
-  fill: none;
-  stroke: #161616;
-  background-color: #161616;
-  border-radius: 10%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+.svg {
+  background-color: var(--plus-fill);
   border-radius: 8px;
-  border: none;
+  width: 28px;
+  height: 28px;
+  padding: 7px;
+  align-content: center;
+}
+.svgIcon {
+  stroke: var(--plus-stroke);
 }
 
+
 .cardManagerButton:hover {
-  background-color: #b0dba4;
+  background-color: var(--btn--hover-color);
   /* transform: scale(1.02); */
 }
 
-/* SVG Icon Style */
-.svgPlusBlackWhite {
-}
-
-.svgPlusBlackWhite:hover {
-  background-color: #333;
-}

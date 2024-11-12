@@ -15,12 +15,14 @@ const CardManager = ({ columnId }) => {
       {cards.length > 0 && <CardList cards={cards} />}
 
       <button className={s.cardManagerButton} onClick={() => setIsOpen(true)}>
-        <SvgIcon
-          id="icon-normalBtnBlack"
-          className={s.createIcon}
-          width="28"
-          height="28"
-        />
+        <div className={s.svg}>
+          <SvgIcon
+            id="icon-plus"
+            className={s.svgIcon}
+            width="14"
+            height="14"
+          />
+        </div>
         Add another card
       </button>
       {isOpen && <AddCardPopup setIsOpen={setIsOpen} columnId={columnId} />}

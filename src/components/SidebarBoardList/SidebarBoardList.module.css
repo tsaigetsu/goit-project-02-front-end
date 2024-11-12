@@ -1,5 +1,5 @@
 .myBoardsText {
-    color: var(--unactive-color-sidebar);
+    color: var(--inactive-color-sidebar);
     font-family: Poppins, sans-serif;
     font-size: 12px;
     font-style: normal;

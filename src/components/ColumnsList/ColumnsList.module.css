@@ -16,8 +16,7 @@
   white-space: nowrap;
   user-select: none;
   position: relative;
-  padding: 0 20px 24px;
-
+  padding: 0 0 24px;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 32px;
