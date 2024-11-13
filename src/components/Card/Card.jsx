@@ -5,11 +5,13 @@ import s from "./Card.module.css";
 import { useDispatch } from "react-redux";
 import { deleteCard } from "../../redux/cards/operations.js";
 import EditCardPopup from "../EditCardPopup/EditCardPopup.jsx";
+import InProgressModal from "../InProgressModal/InProgressModal.jsx";
 
 const Card = React.memo(({ card }) => {
   const [isEdit, setIsEdit] = useState(false);
   const { _id, title, description, deadline, columnId, priority } = card;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalChange, setIsModalChange] = useState(false);
   const dispatch = useDispatch();
 
   const colorPriority = [
@@ -41,7 +43,9 @@ const Card = React.memo(({ card }) => {
   }, []);
 
   // console.log("Rendering card:", id);
-
+  const onChange = () => {
+    setIsModalChange(true);
+  };
   return (
     <>
       <div
@@ -85,7 +89,7 @@ const Card = React.memo(({ card }) => {
                   height="16"
                 />
               </button>
-              <button className={s.btnIcon}>
+              <button className={s.btnIcon} onClick={onChange}>
                 <SvgIcon
                   id="icon-arrow-circle-broken-right"
                   className={s.svgIcon}
@@ -109,7 +113,13 @@ const Card = React.memo(({ card }) => {
         </div>
       </div>
       {isEdit && <EditCardPopup card={card} setIsEdit={setIsEdit} />}
-
+      {isModalChange && (
+        <InProgressModal
+          columnId={columnId}
+          isModalChange={isModalChange}
+          setIsModalChange={setIsModalChange}
+        />
+      )}
       <ModalDelete
         isOpen={isModalOpen}
         onClose={closeModal}

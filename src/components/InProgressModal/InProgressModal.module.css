@@ -1,107 +1,56 @@
 .overlayInProgr {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Modal container */
-  .modalInProgr {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 18px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    width: 99px;
-    height: 50px;
-   
-  }
-  
-  .modalContentInProgr {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 50px;
-    
-    gap: 8px;
-    margin: 0;
-  }
-  /* Individual option */
-  .modalOption {
-    width: 100%;
-    height: 21px; 
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.2s;
-   
-  
-  }
-  
-  .modalOption:hover {
-    background-color: #ffffff;
-  }
-  
-  /* Text styles */
-  .statusText.inProgress {
-    width: 100%;
-    font-size: 14px;
-    font-weight: 400; 
-    line-height: 128%;
-    letter-spacing: -0.02em;
-    text-align: left;
-    color: #161616; 
-    margin: 0;
-    justify-content: space-between;
-    display: flex;
-  }
-
-  .statusText.inProgress:hover,
-  .statusText.inProgress:focus {
-  opacity: 1;
-  color: #9dc888;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-  
-  .statusText.done {
-    width: 100%;
-    font-size: 14px;
-    font-weight: 400; 
-    line-height: 128%;
-    letter-spacing: -0.02em;
-    text-align: left;
-    color: #161616; 
-    margin: 0;
-    justify-content: space-between;
-    display: flex;
-  }
 
-  .statusText.done:hover,
-  .statusText.done:focus {
-  opacity: 1;
-  color: #9dc888;
+/* Modal container */
+.modalInProgr {
+  box-shadow: 0 4px 16px 0 rgba(17, 17, 17, 0.1);
+  background: #1f1f1f;
+  /* background: #ffffff; */
+  border-radius: 8px;
+  padding: 18px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 135px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+
+  /* height: 50px; */
+  color: rgba(255, 255, 255, 0.5);
 }
-  
-  .arrowDiv{
-    display: flex;
-    width: 16px;
-    height: 16px;
-  }
-  .iconArrowRight {
-    fill:none;
-    stroke: #161616;
-  }
 
-  .iconArrowRight:hover,
-  .iconArrowRight:focus {
-    opacity: 1;
-    stroke: #9dc888;
-  } 
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
+  align-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.item:hover .title,
+.item:hover .icon,
+.item:focus .title,
+.item:focus .icon {
+  color: #bedbb0;
+  stroke: #bedbb0;
+  fill: none;
+}
+
+.icon {
+  display: flex;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.5);
+}
