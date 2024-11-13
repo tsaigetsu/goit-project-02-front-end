@@ -4,33 +4,58 @@ import SvgIcon from "../SvgIcon/SvgIcon.jsx";
 import s from "./Card.module.css";
 import { useDispatch } from "react-redux";
 import { deleteCard } from "../../redux/cards/operations.js";
-// import InProgressModal from "../InProgressModal/InProgressModal.jsx";
+import EditCardPopup from "../EditCardPopup/EditCardPopup.jsx";
+import InProgressModal from "../InProgressModal/InProgressModal.jsx";
 
-const Card = React.memo(({ id, title, description, deadline, columnId, priority }) => {
+const Card = React.memo(({ card }) => {
+  const [isEdit, setIsEdit] = useState(false);
+  const { _id, title, description, deadline, columnId, priority } = card;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalChange, setIsModalChange] = useState(false);
   const dispatch = useDispatch();
-  // console.log("card id", id);
+
+  const colorPriority = [
+    { color: " #8fa1d0", priority: "low" },
+    { color: "#E09CB5", priority: "medium" },
+    { color: "#BEDBB0", priority: "high" },
+    { color: "rgba(255, 255, 255, 0.3)", priority: "without priority" },
+  ];
+
+  const selectedColorObj = colorPriority.find(
+    (item) => item.priority === priority
+  );
+
+  const onDelete = useCallback(() => {
+    if (columnId && _id) {
+      dispatch(deleteCard(_id));
+      closeModal();
+    }
+  }, [columnId, _id, dispatch]);
+
+  // import InProgressModal from "../InProgressModal/InProgressModal.jsx";
 
   const closeModal = useCallback(() => {
     setIsModalOpen(false);
   }, []);
-
-  const onDelete = useCallback(() => {
-    if (columnId && id) {
-      dispatch(deleteCard(id));
-      closeModal();
-    }
-  }, [columnId, id, dispatch]);
 
   const openModal = useCallback(() => {
     setIsModalOpen(true);
   }, []);
 
   // console.log("Rendering card:", id);
-
+  const onChange = () => {
+    setIsModalChange(true);
+  };
   return (
     <>
-      <div className={s.color}>
+      <div
+        className={s.color}
+        style={{
+          backgroundColor: selectedColorObj
+            ? selectedColorObj.color
+            : "without priority",
+        }}
+      >
         <div className={s.cardWrapper}>
           <h4 className={s.titleCard}>{title}</h4>
           <p className={s.description}>{description}</p>
@@ -39,7 +64,14 @@ const Card = React.memo(({ id, title, description, deadline, columnId, priority 
               <div className={s.boxPriority}>
                 <span className={s.title}>Priority</span>
                 <div className={s.priority}>
-                  <div className={s.ellipse}></div>
+                  <div
+                    className={s.ellipse}
+                    style={{
+                      backgroundColor: selectedColorObj
+                        ? selectedColorObj.color
+                        : "without priority",
+                    }}
+                  ></div>
                   <span className={s.titlePriority}>{priority}</span>
                 </div>
               </div>
@@ -57,7 +89,7 @@ const Card = React.memo(({ id, title, description, deadline, columnId, priority 
                   height="16"
                 />
               </button>
-              <button className={s.btnIcon}>
+              <button className={s.btnIcon} onClick={onChange}>
                 <SvgIcon
                   id="icon-arrow-circle-broken-right"
                   className={s.svgIcon}
@@ -65,16 +97,8 @@ const Card = React.memo(({ id, title, description, deadline, columnId, priority 
                   height="16"
                 />
               </button>
-              <button
-                className={s.btnIcon}
-                // {onClick={onEdit}}
-              >
-                <SvgIcon
-                  id="icon-pencil-01"
-                  className={s.svgIcon}
-                  width="16"
-                  height="16"
-                />
+              <button className={s.btnIcon} onClick={() => setIsEdit(true)}>
+                <SvgIcon id="icon-pencil-01" width="16" height="16" />
               </button>
               <button className={s.btnIcon} onClick={openModal}>
                 <SvgIcon
@@ -88,7 +112,14 @@ const Card = React.memo(({ id, title, description, deadline, columnId, priority 
           </div>
         </div>
       </div>
-
+      {isEdit && <EditCardPopup card={card} setIsEdit={setIsEdit} />}
+      {isModalChange && (
+        <InProgressModal
+          columnId={columnId}
+          isModalChange={isModalChange}
+          setIsModalChange={setIsModalChange}
+        />
+      )}
       <ModalDelete
         isOpen={isModalOpen}
         onClose={closeModal}

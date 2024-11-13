@@ -9,7 +9,11 @@ const CalendarPicker = ({
   formatDate,
   calendarClassName,
 }) => {
-  // console.log("toggleDateInput", toggleDateInput);
+  //
+  console.log("selected", selected);
+  console.log("formatDate", formatDate);
+  console.log("isCalendarOpen", isCalendarOpen);
+  console.log("toggleDateInput", toggleDateInput);
 
   return (
     <div>
@@ -18,6 +22,7 @@ const CalendarPicker = ({
       </div>
       {isCalendarOpen && (
         <DatePicker
+          formatDate={formatDate}
           selected={selected}
           onChange={(date) => {
             onChange(date);

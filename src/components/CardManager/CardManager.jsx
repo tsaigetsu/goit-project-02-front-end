@@ -4,22 +4,27 @@ import SvgIcon from "../SvgIcon/SvgIcon.jsx";
 import s from "./CardManager.module.css";
 import AddCardPopup from "../AddCardPopup/AddCardPopup.jsx";
 import { useSelector } from "react-redux";
-import { selectCardsInColumn } from "../../redux/columns/selectors.js";
+import { selectCardsFromColumn } from "../../redux/cards/selectors.js";
+// import { selectedBoard } from "../../redux/boards/slice.js";
 
 // Мемоизируем компонент CardList для предотвращения лишних ререндеров
 const MemoizedCardList = React.memo(CardList);
 
 const CardManager = ({ columnId }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const cards = useSelector((state) => selectCardsInColumn(state, columnId));
+  // const board = useSelector(selectedBoard);
+  // const { tasks } = board;
+
+  const tasks = useSelector((state) => selectCardsFromColumn(state, columnId));
+  console.log("cards", tasks);
 
   // Мемоизация обработчика открытия модального окна
   const handleOpenPopup = useMemo(() => () => setIsOpen(true), []);
 
   return (
     <div className={s.cardManager}>
-      {cards.length > 0 && <MemoizedCardList cards={cards} />}
-
+      {tasks.length > 0 && <MemoizedCardList columnId={columnId} />}
+     
       <button className={s.cardManagerButton} onClick={handleOpenPopup}>
         <div className={s.svg}>
           <SvgIcon

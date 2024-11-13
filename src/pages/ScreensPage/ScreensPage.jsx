@@ -17,7 +17,7 @@ const ScreensPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const boards = useSelector(selectBoards);
   const board = useSelector(selectedBoard);
-  // console.log("board", board);
+  console.log("board!!!!!", board);
 
   // Мемоизация для backgroundUrl
   const backgroundStyles = useMemo(() => {
@@ -36,12 +36,24 @@ const ScreensPage = () => {
     const backgroundId = board.backgroundId;
 
     return {
-      "--background-mobile-normal": `url(${bg.mobile[backgroundId]?.normal || ""})`,
-      "--background-mobile-large": `url(${bg.mobile[backgroundId]?.large || ""})`,
-      "--background-tablet-normal": `url(${bg.tablet[backgroundId]?.normal || ""})`,
-      "--background-tablet-large": `url(${bg.tablet[backgroundId]?.large || ""})`,
-      "--background-desktop-normal": `url(${bg.desktop[backgroundId]?.normal || ""})`,
-      "--background-desktop-large": `url(${bg.desktop[backgroundId]?.large || ""})`,
+      "--background-mobile-normal": `url(${
+        bg.mobile[backgroundId]?.normal || ""
+      })`,
+      "--background-mobile-large": `url(${
+        bg.mobile[backgroundId]?.large || ""
+      })`,
+      "--background-tablet-normal": `url(${
+        bg.tablet[backgroundId]?.normal || ""
+      })`,
+      "--background-tablet-large": `url(${
+        bg.tablet[backgroundId]?.large || ""
+      })`,
+      "--background-desktop-normal": `url(${
+        bg.desktop[backgroundId]?.normal || ""
+      })`,
+      "--background-desktop-large": `url(${
+        bg.desktop[backgroundId]?.large || ""
+      })`,
     };
   }, [board]);
 
@@ -61,11 +73,8 @@ const ScreensPage = () => {
 
   return (
     <>
-      <section
-        className={css.wrapperScreenPage}
-        style={backgroundStyles}
-      >
-        {boards.length === 0 || board === null ? (
+      <section className={css.wrapperScreenPage} style={backgroundStyles}>
+        {boards.length === 0 || board === null || board === undefined ? (
           <MemoizedDefaultText onOpen={onOpen} />
         ) : (
           <div className={css.screensPage__content}>
@@ -75,14 +84,19 @@ const ScreensPage = () => {
               className={css.headerDashboard}
             />
             <MemoizedMainDashboard
-                // filter={filter}
+              // filter={filter}
               className={css.mainDashboard}
+              boardId={board._id}
             />
           </div>
         )}
       </section>
       {isOpen && (
-        <NewBoardForm isOpen={isOpen} onClose={onClose} onSave={handleSaveBoard} />
+        <NewBoardForm
+          isOpen={isOpen}
+          onClose={onClose}
+          onSave={handleSaveBoard}
+        />
       )}
     </>
   );

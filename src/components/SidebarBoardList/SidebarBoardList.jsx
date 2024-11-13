@@ -14,7 +14,7 @@ import {
 } from "../../redux/boards/operations.js";
 import icons from "../../data/icons.json";
 import EditBoardForm from "../EditBoardForm/EditBoardForm.jsx";
-import { onGetColumn } from "../../redux/columns/operations.js";
+
 import toast from "react-hot-toast";
 
 const SidebarBoardList = () => {
@@ -35,14 +35,14 @@ const SidebarBoardList = () => {
   };
 
   const handleSaveBoard = async (newBoard) => {
-    await dispatch(addBoardsThunk(newBoard));
+    dispatch(addBoardsThunk(newBoard));
     setIsModalOpen(false);
   };
 
   const handleSelectBoard = async (boardId) => {
     try {
       const board = await dispatch(getBoardByIdThunk(boardId)).unwrap();
-      await dispatch(onGetColumn(board.columns)).unwrap();
+
       setSelectedBoardData(board);
       setActiveBoardId(boardId);
     } catch (error) {

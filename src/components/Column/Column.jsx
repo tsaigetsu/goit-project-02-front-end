@@ -14,7 +14,7 @@ const Column = ({ title, columnId, boardId }) => {
 
   const onDelete = () => {
     if (columnId && boardId) {
-      dispatch(onDeleteColumn({ columnId, boardId }));
+      dispatch(onDeleteColumn(columnId));
       closeModal();
       // if (value !== '') {
       //   dispatch(changeFilter(''));

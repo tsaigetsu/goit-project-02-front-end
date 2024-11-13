@@ -1,39 +1,50 @@
 /* Overlay для модального вікна */
-.popupOverlay{
+.popupOverlay {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(21, 21, 21, 0.50);
+  background-color: rgba(21, 21, 21, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
 }
 
-
 @media screen and (min-width: 320px) {
-.popup {
-  position: relative;
-  max-width: 335px;
-  background: var(--popup-bg-color);
-  color: var(--popup-text-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Poppins", sans-serif;
-  flex-direction: column;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 150%;
-  letter-spacing: -0.02em;
-  border-radius: 8px;
-}
+  .popup {
+    stroke: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    /* position: relative; */
+    min-width: 335px;
+    /* background: var(--popup-bg-color);
+    color: var(--popup-text-color); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    flex-direction: column;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: -0.02em;
+    border-radius: 8px;
+    background: #151515;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Тінь*/
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1439px) {
-  .popup{
+  .popup {
     max-width: 350px;
   }
 }
@@ -41,51 +52,50 @@
 /* Основний контент попапу */
 @media screen and (min-width: 320px) {
   .popupContent {
-    max-width: 287px; 
-    max-height: 522px;
+    /* max-width: 287px;
+    max-height: 522px; */
     padding: 24px;
-    border-radius: 8px;/**/
-    background-color: var(--popup-bg-color);
+    border-radius: 8px; /**/
+    /* background-color: var(--popup-bg-color); */
     color: var(--popup-text-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);  /* Тінь*/
-    position: relative;
+    color: white;
+    /* position: relative; */
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
+}
+
+@media screen and (min-width: 768px) and (min-width: 1440px) {
+  .popupContent {
+    /* max-width: 302px; */
   }
-  
-  @media screen and (min-width: 768px) and (min-width: 1440px) {
-    .popupContent {
-      max-width: 302px; 
-  }
-  }
-  
+}
+
 /* Заголовок попапу */
 .TitleCard {
   font-size: 18px;
   font-weight: 500;
   letter-spacing: -0.02em;
   padding-bottom: 24px;
- }
-
-/* Іконка закриття */
-.svgCloseIcon,
+}
+/* закриття */
 .closeButton {
-  fill: none;
-  stroke: #161616; 
   position: absolute;
-  top: 18px;
-  right: 18px;
   top: 14px;
   right: 14px;
-  background: none;
+  stroke: white;
+  background-color: transparent;
   border: none;
   cursor: pointer;
+  fill: none;
+  stroke: white;
 
-  &&:hover {
-   transition: transform 0.3s;
+  /* &&:hover {
+      transition: transform 0.3s;
+    } */
 }
-}
+
 .formCard {
   display: flex;
   flex-direction: column;
@@ -99,12 +109,14 @@
 
 /* Поле введення для заголовка */
 .inputTitle,
-.textareaDeskr {
+.textareaDesk {
   background-color: transparent;
-  color: #161616;
-  border-color: var( --priority-color-high); 
+  /* color: #161616; */
+  color: white;
+  border-color: var(--priority-color-high);
   opacity: 0.7;
-  max-width: 287px;
+  /* max-width: 287px; */
+  width: 100%;
   height: auto;
   padding: 12px;
   border-radius: 8px;
@@ -113,76 +125,60 @@
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.02em;
-  margin-bottom:  14px;
+  margin-bottom: 14px;
   transition: background-color 0.3s ease, transform 0.2s ease;
+
   /*  при фокусі */
   &&:focus {
     opacity: 1;
-    outline: #9DC888;
+    outline: #9dc888;
   }
 }
 
-
 @media screen and (min-width: 768px) {
-.inputTitle,
-.textareaDeskr {
-    max-width: 302px; 
-}
+  .inputTitle,
+  .textareaDesk {
+    /* max-width: 302px; */
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .inputTitle,
-  .textareaDeskr {
-      max-width: 302px; 
+  .textareaDesk {
+    /* max-width: 302px; */
   }
-  }
+}
 
 /* Секція вибору кольору */
 .labelColor {
   margin-bottom: 14px;
 }
 
-.labelTitle {
-  margin-bottom: 4px;
-  color: #16161680;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: -0.02em;
-
-}
-
 input[type="radio"] {
   position: absolute;
-  opacity: 0; 
+  opacity: 0;
   width: 0;
   height: 0;
-}
-
-.labelColors {
-  display: flex;
-  align-items: center;
 }
 
 .colorCircle {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  margin: 0 4px;
+  margin: 0;
   border: 2px solid transparent;
   cursor: pointer;
   transition: all 0.2s;
   z-index: 100;
 }
 
-
 .colorCircle:hover {
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
 
 .colorCircle.active {
-  box-shadow: 0 0 0 2px #8FA1D0, 0 0 0 4px #000; 
-  box-shadow: inset 0 0 0 2px; 
+  box-shadow: 0 0 0 2px #8fa1d0, 0 0 0 4px #000;
+  box-shadow: inset 0 0 0 2px;
 }
 
 /* Секція вибору дати */
@@ -192,26 +188,26 @@ input[type="radio"] {
   align-items: center;
 }
 
-.CalendarPicker{
+.CalendarPicker {
   display: flex;
 }
 
 .dateDisplayCalendar {
-  color: #BEDBB0;
+  color: #bedbb0;
   font-weight: 500;
   font-size: 14px;
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
 .iconChevronDown {
   fill: none;
-  stroke: #BEDBB0;
+  stroke: #bedbb0;
 }
 
 .violet-theme .iconChevronDown {
   fill: none;
-  stroke: #5255BC;
+  stroke: #5255bc;
 }
 
 /* Кнопка додавання картки */
@@ -220,28 +216,32 @@ input[type="radio"] {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 302px;
-  height: 49px;
-  background-color: var(--background-button-colorB); 
+  width: 100%;
+  padding: 10px;
+  /* height: 49px; */
+  background-color: var(--background-button-colorB);
   border-radius: 8px;
   border: none;
   font-size: 14px;
   font-weight: 500;
-  color: var(--popup-text-color); 
+  color: var(--popup-text-color);
+  color: #161616;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  outline: none;
 }
 
 .addButton:hover,
 .addButton:focus {
   opacity: 1;
-  background-color: #9DC888;
+  background-color: #9dc888;
 }
 
 .iconNormalBtnBlack {
   fill: none;
-  stroke: var(--popup-text-color); 
+  stroke: var(--popup-text-color);
   color: var(--background-pop-up-colorB);
+  background-color: #161616;
   border-radius: 6px;
   width: 28px;
   height: 28px;
@@ -250,3 +250,75 @@ input[type="radio"] {
   justify-content: center;
 }
 
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.5);
+}
+.labelTitle {
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 4px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.5);
+}
+.labelColor {
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.5);
+}
+.labelColors {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.deadlineWrapper {
+}
+
+.CalendarPicker {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  color: #bedbb0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.priority-selector {
+  display: flex;
+  gap: 10px; /* Расстояние между кружочками */
+}
+
+.priorityLabel {
+  width: 14px;
+  height: 14px;
+}
+
+.priorityCircle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: transform 0.2s, border 0.2s;
+  cursor: pointer;
+}
+
+.priorityCircle.selected {
+  transform: scale(0.9); /* Делает кружок меньше */
+  border-width: 2px; /* Толщина бордера */
+}

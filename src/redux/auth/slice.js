@@ -39,7 +39,6 @@ const slice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
-        state.user = action.payload.data.user;
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
       })
@@ -49,6 +48,8 @@ const slice = createSlice({
       .addCase(currentUserThunk.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        console.log("currentUserThunk", action.payload);
+
         state.user = action.payload;
       })
       .addCase(currentUserThunk.pending, (state) => {

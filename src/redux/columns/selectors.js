@@ -1,9 +1,18 @@
 import { createSelector } from "reselect";
+// не використовується ???
 
-// Селектор для загрузки и ошибок
+export const selectColumnsByBoard = (state) => {
+  console.log("state.selectedBoards.columns", state.selectedBoards.columns);
+
+  return state.selectedBoards.columns;
+};
+
 export const selectLoading = (state) => state.columns.loading;
 export const selectError = (state) => state.columns.error;
-export const selectColumnsByBoard = (state) => state.columns.columnsByBoard;
+
+// Селектор для загрузки и ошибок
+
+// export const selectColumnsByBoard = (state) => state.columns.columnsByBoard;
 
 // export const selectCardsInColumn = (state, columnId) => {
 //   console.log("state", state);
