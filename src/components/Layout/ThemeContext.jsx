@@ -1,21 +1,17 @@
 import { createContext, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTheme, currentUserThunk } from "../../redux/auth/operations.js";
+import { updateTheme } from "../../redux/auth/operations.js";
 
 const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
   const dispatch = useDispatch();
-  const themeFromStore = useSelector(state => state.auth.user?.theme);
+  const themeFromStore = useSelector((state) => state.auth.user?.theme);
   const [theme, setTheme] = useState(themeFromStore);
 
   useEffect(() => {
     setTheme(themeFromStore);
   }, [themeFromStore]);
-
-  useEffect(() => {
-    dispatch(currentUserThunk());
-  }, [dispatch]);
 
   const changeTheme = async (newTheme, setIsModalOpen) => {
     try {

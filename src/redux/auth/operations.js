@@ -61,10 +61,6 @@ export const currentUserThunk = createAsyncThunk(
   "currentUser",
   async (_, thunkAPI) => {
     const savedToken = thunkAPI.getState().auth.token;
-    if (!savedToken) {
-      return thunkAPI.rejectWithValue("Token does not exist!");
-    }
-
     try {
       setToken(savedToken);
       const response = await api.get("/user/profile");
@@ -73,6 +69,11 @@ export const currentUserThunk = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
+  },
+  {
+    condition(_, { getState }) {
+      return Boolean(getState().auth.token);
+    },
   }
 );
 
@@ -88,6 +89,11 @@ export const fetchUserProfile = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
+  },
+  {
+    condition(_, { getState }) {
+      return !getState().auth.user._id;
+    },
   }
 );
 
