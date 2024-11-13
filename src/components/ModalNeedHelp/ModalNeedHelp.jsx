@@ -6,9 +6,10 @@ import SvgIcon from "../SvgIcon/SvgIcon";
 import PropTypes from "prop-types";
 import * as yup from "yup";
 import s from "./ModalNeedHelp.module.css";
-import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUserData } from "../../redux/auth/selectors";
+import { sendHelpCommentThunk } from "../../redux/auth/operations";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -23,7 +24,8 @@ const validationSchema = yup.object().shape({
 
 const ModalNeedHelp = ({ isOpen, onClose }) => {
   const user = useSelector(selectUserData);
-  console.log("user", user);
+  const dispatch = useDispatch();
+  // console.log("user", user);
 
   const [isExiting, setIsExiting] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -64,26 +66,33 @@ const ModalNeedHelp = ({ isOpen, onClose }) => {
     }, 300);
   };
 
-  // const onSubmit = (data) => {
+  // const onSubmit = async (data) => {
+  //   setIsSubmitting(true);
+  //   try {
+  //     await new Promise((resolve) => setTimeout(resolve, 1000));
   //     console.log("Need help:", data);
   //     reset();
   //     handleFormClose();
+  //     toast.success("Email sent to tech support. We'll reply soon!", {
+  //       duration: 4000,
+  //       position: "bottom-center",
+  //       icon: "✔️",
+  //     });
+  //   } catch (error) {
+  //     console.error("Error sending data:", error);
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
   // };
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Need help:", data);
+      await dispatch(sendHelpCommentThunk(data));
       reset();
       handleFormClose();
-      toast.success("Email sent to tech support. We'll reply soon!", {
-        duration: 4000,
-        position: "bottom-center",
-        icon: "✔️",
-      });
     } catch (error) {
-      console.error("Error sending data:", error);
+      console.error("Error sending data:", error.message);
     } finally {
       setIsSubmitting(false);
     }
