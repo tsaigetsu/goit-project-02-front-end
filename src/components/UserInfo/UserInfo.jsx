@@ -34,9 +34,9 @@ export default function UserInfo() {
         <button onClick={handleEditModal} className={css.userInfoModal}>
           <p className={css.userName}>{userData.name}</p>
               {!userData?.photo ? (
-                <SvgIcon id="icon-user-black" width="68" height="68" />
+                <SvgIcon id="icon-user-black" width="68" height="68" className={css.userSvg}/>
               ) : (
-                <img src={userData.photo} alt="User Avatar" />
+              <img src={userData.photo} alt="User Avatar" className={css.userImg} />
               )}
             </button>
             {isEditModal && (
