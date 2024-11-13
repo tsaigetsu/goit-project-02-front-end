@@ -112,6 +112,7 @@
 .btnIcon {
   border: none;
   background-color: transparent;
+  fill: none;
 }
 .svgIcon {
   stroke: var(--svg-btns-color);
