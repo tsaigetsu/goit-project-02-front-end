@@ -1,11 +1,12 @@
 import SvgIcon from "../SvgIcon/SvgIcon";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import css from "./Filters.module.css";
 
-const Filters = ({ onBackgroundChange, onFilterChange, setIsModalOpen }) => {
+const Filters = ({ onFilterChange, setIsModalOpen }) => {
+  const [selectedPriority, setSelectedPriority] = useState(null);
   const toggleModal = () => {
     setIsModalOpen(false);
-    document.body.classList.remove(css.noScroll); // Видалення класу для зупинки скролу
+    document.body.classList.remove(css.noScroll); 
   };
 
   const handleOverlayClick = (e) => {
@@ -14,7 +15,7 @@ const Filters = ({ onBackgroundChange, onFilterChange, setIsModalOpen }) => {
     }
   };
 
- // Використовуємо useEffect для додавання та видалення класу
+  // Використовуємо useEffect для додавання та видалення класу
   useEffect(() => {
     document.body.classList.add(css.noScroll);
     
@@ -24,47 +25,44 @@ const Filters = ({ onBackgroundChange, onFilterChange, setIsModalOpen }) => {
   }, []); 
 
   const handleFilterChange = (priority) => {
+    setSelectedPriority(priority); 
     onFilterChange?.(priority);
-   // toggleModal(); //закривати модалку при виборі
   };
 
-  {/*const handleBackgroundChange = (color) => {
-    onBackgroundChange?.(color); 
+  // Функція для показу всіх карток
+  const handleShowAllClick = () => {
+    setSelectedPriority(null); 
+    onFilterChange?.(null); 
   };
-  */}
-  
+
   return (
-     <div className={css.overlay} onClick={handleOverlayClick}>
+    <div className={css.overlay} onClick={handleOverlayClick}>
       <div className={css.filtersContent}>
         <button type="button" className={css.closeButton} onClick={toggleModal}>
           <SvgIcon id="icon-x-close" width="18" height="18" />
         </button>
 
         <h2>Filters</h2>
-
-        {/* Background Options */}
-        {/*
-        <div className={css.backgroundOptions}>
-          <h3>Background</h3>
-          <button className={css.backgroundButton} onClick={() => handleBackgroundChange("default")}>
-            Default Background
-          </button>
-          <button className={css.backgroundButton} onClick={() => handleBackgroundChange("none")}>
-            Remove Background
-          </button>
-        </div>
-        */}
-
         
         {/* Priority Options */}
         <div className={css.priorityOptions}>
-          <h3>Label color</h3>
+          <div className={css.labelRow}>
+            <h3>Label color</h3>
+            <button 
+              type="button" 
+              className={css.dropdownButton} 
+              onClick={handleShowAllClick}
+            >
+              Show all
+            </button>
+          </div>
           {["none", "low", "medium", "high"].map((priority) => (
             <label key={priority} className={css.priorityLabel}>
               <input 
                 type="radio" 
                 name="priority" 
                 value={priority} 
+                checked={selectedPriority === priority} 
                 onChange={() => handleFilterChange(priority)} 
                 className={`${css.filterRadio} ${css[`filterRadio--${priority}`]}`} 
               />

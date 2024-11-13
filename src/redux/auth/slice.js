@@ -27,8 +27,8 @@ const slice = createSlice({
         return initialState;
       })
       .addCase(registerThunk.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user.name = action.payload.data.user.name;
+        state.user.email = action.payload.data.user.email;
         state.isLoggedIn = true;
       })
       .addCase(registerThunk.rejected, (state) => {
@@ -60,14 +60,7 @@ const slice = createSlice({
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
         state.isLoggedIn = true;
-        state.isRefreshing = false;
         state.user = action.payload;
-      })
-      .addCase(fetchUserProfile.pending, (state) => {
-        state.isRefreshing = true;
-      })
-      .addCase(fetchUserProfile.rejected, (state) => {
-        state.isRefreshing = false;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.isLoggedIn = true;

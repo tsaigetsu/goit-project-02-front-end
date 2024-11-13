@@ -12,7 +12,6 @@ export const fetchBoardsThunk = createAsyncThunk(
     }
   }
 );
-fetchBoardsThunk();
 
 export const addBoardsThunk = createAsyncThunk(
   "addBoard",

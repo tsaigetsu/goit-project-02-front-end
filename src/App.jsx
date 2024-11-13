@@ -14,21 +14,21 @@ import { currentUserThunk } from "./redux/auth/operations";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
-//import Loader from "./components/Loader/Loader";
+import Loader from "./components/Loader/Loader";
 import { ThemeProvider } from "./components/Layout/ThemeContext.jsx";
 
 function App() {
-  const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  console.log("test", isRefreshing);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(currentUserThunk());
   }, [dispatch]);
 
-  // return isRefreshing ? (
-  //   <Loader />
-  // ) : (
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <ThemeProvider>
       <Routes>
         <Route path="/" element={<Navigate to="/welcome" replace />} />

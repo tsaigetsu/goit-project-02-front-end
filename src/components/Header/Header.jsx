@@ -3,8 +3,7 @@ import { useState, useContext, useRef, useEffect } from "react";
 import css from "./Header.module.css";
 import { SidebarContext } from "../Layout/Layout.jsx";
 import UserInfo from "../UserInfo/UserInfo.jsx";
-import ThemeContext from "../Layout/ThemeContext.jsx"; 
-
+import ThemeContext from "../Layout/ThemeContext.jsx";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,13 +14,12 @@ export default function Header() {
     setIsModalOpen(!isModalOpen);
   };
 
-  const modalRef = useRef(null); 
+  const modalRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setIsModalOpen(false);   
-
+        setIsModalOpen(false);
       }
     };
 
@@ -34,50 +32,53 @@ export default function Header() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isModalOpen]);   
-
+  }, [isModalOpen]);
 
   return (
-      <div
-        className={`${css.headerContainer}`}
-      >
-          <header className={css.header}>
-            <button
-              onClick={() => {
-                toggleSidebar();
-              }}
-              className={`${css.hamburgerButton} ${isSidebarOpen ? css.hide : ''}`}
-            >
-              <span className={css.hamburgerIcon}></span>
-            </button>
+    <div className={`${css.headerContainer}`}>
+      <header className={css.header}>
+        <button
+          onClick={() => {
+            toggleSidebar();
+          }}
+          className={`${css.hamburgerButton} ${isSidebarOpen ? css.hide : ""}`}
+        >
+          <span className={css.hamburgerIcon}></span>
+        </button>
+        <div className={css.themeSelector}>
           <div className={css.themeSelector}>
-            <div className={css.themeSelector}>
-              <div className={css.theme}>
-                {/* <p>Theme</p> */}
+            <div className={css.theme}>
+              {/* <p>Theme</p> */}
               <button className={css.themeButton} onClick={toggleModal}>
                 <p>Theme</p>
-                  <SvgIcon
-                    id="checkMark"
-                    className={css.welcomeIcon}
-                    width="16"
-                    height="16"
-                    stroke="currentColor"
-                  />
-                </button>
-                {isModalOpen && (
-                  <div className={css.modal} ref={modalRef}>
-                    <ul>
-                      <li onClick={() => changeTheme("light", setIsModalOpen)}>Light</li>
-                      <li onClick={() => changeTheme("dark", setIsModalOpen)}>Dark</li>
-                      <li onClick={() => changeTheme("violet", setIsModalOpen)}>Violet</li>
-                    </ul>
-                  </div>
-                )}
-              </div>
-              </div>
-              <UserInfo />
+                <SvgIcon
+                  id="checkMark"
+                  className={css.welcomeIcon}
+                  width="16"
+                  height="16"
+                  stroke="currentColor"
+                />
+              </button>
+              {isModalOpen && (
+                <div className={css.modal} ref={modalRef}>
+                  <ul>
+                    <li onClick={() => changeTheme("light", setIsModalOpen)}>
+                      Light
+                    </li>
+                    <li onClick={() => changeTheme("dark", setIsModalOpen)}>
+                      Dark
+                    </li>
+                    <li onClick={() => changeTheme("violet", setIsModalOpen)}>
+                      Violet
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
-          </header>
-      </div>
+          </div>
+          <UserInfo />
+        </div>
+      </header>
+    </div>
   );
 }

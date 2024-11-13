@@ -38,3 +38,14 @@
   margin-right: 8px;
   font-weight: 500;
 }
+
+.userImg {
+  object-fit: cover;
+}
+
+.userSvg {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.2s ease;
+    border-radius: 8px;
+}

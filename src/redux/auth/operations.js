@@ -61,10 +61,6 @@ export const currentUserThunk = createAsyncThunk(
   "currentUser",
   async (_, thunkAPI) => {
     const savedToken = thunkAPI.getState().auth.token;
-    if (!savedToken) {
-      return thunkAPI.rejectWithValue("Token does not exist!");
-    }
-
     try {
       setToken(savedToken);
       const response = await api.get("/user/profile");
@@ -73,6 +69,11 @@ export const currentUserThunk = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
+  },
+  {
+    condition(_, { getState }) {
+      return Boolean(getState().auth.token);
+    },
   }
 );
 
@@ -88,6 +89,11 @@ export const fetchUserProfile = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
+  },
+  {
+    condition(_, { getState }) {
+      return !getState().auth.user._id;
+    },
   }
 );
 
@@ -125,6 +131,32 @@ export const updateTheme = createAsyncThunk(
     } catch (error) {
       toast.error("Error updating theme");
       return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const sendHelpCommentThunk = createAsyncThunk(
+  "help/sendComment",
+  async (data, thunkAPI) => {
+    try {
+      const response = await api.post("/help/send-comment", data);
+      console.log("Successfully sent help comment:", response.data);
+
+      toast.success("Email sent to tech support. We'll reply soon!", {
+        duration: 4000,
+        position: "bottom-center",
+        icon: "✔️",
+      });
+
+      return response.data;
+    } catch (error) {
+      console.error("Error sending help comment:", error.message);
+      toast.error("Error sending letter. Please, try again later.", {
+        duration: 5000,
+        position: "bottom-center",
+        icon: "❌",
+      });
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

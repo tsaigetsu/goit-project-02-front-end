@@ -25,6 +25,8 @@ const SidebarBoardList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("SidebarBoardList");
+
     dispatch(fetchBoardsThunk());
   }, [dispatch]);
 
