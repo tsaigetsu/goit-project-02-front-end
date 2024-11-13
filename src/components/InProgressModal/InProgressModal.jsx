@@ -2,7 +2,7 @@ import s from "./InProgressModal.module.css";
 import SvgIcon from "../SvgIcon/SvgIcon.jsx";
 // import Column from "../Column/Column.jsx";
 import { useSelector } from "react-redux";
-import { selectColumnsByBoard } from "../../redux/columns/selectors.js";
+// import { selectColumnsByBoard } from "../../redux/columns/selectors.js";
 import { selectedBoard } from "../../redux/boards/selectors.js";
 
 const InProgressModal = ({

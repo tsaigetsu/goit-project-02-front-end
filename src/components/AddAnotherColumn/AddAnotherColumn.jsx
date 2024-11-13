@@ -1,18 +1,17 @@
 import css from "./AddAnotherColumn.module.css";
 import SvgIcon from "../SvgIcon/SvgIcon";
+import { useState } from "react";
+import AddColumn from "../AddColumn/AddColumn";
 
-const AddAnotherColumn = ({ setIsOpen }) => {
-  const handleOpenModalAddColumn = () => {
-    setIsOpen(true);
-  };
-
+const AddAnotherColumn = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <div className={css.section}>
         <button
           className={css.btnAdd}
           type="button"
-          onClick={handleOpenModalAddColumn}
+          onClick={() => setIsOpen(true)}
         >
           <div className={css.svg}>
             <SvgIcon
@@ -25,6 +24,7 @@ const AddAnotherColumn = ({ setIsOpen }) => {
           Add another column
         </button>
       </div>
+      {isOpen && <AddColumn setIsOpen={setIsOpen} />}
     </>
   );
 };

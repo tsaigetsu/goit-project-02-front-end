@@ -12,18 +12,24 @@ const validateFormSchema = Yup.object().shape({
     .required("Name is required")
     .matches(/^[A-Za-z]+$/, "Name must contain only letters")
     .min(2, "Name is too short")
-    .max(50, "Name is too long"),
+    .max(18, "Name is too long"),
   email: Yup.string()
     .required("Email is required")
     .email("Invalid email address"),
   password: Yup.string()
-    .required("Password is required")
-    .min(8, "Password must be at least 8 characters"),
+
+    .matches(
+      /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
+      "Password can contain only Latin letters, numbers, and special characters"
+    )
+    .matches(/^\S*$/, "Password cannot contain spaces")
+    .min(8, "Password must be at least 8 characters")
+    .max(64, "Password must not exceed 64 characters"),
 });
 
 const EditProfile = ({ userData, onClose }) => {
   const dispatch = useDispatch();
-  const [visiblePassword, setVisiblePassword] = useState(true);
+  const [visiblePassword, setVisiblePassword] = useState(false);
   const fileInputRef = useRef(null);
   const {
     register,
@@ -132,6 +138,7 @@ const EditProfile = ({ userData, onClose }) => {
                 type="text"
                 placeholder="Enter your name"
                 className={css.input}
+                autoFocus
               />
               {errors.name && (
                 <div className={css.error}>{errors.name.message}</div>
@@ -154,7 +161,7 @@ const EditProfile = ({ userData, onClose }) => {
                 type={visiblePassword ? "text" : "password"}
                 placeholder="Create a password"
                 className={css.input}
-                autoFocus
+                autoComplete="off"
               />
               {errors.password && (
                 <div className={css.error}>{errors.password.message}</div>
@@ -164,7 +171,21 @@ const EditProfile = ({ userData, onClose }) => {
                 className={css.toggleBtn}
                 onClick={() => setVisiblePassword(!visiblePassword)}
               >
-                <SvgIcon id="icon-eye" width="18" height="18" />
+                {visiblePassword ? (
+                  <SvgIcon
+                    id="icon-eye"
+                    className={css.toggleBtnIcon}
+                    width="18"
+                    height="18"
+                  />
+                ) : (
+                  <SvgIcon
+                    id="icon-eye-off"
+                    className={css.toggleBtnIcon}
+                    width="18"
+                    height="18"
+                  />
+                )}
               </button>
             </label>
           </div>

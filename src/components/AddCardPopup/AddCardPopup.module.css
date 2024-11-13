@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  background-color: rgba(21, 21, 21, 0.50);
+  background-color: rgba(21, 21, 21, 0.5);
 }
 
 @media screen and (min-width: 320px) {
@@ -72,8 +72,8 @@
   font-size: 18px;
   font-weight: 500;
   letter-spacing: -0.02em;
-  padding-bottom: 24px;
   color: var(--modal-text-color);
+  margin-bottom: 24px;
 }
 /* закриття */
 .closeButton {
@@ -122,9 +122,8 @@
   outline: none;
 }
 .textareaDesk {
-  height: 154px ;
+  height: 154px;
 }
-
 
 /* Секція вибору кольору */
 .labelColor {

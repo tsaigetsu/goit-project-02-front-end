@@ -1,20 +1,30 @@
 import { useEffect, useState } from "react";
 import SvgIcon from "../SvgIcon/SvgIcon";
 import css from "./AddColumn.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { onCreateColumn } from "../../redux/columns/operations";
+import { selectedBoard } from "../../redux/boards/selectors";
 
-const AddColumn = ({ onCreateColumn, setIsOpen }) => {
+const AddColumn = ({ setIsOpen }) => {
   const [title, setTitle] = useState("");
-
+  const dispatch = useDispatch();
   const closeModal = () => {
     setIsOpen(false);
   };
   // console.log(title);
+  const board = useSelector(selectedBoard);
+  const { _id } = board;
+  console.log("boardId", _id);
+  console.log("title", title);
 
-  const handleAddColumn = () => {
+  const handleSaveColumn = () => {
     if (title.trim()) {
-      onCreateColumn(title);
+      const newColumn = { title: title, boardId: _id };
+      console.log("newcolumn", newColumn);
+      dispatch(onCreateColumn(newColumn));
+      setIsOpen(false);
       setTitle("");
-      closeModal();
+      // closeModal();
     }
   };
 
@@ -64,7 +74,7 @@ const AddColumn = ({ onCreateColumn, setIsOpen }) => {
           <button
             className={css.btnAdd}
             type="button"
-            onClick={handleAddColumn}
+            onClick={handleSaveColumn}
           >
             <SvgIcon id="icon-normalBtnBlack" width="28" height="28" />
             Add
