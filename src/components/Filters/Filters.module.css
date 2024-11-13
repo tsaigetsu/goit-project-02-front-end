@@ -7,9 +7,9 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .filtersContent {
@@ -31,10 +31,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-
 .noScroll {
   overflow: hidden;
-  /* Заборона прокручування сторінки */
 }
 
 .closeButton {
@@ -67,40 +65,41 @@ h3 {
   letter-spacing: 0.1ex;
 }
 
-
-/* Стилі для кнопок фону */
-/*.backgroundOptions {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-}
-
-.backgroundButton {
-  background: transparent;
-  border: 1px solid var(--main-text-colorB);
-  padding: 8px;
-  cursor: pointer;
-  text-align: left;
-  width: 100%;
-  color: var(--main-text-colorB);
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.backgroundButton:hover {
-  background-color: var(--button-hover-color);
-}
-*/
-
-
-/* Стилі для опцій пріоритету */
 .priorityOptions {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.dropdownButton {
+  background: none;
+  border: none;
+  color: var(--main-text-colorB);
+  opacity: 30%;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 4px;
+  margin-left: 8px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.dropdownButton:hover {
+  color: var(--priority-color-mid);
 }
 
 .priorityLabel {
@@ -116,12 +115,10 @@ h3 {
   letter-spacing: 0.1ex;
 }
 
-/* Прибираємо opacity для активної мітки */
 .filterRadio:checked+.radioLabel {
   opacity: 100%;
 }
 
-/* Стилі для радіокнопок */
 .filterRadio {
   position: relative;
   width: 14px;
@@ -149,7 +146,6 @@ h3 {
   background-color: var(--priority-color-high);
 }
 
-/* Внутрішній бордер */
 .filterRadio:checked::before {
   content: '';
   position: absolute;
@@ -162,7 +158,6 @@ h3 {
   transform: translate(-50%, -50%);
 }
 
-/* Внутрішній кольоровий кружечок залежно від вибору */
 .filterRadio--none:checked::after,
 .filterRadio--low:checked::after,
 .filterRadio--medium:checked::after,
@@ -177,7 +172,6 @@ h3 {
   transform: translate(-50%, -50%);
 }
 
-/* Зміна кольору для кожної кнопки у вибраному стані */
 .filterRadio--none:checked::after {
   background-color: var(--background-topbar-colorV);
 }
