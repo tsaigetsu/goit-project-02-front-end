@@ -110,9 +110,11 @@
   gap: 8px;
 }
 .btnIcon {
-  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: transparent;
-  fill: none;
+  border: none;
 }
 .svgIcon {
   stroke: var(--svg-btns-color);

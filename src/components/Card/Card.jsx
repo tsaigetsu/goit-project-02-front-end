@@ -98,7 +98,12 @@ const Card = React.memo(({ card }) => {
                 />
               </button>
               <button className={s.btnIcon} onClick={() => setIsEdit(true)}>
-                <SvgIcon id="icon-pencil-01" width="16" height="16" />
+                <SvgIcon
+                  id="icon-pencil-01"
+                  className={s.svgIcon}
+                  width="16"
+                  height="16"
+                />
               </button>
               <button className={s.btnIcon} onClick={openModal}>
                 <SvgIcon
