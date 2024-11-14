@@ -1,18 +1,22 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { ModalDelete } from "../ModalDelete/ModalDelete.jsx";
 import SvgIcon from "../SvgIcon/SvgIcon.jsx";
 import s from "./Card.module.css";
-import { useDispatch } from "react-redux";
-import { deleteCard } from "../../redux/cards/operations.js";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteCard, moveCardToColumn } from "../../redux/cards/operations.js";
 import EditCardPopup from "../EditCardPopup/EditCardPopup.jsx";
 import InProgressModal from "../InProgressModal/InProgressModal.jsx";
+import { selectedBoard } from "../../redux/boards/selectors.js";
 
 const Card = React.memo(({ card }) => {
   const [isEdit, setIsEdit] = useState(false);
-  const { _id, title, description, deadline, columnId, priority } = card;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalChange, setIsModalChange] = useState(false);
+  const [isDeadlinePassed, setIsDeadlinePassed] = useState(false);
   const dispatch = useDispatch();
+  const { _id, title, description, deadline, columnId, priority } = card;
+  const board = useSelector(selectedBoard);
+  const { columns } = board;
 
   const colorPriority = [
     { color: " #8fa1d0", priority: "low" },
@@ -32,8 +36,6 @@ const Card = React.memo(({ card }) => {
     }
   }, [columnId, _id, dispatch]);
 
-  // import InProgressModal from "../InProgressModal/InProgressModal.jsx";
-
   const closeModal = useCallback(() => {
     setIsModalOpen(false);
   }, []);
@@ -42,10 +44,39 @@ const Card = React.memo(({ card }) => {
     setIsModalOpen(true);
   }, []);
 
-  // console.log("Rendering card:", id);
   const onChange = () => {
     setIsModalChange(true);
   };
+
+  const filteredColumns = columns.filter((col) => col._id !== columnId);
+
+  const handleMoveCard = (columnId) => {
+    dispatch(moveCardToColumn({ cardId: _id, columnId }));
+    setIsModalChange(false);
+  };
+  useEffect(() => {
+    const checkDeadline = () => {
+      // Преобразуем строку в объект даты
+      const deadlineDate = new Date(deadline);
+      const currentDate = new Date();
+
+      // Сравниваем текущую дату с дедлайном
+      if (currentDate > deadlineDate) {
+        setIsDeadlinePassed(true); // Если текущая дата больше дедлайна, то истек
+      } else {
+        setIsDeadlinePassed(false); // Если дедлайн не истек
+      }
+    };
+
+    // Проверка дедлайна сразу после рендеринга
+    checkDeadline();
+
+    // Проверяем каждый день
+    const intervalId = setInterval(checkDeadline, 86400000); // 86400000ms = 1 день
+
+    // Очищаем интервал, когда компонент размонтируется
+    return () => clearInterval(intervalId);
+  }, [deadline]);
   return (
     <>
       <div
@@ -81,14 +112,26 @@ const Card = React.memo(({ card }) => {
               </div>
             </div>
             <div className={s.boxIcons}>
-              <button className={s.btnIcon}>
+              <buttonc
+                className={`${s.btnIcon} ${
+                  !isDeadlinePassed ? s.deadlineShadow : ""
+                }`}
+              >
                 <SvgIcon
                   id="icon-bell-01"
                   className={s.svgIcon}
                   width="16"
                   height="16"
+                  style={{
+                    filter: isDeadlinePassed
+                      ? "drop-shadow(0px 0px 6px rgb(57 168 62))"
+                      : "none",
+                    stroke: isDeadlinePassed
+                      ? "rgb(77 144 80)"
+                      : "var(--svg-btns-color)",
+                  }}
                 />
-              </button>
+              </buttonc>
               <button className={s.btnIcon} onClick={onChange}>
                 <SvgIcon
                   id="icon-arrow-circle-broken-right"
@@ -120,9 +163,9 @@ const Card = React.memo(({ card }) => {
       {isEdit && <EditCardPopup card={card} setIsEdit={setIsEdit} />}
       {isModalChange && (
         <InProgressModal
-          columnId={columnId}
-          isModalChange={isModalChange}
           setIsModalChange={setIsModalChange}
+          filteredColumns={filteredColumns}
+          handleMoveCard={handleMoveCard}
         />
       )}
       <ModalDelete

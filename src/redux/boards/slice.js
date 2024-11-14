@@ -12,7 +12,12 @@ import {
   onDeleteColumn,
   onEditColumn,
 } from "../columns/operations.js";
-import { addCard, deleteCard, updateCard } from "../cards/operations.js";
+import {
+  addCard,
+  deleteCard,
+  moveCardToColumn,
+  updateCard,
+} from "../cards/operations.js";
 // import { createSelector } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -65,17 +70,8 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
 
-        const { boardId, column } = action.payload;
-        return state.boards.map((board) => {
-          if (board.id === boardId) {
-            return {
-              ...board,
-              columns: [...board.columns, column],
-            };
-          }
-
-          return board;
-        });
+        const { column } = action.payload;
+        state.selectedBoard.columns.push(column);
       })
       .addCase(onDeleteColumn.fulfilled, (state, action) => {
         state.loading = false;
@@ -151,6 +147,21 @@ const slice = createSlice({
             };
           }
         }
+      })
+      .addCase(moveCardToColumn.fulfilled, (state, action) => {
+        state.loading = false;
+
+        state.selectedBoard.columns.forEach((column) => {
+          const cardIndex = column.tasks.findIndex(
+            (task) => task._id === action.payload._id
+          );
+          if (cardIndex !== -1) {
+            column.tasks.splice(cardIndex, 1);
+          }
+          if (column._id === action.payload.columnId) {
+            column.tasks.push(action.payload);
+          }
+        });
       })
       .addMatcher(
         isAnyOf(

@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 
 export const addCard = createAsyncThunk("addCard", async (data, thunkAPI) => {
   try {
+    console.log("data", data);
+
     const response = await api.post("/tasks", data);
 
     toast.success("Card created successfully!", {
@@ -70,34 +72,30 @@ export const updateCard = createAsyncThunk(
   }
 );
 
-// PATCH cards/:id - Застосовує часткові зміни до картки за її ID (cardId) з новими даними (data).
-// export const replaceCard = createAsyncThunk(
-//   "cards/replaceCard",
-//   async ({ cardId, newColumnId, columnId }, thunkAPI) => {
-//     try {
-//       const data = { columnId: newColumnId };
-//       console.log(data);
-
-//       const response = await taskProApi.patch(`/cards/replace/${cardId}`, data);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-export const replaceCard = createAsyncThunk(
-  "replaceCard",
-  async ({ cardId, newColumnId, columnId }, thunkAPI) => {
+export const moveCardToColumn = createAsyncThunk(
+  "moveCardToColumn",
+  async ({ cardId, columnId }, thunkAPI) => {
     try {
-      const data = { columnId: newColumnId };
-      console.log(data);
+      const response = await api.patch(`/tasks/${cardId}`, {
+        columnId,
+      });
 
-      const response = await api.patch(`/tasks/${cardId}`, data);
+      toast.success("Card moved successfully!", {
+        duration: 4000,
+        position: "bottom-center",
+        icon: "✔️",
+      });
 
-      // Додаємо старий columnId до об'єкта, щоб передати його в slice
-      return { ...response.data, oldColumnId: columnId };
+      return response.data.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      toast.error("Failed to move card: " + error.message, {
+        duration: 5000,
+        position: "bottom-center",
+        icon: "❌",
+      });
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
     }
   }
 );

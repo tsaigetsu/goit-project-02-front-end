@@ -7,7 +7,7 @@ import { selectCardsFromColumn } from "../../redux/cards/selectors.js";
 
 const CardList = ({ columnId }) => {
   const tasks = useSelector((state) => selectCardsFromColumn(state, columnId));
-  console.log("cards", tasks);
+  // console.log("cards", tasks);
 
   return (
     <>
