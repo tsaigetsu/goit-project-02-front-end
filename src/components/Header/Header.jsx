@@ -9,6 +9,7 @@ export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { toggleSidebar, isSidebarOpen } = useContext(SidebarContext);
   const { changeTheme } = useContext(ThemeContext);
+  const { theme } = useContext (ThemeContext) ;
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -62,13 +63,13 @@ export default function Header() {
               {isModalOpen && (
                 <div className={css.modal} ref={modalRef}>
                   <ul>
-                    <li onClick={() => changeTheme("light", setIsModalOpen)}>
+                    <li onClick={() => changeTheme("light", setIsModalOpen)} className={theme === "light" ? css.activeTheme : ""}>
                       Light
                     </li>
-                    <li onClick={() => changeTheme("dark", setIsModalOpen)}>
+                    <li onClick={() => changeTheme("dark", setIsModalOpen)} className={theme === "dark" ? css.activeTheme : ""}>
                       Dark
                     </li>
-                    <li onClick={() => changeTheme("violet", setIsModalOpen)}>
+                    <li onClick={() => changeTheme("violet", setIsModalOpen)} className={theme === "violet" ? css.activeTheme : ""}>
                       Violet
                     </li>
                   </ul>

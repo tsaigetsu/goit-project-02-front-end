@@ -1,4 +1,5 @@
 .theme-light {
+  --accent-color:#BEDBB0;
   --header-color: #FCFCFC;
   --text-color: #161616;
   --text-hover-color: #BEDBB0;
@@ -6,6 +7,7 @@
   --background-help: #F6F6F7;
   --background-sidebar: #FFFFFF;
   --btn-color: #BEDBB0;
+  --btn-text-color: #161616;
   --btn--hover-color: #9DC888;
   --icons-color-1: #161616;
   --icons-color-2: #16161680;
@@ -41,6 +43,7 @@
 }
 
 .theme-dark {
+  --accent-color: #BEDBB0;
   --header-color: #161616;
     --text-color: #FFFFFF;
     --text-hover-color: #BEDBB0;
@@ -84,6 +87,7 @@
 }
 
 .theme-violet {
+    --accent-color: #5255BC;
     --header-color: #FFFFFF;
     --text-color: #161616;
     --text-hover-color: #5255BC;
