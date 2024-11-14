@@ -4,7 +4,6 @@ import css from './EditColumn.module.css';
 import { onEditColumn } from '../../redux/columns/operations';
 import { useDispatch } from 'react-redux';
 
-//принимает в пропсах стейт контролирующий открытие и закрытие окна isModalOpen, setIsModalOpen
 const EditColumn = ({ title, setIsEdit, columnId }) => {
   const [newTitle, setNewTitle] = useState(title);
   const dispatch = useDispatch();

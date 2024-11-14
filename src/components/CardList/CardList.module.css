@@ -1,6 +1,6 @@
 .wrapperList {
   flex-grow: 1;
-  max-height: 490px;
+  height: 100vh;
   padding-right: 8px;
   /* background-color: aquamarine; */
   display: flex;
