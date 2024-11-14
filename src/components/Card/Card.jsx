@@ -112,7 +112,7 @@ const Card = React.memo(({ card }) => {
               </div>
             </div>
             <div className={s.boxIcons}>
-              <buttonc
+              <button
                 className={`${s.btnIcon} ${
                   !isDeadlinePassed ? s.deadlineShadow : ""
                 }`}
@@ -131,7 +131,7 @@ const Card = React.memo(({ card }) => {
                       : "var(--svg-btns-color)",
                   }}
                 />
-              </buttonc>
+              </button>
               <button className={s.btnIcon} onClick={onChange}>
                 <SvgIcon
                   id="icon-arrow-circle-broken-right"
