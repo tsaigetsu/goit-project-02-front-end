@@ -1,21 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
-import NewBoardForm from "../NewBoardForm/NewBoardForm";
-import SidebarBoardItem from "../SidebarBoardItem/SidebarBoardItem";
-import SvgIcon from "../SvgIcon/SvgIcon";
-import s from "./SidebarBoardList.module.css";
-import { selectBoards } from "../../redux/boards/selectors.js";
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import NewBoardForm from '../NewBoardForm/NewBoardForm';
+import SidebarBoardItem from '../SidebarBoardItem/SidebarBoardItem';
+import SvgIcon from '../SvgIcon/SvgIcon';
+import s from './SidebarBoardList.module.css';
+import { selectBoards } from '../../redux/boards/selectors.js';
 import {
   addBoardsThunk,
   deleteBoardThunk,
   fetchBoardsThunk,
   getBoardByIdThunk,
   updateBoardThunk,
-} from "../../redux/boards/operations.js";
-import icons from "../../data/icons.json";
-import EditBoardForm from "../EditBoardForm/EditBoardForm.jsx";
-
-import toast from "react-hot-toast";
+} from '../../redux/boards/operations.js';
+import icons from '../../data/icons.json';
+import EditBoardForm from '../EditBoardForm/EditBoardForm.jsx';
 
 const SidebarBoardList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,8 +23,6 @@ const SidebarBoardList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("SidebarBoardList");
-
     dispatch(fetchBoardsThunk());
   }, [dispatch]);
 
@@ -36,46 +32,38 @@ const SidebarBoardList = () => {
     setIsModalOpen(true);
   };
 
-  const handleSaveBoard = async (newBoard) => {
+  const handleSaveBoard = async newBoard => {
     dispatch(addBoardsThunk(newBoard));
     setIsModalOpen(false);
   };
 
-  const handleSelectBoard = async (boardId) => {
+  const handleSelectBoard = async boardId => {
     try {
       const board = await dispatch(getBoardByIdThunk(boardId)).unwrap();
 
       setSelectedBoardData(board);
       setActiveBoardId(boardId);
     } catch (error) {
-      toast.error(error.message, {
-        duration: 5000,
-        position: "bottom-center",
-        icon: "❌",
-      });
+      console.error(error);
     }
   };
 
-  const getIconNameById = (id) => {
-    const icon = icons.find((icon) => icon.id === id);
-    return icon ? icon.iconName : "icon-default";
+  const getIconNameById = id => {
+    const icon = icons.find(icon => icon.id === id);
+    return icon ? icon.iconName : 'icon-default';
   };
 
-  const handleEdit = async (boardId) => {
+  const handleEdit = async boardId => {
     try {
       const boardData = await dispatch(getBoardByIdThunk(boardId)).unwrap();
       setSelectedBoardData(boardData);
       setIsEditModalOpen(true);
     } catch (error) {
-      toast.error(error.message, {
-        duration: 5000,
-        position: "bottom-center",
-        icon: "❌",
-      });
+      console.error(error);
     }
   };
 
-  const handleSaveChanges = async (updatedBoard) => {
+  const handleSaveChanges = async updatedBoard => {
     try {
       await dispatch(
         updateBoardThunk({
@@ -86,16 +74,11 @@ const SidebarBoardList = () => {
       setIsEditModalOpen(false);
       setSelectedBoardData(null);
     } catch (error) {
-      toast.error(error.message, {
-        duration: 5000,
-        position: "bottom-center",
-        icon: "❌",
-      });
+      console.error(error);
     }
   };
 
-  const handleDelete = async (boardId) => {
-    console.log("boardId", boardId);
+  const handleDelete = async boardId => {
     try {
       await dispatch(deleteBoardThunk(boardId));
 
@@ -105,11 +88,7 @@ const SidebarBoardList = () => {
         setActiveBoardId(null);
       }
     } catch (error) {
-      toast.error(error.message, {
-        duration: 5000,
-        position: "bottom-center",
-        icon: "❌",
-      });
+      console.error(error);
     }
   };
 
@@ -129,7 +108,7 @@ const SidebarBoardList = () => {
           </button>
         </div>
         <ul className={s.ul}>
-          {boards.map((board) => (
+          {boards.map(board => (
             <SidebarBoardItem
               key={board._id}
               name={board.title}

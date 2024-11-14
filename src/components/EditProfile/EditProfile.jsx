@@ -1,30 +1,30 @@
-import css from "./EditProfile.module.css";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useState, useEffect, useRef } from "react";
-import { useForm } from "react-hook-form";
-import SvgIcon from "../SvgIcon/SvgIcon";
-import { useDispatch } from "react-redux";
-import { updateUserAvatar } from "../../redux/auth/operations.js";
+import css from './EditProfile.module.css';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState, useEffect, useRef } from 'react';
+import { useForm } from 'react-hook-form';
+import SvgIcon from '../SvgIcon/SvgIcon';
+import { useDispatch } from 'react-redux';
+import { updateUserAvatar } from '../../redux/auth/operations.js';
 
 const validateFormSchema = Yup.object().shape({
   name: Yup.string()
-    .required("Name is required")
-    .matches(/^[A-Za-z]+$/, "Name must contain only letters")
-    .min(2, "Name is too short")
-    .max(18, "Name is too long"),
+    .required('Name is required')
+    .matches(/^[A-Za-z]+$/, 'Name must contain only letters')
+    .min(2, 'Name is too short')
+    .max(18, 'Name is too long'),
   email: Yup.string()
-    .required("Email is required")
-    .email("Invalid email address"),
+    .required('Email is required')
+    .email('Invalid email address'),
   password: Yup.string()
 
     .matches(
       /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
-      "Password can contain only Latin letters, numbers, and special characters"
+      'Password can contain only Latin letters, numbers, and special characters'
     )
-    .matches(/^\S*$/, "Password cannot contain spaces")
-    .min(8, "Password must be at least 8 characters")
-    .max(64, "Password must not exceed 64 characters"),
+    .matches(/^\S*$/, 'Password cannot contain spaces')
+    .min(8, 'Password must be at least 8 characters')
+    .max(64, 'Password must not exceed 64 characters'),
 });
 
 const EditProfile = ({ userData, onClose }) => {
@@ -38,24 +38,23 @@ const EditProfile = ({ userData, onClose }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: userData?.name || "",
-      email: userData?.email || "",
-      password: "", // Пусть будет пустым, если не передан пароль
+      name: userData?.name || '',
+      email: userData?.email || '',
+      password: '', // Пусть будет пустым, если не передан пароль
     },
     resolver: yupResolver(validateFormSchema),
-    mode: "onChange",
+    mode: 'onChange',
   });
   useEffect(() => {
     if (userData) {
       reset({
-        name: userData.name || "",
-        email: userData.email || "",
+        name: userData.name || '',
+        email: userData.email || '',
       });
     }
   }, [userData, reset]);
 
-  const onSubmit = (data) => {
-    console.log("Data", data);
+  const onSubmit = data => {
     const updatedUserData = {
       name: data.name,
       email: data.email,
@@ -64,11 +63,11 @@ const EditProfile = ({ userData, onClose }) => {
     onClose();
   };
   // Обработчик выбора файла
-  const handleAvatarChange = (event) => {
+  const handleAvatarChange = event => {
     const file = event.target.files[0];
     if (file) {
       const formData = new FormData();
-      formData.append("photo", file);
+      formData.append('photo', file);
       dispatch(updateUserAvatar(formData)); // Отправляем новый аватар на сервер
     }
   };
@@ -78,23 +77,23 @@ const EditProfile = ({ userData, onClose }) => {
   };
 
   useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
+    const handleEscape = event => {
+      if (event.key === 'Escape') {
         onClose(); // Вызываем функцию закрытия модалки
       }
     };
 
     // Подписываемся на событие `keydown` при монтировании компонента
-    document.addEventListener("keydown", handleEscape);
+    document.addEventListener('keydown', handleEscape);
 
     // Очищаем подписку при размонтировании компонента
     return () => {
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [onClose]);
 
   // Обработчик для клика по бекдропу
-  const handleBackdropClick = (event) => {
+  const handleBackdropClick = event => {
     if (event.target === event.currentTarget) {
       onClose(); // Закрываем модалку при клике по бекдропу
     }
@@ -124,7 +123,7 @@ const EditProfile = ({ userData, onClose }) => {
               type="file"
               accept="image/*"
               ref={fileInputRef} // Привязываем ссылку к инпуту
-              style={{ display: "none" }} // Скрываем input
+              style={{ display: 'none' }} // Скрываем input
               onChange={handleAvatarChange} // Обработчик изменения файла
             />
           </div>
@@ -134,7 +133,7 @@ const EditProfile = ({ userData, onClose }) => {
           <div className={css.inputContainer}>
             <label className={css.label}>
               <input
-                {...register("name")}
+                {...register('name')}
                 type="text"
                 placeholder="Enter your name"
                 className={css.input}
@@ -146,7 +145,7 @@ const EditProfile = ({ userData, onClose }) => {
             </label>
             <label className={css.label}>
               <input
-                {...register("email")}
+                {...register('email')}
                 type="text"
                 placeholder="Enter your email"
                 className={css.input}
@@ -157,8 +156,8 @@ const EditProfile = ({ userData, onClose }) => {
             </label>
             <label className={css.label}>
               <input
-                {...register("password")}
-                type={visiblePassword ? "text" : "password"}
+                {...register('password')}
+                type={visiblePassword ? 'text' : 'password'}
                 placeholder="Create a password"
                 className={css.input}
                 autoComplete="off"

@@ -1,46 +1,44 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../../api.js";
-import toast from "react-hot-toast";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { api } from '../../api.js';
+import toast from 'react-hot-toast';
 
-export const addCard = createAsyncThunk("addCard", async (data, thunkAPI) => {
+export const addCard = createAsyncThunk('addCard', async (data, thunkAPI) => {
   try {
-    console.log("data", data);
+    const response = await api.post('/tasks', data);
 
-    const response = await api.post("/tasks", data);
-
-    toast.success("Card created successfully!", {
+    toast.success('Card created successfully!', {
       duration: 4000,
-      position: "bottom-center",
-      icon: "✔️",
+      position: 'bottom-center',
+      icon: '✔️',
     });
     return response.data;
   } catch (error) {
-    toast.error("Failed to create column: " + error.message, {
+    toast.error('Failed to create column: ' + error.message, {
       duration: 5000,
-      position: "bottom-center",
-      icon: "❌",
+      position: 'bottom-center',
+      icon: '❌',
     });
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
 export const deleteCard = createAsyncThunk(
-  "deleteCard",
+  'deleteCard',
   async (cardId, thunkAPI) => {
     try {
       await api.delete(`/tasks/${cardId}`);
-      toast.success("Card deleted!", {
+      toast.success('Card deleted!', {
         duration: 4000,
-        position: "bottom-center",
-        icon: "✔️",
+        position: 'bottom-center',
+        icon: '✔️',
       });
 
       return { cardId };
     } catch (error) {
-      toast.error("Failed to delete card: " + error.message, {
+      toast.error('Failed to delete card: ' + error.message, {
         duration: 5000,
-        position: "bottom-center",
-        icon: "❌",
+        position: 'bottom-center',
+        icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -48,24 +46,21 @@ export const deleteCard = createAsyncThunk(
 );
 
 export const updateCard = createAsyncThunk(
-  "updateCard",
+  'updateCard',
   async ({ _id, data }, thunkAPI) => {
-    console.log(_id + "card id for update");
-    console.log(data + "data for update");
-
     try {
       const response = await api.patch(`/tasks/${_id}`, data);
-      toast.success("Card updated successfully!", {
+      toast.success('Card updated successfully!', {
         duration: 4000,
-        position: "bottom-center",
-        icon: "✔️",
+        position: 'bottom-center',
+        icon: '✔️',
       });
       return response.data;
     } catch (error) {
-      toast.error("Failed to update card: " + error.message, {
+      toast.error('Failed to update card: ' + error.message, {
         duration: 5000,
-        position: "bottom-center",
-        icon: "❌",
+        position: 'bottom-center',
+        icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -73,25 +68,25 @@ export const updateCard = createAsyncThunk(
 );
 
 export const moveCardToColumn = createAsyncThunk(
-  "moveCardToColumn",
+  'moveCardToColumn',
   async ({ cardId, columnId }, thunkAPI) => {
     try {
       const response = await api.patch(`/tasks/${cardId}`, {
         columnId,
       });
 
-      toast.success("Card moved successfully!", {
+      toast.success('Card moved successfully!', {
         duration: 4000,
-        position: "bottom-center",
-        icon: "✔️",
+        position: 'bottom-center',
+        icon: '✔️',
       });
 
       return response.data.data;
     } catch (error) {
-      toast.error("Failed to move card: " + error.message, {
+      toast.error('Failed to move card: ' + error.message, {
         duration: 5000,
-        position: "bottom-center",
-        icon: "❌",
+        position: 'bottom-center',
+        icon: '❌',
       });
       return thunkAPI.rejectWithValue(
         error.response?.data?.message || error.message

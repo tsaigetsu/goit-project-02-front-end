@@ -1,12 +1,12 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { ModalDelete } from "../ModalDelete/ModalDelete.jsx";
-import SvgIcon from "../SvgIcon/SvgIcon.jsx";
-import s from "./Card.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteCard, moveCardToColumn } from "../../redux/cards/operations.js";
-import EditCardPopup from "../EditCardPopup/EditCardPopup.jsx";
-import InProgressModal from "../InProgressModal/InProgressModal.jsx";
-import { selectedBoard } from "../../redux/boards/selectors.js";
+import React, { useState, useCallback, useEffect } from 'react';
+import { ModalDelete } from '../ModalDelete/ModalDelete.jsx';
+import SvgIcon from '../SvgIcon/SvgIcon.jsx';
+import s from './Card.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteCard, moveCardToColumn } from '../../redux/cards/operations.js';
+import EditCardPopup from '../EditCardPopup/EditCardPopup.jsx';
+import InProgressModal from '../InProgressModal/InProgressModal.jsx';
+import { selectedBoard } from '../../redux/boards/selectors.js';
 
 const Card = React.memo(({ card }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -19,26 +19,25 @@ const Card = React.memo(({ card }) => {
   const { columns } = board;
 
   const colorPriority = [
-    { color: " #8fa1d0", priority: "low" },
-    { color: "#E09CB5", priority: "medium" },
-    { color: "#BEDBB0", priority: "high" },
-    { color: "rgba(255, 255, 255, 0.3)", priority: "without priority" },
+    { color: ' #8fa1d0', priority: 'low' },
+    { color: '#E09CB5', priority: 'medium' },
+    { color: '#BEDBB0', priority: 'high' },
+    { color: 'rgba(255, 255, 255, 0.3)', priority: 'without priority' },
   ];
 
   const selectedColorObj = colorPriority.find(
-    (item) => item.priority === priority
+    item => item.priority === priority
   );
+  const closeModal = useCallback(() => {
+    setIsModalOpen(false);
+  }, []);
 
   const onDelete = useCallback(() => {
     if (columnId && _id) {
       dispatch(deleteCard(_id));
       closeModal();
     }
-  }, [columnId, _id, dispatch]);
-
-  const closeModal = useCallback(() => {
-    setIsModalOpen(false);
-  }, []);
+  }, [columnId, _id, dispatch, closeModal]);
 
   const openModal = useCallback(() => {
     setIsModalOpen(true);
@@ -48,9 +47,9 @@ const Card = React.memo(({ card }) => {
     setIsModalChange(true);
   };
 
-  const filteredColumns = columns.filter((col) => col._id !== columnId);
+  const filteredColumns = columns.filter(col => col._id !== columnId);
 
-  const handleMoveCard = (columnId) => {
+  const handleMoveCard = columnId => {
     dispatch(moveCardToColumn({ cardId: _id, columnId }));
     setIsModalChange(false);
   };
@@ -84,7 +83,7 @@ const Card = React.memo(({ card }) => {
         style={{
           backgroundColor: selectedColorObj
             ? selectedColorObj.color
-            : "without priority",
+            : 'without priority',
         }}
       >
         <div className={s.cardWrapper}>
@@ -100,7 +99,7 @@ const Card = React.memo(({ card }) => {
                     style={{
                       backgroundColor: selectedColorObj
                         ? selectedColorObj.color
-                        : "without priority",
+                        : 'without priority',
                     }}
                   ></div>
                   <span className={s.titlePriority}>{priority}</span>
@@ -114,7 +113,7 @@ const Card = React.memo(({ card }) => {
             <div className={s.boxIcons}>
               <button
                 className={`${s.btnIcon} ${
-                  !isDeadlinePassed ? s.deadlineShadow : ""
+                  !isDeadlinePassed ? s.deadlineShadow : ''
                 }`}
               >
                 <SvgIcon
@@ -124,14 +123,15 @@ const Card = React.memo(({ card }) => {
                   height="16"
                   style={{
                     filter: isDeadlinePassed
-                      ? "drop-shadow(0px 0px 6px rgb(57 168 62))"
-                      : "none",
+                      ? 'drop-shadow(0px 0px 6px rgb(57 168 62))'
+                      : 'none',
                     stroke: isDeadlinePassed
-                      ? "rgb(77 144 80)"
-                      : "var(--svg-btns-color)",
+                      ? 'rgb(77 144 80)'
+                      : 'var(--svg-btns-color)',
                   }}
                 />
               </button>
+
               <button className={s.btnIcon} onClick={onChange}>
                 <SvgIcon
                   id="icon-arrow-circle-broken-right"
@@ -139,6 +139,13 @@ const Card = React.memo(({ card }) => {
                   width="16"
                   height="16"
                 />
+                {isModalChange && (
+                  <InProgressModal
+                    setIsModalChange={setIsModalChange}
+                    filteredColumns={filteredColumns}
+                    handleMoveCard={handleMoveCard}
+                  />
+                )}
               </button>
               <button className={s.btnIcon} onClick={() => setIsEdit(true)}>
                 <SvgIcon
@@ -161,25 +168,19 @@ const Card = React.memo(({ card }) => {
         </div>
       </div>
       {isEdit && <EditCardPopup card={card} setIsEdit={setIsEdit} />}
-      {isModalChange && (
-        <InProgressModal
-          setIsModalChange={setIsModalChange}
-          filteredColumns={filteredColumns}
-          handleMoveCard={handleMoveCard}
-        />
-      )}
+
       <ModalDelete
         isOpen={isModalOpen}
         onClose={closeModal}
         onConfirm={onDelete}
-        typeItems={"card"}
-        titleItems={title || "Untitled Card"}
+        typeItems={'card'}
+        titleItems={title || 'Untitled Card'}
       />
     </>
   );
 });
 
 // Устанавливаем displayName для компонента
-Card.displayName = "Card";
+Card.displayName = 'Card';
 
 export default Card;

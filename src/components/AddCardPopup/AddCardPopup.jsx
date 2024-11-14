@@ -12,7 +12,6 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   // const [selectedDate, setSelectedDate] = useState(null);
   const dispatch = useDispatch();
-  console.log('setIsOpen', setIsOpen);
 
   const valuesFields = {
     title: '',
@@ -57,7 +56,6 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
   const handleAdd = values => {
     const { title, description, deadline, priority } = values;
 
-    console.log('values', values);
     const data = {
       title,
       description,
@@ -145,8 +143,6 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                           }`}
                           style={{ backgroundColor: color }}
                           onClick={() => {
-                            console.log('Color:', color);
-                            console.log('Priority:', priority);
                             setFieldValue('labelColor', color);
                             setFieldValue('priority', priority);
                           }}

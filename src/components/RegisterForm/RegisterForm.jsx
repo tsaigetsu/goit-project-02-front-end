@@ -1,38 +1,38 @@
-import css from "./RegisterForm.module.css";
-import { NavLink } from "react-router-dom";
+import css from './RegisterForm.module.css';
+import { NavLink } from 'react-router-dom';
 
-import * as Yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
-import SvgIcon from "../SvgIcon/SvgIcon";
-import { useDispatch } from "react-redux";
-import { registerThunk } from "../../redux/auth/operations.js";
+import * as Yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import SvgIcon from '../SvgIcon/SvgIcon';
+import { useDispatch } from 'react-redux';
+import { registerThunk } from '../../redux/auth/operations.js';
 
 const validateFormSchema = Yup.object().shape({
   name: Yup.string()
-    .required("Name is required")
+    .required('Name is required')
     .matches(
       /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
-      "Name can contain only Latin letters, numbers, and special characters"
+      'Name can contain only Latin letters, numbers, and special characters'
     )
-    .min(2, "Name must be at least 2 characters")
-    .max(32, "Name must not exceed 32 characters"),
+    .min(2, 'Name must be at least 2 characters')
+    .max(32, 'Name must not exceed 32 characters'),
   email: Yup.string()
-    .required("Email is required")
+    .required('Email is required')
     .matches(
       /^[A-Za-z0-9!#$%&'.*+/=?^_`{|}~-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-      "Invalid email format"
+      'Invalid email format'
     ),
   password: Yup.string()
-    .required("Password is required")
+    .required('Password is required')
     .matches(
       /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
-      "Password can contain only Latin letters, numbers, and special characters"
+      'Password can contain only Latin letters, numbers, and special characters'
     )
-    .matches(/^\S*$/, "Password cannot contain spaces")
-    .min(8, "Password must be at least 8 characters")
-    .max(64, "Password must not exceed 64 characters"),
+    .matches(/^\S*$/, 'Password cannot contain spaces')
+    .min(8, 'Password must be at least 8 characters')
+    .max(64, 'Password must not exceed 64 characters'),
 });
 
 const RegisterForm = () => {
@@ -46,17 +46,16 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: "",
-      email: "",
-      password: "",
+      name: '',
+      email: '',
+      password: '',
     },
     resolver: yupResolver(validateFormSchema),
-    mode: "onChange",
+    mode: 'onChange',
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     dispatch(registerThunk(data));
-    console.log(data);
 
     reset();
   };
@@ -86,7 +85,7 @@ const RegisterForm = () => {
           <div className={css.inputContainer}>
             <label className={css.label}>
               <input
-                {...register("name")}
+                {...register('name')}
                 type="text"
                 placeholder="Enter your name"
                 className={css.input}
@@ -98,7 +97,7 @@ const RegisterForm = () => {
             </label>
             <label className={css.label}>
               <input
-                {...register("email")}
+                {...register('email')}
                 type="text"
                 placeholder="Enter your email"
                 className={css.input}
@@ -109,8 +108,8 @@ const RegisterForm = () => {
             </label>
             <label className={css.label}>
               <input
-                {...register("password")}
-                type={visiblePassword ? "text" : "password"}
+                {...register('password')}
+                type={visiblePassword ? 'text' : 'password'}
                 placeholder="Create a password"
                 className={css.input}
               />

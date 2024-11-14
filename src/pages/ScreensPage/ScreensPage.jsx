@@ -1,13 +1,13 @@
-import React, { useState, useMemo, useCallback } from "react";
-import css from "./ScreensPage.module.css";
-import { selectBoards, selectedBoard } from "../../redux/boards/selectors.js";
-import HeaderDashboard from "../../components/HeaderDashboard/HeaderDashboard.jsx";
-import MainDashboard from "../../components/MainDashboard/MainDashboard.jsx";
-import DefaultText from "../../components/DefaultText/DefaultText.jsx";
-import NewBoardForm from "../../components/NewBoardForm/NewBoardForm.jsx";
-import { useSelector, useDispatch } from "react-redux";
-import backgrounds from "../../data/backgrounds.json";
-import { addBoardsThunk } from "../../redux/boards/operations.js";
+import React, { useState, useMemo, useCallback } from 'react';
+import css from './ScreensPage.module.css';
+import { selectBoards, selectedBoard } from '../../redux/boards/selectors.js';
+import HeaderDashboard from '../../components/HeaderDashboard/HeaderDashboard.jsx';
+import MainDashboard from '../../components/MainDashboard/MainDashboard.jsx';
+import DefaultText from '../../components/DefaultText/DefaultText.jsx';
+import NewBoardForm from '../../components/NewBoardForm/NewBoardForm.jsx';
+import { useSelector, useDispatch } from 'react-redux';
+import backgrounds from '../../data/backgrounds.json';
+import { addBoardsThunk } from '../../redux/boards/operations.js';
 
 // Мемоизируем компоненты для предотвращения лишних ререндеров
 const MemoizedHeaderDashboard = React.memo(HeaderDashboard);
@@ -19,18 +19,17 @@ const ScreensPage = () => {
   const boards = useSelector(selectBoards);
   const board = useSelector(selectedBoard);
   const dispatch = useDispatch();
-  console.log("board!!!!!", board);
 
   // Мемоизация для backgroundUrl
   const backgroundStyles = useMemo(() => {
-    if (!board?.backgroundId || board.backgroundId === "nobg") {
+    if (!board?.backgroundId || board.backgroundId === 'nobg') {
       return {
-        "--background-mobile-normal": "none",
-        "--background-mobile-large": "none",
-        "--background-tablet-normal": "none",
-        "--background-tablet-large": "none",
-        "--background-desktop-normal": "none",
-        "--background-desktop-large": "none",
+        '--background-mobile-normal': 'none',
+        '--background-mobile-large': 'none',
+        '--background-tablet-normal': 'none',
+        '--background-tablet-large': 'none',
+        '--background-desktop-normal': 'none',
+        '--background-desktop-large': 'none',
       };
     }
 
@@ -38,23 +37,23 @@ const ScreensPage = () => {
     const backgroundId = board.backgroundId;
 
     return {
-      "--background-mobile-normal": `url(${
-        bg.mobile[backgroundId]?.normal || ""
+      '--background-mobile-normal': `url(${
+        bg.mobile[backgroundId]?.normal || ''
       })`,
-      "--background-mobile-large": `url(${
-        bg.mobile[backgroundId]?.large || ""
+      '--background-mobile-large': `url(${
+        bg.mobile[backgroundId]?.large || ''
       })`,
-      "--background-tablet-normal": `url(${
-        bg.tablet[backgroundId]?.normal || ""
+      '--background-tablet-normal': `url(${
+        bg.tablet[backgroundId]?.normal || ''
       })`,
-      "--background-tablet-large": `url(${
-        bg.tablet[backgroundId]?.large || ""
+      '--background-tablet-large': `url(${
+        bg.tablet[backgroundId]?.large || ''
       })`,
-      "--background-desktop-normal": `url(${
-        bg.desktop[backgroundId]?.normal || ""
+      '--background-desktop-normal': `url(${
+        bg.desktop[backgroundId]?.normal || ''
       })`,
-      "--background-desktop-large": `url(${
-        bg.desktop[backgroundId]?.large || ""
+      '--background-desktop-large': `url(${
+        bg.desktop[backgroundId]?.large || ''
       })`,
     };
   }, [board]);
@@ -68,11 +67,13 @@ const ScreensPage = () => {
     setIsOpen(false);
   }, []);
 
-  const handleSaveBoard = useCallback((newBoard) => {
-    // console.log("New board saved:", newBoard);
-    dispatch(addBoardsThunk(newBoard));
-    setIsOpen(false);
-  }, []);
+  const handleSaveBoard = useCallback(
+    newBoard => {
+      dispatch(addBoardsThunk(newBoard));
+      setIsOpen(false);
+    },
+    [dispatch]
+  );
 
   return (
     <>
