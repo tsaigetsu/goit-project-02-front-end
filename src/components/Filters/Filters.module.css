@@ -99,7 +99,7 @@ h3 {
 }
 
 .dropdownButton:hover {
-  color: var(--priority-color-mid);
+  opacity: 100%;
 }
 
 .priorityLabel {
@@ -129,8 +129,8 @@ h3 {
   appearance: none;
 }
 
-.filterRadio--none {
-  background-color: var(--background-topbar-colorV);
+.filterRadio--without {
+  background-color: var(--priority-color-none);
   opacity: 30%;
 }
 
@@ -158,7 +158,7 @@ h3 {
   transform: translate(-50%, -50%);
 }
 
-.filterRadio--none:checked::after,
+.filterRadio--without:checked::after,
 .filterRadio--low:checked::after,
 .filterRadio--medium:checked::after,
 .filterRadio--high:checked::after {
@@ -172,8 +172,8 @@ h3 {
   transform: translate(-50%, -50%);
 }
 
-.filterRadio--none:checked::after {
-  background-color: var(--background-topbar-colorV);
+.filterRadio--without:checked::after {
+  background-color: var(--priority-color-none);
 }
 
 .filterRadio--low:checked::after {
