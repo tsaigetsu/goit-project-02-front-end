@@ -5,7 +5,7 @@
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(21, 21, 21, 0.50);
   z-index: 999;
   display: flex;
   justify-content: center;
@@ -20,15 +20,15 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background-color: var(--background-pop-up-colorB);
-  border: 1px solid rgba(190, 219, 176, 0.5);
+  background-color: var(--header-color);
+  border: 0.1px solid var(--btn-color);
   border-radius: 8px;
   width: 300px;
   max-height: 80vh;
   overflow-y: auto;
-  color: var(--main-text-colorB);
+  color: var(--text-color);
   z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .noScroll {
@@ -44,25 +44,34 @@
   cursor: pointer;
   width: 18px;
   height: 18px;
-  stroke: white;
+  stroke: var(--icons-color-1);
   z-index: 1100;
 }
 
-h2 {
+.closeButton:hover {
+  stroke: var(--icons-color-2);
+  filter: brightness(4) drop-shadow(0 0 10px var(--btn--hover-color)) drop-shadow(0 0 2px var(--btn--hover-color));
+}
+
+.filtersContent h2 {
   margin: 0;
   font-size: 18px;
   font-weight: 100;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid var(--icons-color-2);
   padding-bottom: 18px;
   width: 100%;
   letter-spacing: 0.1ex;
+  color: var(--text-color);
+    font-family: "Poppins", sans-serif;
 }
 
-h3 {
+.labelRow h3 {
   margin: 4px 4px;
   font-size: 14px;
   font-weight: 100;
   letter-spacing: 0.1ex;
+  color: var(--text-color);
+    font-family: "Poppins", sans-serif;
 }
 
 .priorityOptions {
@@ -82,7 +91,7 @@ h3 {
 .dropdownButton {
   background: none;
   border: none;
-  color: var(--main-text-colorB);
+  color: var(--text-color);
   opacity: 30%;
   cursor: pointer;
   font-size: 12px;
@@ -115,8 +124,10 @@ h3 {
   letter-spacing: 0.1ex;
 }
 
-.filterRadio:checked+.radioLabel {
+.filterRadio:checked+.radioLabel,
+.filterRadio:hover+.radioLabel {
   opacity: 100%;
+  cursor: pointer;
 }
 
 .filterRadio {
@@ -152,7 +163,7 @@ h3 {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: var(--background-pop-up-colorB);
+  background-color: rgba(223, 219, 219, 0.901);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

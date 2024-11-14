@@ -75,7 +75,13 @@
 .svgBtn {
   stroke: var(--svg-btns-color);
   fill: none;
+transition: stroke 0.3s ease, filter 0.3s ease;
 }
+
+.btnIcon:hover .svgBtn {
+  stroke: var(--icons-hover-color);
+}
+
 .itemList {
   /* flex: 0 0 auto; */
   /* flex: 0 1 100%; */

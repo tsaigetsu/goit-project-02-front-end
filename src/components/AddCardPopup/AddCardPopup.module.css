@@ -35,6 +35,7 @@
     border-radius: 8px;
     background-color: var(--filters-modal-bg);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Тінь*/
+    border: 0.1px solid var(--btn-color);
   }
 }
 
@@ -85,10 +86,16 @@
   border: none;
   cursor: pointer;
   fill: none;
+  transition: stroke 0.3s ease, filter 0.3s ease;
 
   /* &&:hover {
       transition: transform 0.3s;
     } */
+}
+
+.closeButton:hover {
+  stroke: var(--icons-color-2);
+  filter: brightness(4) drop-shadow(0 0 10px var(--btn--hover-color)) drop-shadow(0 0 2px var(--btn--hover-color));
 }
 
 .formCard {
@@ -120,6 +127,13 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
   resize: none;
   outline: none;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.02em;
 }
 .textareaDesk {
   height: 154px;
