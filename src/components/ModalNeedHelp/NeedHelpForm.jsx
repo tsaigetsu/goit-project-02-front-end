@@ -1,10 +1,10 @@
-import { Formik, Form } from "formik";
+import { Formik, Form } from 'formik';
 
-import { Input, Textarea, ErrorText, StyledButton } from "./NeedHelp.styled";
+import { Input, Textarea, ErrorText, StyledButton } from './NeedHelp.styled';
 
 const initialValues = {
-  email: "",
-  comment: "",
+  email: '',
+  comment: '',
 };
 
 const NeedHelpForm = () => {
@@ -12,7 +12,6 @@ const NeedHelpForm = () => {
 
   // const handleSubmit = async (values, { resetForm }) => {
   //   const { email, comment } = values;
-  //   console.log({ email, comment });
   //   try {
   //     const result = await dispatch(needHelp({ email, comment }));
   //     if (needHelp.fulfilled.match(result)) {
@@ -40,7 +39,7 @@ const NeedHelpForm = () => {
               name="comment"
               placeholder="Comment"
               style={{
-                resize: "none",
+                resize: 'none',
               }}
             />
             <ErrorText name="comment" component="div" />

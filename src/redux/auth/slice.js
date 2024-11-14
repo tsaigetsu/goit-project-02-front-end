@@ -1,27 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 import {
   currentUserThunk,
   fetchUserProfile,
   logoutThunk,
   updateUserAvatar,
-} from "./operations.js";
-import { loginThunk, registerThunk } from "./operations.js";
+} from './operations.js';
+import { loginThunk, registerThunk } from './operations.js';
 
 const initialState = {
   user: {
-    name: "",
-    email: "",
+    name: '',
+    email: '',
   },
-  token: "",
+  token: '',
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
 };
 
 const slice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(logoutThunk.fulfilled, () => {
         return initialState;
@@ -31,31 +31,30 @@ const slice = createSlice({
         state.user.email = action.payload.data.user.email;
         state.isLoggedIn = true;
       })
-      .addCase(registerThunk.rejected, (state) => {
+      .addCase(registerThunk.rejected, state => {
         state.isLoggedIn = false;
       })
 
-      .addCase(loginThunk.pending, (state) => {
+      .addCase(loginThunk.pending, state => {
         state.isLoggedIn = false;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
       })
-      .addCase(loginThunk.rejected, (state) => {
+      .addCase(loginThunk.rejected, state => {
         state.isLoggedIn = false;
       })
       .addCase(currentUserThunk.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.isRefreshing = false;
-        console.log("currentUserThunk", action.payload);
 
         state.user = action.payload;
       })
-      .addCase(currentUserThunk.pending, (state) => {
+      .addCase(currentUserThunk.pending, state => {
         state.isRefreshing = true;
       })
-      .addCase(currentUserThunk.rejected, (state) => {
+      .addCase(currentUserThunk.rejected, state => {
         state.isRefreshing = false;
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
@@ -70,10 +69,10 @@ const slice = createSlice({
           ...action.payload, // добавляем или обновляем переданные свойства
         };
       })
-      .addCase(updateUserAvatar.pending, (state) => {
+      .addCase(updateUserAvatar.pending, state => {
         state.isRefreshing = true;
       })
-      .addCase(updateUserAvatar.rejected, (state) => {
+      .addCase(updateUserAvatar.rejected, state => {
         state.isRefreshing = false;
       });
   },

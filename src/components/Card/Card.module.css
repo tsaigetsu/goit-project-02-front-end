@@ -126,3 +126,7 @@
 .btnIcon:hover .svgIcon {
   stroke: var(--icons-hover-color);
 }
+
+.changeColumn {
+  position: relative;
+}

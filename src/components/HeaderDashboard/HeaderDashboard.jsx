@@ -1,19 +1,14 @@
-import SvgIcon from "../SvgIcon/SvgIcon";
-import css from "./HeaderDashboard.module.css";
-import Filters from "../Filters/Filters";
-import { useSelector } from "react-redux";
-import { selectedBoard } from "../../redux/boards/selectors.js";
-import { useState } from "react";
+import SvgIcon from '../SvgIcon/SvgIcon';
+import css from './HeaderDashboard.module.css';
+import Filters from '../Filters/Filters';
+
+import { useState } from 'react';
 
 const HeaderDashboard = ({ title, onFilterChange, onBackgroundChange }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const board = useSelector(selectedBoard);
-  console.log("selectedBoard", board);
-
   const handleOpenModal = () => {
     setIsModalOpen(true);
-    console.log("open modal filter", isModalOpen);
   };
 
   return (

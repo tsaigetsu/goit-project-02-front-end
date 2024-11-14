@@ -1,12 +1,12 @@
-import Column from "../Column/Column";
-import css from "./ColumnsList.module.css";
+import Column from '../Column/Column';
+import css from './ColumnsList.module.css';
 // import { selectColumnsByBoard } from "../../redux/boards/slice.js";
-import { useSelector } from "react-redux";
-import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn.jsx";
-import { useEffect, useRef } from "react";
+import { useSelector } from 'react-redux';
+import AddAnotherColumn from '../AddAnotherColumn/AddAnotherColumn.jsx';
+import { useEffect, useRef } from 'react';
 // import AddColumn from "../AddColumn/AddColumn.jsx";
 // import { onCreateColumn } from "../../redux/columns/operations.js";
-import { selectedBoard } from "../../redux/boards/selectors.js";
+import { selectedBoard } from '../../redux/boards/selectors.js';
 
 const ColumnsList = () => {
   // { filter }
@@ -17,12 +17,9 @@ const ColumnsList = () => {
   const board = useSelector(selectedBoard);
   const { columns } = board;
   // const columns = board.columns;
-  // console.log("columns", columns);
-  // console.log("board????????", board);
 
   // const handleSaveColumn = (newTitle) => {
   //   const newColumn = { title: newTitle, boardId: _id };
-  //   console.log("newcolumn", newColumn);
 
   //   dispatch(onCreateColumn(newColumn));
   //   setIsOpen(false);
@@ -30,7 +27,7 @@ const ColumnsList = () => {
 
   useEffect(() => {
     const container = containerRef.current;
-    const handleWheel = (e) => {
+    const handleWheel = e => {
       if (container) {
         e.preventDefault(); // Предотвращаем стандартное поведение
         container.scrollLeft += e.deltaY; // Горизонтальная прокрутка
@@ -38,11 +35,11 @@ const ColumnsList = () => {
     };
 
     // Добавляем обработчик как не пассивный
-    container.addEventListener("wheel", handleWheel, { passive: false });
+    container.addEventListener('wheel', handleWheel, { passive: false });
 
     // Удаляем обработчик при размонтировании компонента
     return () => {
-      container.removeEventListener("wheel", handleWheel);
+      container.removeEventListener('wheel', handleWheel);
     };
   }, []);
 
@@ -50,7 +47,7 @@ const ColumnsList = () => {
     <section className={css.wrapperList}>
       <ul ref={containerRef} className={css.columnsList}>
         {columns.length > 0 &&
-          columns.map((column) => {
+          columns.map(column => {
             // Фільтруємо задачі у колонці
             // const filteredTasks = column.tasks.filter((task) => {
             //   if (!filter) return true; // Якщо фільтр не заданий, показуємо всі задачі
@@ -69,7 +66,7 @@ const ColumnsList = () => {
           })}
 
         <AddAnotherColumn
-          className={`add-button ${columns.length > 0 ? "shifted" : ""}`}
+          className={`add-button ${columns.length > 0 ? 'shifted' : ''}`}
         />
       </ul>
     </section>

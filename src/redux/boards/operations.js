@@ -1,11 +1,11 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../../api.js";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { api } from '../../api.js';
 
 export const fetchBoardsThunk = createAsyncThunk(
-  "fetchBoards",
+  'fetchBoards',
   async (_, thunkApi) => {
     try {
-      const response = await api.get("boards");
+      const response = await api.get('boards');
       return response.data.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -14,11 +14,10 @@ export const fetchBoardsThunk = createAsyncThunk(
 );
 
 export const addBoardsThunk = createAsyncThunk(
-  "addBoard",
+  'addBoard',
   async (body, thunkApi) => {
     try {
-      const response = await api.post("boards", body);
-      console.log(response.data.data);
+      const response = await api.post('boards', body);
 
       return response.data.data;
     } catch (error) {
@@ -28,7 +27,7 @@ export const addBoardsThunk = createAsyncThunk(
 );
 
 export const deleteBoardThunk = createAsyncThunk(
-  "deleteBoard",
+  'deleteBoard',
   async (_id, thunkApi) => {
     try {
       await api.delete(`boards/${_id}`);
@@ -40,11 +39,10 @@ export const deleteBoardThunk = createAsyncThunk(
 );
 
 export const getBoardByIdThunk = createAsyncThunk(
-  "boards/getBoardById",
+  'boards/getBoardById',
   async (boardId, { rejectWithValue }) => {
     try {
       const response = await api.get(`boards/${boardId}`);
-      console.log("redux, get board by id", response.data.data);
 
       return response.data.data;
     } catch (error) {
@@ -53,7 +51,7 @@ export const getBoardByIdThunk = createAsyncThunk(
   }
 );
 export const updateBoardThunk = createAsyncThunk(
-  "boards/updateBoard",
+  'boards/updateBoard',
   async ({ boardId, title, iconId, backgroundId }, { rejectWithValue }) => {
     try {
       const response = await api.patch(`boards/${boardId}`, {
@@ -63,7 +61,7 @@ export const updateBoardThunk = createAsyncThunk(
       });
       return response.data.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || "Failed to update board");
+      return rejectWithValue(error.response?.data || 'Failed to update board');
     }
   }
 );

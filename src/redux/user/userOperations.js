@@ -7,7 +7,6 @@
 // export const fetchUserData = async () => {
 //   try {
 //      const token = localStorage.getItem("token");
-//     console.log("Token from localStorage:", token);
 
 //     const response = await instance.get("/user/profile", {
 //       headers: {
