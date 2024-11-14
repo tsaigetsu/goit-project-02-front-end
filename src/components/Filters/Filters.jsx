@@ -56,10 +56,10 @@ const Filters = ({ onFilterChange, setIsModalOpen }) => {
               Show all
             </button>
           </div>
-          {["none", "low", "medium", "high"].map((priority) => (
+          {["without", "low", "medium", "high"].map((priority) => (
             <label key={priority} className={css.priorityLabel}>
               <input 
-                type="radio" 
+                type="checkbox" 
                 name="priority" 
                 value={priority} 
                 checked={selectedPriority === priority} 

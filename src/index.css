@@ -23,6 +23,7 @@
   --background-button-colorV: #5255bc;
 
   /*Priority colors*/
+  --priority-color-none: #ffffff;
   --priority-color-low: #8fa1d0;
   --priority-color-mid: #e09cb5;
   --priority-color-high: #bedbb0;
