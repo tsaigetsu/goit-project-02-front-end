@@ -139,7 +139,7 @@ export const sendHelpCommentThunk = createAsyncThunk(
   "help/sendComment",
   async (data, thunkAPI) => {
     try {
-      const response = await api.post("/help/send-comment", data);
+      const response = await api.post("/api/help/send-comment", data);
       console.log("Successfully sent help comment:", response.data);
 
       toast.success("Email sent to tech support. We'll reply soon!", {
@@ -151,11 +151,11 @@ export const sendHelpCommentThunk = createAsyncThunk(
       return response.data;
     } catch (error) {
       console.error("Error sending help comment:", error.message);
-      toast.error("Error sending letter. Please, try again later.", {
-        duration: 5000,
-        position: "bottom-center",
-        icon: "❌",
-      });
+      // toast.error("Error sending letter. Please, try again later.", {
+      //   duration: 5000,
+      //   position: "bottom-center",
+      //   icon: "❌",
+      // });
       return thunkAPI.rejectWithValue(error.message);
     }
   }

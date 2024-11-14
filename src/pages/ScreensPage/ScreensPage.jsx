@@ -5,8 +5,9 @@ import HeaderDashboard from "../../components/HeaderDashboard/HeaderDashboard.js
 import MainDashboard from "../../components/MainDashboard/MainDashboard.jsx";
 import DefaultText from "../../components/DefaultText/DefaultText.jsx";
 import NewBoardForm from "../../components/NewBoardForm/NewBoardForm.jsx";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import backgrounds from "../../data/backgrounds.json";
+import { addBoardsThunk } from "../../redux/boards/operations.js";
 
 // Мемоизируем компоненты для предотвращения лишних ререндеров
 const MemoizedHeaderDashboard = React.memo(HeaderDashboard);
@@ -17,6 +18,7 @@ const ScreensPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const boards = useSelector(selectBoards);
   const board = useSelector(selectedBoard);
+  const dispatch = useDispatch();
   console.log("board!!!!!", board);
 
   // Мемоизация для backgroundUrl
@@ -66,8 +68,9 @@ const ScreensPage = () => {
     setIsOpen(false);
   }, []);
 
-  const handleSaveBoard = useCallback(() => {
+  const handleSaveBoard = useCallback((newBoard) => {
     // console.log("New board saved:", newBoard);
+    dispatch(addBoardsThunk(newBoard));
     setIsOpen(false);
   }, []);
 

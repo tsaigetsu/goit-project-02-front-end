@@ -184,7 +184,7 @@ const EditBoardForm = ({
                 key={bgId}
                 className={`${s.backgroundButton} ${selectedBackground === bgId ? s.selected : ""}`}
                 style={{
-                  backgroundImage: `url(${backgrounds.desktop[bgId].normal})`
+                  backgroundImage: `url(${backgrounds.mobile[bgId].normal})`
                 }}
               >
                 <input

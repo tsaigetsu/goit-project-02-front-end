@@ -1,0 +1,188 @@
+{
+  "desktop": {
+    "bg1": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-1-x1_mqic0q.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-1-x2_lkuaex.png"
+    },
+    "bg2": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-3-x1_yxwq4l.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-3-x2_orjpcq.png"
+    },
+    "bg3": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-5-x1_ykvjfz.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-5-x2_poez18.png"
+    },
+    "bg4": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-7-x1_zkm6x7.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-7-x2_jdltpr.png"
+    },
+    "bg5": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-9-x1_btmb4q.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-9-x2_y8yvhn.png"
+    },
+    "bg6": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583208/bg-min-11-x1_fscnur.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583208/bg-min-11-x2_hqk8t5.png"
+    },
+    "bg7": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-13-x1_yt7dsv.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-13-x2_k8xful.png"
+    },
+    "bg8": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-15-x1_gjsfmm.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583255/bg-min-15-x2_vvukvu.png"
+    },
+    "bg9": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-2-x1_xo4obc.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-2-x2_s8dap1.png"
+    },
+    "bg10": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-4-x1_pgrsen.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-4-x2_mdgmp0.png"
+    },
+    "bg11": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-6-x1_gnwjih.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-6-x2_ixw012.png"
+    },
+    "bg12": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-8-x1_ymvrcf.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-8-x2_lqfwkv.png"
+    },
+    "bg13": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-10-x1_rcebth.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-10-x2_gkmnvm.png"
+    },
+    "bg14": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-12-x1_egqwow.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-12-x2_hsxzme.png"
+    },
+    "bg15": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-14-x1_mu5kcs.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-14-x2_ozkjpx.png"
+    }
+  },
+  "tablet": {
+    "bg1": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-1-x1_mqic0q.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-1-x2_lkuaex.png"
+    },
+    "bg2": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-3-x1_yxwq4l.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-3-x2_orjpcq.png"
+    },
+    "bg3": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-5-x1_ykvjfz.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-5-x2_poez18.png"
+    },
+    "bg4": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-7-x1_zkm6x7.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-7-x2_jdltpr.png"
+    },
+    "bg5": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-9-x1_btmb4q.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-9-x2_y8yvhn.png"
+    },
+    "bg6": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583208/bg-min-11-x1_fscnur.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583208/bg-min-11-x2_hqk8t5.png"
+    },
+    "bg7": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-13-x1_yt7dsv.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-13-x2_k8xful.png"
+    },
+    "bg8": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-15-x1_gjsfmm.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583255/bg-min-15-x2_vvukvu.png"
+    },
+    "bg9": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-2-x1_xo4obc.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-2-x2_s8dap1.png"
+    },
+    "bg10": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-4-x1_pgrsen.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-4-x2_mdgmp0.png"
+    },
+    "bg11": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-6-x1_gnwjih.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-6-x2_ixw012.png"
+    },
+    "bg12": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-8-x1_ymvrcf.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-8-x2_lqfwkv.png"
+    },
+    "bg13": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-10-x1_rcebth.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-10-x2_gkmnvm.png"
+    },
+    "bg14": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-12-x1_egqwow.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-12-x2_hsxzme.png"
+    },
+    "bg15": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-14-x1_mu5kcs.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-14-x2_ozkjpx.png"
+    }
+  },
+  "mobile": {
+    "bg1": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-1-x1_mqic0q.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-1-x2_lkuaex.png"
+    },
+    "bg2": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-3-x1_yxwq4l.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-3-x2_orjpcq.png"
+    },
+    "bg3": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-5-x1_ykvjfz.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-5-x2_poez18.png"
+    },
+    "bg4": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-7-x1_zkm6x7.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-7-x2_jdltpr.png"
+    },
+    "bg5": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-9-x1_btmb4q.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-9-x2_y8yvhn.png"
+    },
+    "bg6": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583208/bg-min-11-x1_fscnur.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583208/bg-min-11-x2_hqk8t5.png"
+    },
+    "bg7": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-13-x1_yt7dsv.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-13-x2_k8xful.png"
+    },
+    "bg8": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-15-x1_gjsfmm.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583255/bg-min-15-x2_vvukvu.png"
+    },
+    "bg9": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-2-x1_xo4obc.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583384/bg-min-2-x2_s8dap1.png"
+    },
+    "bg10": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-4-x1_pgrsen.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-4-x2_mdgmp0.png"
+    },
+    "bg11": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-6-x1_gnwjih.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583206/bg-min-6-x2_ixw012.png"
+    },
+    "bg12": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-8-x1_ymvrcf.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-8-x2_lqfwkv.png"
+    },
+    "bg13": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-10-x1_rcebth.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583207/bg-min-10-x2_gkmnvm.png"
+    },
+    "bg14": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-12-x1_egqwow.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-12-x2_hsxzme.png"
+    },
+    "bg15": {
+      "normal": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-14-x1_mu5kcs.png",
+      "large": "https://res.cloudinary.com/dgdak0eqk/image/upload/v1731583209/bg-min-14-x2_ozkjpx.png"
+    }
+  }
+}

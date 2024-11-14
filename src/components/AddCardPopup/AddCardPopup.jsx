@@ -1,76 +1,67 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import CalendarPicker from "../CalendarPicker/CalendarPicker";
-import "react-datepicker/dist/react-datepicker.css"; //
-import SvgIcon from "../SvgIcon/SvgIcon.jsx";
-import { useDispatch } from "react-redux";
-import { addCard } from "../../redux/cards/operations.js";
-import s from "./AddCardPopup.module.css";
-import { useCallback, useEffect, useState } from "react";
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import CalendarPicker from '../CalendarPicker/CalendarPicker';
+import 'react-datepicker/dist/react-datepicker.css'; //
+import SvgIcon from '../SvgIcon/SvgIcon.jsx';
+import { useDispatch } from 'react-redux';
+import { addCard } from '../../redux/cards/operations.js';
+import s from './AddCardPopup.module.css';
+import { useCallback, useEffect, useState } from 'react';
 
 const AddCardPopup = ({ setIsOpen, columnId }) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
-  // const [selectedPriority, setSelectedPriority] = useState("without-priority");
+  // const [selectedDate, setSelectedDate] = useState(null);
   const dispatch = useDispatch();
-  // console.log("setIsOpen", setIsOpen);
+  console.log('setIsOpen', setIsOpen);
 
   const valuesFields = {
-    title: "",
-    description: "",
-    labelColor: "",
+    title: '',
+    description: '',
+    labelColor: '',
     deadline: null,
-    priority: "without priority",
+    priority: '',
   };
 
   const validateSchema = Yup.object({
-    title: Yup.string()
-      .required("Title is required")
-      .min(2, "Title must be at least 2 characters")
-      .max(32, "Title cannot exceed 32 characters"),
+    title: Yup.string().required('Required'),
     description: Yup.string(),
-    deadline: Yup.date().required("Deadline is required"),
+    deadline: Yup.date().required('Deadline is required'),
   });
 
-  const colorPriority = [
-    { color: " #8fa1d0", priority: "low" },
-    { color: "#E09CB5", priority: "medium" },
-    { color: "#BEDBB0", priority: "high" },
-    { color: "rgba(255, 255, 255, 0.3)", priority: "without priority" },
-  ];
-
   const setupDate = Date.now();
-  // Обработчик для изменения выбранного приоритета
 
-  const formatDate = (date) => {
-    const dateString = date;
-    const dateDeadline = new Date(dateString);
-
-    function formatDateForCard(dateDeadline) {
-      const day = dateDeadline.getDate().toString().padStart(2, "0");
-      const month = (dateDeadline.getMonth() + 1).toString().padStart(2, "0"); // getMonth() возвращает индекс месяца (0-11)
-      const year = dateDeadline.getFullYear();
-      return `${day}/${month}/${year}`;
+  const colorPriority = [
+    { color: ' #8fa1d0', priority: 'low' },
+    { color: '#E09CB5', priority: 'medium' },
+    { color: '#BEDBB0', priority: 'high' },
+    { color: 'rgba(255, 255, 255, 0.3)', priority: 'without priority' },
+  ];
+  // Функция для форматирования даты, которую будем использовать и в календаре, и в карточке
+  const formatDate = date => {
+    const options = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    };
+    const today = new Date();
+    const selected = new Date(date);
+    if (
+      selected.getDate() === today.getDate() &&
+      selected.getMonth() === today.getMonth() &&
+      selected.getFullYear() === today.getFullYear()
+    ) {
+      return `Today, ${selected.toLocaleDateString('en-US', options)}`;
     }
-    const formattedDate = formatDateForCard(dateDeadline);
-    setSelectedDate(formattedDate);
-    // const handlePriorityChange = (event) => {
-    //   const selected = event.target.value;
-    //   // Обновляем цвет в родительском компоненте через setPriorityColor
-    //   const color =
-    //     colorPriority.find((item) => item.priority === selected)?.color ||
-    //     "rgba(255, 255, 255, 0.3)";
-
-    //   setSelectedPriority(selected);
-    // };
+    return selected.toLocaleDateString('en-US', options);
   };
+  const handleAdd = values => {
+    const { title, description, deadline, priority } = values;
 
-  const handleAdd = (values) => {
-    const { title, description, priority } = values;
+    console.log('values', values);
     const data = {
       title,
       description,
-      deadline: selectedDate,
+      deadline,
       priority,
       columnId,
     };
@@ -80,30 +71,29 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
 
   // Функция для переключения календаря
   const toggleDateInput = useCallback(() => {
-    setIsCalendarOpen(true);
+    setIsCalendarOpen(prev => !prev);
   }, []);
   // Функция для обработки изменения даты
 
   useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
+    const handleEscape = event => {
+      if (event.key === 'Escape') {
         setIsOpen(false); // Вызываем функцию закрытия модалки
       }
     };
 
     // Подписываемся на событие `keydown` при монтировании компонента
-    document.addEventListener("keydown", handleEscape);
+    document.addEventListener('keydown', handleEscape);
 
     // Очищаем подписку при размонтировании компонента
     return () => {
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [setIsOpen]);
-
   return (
     <div
       className={s.popupOverlay}
-      onClick={(e) => {
+      onClick={e => {
         if (e.target === e.currentTarget) setIsOpen(false);
       }}
     >
@@ -133,13 +123,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                     className={s.inputTitle}
                     autoFocus
                   />
-                  <ErrorMessage
-                    name="title"
-                    component="div"
-                    className={s.errorMessage}
-                  />
                 </div>
-
                 <div className={s.inputWrapper}>
                   <Field
                     as="textarea"
@@ -157,24 +141,18 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                           key={color}
                           type="button"
                           className={`${s.colorCircle} ${
-                            values.priority === priority ? s.active : ""
+                            values.labelColor === color ? s.active : ''
                           }`}
                           style={{ backgroundColor: color }}
                           onClick={() => {
-                            // console.log("Color:", color);
-                            // console.log("Priority:", priority);
-                            setFieldValue("labelColor", color);
-                            setFieldValue("priority", priority);
-                            // setSelectedPriority(priority);
+                            console.log('Color:', color);
+                            console.log('Priority:', priority);
+                            setFieldValue('labelColor', color);
+                            setFieldValue('priority', priority);
                           }}
                         />
                       ))}
                     </div>
-                    <ErrorMessage
-                      name="priority"
-                      component="div"
-                      className={s.errorMessage}
-                    />
                   </div>
                   <div className={s.deadlineWrapper}>
                     <label htmlFor="deadline" className={s}>
@@ -184,21 +162,21 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                     <div className={s.CalendarPicker} onClick={toggleDateInput}>
                       <CalendarPicker
                         selected={values.deadline}
-                        onChange={(date) => {
-                          setFieldValue("deadline", date);
+                        onChange={date => {
+                          setFieldValue('deadline', date);
                           setIsCalendarOpen(false);
                         }}
                         formatDate={formatDate}
                         minDate={setupDate}
                         toggleDateInput={toggleDateInput}
-                        showPopperArrow={false}
-                        onFocus={(e) => e.target.blur()}
-                        onKeyDown={(e) => e.preventDefault()}
+                        onFocus={e => e.target.blur()}
+                        onKeyDown={e => e.preventDefault()}
                         calendarClassName={s.dateDisplayCalendar}
                         isCalendarOpen={isCalendarOpen}
                         placeholderText="Select Date"
                         open={isCalendarOpen}
-                        onClickOutside={() => setIsCalendarOpen(false)}
+                        // showPopperArrow={false}
+                        // onClickOutside={() => setIsCalendarOpen(false)}
                         // setIsCalendarOpen={setIsCalendarOpen}
                       />
                       <SvgIcon
@@ -208,11 +186,6 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                         height="14"
                       />
                     </div>
-                    <ErrorMessage
-                      name="deadline"
-                      component="div"
-                      className={s.errorMessage}
-                    />
                   </div>
                 </div>
 
