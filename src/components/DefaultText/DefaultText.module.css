@@ -27,6 +27,11 @@
   letter-spacing: -0.02em;
   padding: 0 5px;
 }
+
+.spanBtn:hover {
+  color: var(--btn--hover-color);
+}
+
 /* Tablet */
 @media only screen and (min-width: 768px) {
   .text {
