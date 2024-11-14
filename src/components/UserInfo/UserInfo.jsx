@@ -1,13 +1,12 @@
-import css from "./UserInfo.module.css";
-import EditProfile from "../EditProfile/EditProfile.jsx";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import SvgIcon from "../SvgIcon/SvgIcon.jsx";
-import { fetchUserProfile } from "../../redux/auth/operations.js";
+import css from './UserInfo.module.css';
+import EditProfile from '../EditProfile/EditProfile.jsx';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import SvgIcon from '../SvgIcon/SvgIcon.jsx';
+import { fetchUserProfile } from '../../redux/auth/operations.js';
 
 export default function UserInfo() {
-  const userData = useSelector((state) => state.auth.user);
-  // console.log("userData", userData);
+  const userData = useSelector(state => state.auth.user);
 
   const [isEditModal, setIsEditModal] = useState(false);
   const dispatch = useDispatch();
@@ -17,7 +16,6 @@ export default function UserInfo() {
   };
 
   useEffect(() => {
-    console.log("userInfo");
     dispatch(fetchUserProfile());
   }, [dispatch]);
 

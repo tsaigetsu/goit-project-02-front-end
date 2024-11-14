@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import SvgIcon from '../SvgIcon/SvgIcon';
 import css from './EditColumn.module.css';
 import { onEditColumn } from '../../redux/columns/operations';
@@ -8,18 +8,13 @@ const EditColumn = ({ title, setIsEdit, columnId }) => {
   const [newTitle, setNewTitle] = useState(title);
   const dispatch = useDispatch();
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setIsEdit(false);
-  };
-  // console.log("columnId", columnId);
-  // console.log("newTitle", newTitle);
+  }, [setIsEdit]);
 
   const handleUpdateColumn = () => {
-    // console.log("newTitle", newTitle);
     setIsEdit(false);
     const updateColumn = { title: newTitle };
-    // console.log("updateColumn", updateColumn);
-
     dispatch(onEditColumn({ columnId, updateColumn }));
   };
 

@@ -10,12 +10,6 @@ const CalendarPicker = ({
   formatDate,
   calendarClassName,
 }) => {
-  //
-  console.log('selected', selected);
-  console.log('formatDate', formatDate);
-  console.log('isCalendarOpen', isCalendarOpen);
-  console.log('toggleDateInput', toggleDateInput);
-
   return (
     <div className={css.datepickerBox}>
       <div

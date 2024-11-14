@@ -1,23 +1,23 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   addBoardsThunk,
   deleteBoardThunk,
   fetchBoardsThunk,
   getBoardByIdThunk,
   updateBoardThunk,
-} from "./operations";
-import { logoutThunk } from "../auth/operations.js";
+} from './operations';
+import { logoutThunk } from '../auth/operations.js';
 import {
   onCreateColumn,
   onDeleteColumn,
   onEditColumn,
-} from "../columns/operations.js";
+} from '../columns/operations.js';
 import {
   addCard,
   deleteCard,
   moveCardToColumn,
   updateCard,
-} from "../cards/operations.js";
+} from '../cards/operations.js';
 // import { createSelector } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -28,9 +28,9 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: "boards",
+  name: 'boards',
   initialState,
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(fetchBoardsThunk.fulfilled, (state, action) => {
         state.boards = action.payload || [];
@@ -42,26 +42,26 @@ const slice = createSlice({
       })
       .addCase(deleteBoardThunk.fulfilled, (state, action) => {
         state.boards = state.boards.filter(
-          (board) => board.id !== action.payload
+          board => board._id !== action.payload
         );
       })
       .addCase(logoutThunk.fulfilled, () => initialState)
       .addCase(getBoardByIdThunk.fulfilled, (state, action) => {
-        // console.log("payload", action.payload);
         state.selectedBoard = action.payload || null;
         state.loading = false;
         state.error = null;
       })
       .addCase(updateBoardThunk.fulfilled, (state, action) => {
         const index = state.boards.findIndex(
-          (board) => board.id === action.payload.id
+          board => board._id === action.payload._id
         );
+
         if (index !== -1) {
           state.boards[index] = action.payload;
         }
       })
       .addCase(updateBoardThunk.rejected, (state, action) => {
-        console.error("Failed to update board:", action.error?.message);
+        console.error('Failed to update board:', action.error?.message);
         state.loading = false;
         state.error = action.error?.message;
       })
@@ -76,10 +76,9 @@ const slice = createSlice({
       .addCase(onDeleteColumn.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        console.log("DEL COLUMN ID", action.payload);
 
         state.selectedBoard.columns = state.selectedBoard.columns.filter(
-          (column) => column._id !== action.payload
+          column => column._id !== action.payload
         );
       })
       .addCase(onEditColumn.fulfilled, (state, action) => {
@@ -87,7 +86,7 @@ const slice = createSlice({
         state.error = null;
         const columns = state.selectedBoard.columns;
         const updateColumn = action.payload.updatedColumn;
-        const index = columns.findIndex((col) => col._id === updateColumn._id);
+        const index = columns.findIndex(col => col._id === updateColumn._id);
 
         if (index !== -1) {
           columns[index] = updateColumn;
@@ -99,7 +98,7 @@ const slice = createSlice({
         const { columnId } = task;
 
         const column = state.selectedBoard.columns.find(
-          (col) => col._id === columnId
+          col => col._id === columnId
         );
 
         if (column) {
@@ -112,16 +111,13 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
         const cardIdToDelete = action.payload.cardId;
-        state.selectedBoard.columns.forEach((column) => {
+        state.selectedBoard.columns.forEach(column => {
           const cardIndex = column.tasks.findIndex(
-            (card) => card._id === cardIdToDelete
+            card => card._id === cardIdToDelete
           );
 
           if (cardIndex !== -1) {
             column.tasks.splice(cardIndex, 1);
-            console.log(
-              `Card with ID ${cardIdToDelete} removed from column ${column._id}`
-            );
           }
         });
       })
@@ -130,11 +126,11 @@ const slice = createSlice({
           action.payload.data;
 
         const column = state.selectedBoard.columns.find(
-          (col) => col._id === columnId
+          col => col._id === columnId
         );
 
         if (column) {
-          const cardIndex = column.tasks.findIndex((card) => card._id === _id);
+          const cardIndex = column.tasks.findIndex(card => card._id === _id);
 
           if (cardIndex !== -1) {
             column.tasks[cardIndex] = {
@@ -151,9 +147,9 @@ const slice = createSlice({
       .addCase(moveCardToColumn.fulfilled, (state, action) => {
         state.loading = false;
 
-        state.selectedBoard.columns.forEach((column) => {
+        state.selectedBoard.columns.forEach(column => {
           const cardIndex = column.tasks.findIndex(
-            (task) => task._id === action.payload._id
+            task => task._id === action.payload._id
           );
           if (cardIndex !== -1) {
             column.tasks.splice(cardIndex, 1);
@@ -176,7 +172,7 @@ const slice = createSlice({
           deleteCard.pending,
           updateCard.pending
         ),
-        (state) => {
+        state => {
           state.loading = true;
           state.error = false;
         }
@@ -196,7 +192,7 @@ const slice = createSlice({
         ),
         (state, action) => {
           state.loading = false;
-          state.error = action.error?.message || "Something went wrong";
+          state.error = action.error?.message || 'Something went wrong';
         }
       )
       .addMatcher(
@@ -212,7 +208,7 @@ const slice = createSlice({
           deleteCard.fulfilled,
           updateCard.fulfilled
         ),
-        (state) => {
+        state => {
           state.loading = false;
         }
       );
