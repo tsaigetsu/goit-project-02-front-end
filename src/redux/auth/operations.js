@@ -135,7 +135,7 @@ export const sendHelpCommentThunk = createAsyncThunk(
   'help/sendComment',
   async (data, thunkAPI) => {
     try {
-      const response = await api.post('/api/help/send-comment', data);
+      const response = await api.post('/help', data);
       console.log('Successfully sent help comment:', response.data);
 
       toast.success("Email sent to tech support. We'll reply soon!", {
