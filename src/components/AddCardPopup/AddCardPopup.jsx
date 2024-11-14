@@ -23,8 +23,8 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
   };
 
   const validateSchema = Yup.object({
-    title: Yup.string().required('Required'),
-    description: Yup.string(),
+    title: Yup.string().min(3).max(32).required('Required'),
+    description: Yup.string().min(3).max(300).required('Required'),
     labelColor: Yup.string().required('Required'),
     deadline: Yup.date().required('Required'),
     priority: Yup.string().required('Required'),
@@ -35,14 +35,14 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
   const colorPriority = [
     { color: ' #8fa1d0', priority: 'low' },
     { color: '#E09CB5', priority: 'medium' },
-    { color: '#BEDBB0', priority: 'high' },
-    { color: 'rgba(255, 255, 255, 0.3)', priority: 'without priority' },
+    { color: '#bedbb0', priority: 'high' },
+    { color: '#ffffff4d', priority: 'without priority' },
   ];
   // Функция для форматирования даты, которую будем использовать и в календаре, и в карточке
   const formatDate = date => {
     const options = {
       day: '2-digit',
-      month: '2-digit',
+      month: 'long',  // Показує повну назву місяця
       year: 'numeric',
     };
     const today = new Date();
@@ -157,7 +157,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                     </div>
                   </div>
                   <div className={s.deadlineWrapper}>
-                    <label htmlFor="deadline" className={s}>
+                    <label htmlFor="deadline" className={s.labelTitle}>
                       Deadline
                     </label>
 

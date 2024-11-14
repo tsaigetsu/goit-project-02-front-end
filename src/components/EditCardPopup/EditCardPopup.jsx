@@ -22,11 +22,11 @@ const EditCardPopup = ({ card, setIsEdit }) => {
   };
 
   const validateSchema = Yup.object({
-    title: Yup.string().required("Required"),
-    description: Yup.string(),
-    labelColor: Yup.string().required("Required"),
-    deadline: Yup.date().required("Required"),
-    priority: Yup.string().required("Required"),
+    title: Yup.string().min(3).max(32).required('Required'),
+    description: Yup.string().min(3).max(300).required('Required'),
+    labelColor: Yup.string().required('Required'),
+    deadline: Yup.date().required('Required'),
+    priority: Yup.string().required('Required'),
   });
 
   const setupDate = Date.now();
@@ -34,12 +34,14 @@ const EditCardPopup = ({ card, setIsEdit }) => {
   const colorPriority = [
     { color: " #8fa1d0", priority: "low" },
     { color: "#E09CB5", priority: "medium" },
-    { color: "#BEDBB0", priority: "high" },
-    { color: "rgba(255, 255, 255, 0.3)", priority: "without priority" },
+    { color: '#bedbb0', priority: 'high' },
+    { color: '#ffffff4d', priority: 'without priority' },
   ];
 
   const formatDate = (date) => {
-    const options = { month: "long", day: "numeric" };
+    const options = {day: '2-digit',
+      month: 'long',  // Показує повну назву місяця
+      year: 'numeric',};
     const today = new Date();
     const selectedDate = new Date(date);
     if (
@@ -51,6 +53,7 @@ const EditCardPopup = ({ card, setIsEdit }) => {
     }
     return selectedDate.toLocaleDateString("en-US", options);
   };
+
 
   const handleEdit = (values) => {
     const { title, description, deadline, priority } = values;
@@ -148,7 +151,7 @@ const EditCardPopup = ({ card, setIsEdit }) => {
                     </div>
                   </div>
                   <div className={s.deadlineWrapper}>
-                    <label htmlFor="deadline" className={s}>
+                    <label htmlFor="deadline" className={s.labelTitle}>
                       Deadline
                     </label>
 

@@ -16,7 +16,7 @@
 
 @media screen and (min-width: 320px) {
   .popup {
-    stroke: white;
+    stroke: rgb(255, 255, 255);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -24,10 +24,7 @@
     bottom: auto;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    /* position: relative; */
     min-width: 335px;
-    /* background: var(--popup-bg-color);
-    color: var(--popup-text-color); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,7 +35,7 @@
     line-height: 150%;
     letter-spacing: -0.02em;
     border-radius: 8px;
-    background: #151515;
+    background: rgb(21, 21, 21);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Тінь*/
   }
 }
@@ -52,25 +49,16 @@
 /* Основний контент попапу */
 @media screen and (min-width: 320px) {
   .popupContent {
-    /* max-width: 287px;
-    max-height: 522px; */
     padding: 24px;
     border-radius: 8px; /**/
-    /* background-color: var(--popup-bg-color); */
     color: var(--popup-text-color);
-    color: white;
-    /* position: relative; */
+    color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     width: 100%;
   }
 }
 
-@media screen and (min-width: 768px) and (min-width: 1440px) {
-  .popupContent {
-    /* max-width: 302px; */
-  }
-}
 
 /* Заголовок попапу */
 .TitleCard {
@@ -91,9 +79,6 @@
   fill: none;
   stroke: white;
 
-  /* &&:hover {
-      transition: transform 0.3s;
-    } */
 }
 
 .formCard {
@@ -111,11 +96,9 @@
 .inputTitle,
 .textareaDesk {
   background-color: transparent;
-  /* color: #161616; */
   color: white;
   border-color: var(--priority-color-high);
   opacity: 0.7;
-  /* max-width: 287px; */
   width: 100%;
   height: auto;
   padding: 12px;
@@ -131,23 +114,10 @@
   /*  при фокусі */
   &&:focus {
     opacity: 1;
-    outline: #9dc888;
+    outline: rgb(157, 200, 136);
   }
 }
 
-@media screen and (min-width: 768px) {
-  .inputTitle,
-  .textareaDesk {
-    /* max-width: 302px; */
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .inputTitle,
-  .textareaDesk {
-    /* max-width: 302px; */
-  }
-}
 
 /* Секція вибору кольору */
 .labelColor {
@@ -177,15 +147,13 @@ input[type="radio"] {
 }
 
 .colorCircle.active {
-  box-shadow: 0 0 0 2px #8fa1d0, 0 0 0 4px #000;
   box-shadow: inset 0 0 0 2px;
 }
 
 /* Секція вибору дати */
 .deadlineWrapper {
   margin-bottom: 40px;
-  /* display: flex; */
-  align-items: center;
+   align-items: center;
 }
 
 .CalendarPicker {
@@ -193,7 +161,7 @@ input[type="radio"] {
 }
 
 .dateDisplayCalendar {
-  color: #bedbb0;
+  color: rgb(190, 219, 176);
   font-weight: 500;
   font-size: 14px;
   display: flex;
@@ -202,13 +170,9 @@ input[type="radio"] {
 
 .iconChevronDown {
   fill: none;
-  stroke: #bedbb0;
+  stroke: rgb(190, 219, 176);
 }
 
-.violet-theme .iconChevronDown {
-  fill: none;
-  stroke: #5255bc;
-}
 
 /* Кнопка додавання картки */
 .addButton {
@@ -218,7 +182,6 @@ input[type="radio"] {
   gap: 8px;
   width: 100%;
   padding: 10px;
-  /* height: 49px; */
   background-color: var(--background-button-colorB);
   border-radius: 8px;
   border: none;
@@ -234,14 +197,14 @@ input[type="radio"] {
 .addButton:hover,
 .addButton:focus {
   opacity: 1;
-  background-color: #9dc888;
+  background-color: rgb(157, 200, 136);
 }
 
 .iconNormalBtnBlack {
   fill: none;
   stroke: var(--popup-text-color);
   color: var(--background-pop-up-colorB);
-  background-color: #161616;
+  background-color: rgb(22, 22, 22);
   border-radius: 6px;
   width: 28px;
   height: 28px;
@@ -263,7 +226,6 @@ input[type="radio"] {
 .labelTitle {
   font-family: "Poppins", sans-serif;
   margin-bottom: 4px;
-
   font-size: 12px;
   font-weight: 400;
   line-height: 150%;
@@ -290,7 +252,7 @@ input[type="radio"] {
   justify-content: center;
   align-items: center;
   gap: 4px;
-  color: #bedbb0;
+  color: rgb(190, 219, 176);
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 14px;
