@@ -39,7 +39,14 @@
   background-color: transparent;
   border: none;
   margin: 0;
+  transition: stroke 0.3s ease, filter 0.3s ease, color 0.3s ease;
 }
+
+.btnFilters:hover {
+  color: var(--icons-hover-color);
+  stroke: var(--icons-hover-color);
+}
+
 /*Tablet */
 @media only screen and (min-width: 768px) {
   .wrapperHeaderDashboard {

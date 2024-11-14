@@ -30,6 +30,16 @@
 .btn {
     display: none;
 }
+
+.boardIcon {
+    transition: stroke 0.3s ease, filter 0.3s ease;
+    
+}
+
+.btn:hover .boardIcon {
+    stroke: var(--icons-hover-color);
+}
+
 .activeLine {
     display: none;
 }

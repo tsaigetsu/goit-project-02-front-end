@@ -25,6 +25,7 @@
 .btnIcon {
     stroke: var(--active-color-sidebar);
     fill: none;
+    transition: stroke 0.3s ease, filter 0.3s ease;
 }
 .btn {
     border: none;
@@ -37,6 +38,15 @@
     font-weight: 500;
     line-height: normal;
     letter-spacing: -0.24px;
+    transition: color 0.3s ease, filter 0.3s ease;
+}
+
+.btn:hover {
+    color: var(--text-hover-color);
+}
+
+.btn:hover .btnIcon {
+    stroke: var(--icons-hover-color);
 }
 
 @media (min-width: 768px) {

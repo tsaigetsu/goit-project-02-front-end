@@ -8,17 +8,18 @@ import { useDispatch } from "react-redux";
 const EditColumn = ({ title, setIsEdit, columnId }) => {
   const [newTitle, setNewTitle] = useState(title);
   const dispatch = useDispatch();
+
   const closeModal = () => {
     setIsEdit(false);
   };
-  console.log("columnId", columnId);
-  console.log("newTitle", newTitle);
+  // console.log("columnId", columnId);
+  // console.log("newTitle", newTitle);
 
   const handleUpdateColumn = () => {
-    console.log("newTitle", newTitle);
+    // console.log("newTitle", newTitle);
     setIsEdit(false);
     const updateColumn = { title: newTitle };
-    console.log("updateColumn", updateColumn);
+    // console.log("updateColumn", updateColumn);
 
     dispatch(onEditColumn({ columnId, updateColumn }));
   };
