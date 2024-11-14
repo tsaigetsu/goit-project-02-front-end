@@ -1,30 +1,26 @@
 import { createContext, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateTheme } from "../../redux/auth/operations.js";
 
 const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
-  const dispatch = useDispatch();
-  const themeFromStore = useSelector((state) => state.auth.user?.theme);
-  const [theme, setTheme] = useState(themeFromStore);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
-    setTheme(themeFromStore);
-  }, [themeFromStore]);
-
-  const changeTheme = async (newTheme, setIsModalOpen) => {
-    try {
-      await dispatch(updateTheme(newTheme)).unwrap();
-      setTheme(newTheme);
-      setIsModalOpen(false);
-    } catch (error) {
-      console.error("Помилка зміни теми:", error);
+    localStorage.setItem("theme", theme);
+    document.body.className = theme; // Применяем тему к body
+  }, [theme]);
+  // Функция для переключения темы
+  const toggleTheme = (newTheme) => {
+    if (newTheme) {
+      setTheme(newTheme); // Устанавливаем переданную тему
+    } else {
+      // Переключаем между светлой и темной
+      setTheme(theme === "light" ? "dark" : "light");
     }
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

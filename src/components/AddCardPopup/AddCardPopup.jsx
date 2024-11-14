@@ -29,11 +29,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
       .min(2, "Title must be at least 2 characters")
       .max(32, "Title cannot exceed 32 characters"),
     description: Yup.string(),
-    // labelColor: Yup.string().required("Required"),
     deadline: Yup.date().required("Deadline is required"),
-    // priority: Yup.string()
-    //   .oneOf(["without priority", "low", "medium", "high"])
-    //   .required("Priority is required"),
   });
 
   const colorPriority = [
