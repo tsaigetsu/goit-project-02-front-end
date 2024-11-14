@@ -7,7 +7,7 @@ import { fetchUserProfile } from "../../redux/auth/operations.js";
 
 export default function UserInfo() {
   const userData = useSelector((state) => state.auth.user);
-  console.log("userData", userData);
+  // console.log("userData", userData);
 
   const [isEditModal, setIsEditModal] = useState(false);
   const dispatch = useDispatch();

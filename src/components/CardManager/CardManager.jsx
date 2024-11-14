@@ -16,7 +16,7 @@ const CardManager = ({ columnId }) => {
   // const { tasks } = board;
 
   const tasks = useSelector((state) => selectCardsFromColumn(state, columnId));
-  console.log("cards", tasks);
+  // console.log("cards", tasks);
 
   // Мемоизация обработчика открытия модального окна
   const handleOpenPopup = useMemo(() => () => setIsOpen(true), []);
@@ -24,7 +24,7 @@ const CardManager = ({ columnId }) => {
   return (
     <div className={s.cardManager}>
       {tasks.length > 0 && <MemoizedCardList columnId={columnId} />}
-     
+
       <button className={s.cardManagerButton} onClick={handleOpenPopup}>
         <div className={s.svg}>
           <SvgIcon

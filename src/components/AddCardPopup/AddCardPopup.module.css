@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  background-color: rgba(21, 21, 21, 0.50);
+  background-color: rgba(21, 21, 21, 0.5);
 }
 
 @media screen and (min-width: 320px) {
@@ -122,9 +122,8 @@
   outline: none;
 }
 .textareaDesk {
-  height: 154px ;
+  height: 154px;
 }
-
 
 /* Секція вибору кольору */
 .labelColor {
@@ -293,4 +292,14 @@ input[type="radio"] {
 .priorityCircle.selected {
   transform: scale(0.9); /* Делает кружок меньше */
   border-width: 2px; /* Толщина бордера */
+}
+
+.errorMessage {
+  /* position: absolute;
+  top: 100%;
+  left: 0; */
+  color: red;
+  font-size: 10px;
+  /* margin-top: 2px; */
+  margin-left: 8px;
 }
