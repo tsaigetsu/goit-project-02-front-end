@@ -72,8 +72,8 @@
   font-size: 18px;
   font-weight: 500;
   letter-spacing: -0.02em;
-  padding-bottom: 24px;
   color: var(--modal-text-color);
+  margin-bottom: 24px;
 }
 /* закриття */
 .closeButton {

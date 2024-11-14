@@ -1,35 +1,32 @@
 import Column from "../Column/Column";
 import css from "./ColumnsList.module.css";
 // import { selectColumnsByBoard } from "../../redux/boards/slice.js";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import AddAnotherColumn from "../AddAnotherColumn/AddAnotherColumn.jsx";
-import { useEffect, useRef, useState } from "react";
-import AddColumn from "../AddColumn/AddColumn.jsx";
-import { onCreateColumn } from "../../redux/columns/operations.js";
+import { useEffect, useRef } from "react";
+// import AddColumn from "../AddColumn/AddColumn.jsx";
+// import { onCreateColumn } from "../../redux/columns/operations.js";
 import { selectedBoard } from "../../redux/boards/selectors.js";
 
 const ColumnsList = () => {
   // { filter }
   const containerRef = useRef(null);
-  const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
+
+  // const dispatch = useDispatch();
   // const columns = useSelector(selectColumnsByBoard);
   const board = useSelector(selectedBoard);
-  const { _id, columns } = board;
+  const { columns } = board;
   // const columns = board.columns;
   // console.log("columns", columns);
   // console.log("board????????", board);
 
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  };
-  const handleSaveColumn = (newTitle) => {
-    const newColumn = { title: newTitle, boardId: _id };
-    console.log("newcolumn", newColumn);
+  // const handleSaveColumn = (newTitle) => {
+  //   const newColumn = { title: newTitle, boardId: _id };
+  //   console.log("newcolumn", newColumn);
 
-    dispatch(onCreateColumn(newColumn));
-    setIsOpen(false);
-  };
+  //   dispatch(onCreateColumn(newColumn));
+  //   setIsOpen(false);
+  // };
 
   useEffect(() => {
     const container = containerRef.current;
@@ -72,13 +69,9 @@ const ColumnsList = () => {
           })}
 
         <AddAnotherColumn
-          setIsOpen={handleOpenModal}
           className={`add-button ${columns.length > 0 ? "shifted" : ""}`}
         />
       </ul>
-      {isOpen && (
-        <AddColumn onCreateColumn={handleSaveColumn} setIsOpen={setIsOpen} />
-      )}
     </section>
   );
 };

@@ -113,8 +113,9 @@
   display: flex;
   align-items: center;
   border: none;
+  justify-content: center;
   background-color: transparent;
-  fill: none;
+  border: none;
 }
 .svgIcon {
   stroke: var(--svg-btns-color);

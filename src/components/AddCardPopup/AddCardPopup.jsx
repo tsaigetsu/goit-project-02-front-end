@@ -113,7 +113,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
     >
       <div className={s.popup}>
         <div className={s.popupContent}>
-          <h2 className={s.TitleCard}>Add card</h2>
+          <h2 className={s.titleCard}>Add card</h2>
           <button
             className={s.closeButton}
             onClick={() => {
