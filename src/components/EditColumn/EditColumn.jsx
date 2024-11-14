@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
-import SvgIcon from "../SvgIcon/SvgIcon";
-import css from "./EditColumn.module.css";
-import { onEditColumn } from "../../redux/columns/operations";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from 'react';
+import SvgIcon from '../SvgIcon/SvgIcon';
+import css from './EditColumn.module.css';
+import { onEditColumn } from '../../redux/columns/operations';
+import { useDispatch } from 'react-redux';
 
-//принимает в пропсах стейт контролирующий открытие и закрытие окна isModalOpen, setIsModalOpen
 const EditColumn = ({ title, setIsEdit, columnId }) => {
   const [newTitle, setNewTitle] = useState(title);
   const dispatch = useDispatch();
@@ -25,29 +24,29 @@ const EditColumn = ({ title, setIsEdit, columnId }) => {
   };
 
   useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
+    const handleEscape = event => {
+      if (event.key === 'Escape') {
         closeModal(); // Вызываем функцию закрытия модалки
       }
     };
 
     // Подписываемся на событие `keydown` при монтировании компонента
-    document.addEventListener("keydown", handleEscape);
+    document.addEventListener('keydown', handleEscape);
 
     // Очищаем подписку при размонтировании компонента
     return () => {
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [closeModal]);
 
   // Обработчик для клика по бекдропу
-  const handleBackdropClick = (event) => {
+  const handleBackdropClick = event => {
     if (event.target === event.currentTarget) {
       closeModal(); // Закрываем модалку при клике по бекдропу
     }
   };
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
       handleUpdateColumn();
     }
   };
@@ -66,7 +65,7 @@ const EditColumn = ({ title, setIsEdit, columnId }) => {
               className={css.inputTitle}
               placeholder="To Do"
               value={newTitle}
-              onChange={(e) => setNewTitle(e.target.value)}
+              onChange={e => setNewTitle(e.target.value)}
               onKeyDown={handleKeyDown}
             />
             <button
