@@ -111,8 +111,9 @@
 }
 .btnIcon {
   display: flex;
-  justify-content: center;
   align-items: center;
+  border: none;
+  justify-content: center;
   background-color: transparent;
   border: none;
 }

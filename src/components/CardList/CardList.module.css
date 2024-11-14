@@ -32,4 +32,5 @@
 /* Эффект при наведении на ползунок */
 .wrapperList::-webkit-scrollbar-thumb:hover {
   background-color: #555; /* Темнее при наведении */
+  cursor: grabbing;
 }

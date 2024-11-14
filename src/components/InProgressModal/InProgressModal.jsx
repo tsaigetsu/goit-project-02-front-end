@@ -6,23 +6,29 @@ import { useSelector } from "react-redux";
 import { selectedBoard } from "../../redux/boards/selectors.js";
 
 const InProgressModal = ({
-  // isModalChange,
-  // columnId,
   setIsModalChange,
+  filteredColumns,
+  handleMoveCard,
   // onStatusChange,
 }) => {
+  console.log("filteredColumns", filteredColumns);
+
   // if (!isModalChange) return null;
   const board = useSelector(selectedBoard);
   // const columns = useSelector(selectColumnsByBoard);
   console.log("board", board);
-  const { columns } = board;
+  // const { columns } = board;
 
   return (
     <div className={s.overlayInProgr} onClick={() => setIsModalChange(false)}>
       <ul className={s.modalInProgr} onClick={(e) => e.stopPropagation()}>
-        {columns.map((column) => (
+        {filteredColumns.map((column) => (
           <>
-            <li key={column._id} className={s.item}>
+            <li
+              key={column._id}
+              className={s.item}
+              onClick={() => handleMoveCard(column._id)}
+            >
               <span className={s.title}>{column.title}</span>
               <span className={s.icon}>
                 <SvgIcon

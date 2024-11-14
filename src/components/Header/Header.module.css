@@ -192,3 +192,8 @@
     visibility: hidden;
   }
 }
+
+li.activeTheme {
+  color: var(--accent-color);
+  font-weight: bold;
+}

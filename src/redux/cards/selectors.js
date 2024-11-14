@@ -5,7 +5,7 @@ const selectCardsInColumn = (state) => state.boards.selectedBoard.columns;
 export const selectCardsFromColumn = createSelector(
   [selectCardsInColumn, (state, columnId) => columnId],
   (columns, columnId) => {
-    console.log("columns", columns);
+    // console.log("columns", columns);
     const column = columns.find((column) => column._id === columnId);
 
     return column ? column.tasks || [] : []; // Повертає картки або порожній масив, якщо колонка не знайдена
