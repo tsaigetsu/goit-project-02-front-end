@@ -29,6 +29,7 @@ const slice = createSlice({
       .addCase(registerThunk.fulfilled, (state, action) => {
         state.user.name = action.payload.data.user.name;
         state.user.email = action.payload.data.user.email;
+        state.user.theme = action.payload.data.user.theme;
         state.isLoggedIn = true;
       })
       .addCase(registerThunk.rejected, state => {

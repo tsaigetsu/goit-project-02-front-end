@@ -4,6 +4,5 @@ export const selectBoards = state => {
 };
 export const selectedBoard = state => {
   const board = state.boards.selectedBoard;
-
   return board;
 };

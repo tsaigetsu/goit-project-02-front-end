@@ -28,39 +28,40 @@ function App() {
   return isRefreshing ? (
     <Loader />
   ) : (
-    <ThemeProvider>
-      <Routes>
-        <Route path="/" element={<Navigate to="/welcome" replace />} />
+    <Routes>
+      <Route path="/" element={<Navigate to="/welcome" replace />} />
 
-        <Route
-          path="/welcome"
-          element={
-            <PublicRoute component={<WelcomePage />} redirectTo="/home" />
-          }
-        />
+      <Route
+        path="/welcome"
+        element={<PublicRoute component={<WelcomePage />} redirectTo="/home" />}
+      />
 
-        <Route
-          path="/auth/:id"
-          element={<PublicRoute component={<AuthPage />} redirectTo="/home" />}
-        >
-          <Route path="login" element={<LoginForm />} />
-          <Route path="register" element={<RegisterForm />} />
-        </Route>
+      <Route
+        path="/auth/:id"
+        element={<PublicRoute component={<AuthPage />} redirectTo="/home" />}
+      >
+        <Route path="login" element={<LoginForm />} />
+        <Route path="register" element={<RegisterForm />} />
+      </Route>
 
-        <Route
-          path="/home"
-          element={
-            <PrivateRoute component={<HomePage />} redirectTo="/welcome" />
-          }
-        >
-          <Route path=":boardId" element={<ScreensPage />} />
-        </Route>
-        {/* <Route path="/home" element={<HomePage />}/> */}
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </ThemeProvider>
+      <Route
+        path="/home"
+        element={
+          <PrivateRoute component={<HomePage />} redirectTo="/welcome" />
+        }
+      >
+        <Route path=":boardId" element={<ScreensPage />} />
+      </Route>
+      {/* <Route path="/home" element={<HomePage />}/> */}
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
-  // );
 }
 
-export default App;
+export default function Root() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  );
+}

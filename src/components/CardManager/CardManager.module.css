@@ -6,8 +6,9 @@
   align-items: flex-start;
   /* width: 335px; */
   width: 100%;
+
   margin: 0 auto;
-  max-height: 100%;
+  height: 100vh;
   /* padding: 20px; */
   /* background-color: burlywood; */
 }
@@ -29,6 +30,7 @@
   color: var(--plus-fill);
   cursor: pointer;
   transition: background-color 0.3s ease;
+  height: 56px;
 }
 
 .svg {
@@ -43,9 +45,7 @@
   stroke: var(--plus-stroke);
 }
 
-
 .cardManagerButton:hover {
   background-color: var(--btn--hover-color);
   /* transform: scale(1.02); */
 }
-

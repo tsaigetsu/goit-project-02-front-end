@@ -24,9 +24,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
   const validateSchema = Yup.object({
     title: Yup.string().required('Required'),
     description: Yup.string(),
-    labelColor: Yup.string().required('Required'),
-    deadline: Yup.date().required('Required'),
-    priority: Yup.string().required('Required'),
+    deadline: Yup.date().required('Deadline is required'),
   });
 
   const setupDate = Date.now();

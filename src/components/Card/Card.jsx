@@ -131,10 +131,8 @@ const Card = React.memo(({ card }) => {
                   }}
                 />
               </button>
-              <button
-                className={`${s.btnIcon} ${s.changeColumn}`}
-                onClick={onChange}
-              >
+
+              <button className={s.btnIcon} onClick={onChange}>
                 <SvgIcon
                   id="icon-arrow-circle-broken-right"
                   className={s.svgIcon}
