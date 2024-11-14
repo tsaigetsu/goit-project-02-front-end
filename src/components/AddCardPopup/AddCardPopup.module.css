@@ -95,7 +95,8 @@
 
 .closeButton:hover {
   stroke: var(--icons-color-2);
-  filter: brightness(4) drop-shadow(0 0 10px var(--btn--hover-color)) drop-shadow(0 0 2px var(--btn--hover-color));
+  filter: brightness(4) drop-shadow(0 0 10px var(--btn--hover-color))
+    drop-shadow(0 0 2px var(--btn--hover-color));
 }
 
 .formCard {
@@ -128,12 +129,12 @@
   resize: none;
   outline: none;
 
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.02em;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.02em;
 }
 .textareaDesk {
   height: 154px;
@@ -307,4 +308,11 @@ input[type='radio'] {
 .priorityCircle.selected {
   transform: scale(0.9); /* Делает кружок меньше */
   border-width: 2px; /* Толщина бордера */
+}
+.errorMessage {
+ 
+  color: red;
+  font-size: 9px;
+  margin-top: 2px;
+  margin-left: 8px;
 }

@@ -207,12 +207,12 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                         width="14"
                         height="14"
                       />
+                      <ErrorMessage
+                        name="deadline"
+                        component="div"
+                        className={s.errorMessage}
+                      />
                     </div>
-                    <ErrorMessage
-                      name="deadline"
-                      component="div"
-                      className={s.errorMessage}
-                    />
                   </div>
                 </div>
 

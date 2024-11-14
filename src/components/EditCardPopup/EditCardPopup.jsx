@@ -58,8 +58,14 @@ const EditCardPopup = ({ card, setIsEdit }) => {
   };
 
   const handleEdit = values => {
-    const { title, description, deadline, priority } = values;
-    const data = { title, description, deadline, priority, columnId };
+    const { title, description, priority } = values;
+    const data = {
+      title,
+      description,
+      deadline: selectedDate,
+      priority,
+      columnId,
+    };
     console.log('data', data);
 
     dispatch(updateCard({ _id, data }));
@@ -202,12 +208,12 @@ const EditCardPopup = ({ card, setIsEdit }) => {
                         width="14"
                         height="14"
                       />
+                      <ErrorMessage
+                        name="deadline"
+                        component="div"
+                        className={s.errorMessage}
+                      />
                     </div>
-                    <ErrorMessage
-                      name="deadline"
-                      component="div"
-                      className={s.errorMessage}
-                    />
                   </div>
                 </div>
 
