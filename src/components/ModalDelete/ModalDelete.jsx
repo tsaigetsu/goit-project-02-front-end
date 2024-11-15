@@ -1,5 +1,5 @@
-import ReactModal from "react-modal";
-import style from "./ModalDelete.module.css";
+import ReactModal from 'react-modal';
+import style from './ModalDelete.module.css';
 
 export const ModalDelete = ({
   isOpen,
@@ -21,9 +21,7 @@ export const ModalDelete = ({
         <p>
           Are you sure you want
           <br />
-          to delete {typeItems}
-          <br />
-          {titleItems}?
+          to delete {typeItems}&nbsp;{titleItems}?
         </p>
         <div className={style.buttons}>
           <button onClick={onConfirm} className={style.confirmButton}>

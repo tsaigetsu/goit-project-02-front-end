@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(21, 21, 21, 0.50);
+  background-color: rgba(21, 21, 21, 0.5);
   z-index: 1000;
 }
 
@@ -18,11 +18,11 @@
   transform: translate(-50%, -50%);
   background: #1f1f1f;
   padding: 24px;
-  border: 1px solid rgba(190, 219, 176, 0.5);
+  border: 1px solid rgb(169, 170, 168);
   border-radius: 10px;
   z-index: 1001;
   color: white;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
@@ -30,6 +30,10 @@
 }
 
 .modalContent {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.02em;
   text-align: center;
 }
 
@@ -40,7 +44,7 @@
   gap: 10px;
   align-items: center;
   margin-top: 20px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
@@ -64,9 +68,9 @@
   background: #9dc888;
 }
 .cancelButton {
-  background-color: rgb(172, 71, 71);
+  background-color: #e09cb5;
 }
 .cancelButton:hover,
 .cancelButton:focus {
-  background-color: rgb(184, 59, 59);
+  background-color: #df83a5;
 }

@@ -310,9 +310,12 @@ input[type='radio'] {
   border-width: 2px; /* Толщина бордера */
 }
 .errorMessage {
- 
   color: red;
-  font-size: 9px;
-  margin-top: 2px;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+  /* margin-top: 2px; */
   margin-left: 8px;
 }

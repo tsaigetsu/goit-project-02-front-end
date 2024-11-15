@@ -11,7 +11,7 @@ const CalendarPicker = ({
   calendarClassName,
 }) => {
   return (
-    <div className={css.datepickerBox}>
+    <div className={css.datePickerBox}>
       <div
         onClick={e => {
           e.stopPropagation();
@@ -22,7 +22,7 @@ const CalendarPicker = ({
         {selected ? formatDate(selected) : 'Select a date'}
       </div>
       {isCalendarOpen && (
-        <div className={css.datepickerWrapper}>
+        <div className={css.datePickerWrapper}>
           <DatePicker
             formatDate={formatDate}
             selected={selected}

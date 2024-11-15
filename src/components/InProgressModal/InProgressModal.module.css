@@ -1,5 +1,21 @@
+/* .overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(21, 21, 21, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 /* Modal container */
 .modalInProgr {
+  z-index: 1001;
   position: absolute;
   top: 100%;
   left: 0;
@@ -13,7 +29,8 @@
   flex-direction: column;
   gap: 8px;
   width: 135px;
-  font-family: "Poppins", sans-serif;
+  height: auto;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 14px;
   letter-spacing: -0.02em;

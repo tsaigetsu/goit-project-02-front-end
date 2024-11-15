@@ -22,6 +22,8 @@ export const registerThunk = createAsyncThunk(
         position: 'bottom-center',
         icon: '✔️',
       });
+      console.log('data!!!!!!!', data);
+
       return data;
     } catch (error) {
       toast.error('This email is already registered', {
@@ -38,6 +40,7 @@ export const loginThunk = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
+      console.log('credentials', credentials);
       const { data } = await api.post('/auth/login', credentials);
       setToken(data.data.accessToken);
       toast.success('Welcome! You are logged in.', {
@@ -45,6 +48,7 @@ export const loginThunk = createAsyncThunk(
         position: 'bottom-center',
         icon: '✔️',
       });
+      console.log('data!!!!!!!', data);
       return data;
     } catch (error) {
       toast.error('Incorrect email or password', {
