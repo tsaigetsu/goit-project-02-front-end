@@ -17,6 +17,7 @@ const Card = React.memo(({ card }) => {
   const { _id, title, description, deadline, columnId, priority } = card;
   const board = useSelector(selectedBoard);
   const { columns } = board;
+  console.log('deadline', deadline);
 
   const colorPriority = [
     { color: ' #8fa1d0', priority: 'low' },
@@ -45,6 +46,7 @@ const Card = React.memo(({ card }) => {
 
   const onChange = () => {
     setIsModalChange(true);
+    console.log('open', isModalChange);
   };
 
   const filteredColumns = columns.filter(col => col._id !== columnId);
@@ -76,6 +78,16 @@ const Card = React.memo(({ card }) => {
     // Очищаем интервал, когда компонент размонтируется
     return () => clearInterval(intervalId);
   }, [deadline]);
+
+  function formatDateForCard(deadline) {
+    const dateDeadline = new Date(deadline);
+    const day = dateDeadline.getDate().toString().padStart(2, '0');
+    const month = (dateDeadline.getMonth() + 1).toString().padStart(2, '0'); // getMonth() возвращает индекс месяца (0-11)
+    const year = dateDeadline.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+  const formattedDate = formatDateForCard(deadline);
+
   return (
     <>
       <div
@@ -107,7 +119,7 @@ const Card = React.memo(({ card }) => {
               </div>
               <div className={s.boxDeadline}>
                 <span className={s.title}>Deadline</span>
-                <span className={s.titleDeadline}>{deadline}</span>
+                <span className={s.titleDeadline}>{formattedDate}</span>
               </div>
             </div>
             <div className={s.boxIcons}>
@@ -116,20 +128,18 @@ const Card = React.memo(({ card }) => {
                   !isDeadlinePassed ? s.deadlineShadow : ''
                 }`}
               >
-                <SvgIcon
-                  id="icon-bell-01"
-                  className={s.svgIcon}
-                  width="16"
-                  height="16"
-                  style={{
-                    filter: isDeadlinePassed
-                      ? 'drop-shadow(0px 0px 6px rgb(57 168 62))'
-                      : 'none',
-                    stroke: isDeadlinePassed
-                      ? 'rgb(77 144 80)'
-                      : 'var(--svg-btns-color)',
-                  }}
-                />
+                {isDeadlinePassed && (
+                  <SvgIcon
+                    id="icon-bell-01"
+                    className={s.svgIcon}
+                    width="16"
+                    height="16"
+                    style={{
+                      filter: 'drop-shadow(0px 0px 6px rgb(57 168 62))',
+                      stroke: 'rgb(77 144 80)',
+                    }}
+                  />
+                )}
               </button>
 
               <button

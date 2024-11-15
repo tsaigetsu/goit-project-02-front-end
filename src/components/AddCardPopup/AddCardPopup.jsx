@@ -11,14 +11,12 @@ import { useCallback, useEffect, useState } from 'react';
 const AddCardPopup = ({ setIsOpen, columnId }) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
-  // const [selectedPriority, setSelectedPriority] = useState("without-priority");
   const dispatch = useDispatch();
-  // console.log("setIsOpen", setIsOpen);
 
   const valuesFields = {
     title: '',
     description: '',
-    labelColor: '',
+    // labelColor: '',
     deadline: null,
     priority: 'without priority',
   };
@@ -31,7 +29,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
     description: Yup.string()
       .required('Description is required')
       .min(2, 'Description must be at least 2 characters')
-      .max(250, 'Description cannot exceed 650 characters'),
+      .max(100, 'Description cannot exceed 650 characters'),
     // labelColor: Yup.string().required("Required"),
     deadline: Yup.date().required('Deadline is required'),
     // priority: Yup.string()
@@ -50,17 +48,19 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
   // Обработчик для изменения выбранного приоритета
 
   const formatDate = date => {
-    const dateString = date;
-    const dateDeadline = new Date(dateString);
+    // console.log('data', date);
 
-    function formatDateForCard(dateDeadline) {
-      const day = dateDeadline.getDate().toString().padStart(2, '0');
-      const month = (dateDeadline.getMonth() + 1).toString().padStart(2, '0'); // getMonth() возвращает индекс месяца (0-11)
-      const year = dateDeadline.getFullYear();
-      return `${day}/${month}/${year}`;
-    }
-    const formattedDate = formatDateForCard(dateDeadline);
-    setSelectedDate(formattedDate);
+    setSelectedDate(date); //дата для карточки
+    // const dateString = date;
+
+    // const dateDeadline = new Date(); //дата дедлайна
+    // function formatDateForCard(dateDeadline) {
+    //   const day = dateDeadline.getDate().toString().padStart(2, '0');
+    //   const month = (dateDeadline.getMonth() + 1).toString().padStart(2, '0'); // getMonth() возвращает индекс месяца (0-11)
+    //   const year = dateDeadline.getFullYear();
+    //   return `${day}/${month}/${year}`;
+    // }
+    // const formattedDate = formatDateForCard(dateDeadline);
   };
 
   const handleAdd = values => {
@@ -164,11 +164,8 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                           }`}
                           style={{ backgroundColor: color }}
                           onClick={() => {
-                            // console.log("Color:", color);
-                            // console.log("Priority:", priority);
                             setFieldValue('labelColor', color);
                             setFieldValue('priority', priority);
-                            // setSelectedPriority(priority);
                           }}
                         />
                       ))}
@@ -210,12 +207,12 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                         width="14"
                         height="14"
                       />
-                      <ErrorMessage
-                        name="deadline"
-                        component="div"
-                        className={s.errorMessage}
-                      />
                     </div>
+                    <ErrorMessage
+                      name="deadline"
+                      component="div"
+                      className={s.errorMessage}
+                    />
                   </div>
                 </div>
 

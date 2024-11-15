@@ -1,29 +1,17 @@
 import Column from '../Column/Column';
 import css from './ColumnsList.module.css';
-// import { selectColumnsByBoard } from "../../redux/boards/slice.js";
 import { useSelector } from 'react-redux';
 import AddAnotherColumn from '../AddAnotherColumn/AddAnotherColumn.jsx';
 import { useEffect, useRef } from 'react';
-// import AddColumn from "../AddColumn/AddColumn.jsx";
-// import { onCreateColumn } from "../../redux/columns/operations.js";
+
 import { selectedBoard } from '../../redux/boards/selectors.js';
 
 const ColumnsList = () => {
   // { filter }
   const containerRef = useRef(null);
 
-  // const dispatch = useDispatch();
-  // const columns = useSelector(selectColumnsByBoard);
   const board = useSelector(selectedBoard);
   const { columns } = board;
-  // const columns = board.columns;
-
-  // const handleSaveColumn = (newTitle) => {
-  //   const newColumn = { title: newTitle, boardId: _id };
-
-  //   dispatch(onCreateColumn(newColumn));
-  //   setIsOpen(false);
-  // };
 
   useEffect(() => {
     const container = containerRef.current;

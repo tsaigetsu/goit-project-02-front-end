@@ -29,15 +29,13 @@ const EditCardPopup = ({ card, setIsEdit }) => {
     description: Yup.string()
       .required('Description is required')
       .min(2, 'Description must be at least 2 characters')
-      .max(250, 'Description cannot exceed 250 characters'),
+      .max(100, 'Description cannot exceed 100 characters'),
     // labelColor: Yup.string().required("Required"),
     deadline: Yup.date().required('Deadline is required'),
     // priority: Yup.string()
     //   .oneOf(["without priority", "low", "medium", "high"])
     //   .required("Priority is required"),
   });
-
-  const setupDate = Date.now();
 
   const colorPriority = [
     { color: ' #8fa1d0', priority: 'low' },
@@ -46,18 +44,21 @@ const EditCardPopup = ({ card, setIsEdit }) => {
     { color: 'rgba(255, 255, 255, 0.3)', priority: 'without priority' },
   ];
 
-  const formatDate = date => {
-    const dateString = date;
-    const dateDeadline = new Date(dateString);
+  const setupDate = Date.now();
 
-    function formatDateForCard(dateDeadline) {
-      const day = dateDeadline.getDate().toString().padStart(2, '0');
-      const month = (dateDeadline.getMonth() + 1).toString().padStart(2, '0'); // getMonth() возвращает индекс месяца (0-11)
-      const year = dateDeadline.getFullYear();
-      return `${day}/${month}/${year}`;
+  const formatDate = date => {
+    if (selectedDate !== date) {
+      setSelectedDate(date);
     }
-    const formattedDate = formatDateForCard(dateDeadline);
-    setSelectedDate(formattedDate);
+    // const dateString = date;
+    // console.log('dateString', dateString);
+    // function formatDateForCard(dateDeadline) {
+    //   const day = dateDeadline.getDate().toString().padStart(2, '0');
+    //   const month = (dateDeadline.getMonth() + 1).toString().padStart(2, '0'); // getMonth() возвращает индекс месяца (0-11)
+    //   const year = dateDeadline.getFullYear();
+    //   return `${day}/${month}/${year}`;
+    // }
+    // const formattedDate = formatDateForCard(dateDeadline);
   };
 
   const handleEdit = values => {
@@ -74,10 +75,7 @@ const EditCardPopup = ({ card, setIsEdit }) => {
     dispatch(updateCard({ _id, data }));
     setIsEdit(false);
   };
-  // // Функция для переключения календаря
-  // const toggleDateInput = useCallback(() => {
-  //   setIsCalendarOpen(true);
-  // }, []);
+
   // Функция для переключения календаря
   const toggleDateInput = useCallback(() => {
     setIsCalendarOpen(true);
@@ -103,7 +101,7 @@ const EditCardPopup = ({ card, setIsEdit }) => {
     <div
       className={s.popupOverlay}
       onClick={e => {
-        if (e.target === e.currentTarget) setIsEdit();
+        if (e.target === e.currentTarget) setIsEdit(false);
       }}
     >
       <div className={s.popup}>
