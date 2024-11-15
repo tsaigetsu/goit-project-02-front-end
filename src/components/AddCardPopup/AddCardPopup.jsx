@@ -28,7 +28,10 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
       .required('Title is required')
       .min(2, 'Title must be at least 2 characters')
       .max(32, 'Title cannot exceed 32 characters'),
-    description: Yup.string(),
+    description: Yup.string()
+      .required('Description is required')
+      .min(2, 'Description must be at least 2 characters')
+      .max(250, 'Description cannot exceed 650 characters'),
     // labelColor: Yup.string().required("Required"),
     deadline: Yup.date().required('Deadline is required'),
     // priority: Yup.string()
@@ -130,7 +133,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                   />
                   <ErrorMessage
                     name="title"
-                    component="div"
+                    component="span"
                     className={s.errorMessage}
                   />
                 </div>
@@ -143,9 +146,9 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                     className={s.textareaDesk}
                   />
                   <ErrorMessage
-                    name="textarea"
-                    component="div"
-                    className={s.errorMessage}
+                    name="description"
+                    component="span"
+                    className={s.errorMessageTextarea}
                   />
                 </div>
                 <div className={s.box}>
@@ -237,5 +240,3 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
 };
 
 export default AddCardPopup;
-
-

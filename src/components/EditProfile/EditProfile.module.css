@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(21, 21, 21, 0.50);
+  background-color: rgba(21, 21, 21, 0.5);
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -96,7 +96,7 @@
   padding-left: 14px;
   padding-right: 14px;
   outline: none;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 14px;
   letter-spacing: -0.02em;
@@ -159,11 +159,15 @@
 .toggleBtn:hover {
   opacity: 100%;
 }
+
 .error {
+  position: absolute;
+  top: 50px;
+  left: 6px;
   color: red;
-  font-size: 12px;
-  margin-top: 2px;
+  font-size: 10px;
 }
+
 .wrapperAvatar {
   display: flex;
   justify-content: center;
