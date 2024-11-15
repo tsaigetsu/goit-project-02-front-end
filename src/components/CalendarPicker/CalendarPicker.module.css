@@ -1,8 +1,8 @@
-.datepickerBox {
+.datePickerBox {
   position: relative;
 }
 
-.datepickerWrapper {
+.datePickerWrapper {
   position: absolute;
   top: -165px;
   left: 23px;
