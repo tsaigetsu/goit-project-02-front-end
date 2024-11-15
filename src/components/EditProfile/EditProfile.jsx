@@ -20,7 +20,7 @@ const validateFormSchema = Yup.object().shape({
 
     .matches(
       /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
-      'Password can contain only Latin letters, numbers, and special characters'
+      'Password must contain Latin letters'
     )
     .matches(/^\S*$/, 'Password cannot contain spaces')
     .min(8, 'Password must be at least 8 characters')
@@ -129,7 +129,11 @@ const EditProfile = ({ userData, onClose }) => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className={css.formContainer}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={css.formContainer}
+          autoComplete="off"
+        >
           <div className={css.inputContainer}>
             <label className={css.label}>
               <input
@@ -160,7 +164,7 @@ const EditProfile = ({ userData, onClose }) => {
                 type={visiblePassword ? 'text' : 'password'}
                 placeholder="Create a password"
                 className={css.input}
-                autoComplete="off"
+                autoComplete="new-password"
               />
               {errors.password && (
                 <div className={css.error}>{errors.password.message}</div>
