@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import SvgIcon from '../SvgIcon/SvgIcon';
+import ThemedIcon from '../ThemedIcon/ThemedIcon.jsx';
 import { useDispatch } from 'react-redux';
 import { updateUserAvatar } from '../../redux/auth/operations.js';
 
@@ -111,7 +112,15 @@ const EditProfile = ({ userData, onClose }) => {
         <div className={css.wrapperAvatar}>
           <div className={css.avatar}>
             {!userData?.photo ? (
-              <SvgIcon id="icon-user-black" width="68" height="68" />
+              <ThemedIcon
+                themeIcons={{
+                  light: 'icon-user-white',
+                  dark: 'icon-user-black',
+                  violet: 'icon-user-violet',
+                }}
+                width="68"
+                height="68"
+              />
             ) : (
               <img src={userData.photo} alt="User Avatar" />
             )}
