@@ -81,7 +81,7 @@ const ScreensPage = () => {
         {boards.length === 0 || board === null || board === undefined ? (
           <MemoizedDefaultText onOpen={onOpen} />
         ) : (
-          <div className={css.screensPage__content}>
+          <>
             <MemoizedHeaderDashboard
               title={board.title}
               // onFilterChange={setFilter}
@@ -92,7 +92,7 @@ const ScreensPage = () => {
               className={css.mainDashboard}
               boardId={board._id}
             />
-          </div>
+          </>
         )}
       </section>
       {isOpen && (

@@ -1,14 +1,10 @@
 .wrapperList {
   flex-grow: 1;
-  height: 100vh;
-  padding-right: 8px;
-  /* background-color: aquamarine; */
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 14px;
-  max-height: 618px; /* Максимальная высота контейнера */
-  overflow-y: auto; /* Вертикальная полоса прокрутки появляется при необходимости */
+  overflow-y: auto;
+  width: 350px;
 }
 
 /* Стили для самой полосы прокрутки */
@@ -35,4 +31,10 @@
 .wrapperList::-webkit-scrollbar-thumb:hover {
   background-color: #555; /* Темнее при наведении */
   cursor: grabbing;
+}
+
+@media only screen and (max-width: 374px) {
+  .wrapperList {
+    width: 100%;
+  }
 }

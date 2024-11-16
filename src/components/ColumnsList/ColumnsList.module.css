@@ -1,14 +1,5 @@
 /* Mobile */
 
-.wrapperList {
-  min-width: 320px;
-  width: 100%;
-  margin: o auto;
-  /* background-color: rgb(217, 255, 0); */
-  padding: 20px;
-  max-height: 100%;
-  /* margin-left: 30px; */
-}
 .columnsList {
   display: flex;
   overflow-x: auto;
@@ -16,21 +7,12 @@
   white-space: nowrap;
   user-select: none;
   position: relative;
-  padding: 0 0 24px;
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: 32px;
+  padding-left: 0;
   align-items: flex-start;
-  min-width: 320px;
-  width: 100%;
   list-style: none;
-  /* height: calc(100vh - 116px); */
-  height: 100%;
-  margin: 0;
-  /* cursor: grabbing; */
-  /* background-color: aqua; */
-  /* margin: o auto; */
-  /* height: 100vh; */
+  height: calc(100% - 50px);
 }
 .columnsList:active {
   cursor: grabbing;
@@ -49,8 +31,8 @@
 
 /* Стилизация ползунка скроллбара */
 .columnsList::-webkit-scrollbar-thumb {
-  height: 637px;
-  width: 12px;
+  /* height: 637px; */
+  /* width: 12px; */
   background: #302f2f; /*  Цвет ползунка*/
   border-radius: 12px; /* Закругленные края ползунка */
   /* border: 2px solid #f0f0f0; Обводка вокруг ползунка */
@@ -62,23 +44,18 @@
   background: rgba(255, 255, 255, 0.1);
   transform: rotate(90deg);
 }
-
-/* Tablet */
-@media only screen and (min-width: 768px) {
-  .wrapperList {
-    padding: 0 18px 32px 32px;
-    /* max-width: 768px; */
-    /* width: 100%; */
+@media only screen and (max-width: 374px) {
+  .columnsList {
+    padding-left: 0px;
   }
 }
+/* Tablet */
+/* @media only screen and (min-width: 768px) {
+} */
 /* Desktop */
 @media only screen and (min-width: 1440px) {
-  .wrapperList {
-    padding: 0 0 4px 24px;
-  }
-
   .columnsList {
-    max-width: calc(100vw - 260px - 40px);
+    max-width: calc(100vw - 260px);
   }
 }
 

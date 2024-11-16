@@ -1,5 +1,5 @@
 .wrapperScreenPage {
-  min-height: 100vh;
+  height: 100vh;
   box-sizing: border-box;
   width: 100%;
   background-size: cover;
@@ -49,35 +49,3 @@
     background-image: var(--background-desktop-large);
   }
 }
-
-.screensPage__content {
-  display: flex;
-  flex-direction: column;
-  background-color: transparent;
-  flex-grow: 1;
-}
-
-/* Mobile */
-/* .container {
-  min-width: 320px;
-  max-width: 375px;
-  width: 100%;
-  padding: 0 20px;
-  margin: 0 auto;
-} */
-
-/* Tablet */
-/* @media only screen and (min-width: 768px) {
-  .wrapperScreenPage {
-    max-width: 768px;
-    padding: 0 32px;
-  }
-} */
-
-/* Desktop */
-/* @media only screen and (min-width: 1280px) {
-  .wrapperScreenPage {
-    max-width: 1280px;
-    padding: 0 100px;
-  }
-} */

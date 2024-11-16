@@ -21,7 +21,7 @@
   letter-spacing: -0.02em;
   color: var(--hamburger-btn-color);
   stroke: black;
-  margin: 0;
+  margin-left: 20px;
 }
 .svg {
   background-color: var(--create-col-fill);

@@ -17,8 +17,8 @@
 .modalInProgr {
   z-index: 1001;
   position: absolute;
-  top: 100%;
-  left: 0;
+  bottom: 100%;
+  left: -103px;
   box-shadow: 0 4px 16px 0 rgba(17, 17, 17, 0.1);
   background: #1f1f1f;
   /* background: #ffffff; */
