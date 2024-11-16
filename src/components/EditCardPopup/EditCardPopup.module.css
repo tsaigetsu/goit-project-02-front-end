@@ -43,9 +43,9 @@
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1439px) {
+@media screen and (min-width: 768px) {
   .popup {
-    max-width: 350px;
+    min-width: 350px;
   }
 }
 
@@ -99,26 +99,24 @@
 .formCard {
   display: flex;
   flex-direction: column;
-  gap: 14px;
 }
+
 .inputWrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
+
 .textareaDesk {
   min-height: 154px;
 }
 
 /* Поле введення для заголовка */
-.inputTitle,
-.textareaDesk {
+.inputTitle {
   background-color: transparent;
-  /* color: #161616; */
   color: white;
   border-color: var(--priority-color-high);
   opacity: 0.7;
-  /* max-width: 287px; */
   width: 100%;
   height: auto;
   padding: 12px;
@@ -128,27 +126,36 @@
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.02em;
-  /* margin-bottom: 14px; */
+  margin-bottom: 14px;
   transition: background-color 0.3s ease, transform 0.2s ease;
 
-  /*  при фокусі */
   &&:focus {
     opacity: 1;
     outline: #9dc888;
   }
 }
 
-@media screen and (min-width: 768px) {
-  .inputTitle,
-  .textareaDesk {
-    /* max-width: 302px; */
-  }
-}
+.textareaDesk {
+  background-color: transparent;
+  color: white;
+  border-color: var(--priority-color-high);
+  opacity: 0.7;
+  width: 100%;
+  min-height: 154px;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  resize: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 
-@media screen and (min-width: 1440px) {
-  .inputTitle,
-  .textareaDesk {
-    /* max-width: 302px; */
+  &&:focus {
+    opacity: 1;
+    outline: #9dc888;
   }
 }
 
@@ -325,14 +332,19 @@ input[type='radio'] {
   transform: scale(0.9); /* Делает кружок меньше */
   border-width: 2px; /* Толщина бордера */
 }
-.errorMessage {
-  color: red;
-  font-weight: 400;
-  font-family: 'Poppins', sans-serif;
-  font-size: 10px;
-  line-height: 150%;
-  letter-spacing: 0.02em;
 
-  margin-top: 2px;
-  margin-left: 8px;
+.errorMessage {
+  position: absolute;
+  top: 46px;
+  left: 6px;
+  color: red;
+  font-size: 10px;
+}
+
+.errorMessageTextarea {
+  position: absolute;
+  top: 151px;
+  left: 6px;
+  color: red;
+  font-size: 10px;
 }
