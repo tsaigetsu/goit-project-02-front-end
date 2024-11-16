@@ -44,10 +44,14 @@ const Card = React.memo(({ card }) => {
     setIsModalOpen(true);
   }, []);
 
-  const onChange = () => {
-    setIsModalChange(true);
-    console.log('open', isModalChange);
-  };
+  // const onChange = () => {
+  //   setIsModalChange(true);
+  //   console.log('open', isModalChange);
+  // };
+
+  const toggleChangeModal = useCallback(() => {
+    setIsModalChange(prevState => !prevState);
+  }, []);
 
   const filteredColumns = columns.filter(col => col._id !== columnId);
 
@@ -145,8 +149,11 @@ const Card = React.memo(({ card }) => {
                 </button>
 
                 <button
-                  className={`${s.btnIcon} ${s.changeColumn}`}
-                  onClick={onChange}
+                  className={`${s.btnIcon} ${s.changeColumn} ${
+                    filteredColumns.length === 0 ? s.disabled : ''
+                  }`}
+                  onClick={toggleChangeModal}
+                  disabled={filteredColumns.length === 0}
                 >
                   <SvgIcon
                     id="icon-arrow-circle-broken-right"
