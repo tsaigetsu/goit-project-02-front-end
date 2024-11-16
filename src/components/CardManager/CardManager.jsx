@@ -23,18 +23,19 @@ const CardManager = ({ columnId }) => {
   return (
     <div className={s.cardManager}>
       {tasks.length > 0 && <MemoizedCardList columnId={columnId} />}
-
-      <button className={s.cardManagerButton} onClick={handleOpenPopup}>
-        <div className={s.svg}>
-          <SvgIcon
-            id="icon-plus"
-            className={s.svgIcon}
-            width="14"
-            height="14"
-          />
-        </div>
-        Add another card
-      </button>
+      <div className={s.btnContainer}>
+        <button className={s.cardManagerButton} onClick={handleOpenPopup}>
+          <div className={s.svg}>
+            <SvgIcon
+              id="icon-plus"
+              className={s.svgIcon}
+              width="14"
+              height="14"
+            />
+          </div>
+          Add another card
+        </button>
+      </div>
       {isOpen && <AddCardPopup setIsOpen={setIsOpen} columnId={columnId} />}
     </div>
   );

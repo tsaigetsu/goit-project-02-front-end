@@ -32,7 +32,7 @@ const ColumnsList = () => {
   }, []);
 
   return (
-    <section className={css.wrapperList}>
+    <>
       <ul ref={containerRef} className={css.columnsList}>
         {columns.length > 0 &&
           columns.map(column => {
@@ -57,7 +57,7 @@ const ColumnsList = () => {
           className={`add-button ${columns.length > 0 ? 'shifted' : ''}`}
         />
       </ul>
-    </section>
+    </>
   );
 };
 export default ColumnsList;
