@@ -21,7 +21,6 @@ const SidebarBoardList = () => {
   const [activeBoardId, setActiveBoardId] = useState(null);
   const [selectedBoardData, setSelectedBoardData] = useState(null);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchBoardsThunk());
   }, [dispatch]);
@@ -35,6 +34,19 @@ const SidebarBoardList = () => {
   const handleSaveBoard = async newBoard => {
     dispatch(addBoardsThunk(newBoard));
     setIsModalOpen(false);
+  };
+  const handleDelete = async boardId => {
+    try {
+      await dispatch(deleteBoardThunk(boardId));
+
+      dispatch(fetchBoardsThunk());
+
+      if (boardId === activeBoardId) {
+        setActiveBoardId(null);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleSelectBoard = async boardId => {
@@ -73,20 +85,6 @@ const SidebarBoardList = () => {
       );
       setIsEditModalOpen(false);
       setSelectedBoardData(null);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleDelete = async boardId => {
-    try {
-      await dispatch(deleteBoardThunk(boardId));
-
-      dispatch(fetchBoardsThunk());
-
-      if (boardId === activeBoardId) {
-        setActiveBoardId(null);
-      }
     } catch (error) {
       console.error(error);
     }

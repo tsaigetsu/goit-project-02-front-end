@@ -41,6 +41,9 @@ const slice = createSlice({
         }
       })
       .addCase(deleteBoardThunk.fulfilled, (state, action) => {
+        if (state.selectedBoard._id === action.payload) {
+          state.selectedBoard = null;
+        }
         state.boards = state.boards.filter(
           board => board._id !== action.payload
         );
