@@ -29,7 +29,7 @@ const EditCardPopup = ({ card, setIsEdit }) => {
     description: Yup.string()
       .required('Description is required')
       .min(2, 'Description must be at least 2 characters')
-      .max(100, 'Description cannot exceed 100 characters'),
+      .max(300, 'Description cannot exceed 300 characters'),
     // labelColor: Yup.string().required("Required"),
     deadline: Yup.date().required('Deadline is required'),
     // priority: Yup.string()
