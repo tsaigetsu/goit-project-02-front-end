@@ -132,7 +132,7 @@ const EditCardPopup = ({ card, setIsEdit }) => {
                   />
                   <ErrorMessage
                     name="title"
-                    component="div"
+                    component="span"
                     className={s.errorMessage}
                   />
                 </div>
@@ -145,9 +145,9 @@ const EditCardPopup = ({ card, setIsEdit }) => {
                     className={s.textareaDesk}
                   />
                   <ErrorMessage
-                    name="textarea"
-                    component="div"
-                    className={s.errorMessage}
+                    name="description"
+                    component="span"
+                    className={s.errorMessageTextarea}
                   />
                 </div>
                 <div className={s.box}>
