@@ -2,8 +2,8 @@ import css from './UserInfo.module.css';
 import EditProfile from '../EditProfile/EditProfile.jsx';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import SvgIcon from '../SvgIcon/SvgIcon.jsx';
 import { fetchUserProfile } from '../../redux/auth/operations.js';
+import ThemedIcon from '../ThemedIcon/ThemedIcon.jsx';
 
 export default function UserInfo() {
   const userData = useSelector(state => state.auth.user);
@@ -25,12 +25,7 @@ export default function UserInfo() {
         <button onClick={handleEditModal} className={css.userInfoModal}>
           <p className={css.userName}>{userData.name}</p>
           {!userData?.photo ? (
-            <SvgIcon
-              id="icon-user-black"
-              width="68"
-              height="68"
-              className={css.userSvg}
-            />
+            <ThemedIcon width="68" height="68" className={css.userSvg} />
           ) : (
             <img
               src={userData.photo}

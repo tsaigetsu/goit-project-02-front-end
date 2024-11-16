@@ -1,9 +1,9 @@
-import SvgIcon from "../../components/SvgIcon/SvgIcon.jsx";
-import { useState, useContext, useRef, useEffect } from "react";
-import css from "./Header.module.css";
-import { SidebarContext } from "../Layout/Layout.jsx";
-import UserInfo from "../UserInfo/UserInfo.jsx";
-import ThemeContext from "../Layout/ThemeContext.jsx";
+import SvgIcon from '../../components/SvgIcon/SvgIcon.jsx';
+import { useState, useContext, useRef, useEffect } from 'react';
+import css from './Header.module.css';
+import { SidebarContext } from '../Layout/Layout.jsx';
+import UserInfo from '../UserInfo/UserInfo.jsx';
+import ThemeContext from '../Layout/ThemeContext.jsx';
 
 export default function Header() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -17,20 +17,20 @@ export default function Header() {
   const modalRef = useRef(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = event => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         setIsModalOpen(false);
       }
     };
 
     if (isModalOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
     } else {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isModalOpen]);
 
@@ -41,7 +41,7 @@ export default function Header() {
           onClick={() => {
             toggleSidebar();
           }}
-          className={`${css.hamburgerButton} ${isSidebarOpen ? css.hide : ""}`}
+          className={`${css.hamburgerButton} ${isSidebarOpen ? css.hide : ''}`}
         >
           <span className={css.hamburgerIcon}></span>
         </button>
@@ -62,20 +62,20 @@ export default function Header() {
                 <div className={css.modal} ref={modalRef}>
                   <ul>
                     <li
-                      onClick={() => toggleTheme("light")}
-                      className={theme === "light" ? css.activeTheme : ""}
+                      onClick={() => toggleTheme('light')}
+                      className={theme === 'light' ? css.activeTheme : ''}
                     >
                       Light
                     </li>
                     <li
-                      onClick={() => toggleTheme("dark")}
-                      className={theme === "dark" ? css.activeTheme : ""}
+                      onClick={() => toggleTheme('dark')}
+                      className={theme === 'dark' ? css.activeTheme : ''}
                     >
                       Dark
                     </li>
                     <li
-                      onClick={() => toggleTheme("violet")}
-                      className={theme === "violet" ? css.activeTheme : ""}
+                      onClick={() => toggleTheme('violet')}
+                      className={theme === 'violet' ? css.activeTheme : ''}
                     >
                       Violet
                     </li>
