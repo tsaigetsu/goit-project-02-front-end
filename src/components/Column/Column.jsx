@@ -1,11 +1,11 @@
-import { useState } from "react";
-import SvgIcon from "../SvgIcon/SvgIcon";
-import css from "./Column.module.css";
-import EditColumn from "../EditColumn/EditColumn";
-import { ModalDelete } from "../ModalDelete/ModalDelete";
-import CardManager from "../CardManager/CardManager";
-import { onDeleteColumn } from "../../redux/columns/operations";
-import { useDispatch } from "react-redux";
+import { useState } from 'react';
+import SvgIcon from '../SvgIcon/SvgIcon';
+import css from './Column.module.css';
+import EditColumn from '../EditColumn/EditColumn';
+import { ModalDelete } from '../ModalDelete/ModalDelete';
+import CardManager from '../CardManager/CardManager';
+import { onDeleteColumn } from '../../redux/columns/operations';
+import { useDispatch } from 'react-redux';
 
 const Column = ({ title, columnId, boardId }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -32,36 +32,32 @@ const Column = ({ title, columnId, boardId }) => {
   return (
     <>
       <li className={css.itemList}>
-        {/* <div className={css.section}> */}
-        <div className={css.wrapper}>
-          <div className={css.container}>
-            <p className={css.columnName}>{title || "Untitled Column"}</p>
-            <div className={css.boxIcon}>
-              <button
-                className={css.btnIcon}
-                // onChange={onEdit}
-                onClick={() => setIsEdit(true)}
-              >
-                <SvgIcon
-                  id="icon-pencil-01"
-                  className={css.svgBtn}
-                  width="16"
-                  height="16"
-                />
-              </button>
-              <button className={css.btnIcon} onClick={openModal}>
-                <SvgIcon
-                  id="icon-trash-04"
-                  className={css.svgBtn}
-                  width="16"
-                  height="16"
-                />
-              </button>
-            </div>
+        <div className={css.container}>
+          <p className={css.columnName}>{title || 'Untitled Column'}</p>
+          <div className={css.boxIcon}>
+            <button
+              className={css.btnIcon}
+              // onChange={onEdit}
+              onClick={() => setIsEdit(true)}
+            >
+              <SvgIcon
+                id="icon-pencil-01"
+                className={css.svgBtn}
+                width="16"
+                height="16"
+              />
+            </button>
+            <button className={css.btnIcon} onClick={openModal}>
+              <SvgIcon
+                id="icon-trash-04"
+                className={css.svgBtn}
+                width="16"
+                height="16"
+              />
+            </button>
           </div>
-          <CardManager columnId={columnId} />
         </div>
-        {/* </div> */}
+        <CardManager columnId={columnId} />
 
         {isEdit && (
           <EditColumn
@@ -78,8 +74,8 @@ const Column = ({ title, columnId, boardId }) => {
         isOpen={isModalOpen}
         onClose={closeModal}
         onConfirm={onDelete}
-        typeItems={"column"}
-        titleItems={title || "Untitled Column"}
+        typeItems={'column'}
+        titleItems={title || 'Untitled Column'}
       />
     </>
   );

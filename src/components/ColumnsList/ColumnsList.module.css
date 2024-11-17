@@ -13,37 +13,69 @@
   align-items: flex-start;
   list-style: none;
   height: calc(100% - 50px);
+  gap: 20px;
+  padding-left: 20px;
 }
-.columnsList:active {
+/* .columnsList:active {
   cursor: grabbing;
-}
-
-/* Стилизация всей полосы прокрутки */
+} */
 .columnsList::-webkit-scrollbar {
-  height: 12px; /* Толщина скроллбара */
+  height: 12px;
 }
 
-/* Стилизация дорожки скроллбара */
 .columnsList::-webkit-scrollbar-track {
-  background: #121212; /* Цвет фона дорожки */
-  border-radius: 12px; /*Закругленные края */
+  background-color: transparent;
+  opacity: 0;
 }
-
-/* Стилизация ползунка скроллбара */
 .columnsList::-webkit-scrollbar-thumb {
-  /* height: 637px; */
-  /* width: 12px; */
-  background: #302f2f; /*  Цвет ползунка*/
-  border-radius: 12px; /* Закругленные края ползунка */
-  /* border: 2px solid #f0f0f0; Обводка вокруг ползунка */
+  background-color: transparent;
+  opacity: 0;
 }
 
-/* Стилизация при наведении на ползунок */
+.columnsList:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+  background: var(--scroll-color);
+  border-radius: 12px;
+}
+
 .columnsList::-webkit-scrollbar-thumb:hover {
-  /* Цвет ползунка при наведении */
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--scroll-color);
   transform: rotate(90deg);
 }
+
+.columnsList::-webkit-scrollbar-thumb:active {
+  background: var(--scroll-color-active);
+  border-radius: 12px;
+}
+/* .columnsList::-webkit-scrollbar {
+  height: 12px;
+}
+.columnsList::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.columnsList::-webkit-scrollbar-track:hover .columnsList::-webkit-scrollbar-thumb{
+  background: var(--scroll-color);
+}
+.columnsList::-webkit-scrollbar-track:active {
+  background: transparent;
+  border-radius: 12px;
+}
+.columnsList::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  opacity: 0;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.columnsList::-webkit-scrollbar-thumb:hover {
+  opacity: 1;
+  background: var(--scroll-color);
+  border-radius: 12px;
+  transform: rotate(90deg);
+}
+.columnsList::-webkit-scrollbar-thumb:active {
+  opacity: 1;
+  background: rgb(82, 85, 188); 
+  border-radius: 12px; 
+} */
 @media only screen and (max-width: 374px) {
   .columnsList {
     padding-left: 0px;

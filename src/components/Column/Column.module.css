@@ -1,4 +1,4 @@
-
+/* 
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -7,7 +7,7 @@
   padding-right: 0;
   overflow: hidden;
   height: 100%;
-}
+} */
 .container {
   width: 334px;
   display: flex;
