@@ -65,6 +65,7 @@ transition: stroke 0.3s ease, filter 0.3s ease;
     width: calc(100% - 12px);
   }
   .itemList{
+
     width: 100%;
   }
 }
