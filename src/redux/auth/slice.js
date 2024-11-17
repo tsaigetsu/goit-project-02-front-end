@@ -8,11 +8,8 @@ import {
 import { loginThunk, registerThunk } from './operations.js';
 
 const initialState = {
-  user: {
-    name: '',
-    email: '',
-  },
-  token: '',
+  user: null,
+  token: null,
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
@@ -21,15 +18,18 @@ const initialState = {
 const slice = createSlice({
   name: 'auth',
   initialState,
+
   extraReducers: builder => {
     builder
       .addCase(logoutThunk.fulfilled, () => {
         return initialState;
       })
       .addCase(registerThunk.fulfilled, (state, action) => {
-        state.user.name = action.payload.data.user.name;
-        state.user.email = action.payload.data.user.email;
-        state.user.theme = action.payload.data.user.theme;
+        //ТуТ ВСЕ ВЕРНО!!!!!
+        console.log('user', action.payload.data.user);
+        console.log('token', action.payload.accessToken);
+        state.user = action.payload.data.user;
+        state.token = action.payload.accessToken;
         state.isLoggedIn = true;
       })
       .addCase(registerThunk.rejected, state => {
@@ -40,22 +40,30 @@ const slice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
-        state.token = action.payload.data.accessToken;
+        console.log('TOKEN LOGIN', action.payload);
+        state.user = action.payload.userData;
+        state.token = action.payload.token; //верно!!!
         state.isLoggedIn = true;
       })
       .addCase(loginThunk.rejected, state => {
         state.isLoggedIn = false;
       })
       .addCase(currentUserThunk.fulfilled, (state, action) => {
+        // console.log(
+        //   'Стейт после успешного выполнения currentUserThunk:',
+        //   state
+        // );
+        state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
 
-        state.user = action.payload;
+        // console.log('USER currentUserThunk!!!', action.payload);
       })
       .addCase(currentUserThunk.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(currentUserThunk.rejected, state => {
+        console.log('Стейт после отклонения currentUserThunk:', state);
         state.isRefreshing = false;
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
@@ -79,4 +87,8 @@ const slice = createSlice({
   },
 });
 
-export const authReducer = slice.reducer;
+// Экшены для слайса
+export const { setToken, clearToken, setUser, clearUser } = slice.actions;
+
+// Экспорт редьюсера
+export const authReducer = slice.reducer; // Экспорт редьюсера слайса

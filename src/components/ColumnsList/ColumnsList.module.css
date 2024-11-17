@@ -78,7 +78,7 @@
 } */
 @media only screen and (max-width: 374px) {
   .columnsList {
-    padding-left: 0px;
+    padding-left: 20px;
   }
 }
 /* Tablet */

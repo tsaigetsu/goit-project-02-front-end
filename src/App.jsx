@@ -10,12 +10,13 @@ import AuthPage from './pages/AuthPage/AuthPage';
 import RegisterForm from './components/RegisterForm/RegisterForm';
 import LoginForm from './components/LoginForm/LoginForm';
 import HomePage from './pages/HomePage/HomePage';
-import { currentUserThunk } from './redux/auth/operations';
-import { useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import Loader from './components/Loader/Loader';
 import { ThemeProvider } from './components/Layout/ThemeContext.jsx';
+import { currentUserThunk } from './redux/auth/operations.js';
+import { useEffect } from 'react';
 
 function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
