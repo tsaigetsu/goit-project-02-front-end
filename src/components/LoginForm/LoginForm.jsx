@@ -9,7 +9,6 @@ import SvgIcon from '../SvgIcon/SvgIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentUserThunk, loginThunk } from '../../redux/auth/operations.js';
 import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
-import { clearToken } from '../../api.js';
 
 const validateFormSchema = Yup.object().shape({
   email: Yup.string()
@@ -52,7 +51,6 @@ const LoginForm = () => {
   });
 
   const onSubmit = data => {
-    clearToken();
     dispatch(loginThunk(data));
     // dispatch(currentUserThunk());
     reset();

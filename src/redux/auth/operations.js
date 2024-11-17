@@ -50,13 +50,17 @@ export const loginThunk = createAsyncThunk(
 
       localStorage.setItem('token', data.data.accessToken);
       setToken(data.data.accessToken);
+      const token = data.data.accessToken;
+      const response = await api.get('/user/profile');
+      const userData = response.data.data;
+
       toast.success('Welcome! You are logged in.', {
         duration: 4000,
         position: 'bottom-center',
         icon: '✔️',
       });
       console.log('token!!!!!!!', data.data.accessToken);
-      return data.data.accessToken; //верно!!!
+      return { token, userData }; //верно!!!
     } catch (error) {
       toast.error('Incorrect email or password', {
         duration: 5000,

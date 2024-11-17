@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import PublicRoute from './Routes/PublicRoute';

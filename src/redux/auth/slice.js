@@ -41,7 +41,8 @@ const slice = createSlice({
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         console.log('TOKEN LOGIN', action.payload);
-        state.token = action.payload; //верно!!!
+        state.user = action.payload.userData;
+        state.token = action.payload.token; //верно!!!
         state.isLoggedIn = true;
       })
       .addCase(loginThunk.rejected, state => {
