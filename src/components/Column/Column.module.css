@@ -50,7 +50,10 @@ transition: stroke 0.3s ease, filter 0.3s ease;
 }
 
 .itemList {
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  gap: 14px;
 }
 @media only screen and (max-width: 374px) {
   .wrapper {
@@ -64,4 +67,34 @@ transition: stroke 0.3s ease, filter 0.3s ease;
   .itemList{
     width: 100%;
   }
+}
+.cardManagerButton {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 334px;
+  height: 56px;
+  background-color: var(--btn-color);
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--plus-fill);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.svg {
+  background-color: var(--plus-fill);
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  padding: 7px;
+  align-content: center;
+}
+.svgIcon {
+  stroke: var(--plus-stroke);
 }
