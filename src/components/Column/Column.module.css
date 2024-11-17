@@ -65,7 +65,7 @@
     width: calc(100% - 12px);
   }
   .itemList {
-    width: 100%;
+    min-width: 280px;
   }
 }
 .cardManagerButton {
@@ -102,4 +102,12 @@
 }
 .svgIcon {
   stroke: var(--plus-stroke);
+}
+.cardManagerButton:hover {
+  background-color: var(--btn--hover-color);
+}
+@media only screen and (max-width: 374px) {
+  .cardManagerButton {
+    width: calc(100% - 12px);
+  }
 }
