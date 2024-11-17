@@ -39,7 +39,7 @@ const EditCardPopup = ({ card, setIsEdit }) => {
     { color: ' #8fa1d0', priority: 'low' },
     { color: '#E09CB5', priority: 'medium' },
     { color: '#BEDBB0', priority: 'high' },
-    { color: 'rgba(255, 255, 255, 0.3)', priority: 'without priority' },
+    { color: '#B7B7B7', priority: 'without priority' },
   ];
 
   const setupDate = Date.now();
