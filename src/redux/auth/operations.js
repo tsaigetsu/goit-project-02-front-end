@@ -4,8 +4,9 @@ import toast from 'react-hot-toast';
 
 export const logoutThunk = createAsyncThunk('logout', async (_, thunkAPI) => {
   try {
-    await api.post('auth/logout');
     clearToken();
+
+    await api.post('auth/logout');
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -16,7 +17,10 @@ export const registerThunk = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await api.post('/auth/register', credentials);
-      setToken(data.data.accessToken);
+
+      console.log('token при регистрации!', data.accessToken);
+
+      setToken(data.accessToken);
       toast.success('Welcome! You are successfully registered.', {
         duration: 4000,
         position: 'bottom-center',
@@ -42,14 +46,21 @@ export const loginThunk = createAsyncThunk(
     try {
       console.log('credentials', credentials);
       const { data } = await api.post('/auth/login', credentials);
+      console.log('data LOGIN RESPONSE', data.data.accessToken);
+
+      localStorage.setItem('token', data.data.accessToken);
       setToken(data.data.accessToken);
+      const token = data.data.accessToken;
+      const response = await api.get('/user/profile');
+      const userData = response.data.data;
+
       toast.success('Welcome! You are logged in.', {
         duration: 4000,
         position: 'bottom-center',
         icon: '✔️',
       });
-      console.log('data!!!!!!!', data);
-      return data;
+      console.log('token!!!!!!!', data.data.accessToken);
+      return { token, userData }; //верно!!!
     } catch (error) {
       toast.error('Incorrect email or password', {
         duration: 5000,
@@ -65,8 +76,13 @@ export const currentUserThunk = createAsyncThunk(
   'currentUser',
   async (_, thunkAPI) => {
     const savedToken = thunkAPI.getState().auth.token;
+    console.log('savedToken', savedToken);
+
     try {
-      setToken(savedToken);
+      // Проверка и установка токена в заголовки
+      if (savedToken) {
+        setToken(savedToken); // Эта функция должна быть реализована для установки заголовка
+      }
       const response = await api.get('/user/profile');
 
       return response.data.data;

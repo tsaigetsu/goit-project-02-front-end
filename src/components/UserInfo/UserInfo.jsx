@@ -1,23 +1,16 @@
 import css from './UserInfo.module.css';
 import EditProfile from '../EditProfile/EditProfile.jsx';
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchUserProfile } from '../../redux/auth/operations.js';
+import { useSelector } from 'react-redux';
+import { selectUserData } from '../../redux/auth/selectors.js';
+import { useState } from 'react';
 import ThemedIcon from '../ThemedIcon/ThemedIcon.jsx';
 
 export default function UserInfo() {
-  const userData = useSelector(state => state.auth.user);
-
+  const userData = useSelector(selectUserData);
   const [isEditModal, setIsEditModal] = useState(false);
-  const dispatch = useDispatch();
-
   const handleEditModal = () => {
     setIsEditModal(true);
   };
-
-  useEffect(() => {
-    dispatch(fetchUserProfile());
-  }, [dispatch]);
 
   return (
     <div className={css.userInfo}>
