@@ -40,6 +40,8 @@
   --create-col-stroke: #fff;
   --card-line: rgba(22, 22, 22, 0.10);
   --avatar-btn: #BEDBB0;
+  --scroll-color: rgba(190, 219, 176, 0.5);
+  --scroll-color-active: #BEDBB0;
 }
 
 .theme-dark {
@@ -84,6 +86,8 @@
     --create-col-stroke: #121212;
     --card-line: rgba(255, 255, 255, 0.10);
     --avatar-btn: #BEDBB0;
+    --scroll-color: #302f2f;
+    --scroll-color-active: #121212;
 }
 
 .theme-violet {
@@ -127,6 +131,8 @@
     --create-col-stroke: #fff;
     --card-line: rgba(22, 22, 22, 0.10);
     --avatar-btn: #ECEDFD;
+    --scroll-color: rgba(82, 85, 188, 0.5);
+    --scroll-color-active:  rgb(82, 85, 188)
 }
 
 

@@ -1,38 +1,48 @@
 .wrapperList {
   flex-grow: 1;
-  height: 100vh;
-  padding-right: 8px;
-  /* background-color: aquamarine; */
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 14px;
-  max-height: 618px; /* Максимальная высота контейнера */
-  overflow-y: auto; /* Вертикальная полоса прокрутки появляется при необходимости */
+  overflow-y: auto;
+  width: 350px;
 }
 
 /* Стили для самой полосы прокрутки */
 .wrapperList::-webkit-scrollbar {
   width: 8px; /* Ширина вертикальной полосы прокрутки */
+
 }
 
 /* Стили для ползунка (thumb) */
 .wrapperList::-webkit-scrollbar-thumb {
-  background-color: #121212; /* Цвет ползунка */
+  background-color: transparent; /* Цвет ползунка */
   border-radius: 12px; /* Скругленные углы ползунка */
-  /*border: 2px solid #f5f5f5; /* Обводка вокруг ползунка */
-  width: 8px;
-  height: 142px;
+  opacity: 0;
 }
-
+.wrapperList:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+  background: var(--scroll-color);
+  border-radius: 12px;
+}
 /* Стили для фона полосы прокрутки */
 .wrapperList::-webkit-scrollbar-track {
-  background-color: #302f2f; /* Цвет фона полосы прокрутки */
-  border-radius: 10px;
+  background-color: transparent; /* Цвет фона полосы прокрутки */
+  opacity: 0;
+  height: 90vh;
 }
 
 /* Эффект при наведении на ползунок */
 .wrapperList::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Темнее при наведении */
+  background-color: var(--scroll-color); /* Темнее при наведении */
   cursor: grabbing;
+}
+.wrapperList::-webkit-scrollbar-thumb:active {
+  background: var(--scroll-color-active);
+  border-radius: 12px;
+}
+
+@media only screen and (max-width: 374px) {
+  .wrapperList {
+    width: 100%;
+  }
 }

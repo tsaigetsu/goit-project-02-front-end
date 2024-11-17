@@ -2,25 +2,20 @@
 .cardManager {
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: flex-start;
-  /* width: 335px; */
-  width: 100%;
-
-  margin: 0 auto;
-  height: 100vh;
-  /* padding: 20px; */
-  /* background-color: burlywood; */
+  max-height: 60vh;
+  overflow: hidden;
+  position: relative;
+  gap: 14px;
 }
-
 /* Add Card Button */
 .cardManagerButton {
+  position: sticky;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 335px;
-  /* width: 335px; */
+  width: 334px;
   height: 56px;
   background-color: var(--btn-color);
   border-radius: 8px;
@@ -30,7 +25,7 @@
   color: var(--plus-fill);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  height: 56px;
+  margin-top: auto;
 }
 
 .svg {
@@ -47,5 +42,15 @@
 
 .cardManagerButton:hover {
   background-color: var(--btn--hover-color);
-  /* transform: scale(1.02); */
+}
+@media only screen and (max-width: 374px) {
+  .cardManagerButton {
+    width: calc(100% - 12px);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .cardManager {
+    max-height: 70vh;
+  }
 }

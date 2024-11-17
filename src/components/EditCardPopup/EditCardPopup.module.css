@@ -1,4 +1,3 @@
-/* Overlay для модального вікна */
 .popupOverlay {
   position: fixed;
   top: 0;
@@ -16,7 +15,7 @@
 
 @media screen and (min-width: 320px) {
   .popup {
-    stroke: white;
+    /* stroke: white; */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -24,10 +23,8 @@
     bottom: auto;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    /* position: relative; */
     min-width: 335px;
-    /* background: var(--popup-bg-color);
-    color: var(--popup-text-color); */
+    background-color: var(--filters-modal-bg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,48 +35,36 @@
     line-height: 150%;
     letter-spacing: -0.02em;
     border-radius: 8px;
-    background: #151515;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Тінь*/
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1439px) {
+@media screen and (min-width: 768px) {
   .popup {
-    max-width: 350px;
+    min-width: 350px;
   }
 }
 
-/* Основний контент попапу */
 @media screen and (min-width: 320px) {
   .popupContent {
-    /* max-width: 287px;
-    max-height: 522px; */
+    display: flex;
     padding: 24px;
     border-radius: 8px; /**/
-    /* background-color: var(--popup-bg-color); */
     color: var(--popup-text-color);
     color: white;
-    /* position: relative; */
-    display: flex;
     flex-direction: column;
     width: 100%;
   }
 }
 
-@media screen and (min-width: 768px) and (min-width: 1440px) {
-  .popupContent {
-    /* max-width: 302px; */
-  }
-}
-
-/* Заголовок попапу */
 .TitleCard {
   font-size: 18px;
   font-weight: 500;
+  color: var(--modal-text-color);
   letter-spacing: -0.02em;
   padding-bottom: 24px;
 }
-/* закриття */
+
 .closeButton {
   position: absolute;
   top: 14px;
@@ -90,35 +75,28 @@
   cursor: pointer;
   fill: none;
   stroke: white;
-
-  /* &&:hover {
-      transition: transform 0.3s;
-    } */
 }
 
 .formCard {
   display: flex;
   flex-direction: column;
-  gap: 14px;
 }
+
 .inputWrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
+
 .textareaDesk {
   min-height: 154px;
 }
 
-/* Поле введення для заголовка */
-.inputTitle,
-.textareaDesk {
-  background-color: transparent;
-  /* color: #161616; */
-  color: white;
-  border-color: var(--priority-color-high);
+.inputTitle {
+  background-color: var(--input-bg-color);
+  color: var(--modal-text-color);
+  border: 1px solid var(--btn-color);
   opacity: 0.7;
-  /* max-width: 287px; */
   width: 100%;
   height: auto;
   padding: 12px;
@@ -128,31 +106,39 @@
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.02em;
-  /* margin-bottom: 14px; */
+  margin-bottom: 14px;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  outline: none;
 
-  /*  при фокусі */
+  &:focus {
+    opacity: 1;
+  }
+}
+
+.textareaDesk {
+  background-color: var(--input-bg-color);
+  color: var(--modal-text-color);
+  border: 1px solid var(--btn-color);
+  opacity: 0.7;
+  width: 100%;
+  min-height: 154px;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  resize: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  outline: none;
+
   &&:focus {
     opacity: 1;
-    outline: #9dc888;
   }
 }
 
-@media screen and (min-width: 768px) {
-  .inputTitle,
-  .textareaDesk {
-    /* max-width: 302px; */
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .inputTitle,
-  .textareaDesk {
-    /* max-width: 302px; */
-  }
-}
-
-/* Секція вибору кольору */
 .labelColor {
   margin-bottom: 14px;
 }
@@ -184,10 +170,8 @@ input[type='radio'] {
   box-shadow: inset 0 0 0 2px;
 }
 
-/* Секція вибору дати */
 .deadlineWrapper {
   margin-bottom: 40px;
-  /* display: flex; */
   align-items: center;
 }
 
@@ -196,7 +180,7 @@ input[type='radio'] {
 }
 
 .dateDisplayCalendar {
-  color: #bedbb0;
+  color: var(--btn-color);
   font-weight: 500;
   font-size: 14px;
   display: flex;
@@ -213,7 +197,6 @@ input[type='radio'] {
   stroke: #5255bc;
 }
 
-/* Кнопка додавання картки */
 .addButton {
   display: flex;
   align-items: center;
@@ -221,23 +204,20 @@ input[type='radio'] {
   gap: 8px;
   width: 100%;
   padding: 10px;
-  /* height: 49px; */
-  background-color: var(--background-button-colorB);
   border-radius: 8px;
   border: none;
   font-size: 14px;
   font-weight: 500;
-  color: var(--popup-text-color);
-  color: #161616;
+  color: var(--plus-fill);
+  background-color: var(--btn-color);
   cursor: pointer;
   transition: background-color 0.3s ease;
   outline: none;
-}
 
-.addButton:hover,
-.addButton:focus {
-  opacity: 1;
-  background-color: #9dc888;
+  &:hover,
+  &:focus {
+    background-color: var(--btn--hover-color);
+  }
 }
 
 .iconNormalBtnBlack {
@@ -271,7 +251,7 @@ input[type='radio'] {
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--svg-btns-color);
 }
 .labelColor {
   letter-spacing: -0.02em;
@@ -285,6 +265,10 @@ input[type='radio'] {
   gap: 12px;
 }
 .deadlineWrapper {
+}
+
+.deadline {
+  color: var(--svg-btns-color);
 }
 
 .CalendarPicker {
@@ -325,14 +309,19 @@ input[type='radio'] {
   transform: scale(0.9); /* Делает кружок меньше */
   border-width: 2px; /* Толщина бордера */
 }
-.errorMessage {
-  color: red;
-  font-weight: 400;
-  font-family: 'Poppins', sans-serif;
-  font-size: 10px;
-  line-height: 150%;
-  letter-spacing: 0.02em;
 
-  margin-top: 2px;
-  margin-left: 8px;
+.errorMessage {
+  position: absolute;
+  top: 46px;
+  left: 6px;
+  color: red;
+  font-size: 10px;
+}
+
+.errorMessageTextarea {
+  position: absolute;
+  top: 151px;
+  left: 6px;
+  color: red;
+  font-size: 10px;
 }

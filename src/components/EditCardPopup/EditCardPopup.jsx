@@ -11,14 +11,16 @@ import { useCallback, useEffect, useState } from 'react';
 const EditCardPopup = ({ card, setIsEdit }) => {
   const { _id, title, description, deadline, priority, columnId } = card;
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(
+    deadline ? new Date(deadline) : null
+  );
   const dispatch = useDispatch();
-  const [selectedDate, setSelectedDate] = useState(null);
+
   const valuesFields = {
-    title: title,
-    description: description,
-    // labelColor: "",
-    deadline: deadline,
-    priority: priority,
+    title: title || '',
+    description: description || '',
+    deadline: deadline ? new Date(deadline) : null,
+    priority: priority || 'without priority',
   };
 
   const validateSchema = Yup.object({
@@ -29,12 +31,8 @@ const EditCardPopup = ({ card, setIsEdit }) => {
     description: Yup.string()
       .required('Description is required')
       .min(2, 'Description must be at least 2 characters')
-      .max(100, 'Description cannot exceed 100 characters'),
-    // labelColor: Yup.string().required("Required"),
+      .max(300, 'Description cannot exceed 300 characters'),
     deadline: Yup.date().required('Deadline is required'),
-    // priority: Yup.string()
-    //   .oneOf(["without priority", "low", "medium", "high"])
-    //   .required("Priority is required"),
   });
 
   const colorPriority = [
@@ -47,18 +45,15 @@ const EditCardPopup = ({ card, setIsEdit }) => {
   const setupDate = Date.now();
 
   const formatDate = date => {
-    if (selectedDate !== date) {
-      setSelectedDate(date);
+    if (!(date instanceof Date) || isNaN(date.getTime())) {
+      return 'Invalid date';
     }
-    // const dateString = date;
-    // console.log('dateString', dateString);
-    // function formatDateForCard(dateDeadline) {
-    //   const day = dateDeadline.getDate().toString().padStart(2, '0');
-    //   const month = (dateDeadline.getMonth() + 1).toString().padStart(2, '0'); // getMonth() возвращает индекс месяца (0-11)
-    //   const year = dateDeadline.getFullYear();
-    //   return `${day}/${month}/${year}`;
-    // }
-    // const formattedDate = formatDateForCard(dateDeadline);
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = String(date.getFullYear()).slice(-2);
+
+    return `${day}/${month}/${year}`;
   };
 
   const handleEdit = values => {
@@ -66,32 +61,34 @@ const EditCardPopup = ({ card, setIsEdit }) => {
     const data = {
       title,
       description,
-      deadline: selectedDate,
+      deadline: selectedDate ? selectedDate.toISOString() : null,
       priority,
       columnId,
     };
-    console.log('data', data);
 
     dispatch(updateCard({ _id, data }));
     setIsEdit(false);
   };
 
-  // Функция для переключения календаря
+  useEffect(() => {
+    if (deadline && !selectedDate) {
+      setSelectedDate(new Date(deadline));
+    }
+  }, [deadline, selectedDate]);
+
   const toggleDateInput = useCallback(() => {
-    setIsCalendarOpen(true);
-  }, []);
+    setIsCalendarOpen(!isCalendarOpen);
+  });
 
   useEffect(() => {
     const handleEscape = event => {
       if (event.key === 'Escape') {
-        setIsEdit(false); // Вызываем функцию закрытия модалки
+        setIsEdit(false);
       }
     };
 
-    // Подписываемся на событие `keydown` при монтировании компонента
     document.addEventListener('keydown', handleEscape);
 
-    // Очищаем подписку при размонтировании компонента
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
@@ -132,7 +129,7 @@ const EditCardPopup = ({ card, setIsEdit }) => {
                   />
                   <ErrorMessage
                     name="title"
-                    component="div"
+                    component="span"
                     className={s.errorMessage}
                   />
                 </div>
@@ -145,9 +142,9 @@ const EditCardPopup = ({ card, setIsEdit }) => {
                     className={s.textareaDesk}
                   />
                   <ErrorMessage
-                    name="textarea"
-                    component="div"
-                    className={s.errorMessage}
+                    name="description"
+                    component="span"
+                    className={s.errorMessageTextarea}
                   />
                 </div>
                 <div className={s.box}>
@@ -174,34 +171,33 @@ const EditCardPopup = ({ card, setIsEdit }) => {
                     </div>
                     <ErrorMessage
                       name="priority"
-                      component="div"
+                      component="span"
                       className={s.errorMessage}
                     />
                   </div>
                   <div className={s.deadlineWrapper}>
-                    <label htmlFor="deadline" className={s}>
+                    <label htmlFor="deadline" className={s.deadline}>
                       Deadline
                     </label>
 
                     <div className={s.CalendarPicker} onClick={toggleDateInput}>
                       <CalendarPicker
-                        selected={values.deadline}
+                        selected={
+                          values.deadline ? new Date(values.deadline) : null
+                        }
                         onChange={date => {
-                          setFieldValue('deadline', date);
+                          if (date instanceof Date && !isNaN(date.getTime())) {
+                            setFieldValue('deadline', date);
+                            setSelectedDate(date);
+                          }
+
                           setIsCalendarOpen(false);
                         }}
                         formatDate={formatDate}
                         minDate={setupDate}
                         toggleDateInput={toggleDateInput}
-                        showPopperArrow={false}
-                        onFocus={e => e.target.blur()}
-                        onKeyDown={e => e.preventDefault()}
                         calendarClassName={s.dateDisplayCalendar}
                         isCalendarOpen={isCalendarOpen}
-                        placeholderText="Select Date"
-                        open={isCalendarOpen}
-                        onClickOutside={() => setIsCalendarOpen(false)}
-                        // setIsCalendarOpen={setIsCalendarOpen}
                       />
                       <SvgIcon
                         id="icon-chevron-down"
@@ -211,7 +207,7 @@ const EditCardPopup = ({ card, setIsEdit }) => {
                       />
                       <ErrorMessage
                         name="deadline"
-                        component="div"
+                        component="span"
                         className={s.errorMessage}
                       />
                     </div>

@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import SvgIcon from '../SvgIcon/SvgIcon';
+import ThemedIcon from '../ThemedIcon/ThemedIcon.jsx';
 import { useDispatch } from 'react-redux';
 import { updateUserAvatar } from '../../redux/auth/operations.js';
 
@@ -20,7 +21,7 @@ const validateFormSchema = Yup.object().shape({
 
     .matches(
       /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
-      'Password can contain only Latin letters, numbers, and special characters'
+      'Password must contain Latin letters'
     )
     .matches(/^\S*$/, 'Password cannot contain spaces')
     .min(8, 'Password must be at least 8 characters')
@@ -111,7 +112,15 @@ const EditProfile = ({ userData, onClose }) => {
         <div className={css.wrapperAvatar}>
           <div className={css.avatar}>
             {!userData?.photo ? (
-              <SvgIcon id="icon-user-black" width="68" height="68" />
+              <ThemedIcon
+                themeIcons={{
+                  light: 'icon-user-white',
+                  dark: 'icon-user-black',
+                  violet: 'icon-user-violet',
+                }}
+                width="68"
+                height="68"
+              />
             ) : (
               <img src={userData.photo} alt="User Avatar" />
             )}
@@ -129,7 +138,11 @@ const EditProfile = ({ userData, onClose }) => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className={css.formContainer}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={css.formContainer}
+          autoComplete="off"
+        >
           <div className={css.inputContainer}>
             <label className={css.label}>
               <input
@@ -160,7 +173,7 @@ const EditProfile = ({ userData, onClose }) => {
                 type={visiblePassword ? 'text' : 'password'}
                 placeholder="Create a password"
                 className={css.input}
-                autoComplete="off"
+                autoComplete="new-password"
               />
               {errors.password && (
                 <div className={css.error}>{errors.password.message}</div>

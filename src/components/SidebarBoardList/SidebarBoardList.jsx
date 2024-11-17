@@ -76,8 +76,6 @@ const SidebarBoardList = () => {
     try {
       dispatch(deleteBoardThunk(boardId));
 
-      // dispatch(fetchBoardsThunk());
-
       if (boardId === activeBoardId) {
         setActiveBoardId(null);
       }

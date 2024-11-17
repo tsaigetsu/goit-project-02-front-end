@@ -1,49 +1,50 @@
 .color {
-  width: 335px;
-  align-content: flex-end;
-  background-color: #8fa1d0;
-  display: flex;
-  justify-content: flex-end;
-  border-radius: 8px;
-  border: none;
-}
-
-.cardWrapper {
-  width: 330px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  /* z-index: 1000; */
-  border: none;
-  padding: 14px 24px;
-  /* margin-bottom: 10px; */
-  /* border-radius: 8px; */
-  background-color: var(--create-col-stroke);
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  display: block;
+  width: 4px;
   height: 154px;
+  background-color: #8fa1d0;
+  overflow: hidden;
+}
+.cardholder {
+  height: 154px;
+  width: 334px;
+}
+.card {
+  border: none;
+  padding: 14px 20px;
+  flex-grow: 1;
+}
+.cardWrapper {
+  display: flex;
+  background-color: var(--create-col-stroke);
+  border-radius: 8px;
+  overflow: hidden;
 }
 .titleCard {
   font-weight: 600;
   font-size: 14px;
+  line-height: 21px;
   letter-spacing: -0.02em;
   color: var(--text-color);
   margin-bottom: 8px;
 }
 .description {
-  max-height: 38px;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.33333;
   letter-spacing: -0.02em;
   color: var(--default-text-color);
   margin-bottom: 14px;
+  white-space: wrap;
+  overflow-x: hidden;
+  max-width: 290px;
 
-  white-space: wrap; /* Запрещает перенос текста на новую строку */
-  overflow: hidden; /* Скрывает текст, выходящий за границы */
-  text-overflow: ellipsis; /* Добавляет троеточие */
-  width: 290px; /*Укажите ширину контейнера*/
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .title {
@@ -54,14 +55,13 @@
   margin-bottom: 4px;
 }
 .cardFooter {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid var(--card-line);
+  padding-top: 14px;
   stroke-width: 1px;
   stroke: rgba(255, 255, 255, 0.1);
-  padding-top: 14px;
 }
 
 .label-color {
@@ -106,7 +106,6 @@
 .boxIcons {
   display: flex;
   flex-direction: row;
-  /* width: 64px; */
   gap: 8px;
 }
 .btnIcon {
@@ -128,4 +127,14 @@
 
 .changeColumn {
   position: relative;
+}
+@media only screen and (max-width: 374px) {
+  .cardholder {
+    width: calc(100% - 12px);
+  }
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }

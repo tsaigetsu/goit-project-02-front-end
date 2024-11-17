@@ -1,47 +1,15 @@
-/* Mobile */
-/* .container {
-  min-width: 320px;
-  max-width: 375px;
-  width: 100%;
-  padding: 0 20px;
-  margin: 0 auto;
-} */
-
-/* Tablet */
-/* @media only screen and (min-width: 768px) {
-  .wrapperScreenPage {
-    max-width: 768px;
-    padding: 0 32px;
-  }
-} */
-
-/* Desktop */
-/* @media only screen and (min-width: 1440px) {
-  .wrapperScreenPage {
-    max-width: 1440px;
-    padding: 0 100px;
-  }
-} */
-
-/* Mobile */
-/* .section {
-  position: relative;
-  height: auto;
-  width: 100%;
-  background-color: rgb(71, 148, 255);
-} */
+/* 
 .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 351px;
-  /* min-width: 320px; */
-  /* height: 654px; */
-  /* background-color: rgb(160, 95, 150); */
+  padding-left: 20px;
+  padding-right: 0;
   overflow: hidden;
-  height: 80%;
-}
+  height: 100%;
+} */
 .container {
+  width: 334px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -51,7 +19,6 @@
   color: var(--text-color);
   flex-shrink: 0;
   margin-bottom: 14px;
-  width: 335px;
 }
 .columnName {
   color: var(--text-color);
@@ -83,16 +50,51 @@ transition: stroke 0.3s ease, filter 0.3s ease;
 }
 
 .itemList {
-  /* flex: 0 0 auto; */
-  /* flex: 0 1 100%; */
-  min-width: 335px;
-  /* width: 100%; */
-  /* background-color: brown; */
-  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 14px;
 }
 @media only screen and (max-width: 374px) {
-  .itemList {
-    /* flex-basis: 90%; Уменьшаем ширину карточек до 90% от ширины родителя */
-    min-width: auto; /* Снимаем фиксированную минимальную ширину */
+  .wrapper {
+    width: 100vw;
+    padding-right: 0px;
+    padding-left: 20px;
   }
+  .container{
+    width: calc(100% - 12px);
+  }
+  .itemList{
+    width: 100%;
+  }
+}
+.cardManagerButton {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 334px;
+  height: 56px;
+  background-color: var(--btn-color);
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--plus-fill);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.svg {
+  background-color: var(--plus-fill);
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  padding: 7px;
+  align-content: center;
+}
+.svgIcon {
+  stroke: var(--plus-stroke);
 }

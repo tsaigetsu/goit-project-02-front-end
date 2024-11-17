@@ -1,8 +1,8 @@
 @font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-Medium.ttf") format("ttf"),
-    url("/fonts/Poppins-Regular.ttf") format("ttf"),
-    url("/fonts/Poppins-SemiBold.ttf") format("ttf");
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-Medium.ttf') format('ttf'),
+    url('/fonts/Poppins-Regular.ttf') format('ttf'),
+    url('/fonts/Poppins-SemiBold.ttf') format('ttf');
 }
 
 :root {
@@ -40,9 +40,9 @@ p {
   margin: 0;
 }
 
-p:last-child {
+/* p:last-child {
   margin-bottom: 0;
-}
+} */
 
 ul {
   margin: 0;
@@ -68,7 +68,7 @@ img {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
 }
 html,

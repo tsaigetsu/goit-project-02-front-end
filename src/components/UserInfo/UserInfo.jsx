@@ -1,16 +1,13 @@
 import css from './UserInfo.module.css';
 import EditProfile from '../EditProfile/EditProfile.jsx';
 import { useSelector } from 'react-redux';
-import SvgIcon from '../SvgIcon/SvgIcon.jsx';
 import { selectUserData } from '../../redux/auth/selectors.js';
 import { useState } from 'react';
+import ThemedIcon from '../ThemedIcon/ThemedIcon.jsx';
 
 export default function UserInfo() {
-  const userData = useSelector(selectUserData); //данные при регистрации приходят
-  // console.log('userData', userData);
-
+  const userData = useSelector(selectUserData);
   const [isEditModal, setIsEditModal] = useState(false);
-
   const handleEditModal = () => {
     setIsEditModal(true);
   };
@@ -21,12 +18,7 @@ export default function UserInfo() {
         <button onClick={handleEditModal} className={css.userInfoModal}>
           <p className={css.userName}>{userData.name}</p>
           {!userData?.photo ? (
-            <SvgIcon
-              id="icon-user-black"
-              width="68"
-              height="68"
-              className={css.userSvg}
-            />
+            <ThemedIcon width="68" height="68" className={css.userSvg} />
           ) : (
             <img
               src={userData.photo}

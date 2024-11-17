@@ -17,7 +17,6 @@ const Card = React.memo(({ card }) => {
   const { _id, title, description, deadline, columnId, priority } = card;
   const board = useSelector(selectedBoard);
   const { columns } = board;
-  console.log('deadline', deadline);
 
   const colorPriority = [
     { color: ' #8fa1d0', priority: 'low' },
@@ -44,10 +43,9 @@ const Card = React.memo(({ card }) => {
     setIsModalOpen(true);
   }, []);
 
-  const onChange = () => {
-    setIsModalChange(true);
-    console.log('open', isModalChange);
-  };
+  const toggleChangeModal = useCallback(() => {
+    setIsModalChange(prevState => !prevState);
+  }, []);
 
   const filteredColumns = columns.filter(col => col._id !== columnId);
 
@@ -57,32 +55,27 @@ const Card = React.memo(({ card }) => {
   };
   useEffect(() => {
     const checkDeadline = () => {
-      // Преобразуем строку в объект даты
       const deadlineDate = new Date(deadline);
       const currentDate = new Date();
 
-      // Сравниваем текущую дату с дедлайном
       if (currentDate > deadlineDate) {
-        setIsDeadlinePassed(true); // Если текущая дата больше дедлайна, то истек
+        setIsDeadlinePassed(true);
       } else {
-        setIsDeadlinePassed(false); // Если дедлайн не истек
+        setIsDeadlinePassed(false);
       }
     };
 
-    // Проверка дедлайна сразу после рендеринга
     checkDeadline();
 
-    // Проверяем каждый день
-    const intervalId = setInterval(checkDeadline, 86400000); // 86400000ms = 1 день
+    const intervalId = setInterval(checkDeadline, 86400000);
 
-    // Очищаем интервал, когда компонент размонтируется
     return () => clearInterval(intervalId);
   }, [deadline]);
 
   function formatDateForCard(deadline) {
     const dateDeadline = new Date(deadline);
     const day = dateDeadline.getDate().toString().padStart(2, '0');
-    const month = (dateDeadline.getMonth() + 1).toString().padStart(2, '0'); // getMonth() возвращает индекс месяца (0-11)
+    const month = (dateDeadline.getMonth() + 1).toString().padStart(2, '0');
     const year = dateDeadline.getFullYear();
     return `${day}/${month}/${year}`;
   }
@@ -90,92 +83,98 @@ const Card = React.memo(({ card }) => {
 
   return (
     <>
-      <div
-        className={s.color}
-        style={{
-          backgroundColor: selectedColorObj
-            ? selectedColorObj.color
-            : 'without priority',
-        }}
-      >
+      <div className={s.cardholder}>
         <div className={s.cardWrapper}>
-          <h4 className={s.titleCard}>{title}</h4>
-          <p className={s.description}>{description}</p>
-          <div className={s.cardFooter}>
-            <div className={s.box}>
-              <div className={s.boxPriority}>
-                <span className={s.title}>Priority</span>
-                <div className={s.priority}>
-                  <div
-                    className={s.ellipse}
-                    style={{
-                      backgroundColor: selectedColorObj
-                        ? selectedColorObj.color
-                        : 'without priority',
-                    }}
-                  ></div>
-                  <span className={s.titlePriority}>{priority}</span>
+          <div
+            className={s.color}
+            style={{
+              backgroundColor: selectedColorObj
+                ? selectedColorObj.color
+                : 'without priority',
+            }}
+          ></div>
+          <div className={s.card}>
+            <h4 className={s.titleCard}>{title}</h4>
+            <p className={s.description}>{description}</p>
+            <div className={s.cardFooter}>
+              <div className={s.box}>
+                <div className={s.boxPriority}>
+                  <span className={s.title}>Priority</span>
+                  <div className={s.priority}>
+                    <div
+                      className={s.ellipse}
+                      style={{
+                        backgroundColor: selectedColorObj
+                          ? selectedColorObj.color
+                          : 'without priority',
+                      }}
+                    ></div>
+                    <span className={s.titlePriority}>{priority}</span>
+                  </div>
+                </div>
+                <div className={s.boxDeadline}>
+                  <span className={s.title}>Deadline</span>
+                  <span className={s.titleDeadline}>{formattedDate}</span>
                 </div>
               </div>
-              <div className={s.boxDeadline}>
-                <span className={s.title}>Deadline</span>
-                <span className={s.titleDeadline}>{formattedDate}</span>
-              </div>
-            </div>
-            <div className={s.boxIcons}>
-              <button
-                className={`${s.btnIcon} ${
-                  !isDeadlinePassed ? s.deadlineShadow : ''
-                }`}
-              >
-                {isDeadlinePassed && (
+              <div className={s.boxIcons}>
+                <button
+                  className={`${s.btnIcon} ${
+                    !isDeadlinePassed ? s.deadlineShadow : ''
+                  }`}
+                >
+                  {isDeadlinePassed && (
+                    <SvgIcon
+                      id="icon-bell-01"
+                      className={s.svgIcon}
+                      width="16"
+                      height="16"
+                      style={{
+                        filter: 'drop-shadow(0px 0px 6px rgb(57 168 62))',
+                        stroke: 'rgb(77 144 80)',
+                      }}
+                    />
+                  )}
+                </button>
+
+                <button
+                  className={`${s.btnIcon} ${s.changeColumn} ${
+                    filteredColumns.length === 0 ? s.disabled : ''
+                  }`}
+                  onClick={toggleChangeModal}
+                  disabled={filteredColumns.length === 0}
+                >
                   <SvgIcon
-                    id="icon-bell-01"
+                    id="icon-arrow-circle-broken-right"
                     className={s.svgIcon}
                     width="16"
                     height="16"
-                    style={{
-                      filter: 'drop-shadow(0px 0px 6px rgb(57 168 62))',
-                      stroke: 'rgb(77 144 80)',
-                    }}
                   />
-                )}
-              </button>
-
-              <button
-                className={`${s.btnIcon} ${s.changeColumn}`}
-                onClick={onChange}
-              >
-                <SvgIcon
-                  id="icon-arrow-circle-broken-right"
-                  className={s.svgIcon}
-                  width="16"
-                  height="16"
-                />
-                {isModalChange && (
-                  <InProgressModal
-                    setIsModalChange={setIsModalChange}
-                    filteredColumns={filteredColumns}
-                    handleMoveCard={handleMoveCard}
+                  {isModalChange && (
+                    <InProgressModal
+                      setIsModalChange={setIsModalChange}
+                      filteredColumns={filteredColumns}
+                      handleMoveCard={handleMoveCard}
+                    />
+                  )}
+                </button>
+                <button className={s.btnIcon} onClick={() => setIsEdit(true)}>
+                  <SvgIcon
+                    id="icon-pencil-01"
+                    className={s.svgIcon}
+                    width="16"
+                    height="16"
                   />
-                )}
-              </button>
-              <button className={s.btnIcon} onClick={() => setIsEdit(true)}>
-                <SvgIcon
-                  id="icon-pencil-01"
-                  className={s.svgIcon}
-                  width="16"
-                  height="16"
-                />
-              </button>
-              <button className={s.btnIcon} onClick={openModal}>
-                <SvgIcon
-                  id="icon-trash-04"
-                  className={s.svgIcon}
-                  width="16"
-                  height="16"
-                />
-              </button>
+                </button>
+                <button className={s.btnIcon} onClick={openModal}>
+                  <SvgIcon
+                    id="icon-trash-04"
+                    className={s.svgIcon}
+                    width="16"
+                    height="16"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -193,7 +192,6 @@ const Card = React.memo(({ card }) => {
   );
 });
 
-// Устанавливаем displayName для компонента
 Card.displayName = 'Card';
 
 export default Card;

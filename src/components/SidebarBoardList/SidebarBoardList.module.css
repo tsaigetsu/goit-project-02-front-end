@@ -51,6 +51,7 @@
 .ul {
     max-height: calc(61px * 2); 
     overflow-y: auto;
+    scrollbar-width: none;
   }
   
   @media (min-width: 768px) {

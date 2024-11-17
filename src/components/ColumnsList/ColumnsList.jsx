@@ -2,37 +2,17 @@ import Column from '../Column/Column';
 import css from './ColumnsList.module.css';
 import { useSelector } from 'react-redux';
 import AddAnotherColumn from '../AddAnotherColumn/AddAnotherColumn.jsx';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 import { selectedBoard } from '../../redux/boards/selectors.js';
 
 const ColumnsList = () => {
-  // { filter }
   const containerRef = useRef(null);
-
   const board = useSelector(selectedBoard);
   const { columns } = board;
 
-  useEffect(() => {
-    const container = containerRef.current;
-    const handleWheel = e => {
-      if (container) {
-        e.preventDefault(); // Предотвращаем стандартное поведение
-        container.scrollLeft += e.deltaY; // Горизонтальная прокрутка
-      }
-    };
-
-    // Добавляем обработчик как не пассивный
-    container.addEventListener('wheel', handleWheel, { passive: false });
-
-    // Удаляем обработчик при размонтировании компонента
-    return () => {
-      container.removeEventListener('wheel', handleWheel);
-    };
-  }, []);
-
   return (
-    <section className={css.wrapperList}>
+    <>
       <ul ref={containerRef} className={css.columnsList}>
         {columns.length > 0 &&
           columns.map(column => {
@@ -57,7 +37,7 @@ const ColumnsList = () => {
           className={`add-button ${columns.length > 0 ? 'shifted' : ''}`}
         />
       </ul>
-    </section>
+    </>
   );
 };
 export default ColumnsList;
