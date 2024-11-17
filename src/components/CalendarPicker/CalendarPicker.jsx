@@ -1,5 +1,4 @@
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import css from './CalendarPicker.module.css';
 
 const CalendarPicker = ({
@@ -10,6 +9,8 @@ const CalendarPicker = ({
   formatDate,
   calendarClassName,
 }) => {
+  const displayDate =
+    selected instanceof Date ? formatDate(selected) : 'Select a date';
   return (
     <div className={css.datePickerBox}>
       <div
@@ -24,12 +25,14 @@ const CalendarPicker = ({
       {isCalendarOpen && (
         <div className={css.datePickerWrapper}>
           <DatePicker
-            formatDate={formatDate}
-            selected={selected}
+            selected={selected instanceof Date ? selected : null}
             onChange={date => {
-              onChange(date);
+              if (date instanceof Date) {
+                onChange(date);
+              }
               toggleDateInput();
             }}
+            formatDate={formatDate}
             minDate={new Date()}
             onClickOutside={toggleDateInput}
             inline

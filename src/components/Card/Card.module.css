@@ -5,7 +5,7 @@
   background-color: #8fa1d0;
   overflow: hidden;
 }
-.cardholder{
+.cardholder {
   height: 154px;
   width: 334px;
 }
@@ -29,7 +29,6 @@
   margin-bottom: 8px;
 }
 .description {
-  height: 38px;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.33333;
@@ -37,9 +36,15 @@
   color: var(--default-text-color);
   margin-bottom: 14px;
   white-space: wrap;
-  overflow-x: hidden; 
-  text-overflow: ellipsis; /* Добавляет троеточие */
-  /* width: 290px; Укажите ширину контейнера */
+  overflow-x: hidden;
+  max-width: 290px;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .title {
@@ -127,4 +132,9 @@
   .cardholder {
     width: calc(100% - 12px);
   }
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }

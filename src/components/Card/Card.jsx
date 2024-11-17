@@ -17,7 +17,6 @@ const Card = React.memo(({ card }) => {
   const { _id, title, description, deadline, columnId, priority } = card;
   const board = useSelector(selectedBoard);
   const { columns } = board;
-  console.log('deadline', deadline);
 
   const colorPriority = [
     { color: ' #8fa1d0', priority: 'low' },
@@ -44,10 +43,9 @@ const Card = React.memo(({ card }) => {
     setIsModalOpen(true);
   }, []);
 
-  const onChange = () => {
-    setIsModalChange(true);
-    console.log('open', isModalChange);
-  };
+  const toggleChangeModal = useCallback(() => {
+    setIsModalChange(prevState => !prevState);
+  }, []);
 
   const filteredColumns = columns.filter(col => col._id !== columnId);
 
@@ -57,32 +55,27 @@ const Card = React.memo(({ card }) => {
   };
   useEffect(() => {
     const checkDeadline = () => {
-      // Преобразуем строку в объект даты
       const deadlineDate = new Date(deadline);
       const currentDate = new Date();
 
-      // Сравниваем текущую дату с дедлайном
       if (currentDate > deadlineDate) {
-        setIsDeadlinePassed(true); // Если текущая дата больше дедлайна, то истек
+        setIsDeadlinePassed(true);
       } else {
-        setIsDeadlinePassed(false); // Если дедлайн не истек
+        setIsDeadlinePassed(false);
       }
     };
 
-    // Проверка дедлайна сразу после рендеринга
     checkDeadline();
 
-    // Проверяем каждый день
-    const intervalId = setInterval(checkDeadline, 86400000); // 86400000ms = 1 день
+    const intervalId = setInterval(checkDeadline, 86400000);
 
-    // Очищаем интервал, когда компонент размонтируется
     return () => clearInterval(intervalId);
   }, [deadline]);
 
   function formatDateForCard(deadline) {
     const dateDeadline = new Date(deadline);
     const day = dateDeadline.getDate().toString().padStart(2, '0');
-    const month = (dateDeadline.getMonth() + 1).toString().padStart(2, '0'); // getMonth() возвращает индекс месяца (0-11)
+    const month = (dateDeadline.getMonth() + 1).toString().padStart(2, '0');
     const year = dateDeadline.getFullYear();
     return `${day}/${month}/${year}`;
   }
@@ -145,8 +138,11 @@ const Card = React.memo(({ card }) => {
                 </button>
 
                 <button
-                  className={`${s.btnIcon} ${s.changeColumn}`}
-                  onClick={onChange}
+                  className={`${s.btnIcon} ${s.changeColumn} ${
+                    filteredColumns.length === 0 ? s.disabled : ''
+                  }`}
+                  onClick={toggleChangeModal}
+                  disabled={filteredColumns.length === 0}
                 >
                   <SvgIcon
                     id="icon-arrow-circle-broken-right"
@@ -196,7 +192,6 @@ const Card = React.memo(({ card }) => {
   );
 });
 
-// Устанавливаем displayName для компонента
 Card.displayName = 'Card';
 
 export default Card;
