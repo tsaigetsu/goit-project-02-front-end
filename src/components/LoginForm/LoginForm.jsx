@@ -54,7 +54,7 @@ const LoginForm = () => {
   const onSubmit = data => {
     clearToken();
     dispatch(loginThunk(data));
-    dispatch(currentUserThunk());
+    // dispatch(currentUserThunk());
     reset();
   };
 

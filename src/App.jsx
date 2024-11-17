@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import PublicRoute from './Routes/PublicRoute';
@@ -11,13 +11,20 @@ import RegisterForm from './components/RegisterForm/RegisterForm';
 import LoginForm from './components/LoginForm/LoginForm';
 import HomePage from './pages/HomePage/HomePage';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import Loader from './components/Loader/Loader';
 import { ThemeProvider } from './components/Layout/ThemeContext.jsx';
+import { currentUserThunk } from './redux/auth/operations.js';
+import { useEffect } from 'react';
 
 function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(currentUserThunk());
+  }, [dispatch]);
 
   return isRefreshing ? (
     <Loader />
