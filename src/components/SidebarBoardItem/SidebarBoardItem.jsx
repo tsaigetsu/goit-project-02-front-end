@@ -1,5 +1,5 @@
-import SvgIcon from "../SvgIcon/SvgIcon";
-import s from "./SidebarBoardItem.module.css";
+import SvgIcon from '../SvgIcon/SvgIcon';
+import s from './SidebarBoardItem.module.css';
 
 const SidebarBoardItem = ({
   iconId,
@@ -13,7 +13,7 @@ const SidebarBoardItem = ({
   return (
     <>
       <li
-        className={`${s.li} ${isActive ? s.isActiveProject : ""}`}
+        className={`${s.li} ${isActive ? s.isActiveProject : ''}`}
         onClick={onSelect}
       >
         {/* добавить динамику для второго класса */}
@@ -28,7 +28,13 @@ const SidebarBoardItem = ({
         </div>
         <div className={s.boardBtns}>
           {/* <button className={s.btn} onClick={() => onEdit(id)}> */}
-          <button className={s.btn} onClick={(e) => { e.stopPropagation(); onEdit(id); }}>
+          <button
+            className={s.btn}
+            onClick={e => {
+              e.stopPropagation();
+              onEdit(id);
+            }}
+          >
             <SvgIcon
               id="icon-pencil-01"
               className={s.boardIcon}
@@ -36,7 +42,13 @@ const SidebarBoardItem = ({
               height="16"
             />
           </button>
-          <button className={s.btn} onClick={() => onDelete(id)}>
+          <button
+            className={s.btn}
+            onClick={e => {
+              e.stopPropagation();
+              onDelete(id);
+            }}
+          >
             <SvgIcon
               id="icon-trash-04"
               className={s.boardIcon}
