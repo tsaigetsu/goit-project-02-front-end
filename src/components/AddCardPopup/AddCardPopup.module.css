@@ -181,6 +181,10 @@ input[type='radio'] {
   align-items: center;
 }
 
+.deadline {
+  color: var(--svg-btns-color);
+}
+
 .CalendarPicker {
   display: flex;
 }
@@ -213,19 +217,19 @@ input[type='radio'] {
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
-  color: var(--plus-fill);
   width: 100%;
   border-radius: 8px;
+  color: var(--plus-fill);
   background-color: var(--btn-color);
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
   outline: none;
-}
 
-.addButton:hover,
-.addButton:focus {
-  background-color: var(--btn--hover-color);
+  &:hover,
+  &:focus {
+    background-color: var(--btn--hover-color);
+  }
 }
 
 .iconNormalBtnBlack {

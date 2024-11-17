@@ -224,3 +224,8 @@
     min-width: 400px;
   }
 }
+
+.toggleBtnIcon {
+  stroke: var(--modal-text-color);
+  fill: none;
+}

@@ -16,8 +16,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
   const valuesFields = {
     title: '',
     description: '',
-    // labelColor: '',
-    deadline: null,
+    deadline: new Date(),
     priority: 'without priority',
   };
 
@@ -30,11 +29,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
       .required('Description is required')
       .min(2, 'Description must be at least 2 characters')
       .max(300, 'Description cannot exceed 300 characters'),
-    // labelColor: Yup.string().required("Required"),
     deadline: Yup.date().required('Deadline is required'),
-    // priority: Yup.string()
-    //   .oneOf(["without priority", "low", "medium", "high"])
-    //   .required("Priority is required"),
   });
 
   const colorPriority = [
@@ -45,22 +40,17 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
   ];
 
   const setupDate = Date.now();
-  // Обработчик для изменения выбранного приоритета
 
   const formatDate = date => {
-    // console.log('data', date);
+    if (!(date instanceof Date)) {
+      return 'Invalid date';
+    }
 
-    setSelectedDate(date); //дата для карточки
-    // const dateString = date;
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = String(date.getFullYear()).slice(-2);
 
-    // const dateDeadline = new Date(); //дата дедлайна
-    // function formatDateForCard(dateDeadline) {
-    //   const day = dateDeadline.getDate().toString().padStart(2, '0');
-    //   const month = (dateDeadline.getMonth() + 1).toString().padStart(2, '0'); // getMonth() возвращает индекс месяца (0-11)
-    //   const year = dateDeadline.getFullYear();
-    //   return `${day}/${month}/${year}`;
-    // }
-    // const formattedDate = formatDateForCard(dateDeadline);
+    return `${day}/${month}/${year}`;
   };
 
   const handleAdd = values => {
@@ -68,31 +58,28 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
     const data = {
       title,
       description,
-      deadline: selectedDate,
+      deadline: selectedDate || new Date(),
       priority,
       columnId,
     };
+
     dispatch(addCard(data));
     setIsOpen(false);
   };
 
-  // Функция для переключения календаря
   const toggleDateInput = useCallback(() => {
-    setIsCalendarOpen(true);
-  }, []);
-  // Функция для обработки изменения даты
+    setIsCalendarOpen(!isCalendarOpen);
+  });
 
   useEffect(() => {
     const handleEscape = event => {
       if (event.key === 'Escape') {
-        setIsOpen(false); // Вызываем функцию закрытия модалки
+        setIsOpen(false);
       }
     };
 
-    // Подписываемся на событие `keydown` при монтировании компонента
     document.addEventListener('keydown', handleEscape);
 
-    // Очищаем подписку при размонтировании компонента
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
@@ -177,7 +164,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                     />
                   </div>
                   <div className={s.deadlineWrapper}>
-                    <label htmlFor="deadline" className={s}>
+                    <label htmlFor="deadline" className={s.deadline}>
                       Deadline
                     </label>
 
@@ -185,7 +172,11 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                       <CalendarPicker
                         selected={values.deadline}
                         onChange={date => {
-                          setFieldValue('deadline', date);
+                          if (date instanceof Date) {
+                            setFieldValue('deadline', date);
+                            setSelectedDate(date);
+                          }
+
                           setIsCalendarOpen(false);
                         }}
                         formatDate={formatDate}
@@ -198,7 +189,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                         isCalendarOpen={isCalendarOpen}
                         placeholderText="Select Date"
                         open={isCalendarOpen}
-                        onClickOutside={() => setIsCalendarOpen(false)}
+                        // onClickOutside={() => setIsCalendarOpen(false)}
                         // setIsCalendarOpen={setIsCalendarOpen}
                       />
                       <SvgIcon
@@ -210,7 +201,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                     </div>
                     <ErrorMessage
                       name="deadline"
-                      component="div"
+                      component="span"
                       className={s.errorMessageDeadline}
                     />
                   </div>
