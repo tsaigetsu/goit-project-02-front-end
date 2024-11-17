@@ -49,9 +49,11 @@
 }
  */
 
-    @media screen and (min-width: 768px) and (max-width: 1439px) {}
-  
-    @media screen and (min-width: 1440px) {}
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+}
+
+@media screen and (min-width: 1440px) {
+}
 
 .header {
   display: flex;
@@ -79,7 +81,6 @@
   /* color: var(--text-color) */
 }
 
-
 .themeButton {
   background: none;
   border: none;
@@ -90,13 +91,14 @@
   align-items: center;
   color: var(--icons-color-1);
   transition: transform 0.3s ease;
+
+  /* filter: drop-shadow(2px 2px 1px green) hue-rotate(180deg) drop-shadow(2px -2px 3px red); */
 }
 
 .themeButton:hover {
   transform: scale(1.1);
   color: var(--text-hover-color);
 }
-
 
 .modal {
   position: absolute;
@@ -150,7 +152,7 @@
 
 .hamburgerButton::before,
 .hamburgerButton::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   border-radius: 5px;
@@ -188,7 +190,7 @@
 }
 
 @media (min-width: 1440px) {
-.hamburgerButton {
+  .hamburgerButton {
     visibility: hidden;
   }
 }

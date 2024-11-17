@@ -19,10 +19,10 @@ const Card = React.memo(({ card }) => {
   const { columns } = board;
 
   const colorPriority = [
-    { color: '#8fa1d0', priority: 'low' },
+    { color: ' #8fa1d0', priority: 'low' },
     { color: '#E09CB5', priority: 'medium' },
     { color: '#BEDBB0', priority: 'high' },
-    { color: '#B7B7B7', priority: 'without priority' },
+    { color: 'rgba(255, 255, 255, 0.3)', priority: 'without priority' },
   ];
 
   const selectedColorObj = colorPriority.find(
@@ -130,7 +130,8 @@ const Card = React.memo(({ card }) => {
                       width="16"
                       height="16"
                       style={{
-                        filter: 'drop-shadow(0px 0px 6px rgb(57 168 62))',
+                        filter:
+                          'drop-shadow(0px 0px 6px rgb(57 168 62)) drop-shadow(0px 0px 6px rgb(57 168 62))',
                         stroke: 'rgb(77 144 80)',
                       }}
                     />
