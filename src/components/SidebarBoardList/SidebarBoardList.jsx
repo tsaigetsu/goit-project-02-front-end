@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import NewBoardForm from '../NewBoardForm/NewBoardForm';
 import SidebarBoardItem from '../SidebarBoardItem/SidebarBoardItem';
 import SvgIcon from '../SvgIcon/SvgIcon';
@@ -8,7 +8,6 @@ import { selectBoards } from '../../redux/boards/selectors.js';
 import {
   addBoardsThunk,
   deleteBoardThunk,
-  fetchBoardsThunk,
   getBoardByIdThunk,
   updateBoardThunk,
 } from '../../redux/boards/operations.js';
@@ -21,31 +20,26 @@ const SidebarBoardList = () => {
   const [activeBoardId, setActiveBoardId] = useState(null);
   const [selectedBoardData, setSelectedBoardData] = useState(null);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchBoardsThunk());
-  }, [dispatch]);
-
   const boards = useSelector(selectBoards);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleSaveBoard = async newBoard => {
-    dispatch(addBoardsThunk(newBoard));
-    setIsModalOpen(false);
-  };
-
   const handleSelectBoard = async boardId => {
     try {
       const board = await dispatch(getBoardByIdThunk(boardId)).unwrap();
+      console.log('board', board);
 
       setSelectedBoardData(board);
       setActiveBoardId(boardId);
     } catch (error) {
       console.error(error);
     }
+  };
+  const handleSaveBoard = async newBoard => {
+    dispatch(addBoardsThunk(newBoard));
+    setIsModalOpen(false);
   };
 
   const getIconNameById = id => {
@@ -78,11 +72,11 @@ const SidebarBoardList = () => {
     }
   };
 
-  const handleDelete = async boardId => {
+  const handleDelete = boardId => {
     try {
-      await dispatch(deleteBoardThunk(boardId));
+      dispatch(deleteBoardThunk(boardId));
 
-      dispatch(fetchBoardsThunk());
+      // dispatch(fetchBoardsThunk());
 
       if (boardId === activeBoardId) {
         setActiveBoardId(null);

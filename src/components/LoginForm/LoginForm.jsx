@@ -1,31 +1,32 @@
-import css from "./LoginForm.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import css from './LoginForm.module.css';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-import * as Yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect, useState } from "react";
-import SvgIcon from "../SvgIcon/SvgIcon";
-import { useDispatch, useSelector } from "react-redux";
-import { loginThunk } from "../../redux/auth/operations.js";
-import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
+import * as Yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect, useState } from 'react';
+import SvgIcon from '../SvgIcon/SvgIcon';
+import { useDispatch, useSelector } from 'react-redux';
+import { currentUserThunk, loginThunk } from '../../redux/auth/operations.js';
+import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
+import { clearToken } from '../../api.js';
 
 const validateFormSchema = Yup.object().shape({
   email: Yup.string()
-    .required("Email is required")
+    .required('Email is required')
     .matches(
       /^[A-Za-z0-9!#$%&.'*+/=?^_`{|}~-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-      "Invalid email format"
+      'Invalid email format'
     ),
   password: Yup.string()
-    .required("Password is required")
+    .required('Password is required')
     .matches(
       /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
-      "Password can contain only Latin letters, numbers, and special characters"
+      'Password can contain only Latin letters, numbers, and special characters'
     )
-    .matches(/^\S*$/, "Password cannot contain spaces")
-    .min(8, "Password must be at least 8 characters")
-    .max(64, "Password must not exceed 64 characters"),
+    .matches(/^\S*$/, 'Password cannot contain spaces')
+    .min(8, 'Password must be at least 8 characters')
+    .max(64, 'Password must not exceed 64 characters'),
 });
 
 const LoginForm = () => {
@@ -43,22 +44,23 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     resolver: yupResolver(validateFormSchema),
-    mode: "onChange",
+    mode: 'onChange',
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
+    clearToken();
     dispatch(loginThunk(data));
-
+    dispatch(currentUserThunk());
     reset();
   };
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("home");
+      navigate('home');
     }
   }, [isLoggedIn, navigate]);
 
@@ -87,7 +89,7 @@ const LoginForm = () => {
           <div className={css.inputContainer}>
             <label className={css.label}>
               <input
-                {...register("email")}
+                {...register('email')}
                 type="text"
                 placeholder="Enter your email"
                 className={css.input}
@@ -99,8 +101,8 @@ const LoginForm = () => {
             </label>
             <label className={css.label}>
               <input
-                {...register("password")}
-                type={visiblePassword ? "text" : "password"}
+                {...register('password')}
+                type={visiblePassword ? 'text' : 'password'}
                 placeholder="Create a password"
                 className={css.input}
               />

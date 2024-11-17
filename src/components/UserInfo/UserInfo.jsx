@@ -1,23 +1,19 @@
 import css from './UserInfo.module.css';
 import EditProfile from '../EditProfile/EditProfile.jsx';
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import SvgIcon from '../SvgIcon/SvgIcon.jsx';
-import { fetchUserProfile } from '../../redux/auth/operations.js';
+import { selectUserData } from '../../redux/auth/selectors.js';
+import { useState } from 'react';
 
 export default function UserInfo() {
-  const userData = useSelector(state => state.auth.user);
+  const userData = useSelector(selectUserData); //данные при регистрации приходят
+  // console.log('userData', userData);
 
   const [isEditModal, setIsEditModal] = useState(false);
-  const dispatch = useDispatch();
 
   const handleEditModal = () => {
     setIsEditModal(true);
   };
-
-  useEffect(() => {
-    dispatch(fetchUserProfile());
-  }, [dispatch]);
 
   return (
     <div className={css.userInfo}>
