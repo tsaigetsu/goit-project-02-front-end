@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import { useMemo, useState } from 'react';
+=======
+import { useState } from 'react';
+>>>>>>> Stashed changes
 import SvgIcon from '../SvgIcon/SvgIcon';
 import css from './Column.module.css';
 import EditColumn from '../EditColumn/EditColumn';
@@ -6,7 +10,10 @@ import { ModalDelete } from '../ModalDelete/ModalDelete';
 import CardManager from '../CardManager/CardManager';
 import { onDeleteColumn } from '../../redux/columns/operations';
 import { useDispatch } from 'react-redux';
+<<<<<<< Updated upstream
 import AddCardPopup from '../AddCardPopup/AddCardPopup';
+=======
+>>>>>>> Stashed changes
 
 const Column = ({ title, columnId, boardId }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,6 +67,7 @@ const Column = ({ title, columnId, boardId }) => {
           </div>
         </div>
         <CardManager columnId={columnId} />
+<<<<<<< Updated upstream
         <div className={css.btnContainer}>
           <button className={css.cardManagerButton} onClick={handleOpenPopup}>
             <div className={css.svg}>
@@ -73,6 +81,9 @@ const Column = ({ title, columnId, boardId }) => {
             Add another card
           </button>
         </div>
+=======
+
+>>>>>>> Stashed changes
         {isEdit && (
           <EditColumn
             title={title}
