@@ -78,7 +78,7 @@ const EditCardPopup = ({ card, setIsEdit }) => {
 
   const toggleDateInput = useCallback(() => {
     setIsCalendarOpen(!isCalendarOpen);
-  });
+  }, [isCalendarOpen]);
 
   useEffect(() => {
     const handleEscape = event => {
