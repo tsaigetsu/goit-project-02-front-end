@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from 'react';
 import SvgIcon from '../SvgIcon/SvgIcon';
 import { useDispatch, useSelector } from 'react-redux';
-import { currentUserThunk, loginThunk } from '../../redux/auth/operations.js';
+import { loginThunk } from '../../redux/auth/operations.js';
 import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
 
 const validateFormSchema = Yup.object().shape({
@@ -52,7 +52,6 @@ const LoginForm = () => {
 
   const onSubmit = data => {
     dispatch(loginThunk(data));
-    // dispatch(currentUserThunk());
     reset();
   };
 

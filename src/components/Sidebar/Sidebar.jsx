@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 const Sidebar = ({ onSelectBoard }) => {
   const { isSidebarOpen, toggleSidebar } = useContext(SidebarContext);
   const dispatch = useDispatch();
+
   const handleClick = event => {
     event.stopPropagation();
     if (event.target.classList.contains(s.overlay)) {
