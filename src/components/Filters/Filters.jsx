@@ -32,14 +32,14 @@ const Filters = ({ setIsModalOpen, boardId }) => {
   const handleFilterChange = priority => {
     console.log('priority', priority);
 
-    dispatch(filterCardsByPriorityThunk({priority, boardId}));
+    dispatch(filterCardsByPriorityThunk({ priority, boardId }));
     setSelectedPriority(priority);
   };
 
   // Функція для показу всіх карток
   const handleShowAllClick = () => {
     console.log('ShowAll');
-    dispatch(filterCardsByPriorityThunk({'all', boardId}));
+    dispatch(filterCardsByPriorityThunk({ priority: 'all', boardId }));
     setSelectedPriority(null);
   };
 
