@@ -1,15 +1,20 @@
-import SvgIcon from "../SvgIcon/SvgIcon";
-import { useEffect, useState } from "react";
-import css from "./Filters.module.css";
+import SvgIcon from '../SvgIcon/SvgIcon';
+import { useEffect, useState } from 'react';
+import css from './Filters.module.css';
+import { filterCardsByPriorityThunk } from '../../redux/cards/operations';
+import { useDispatch } from 'react-redux';
 
-const Filters = ({ onFilterChange, setIsModalOpen }) => {
+const Filters = ({ setIsModalOpen, boardId }) => {
   const [selectedPriority, setSelectedPriority] = useState(null);
+  const dispatch = useDispatch();
+  // console.log('selectedPriority', selectedPriority);
+
   const toggleModal = () => {
     setIsModalOpen(false);
-    document.body.classList.remove(css.noScroll); 
+    document.body.classList.remove(css.noScroll);
   };
 
-  const handleOverlayClick = (e) => {
+  const handleOverlayClick = e => {
     if (e.target.classList.contains(css.overlay)) {
       toggleModal(); // Закриття модалки при кліку на фон
     }
@@ -18,21 +23,24 @@ const Filters = ({ onFilterChange, setIsModalOpen }) => {
   // Використовуємо useEffect для додавання та видалення класу
   useEffect(() => {
     document.body.classList.add(css.noScroll);
-    
+
     return () => {
       document.body.classList.remove(css.noScroll);
     };
-  }, []); 
+  }, []);
 
-  const handleFilterChange = (priority) => {
-    setSelectedPriority(priority); 
-    onFilterChange?.(priority);
+  const handleFilterChange = priority => {
+    console.log('priority', priority);
+
+    dispatch(filterCardsByPriorityThunk({priority, boardId}));
+    setSelectedPriority(priority);
   };
 
   // Функція для показу всіх карток
   const handleShowAllClick = () => {
-    setSelectedPriority(null); 
-    onFilterChange?.(null); 
+    console.log('ShowAll');
+    dispatch(filterCardsByPriorityThunk({'all', boardId}));
+    setSelectedPriority(null);
   };
 
   return (
@@ -43,28 +51,36 @@ const Filters = ({ onFilterChange, setIsModalOpen }) => {
         </button>
 
         <h2>Filters</h2>
-        
+
         {/* Priority Options */}
         <div className={css.priorityOptions}>
           <div className={css.labelRow}>
             <h3>Label color</h3>
-            <button 
-              type="button" 
-              className={css.dropdownButton} 
-              onClick={handleShowAllClick}
+            <button
+              type="button"
+              className={css.dropdownButton}
+              onClick={() => {
+                console.log('Button clicked');
+                handleShowAllClick();
+              }}
             >
               Show all
             </button>
           </div>
-          {["without", "low", "medium", "high"].map((priority) => (
+          {['without', 'low', 'medium', 'high'].map(priority => (
             <label key={priority} className={css.priorityLabel}>
-              <input 
-                type="checkbox" 
-                name="priority" 
-                value={priority} 
-                checked={selectedPriority === priority} 
-                onChange={() => handleFilterChange(priority)} 
-                className={`${css.filterRadio} ${css[`filterRadio--${priority}`]}`} 
+              <input
+                type="checkbox"
+                name="priority"
+                value={priority}
+                checked={selectedPriority === priority}
+                onChange={() => {
+                  console.log('Checkbox changed');
+                  handleFilterChange(priority);
+                }}
+                className={`${css.filterRadio} ${
+                  css[`filterRadio--${priority}`]
+                }`}
               />
               <span className={css.radioLabel}>
                 {priority.charAt(0).toUpperCase() + priority.slice(1)}

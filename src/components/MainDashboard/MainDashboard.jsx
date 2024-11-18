@@ -1,9 +1,9 @@
 import ColumnsList from '../ColumnsList/ColumnsList.jsx';
 
-const MainDashboard = ({ boardId, filter }) => {
+const MainDashboard = () => {
   return (
     <>
-      <ColumnsList boardId={boardId} filter={filter} />
+      <ColumnsList />
     </>
   );
 };

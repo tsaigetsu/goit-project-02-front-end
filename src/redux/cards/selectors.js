@@ -21,3 +21,7 @@ export const selectCardById = (state, columnId, cardId) => {
   }
   return null; // Якщо колонка не знайдена або картка не знайдена
 };
+
+//отримання карток за приорітетом
+
+export const selectCardsByPriority = state => state.boards.filteredCads;

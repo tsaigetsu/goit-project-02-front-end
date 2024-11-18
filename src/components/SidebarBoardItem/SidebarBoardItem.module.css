@@ -1,74 +1,102 @@
 .li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 61px;
-    flex-grow: 1;
-    padding-left: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 61px;
+  flex-grow: 1;
+  padding-left: 14px;
 }
-.projectIcon {
+.li:hover {
+  background-color: var(--active-board-bg-sidebar);
+  /* .btn {
+    display: block;
+    border: none;
+    background-color: transparent;
+    width: 16px;
+    height: 16px;
+  }
+  .projectIcon {
+    stroke: var(--active-color-sidebar);
+    fill: none;
+  }
+  .p {
+    color: var(--active-color-sidebar);
+  }
+  .boardIcon {
     stroke: var(--inactive-color-sidebar);
     fill: none;
+  }
+  .activeLine {
+    display: block;
+    background-color: var(--active-line-sidebar);
+    width: 4px;
+    height: 61px;
+    border-radius: 8px 0 0 8px;
+    margin-left: 6px;
+  } */
+}
+.projectIcon {
+  stroke: var(--inactive-color-sidebar);
+  fill: none;
 }
 .p {
-    color: var(--inactive-color-sidebar);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: -0.28px;
+  color: var(--inactive-color-sidebar);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
 }
 .boardName {
-    display: flex;
-    gap: 4px;
+  display: flex;
+  gap: 4px;
 }
 .boardBtns {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .btn {
-    display: none;
+  display: none;
 }
 
 .boardIcon {
-    transition: stroke 0.3s ease, filter 0.3s ease;
-    
+  transition: stroke 0.3s ease, filter 0.3s ease;
 }
 
 .btn:hover .boardIcon {
-    stroke: var(--icons-hover-color);
+  stroke: var(--icons-hover-color);
 }
 
 .activeLine {
-    display: none;
+  display: none;
 }
 .isActiveProject {
-    background-color: var(--active-board-bg-sidebar);
-    .btn {
-        display: block;
-        border: none;
-        background-color: transparent;
-        width: 16px;
-        height: 16px;
-    }
-    .projectIcon {
-        stroke: var(--active-color-sidebar);
-        fill: none;
-    }
-    .p {
-        color: var(--active-color-sidebar);
-    }
-    .boardIcon {
-        stroke: var(--inactive-color-sidebar);
-        fill: none;
-    }
-    .activeLine {
-        display: block;
-        background-color: var(--active-line-sidebar);
-        width: 4px;
-        height: 61px;
-        border-radius: 8px 0 0 8px;
-        margin-left: 6px;
-        }
+  background-color: var(--active-board-bg-sidebar);
+  .btn {
+    display: block;
+    border: none;
+    background-color: transparent;
+    width: 16px;
+    height: 16px;
+  }
+  .projectIcon {
+    stroke: var(--active-color-sidebar);
+    fill: none;
+  }
+  .p {
+    color: var(--active-color-sidebar);
+  }
+  .boardIcon {
+    stroke: var(--inactive-color-sidebar);
+    fill: none;
+  }
+  .activeLine {
+    display: block;
+    background-color: var(--active-line-sidebar);
+    width: 4px;
+    height: 61px;
+    border-radius: 8px 0 0 8px;
+    margin-left: 6px;
+  }
 }

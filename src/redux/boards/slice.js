@@ -15,6 +15,7 @@ import {
 import {
   addCard,
   deleteCard,
+  filterCardsByPriorityThunk,
   moveCardToColumn,
   updateCard,
 } from '../cards/operations.js';
@@ -23,6 +24,7 @@ import {
 const initialState = {
   boards: [],
   selectedBoard: null,
+  filteredCards: [],
   loading: false,
   error: null,
 };
@@ -162,6 +164,9 @@ const slice = createSlice({
           }
         });
       })
+      .addCase(filterCardsByPriorityThunk.fulfilled, (state, action) => {
+        state.filteredCards = action.payload;
+      })
       .addMatcher(
         isAnyOf(
           fetchBoardsThunk.pending,
@@ -173,7 +178,8 @@ const slice = createSlice({
           onEditColumn.pending,
           addCard.pending,
           deleteCard.pending,
-          updateCard.pending
+          updateCard.pending,
+          filterCardsByPriorityThunk.pending
         ),
         state => {
           state.loading = true;
@@ -191,7 +197,8 @@ const slice = createSlice({
           onEditColumn.rejected,
           addCard.rejected,
           deleteCard.rejected,
-          updateCard.rejected
+          updateCard.rejected,
+          filterCardsByPriorityThunk.rejected
         ),
         (state, action) => {
           state.loading = false;
@@ -209,7 +216,8 @@ const slice = createSlice({
           onEditColumn.fulfilled,
           addCard.fulfilled,
           deleteCard.fulfilled,
-          updateCard.fulfilled
+          updateCard.fulfilled,
+          filterCardsByPriorityThunk.fulfilled
         ),
         state => {
           state.loading = false;

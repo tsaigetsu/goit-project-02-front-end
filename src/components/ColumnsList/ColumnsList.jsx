@@ -16,19 +16,12 @@ const ColumnsList = () => {
       <ul ref={containerRef} className={css.columnsList}>
         {columns.length > 0 &&
           columns.map(column => {
-            // Фільтруємо задачі у колонці
-            // const filteredTasks = column.tasks.filter((task) => {
-            //   if (!filter) return true; // Якщо фільтр не заданий, показуємо всі задачі
-            //   return task.priority === filter; // Фільтруємо задачі за пріоритетом
-            // });
-
             return (
               <Column
                 key={column._id}
                 title={column.title}
                 columnId={column._id}
                 boardId={column.boardId}
-                // column={{ ...column, tasks: filteredTasks }}
               />
             );
           })}
