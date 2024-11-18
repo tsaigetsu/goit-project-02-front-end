@@ -1,13 +1,13 @@
 import SvgIcon from '../SvgIcon/SvgIcon';
 import { useEffect, useState } from 'react';
 import css from './Filters.module.css';
-import { filterCardsByPriorityThunk } from '../../redux/cards/operations';
+import { setPriority } from '../../redux/boards/slice.js';
 import { useDispatch } from 'react-redux';
+import { filterCardsByPriorityThunk } from '../../redux/boards/operations.js';
 
 const Filters = ({ setIsModalOpen, boardId }) => {
-  const [selectedPriority, setSelectedPriority] = useState(null);
+  const [selectedPriorities, setSelectedPriorities] = useState('all');
   const dispatch = useDispatch();
-  // console.log('selectedPriority', selectedPriority);
 
   const toggleModal = () => {
     setIsModalOpen(false);
@@ -30,17 +30,16 @@ const Filters = ({ setIsModalOpen, boardId }) => {
   }, []);
 
   const handleFilterChange = priority => {
-    console.log('priority', priority);
-
-    dispatch(filterCardsByPriorityThunk({ priority, boardId }));
-    setSelectedPriority(priority);
+    dispatch(setPriority(priority));
+    dispatch(filterCardsByPriorityThunk({ boardId, priority }));
+    setSelectedPriorities(priority);
   };
 
   // Функція для показу всіх карток
-  const handleShowAllClick = () => {
-    console.log('ShowAll');
-    dispatch(filterCardsByPriorityThunk({ priority: 'all', boardId }));
-    setSelectedPriority(null);
+  const handleShowAll = () => {
+    dispatch(setPriority(null)); // Сбрасываем фильтр
+    dispatch(filterCardsByPriorityThunk({ boardId, priority: null }));
+    setSelectedPriorities(null);
   };
 
   return (
@@ -60,8 +59,7 @@ const Filters = ({ setIsModalOpen, boardId }) => {
               type="button"
               className={css.dropdownButton}
               onClick={() => {
-                console.log('Button clicked');
-                handleShowAllClick();
+                handleShowAll();
               }}
             >
               Show all
@@ -73,9 +71,8 @@ const Filters = ({ setIsModalOpen, boardId }) => {
                 type="checkbox"
                 name="priority"
                 value={priority}
-                checked={selectedPriority === priority}
+                checked={selectedPriorities === priority}
                 onChange={() => {
-                  console.log('Checkbox changed');
                   handleFilterChange(priority);
                 }}
                 className={`${css.filterRadio} ${

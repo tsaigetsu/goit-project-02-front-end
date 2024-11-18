@@ -19,9 +19,5 @@ export const selectCardById = (state, columnId, cardId) => {
   if (column) {
     return column.cards.find(card => card._id === cardId);
   }
-  return null; // Якщо колонка не знайдена або картка не знайдена
+  return null;
 };
-
-//отримання карток за приорітетом
-
-export const selectCardsByPriority = state => state.boards.filteredCads;

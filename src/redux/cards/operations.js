@@ -95,35 +95,4 @@ export const moveCardToColumn = createAsyncThunk(
   }
 );
 
-export const filterCardsByPriorityThunk = createAsyncThunk(
-  'cards/filterByPriority',
-  async ({ priority, boardId }, { getState }) => {
-    const state = getState();
-    console.log("state", state);
-    
-    let filteredCards = [];
 
-    if (priority === 'all') {
-      state.boards.forEach(board => {
-        if (board.id === boardId) {
-          board.columns.forEach(column => {
-            filteredCards.push(...column.cards);
-          });
-        }
-      });
-    } else {
-      state.boards.forEach(board => {
-        if (board.id === boardId) {
-          board.columns.forEach(column => {
-            const filteredInColumn = column.cards.filter(
-              card => card.priority === priority
-            );
-            filteredCards.push(...filteredInColumn);
-          });
-        }
-      });
-    }
-
-    return filteredCards;
-  }
-);

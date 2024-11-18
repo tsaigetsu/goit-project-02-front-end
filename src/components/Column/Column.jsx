@@ -8,7 +8,7 @@ import { onDeleteColumn } from '../../redux/columns/operations';
 import { useDispatch } from 'react-redux';
 import AddCardPopup from '../AddCardPopup/AddCardPopup';
 
-const Column = ({ title, columnId, boardId }) => {
+const Column = ({ title, columnId, boardId, column }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,7 +52,7 @@ const Column = ({ title, columnId, boardId }) => {
             </button>
           </div>
         </div>
-        <CardManager columnId={columnId} />
+        <CardManager columnId={columnId} column={column} />
         <div className={css.btnContainer}>
           <button className={css.cardManagerButton} onClick={handleOpenPopup}>
             <div className={css.svg}>
