@@ -23,7 +23,7 @@ export const registerThunk = createAsyncThunk(
       setToken(data.accessToken);
       toast.success('Welcome! You are successfully registered.', {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
       console.log('data!!!!!!!', data);
@@ -32,7 +32,7 @@ export const registerThunk = createAsyncThunk(
     } catch (error) {
       toast.error('This email is already registered', {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.message);
@@ -56,7 +56,7 @@ export const loginThunk = createAsyncThunk(
 
       toast.success('Welcome! You are logged in.', {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
       console.log('token!!!!!!!', data.data.accessToken);
@@ -64,7 +64,7 @@ export const loginThunk = createAsyncThunk(
     } catch (error) {
       toast.error('Incorrect email or password', {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.message);
@@ -122,14 +122,14 @@ export const updateUserAvatar = createAsyncThunk(
       const response = await api.patch(`/user/profile`, formData);
       toast.success('User updated successfully!', {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
       return response.data.data; // Возвращаем обновленные данные пользователя
     } catch (error) {
       toast.error('Failed to update user: ' + error.message, {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.response.data);
@@ -160,7 +160,7 @@ export const sendHelpCommentThunk = createAsyncThunk(
 
       toast.success("Email sent to tech support. We'll reply soon!", {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
 
@@ -169,7 +169,7 @@ export const sendHelpCommentThunk = createAsyncThunk(
       console.error('Error sending help comment:', error.message);
       // toast.error("Error sending letter. Please, try again later.", {
       //   duration: 5000,
-      //   position: "bottom-center",
+      //   position: "top-center",
       //   icon: "❌",
       // });
       return thunkAPI.rejectWithValue(error.message);
