@@ -17,20 +17,19 @@ export const registerThunk = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await api.post('/auth/register', credentials);
-      
+
       setToken(data.accessToken);
       toast.success('Welcome! You are successfully registered.', {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
-      
 
       return data;
     } catch (error) {
       toast.error('This email is already registered', {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.message);
@@ -42,9 +41,7 @@ export const loginThunk = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      
       const { data } = await api.post('/auth/login', credentials);
-      
 
       localStorage.setItem('token', data.data.accessToken);
       setToken(data.data.accessToken);
@@ -54,15 +51,15 @@ export const loginThunk = createAsyncThunk(
 
       toast.success('Welcome! You are logged in.', {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
-      
+
       return { token, userData }; //верно!!!
     } catch (error) {
       toast.error('Incorrect email or password', {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.message);
@@ -74,7 +71,6 @@ export const currentUserThunk = createAsyncThunk(
   'currentUser',
   async (_, thunkAPI) => {
     const savedToken = thunkAPI.getState().auth.token;
-    
 
     try {
       // Проверка и установка токена в заголовки
@@ -120,14 +116,14 @@ export const updateUserAvatar = createAsyncThunk(
       const response = await api.patch(`/user/profile`, formData);
       toast.success('User updated successfully!', {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
       return response.data.data; // Возвращаем обновленные данные пользователя
     } catch (error) {
       toast.error('Failed to update user: ' + error.message, {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.response.data);
@@ -154,17 +150,15 @@ export const sendHelpCommentThunk = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await api.post('/help', data);
-     
 
       toast.success("Email sent to tech support. We'll reply soon!", {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
 
       return response.data;
     } catch (error) {
-      
       return thunkAPI.rejectWithValue(error.message);
     }
   }

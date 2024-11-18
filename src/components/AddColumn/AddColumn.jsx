@@ -4,6 +4,7 @@ import css from './AddColumn.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { onCreateColumn } from '../../redux/columns/operations';
 import { selectedBoard } from '../../redux/boards/selectors';
+import toast from 'react-hot-toast';
 
 const AddColumn = ({ setIsOpen }) => {
   const [title, setTitle] = useState('');
@@ -13,36 +14,58 @@ const AddColumn = ({ setIsOpen }) => {
   };
   const board = useSelector(selectedBoard);
   const { _id } = board;
+
   const handleSaveColumn = () => {
-    if (title.trim()) {
-      const newColumn = { title: title, boardId: _id };
-      dispatch(onCreateColumn(newColumn));
-      setIsOpen(false);
-      setTitle('');
-      // closeModal();
+    const trimmedTitle = title.trim();
+
+    if (!trimmedTitle) {
+      toast.error('Please enter a title for the column', {
+        position: 'top-right',
+        duration: 3000,
+      });
+      return;
     }
+
+    if (trimmedTitle.length < 2) {
+      toast.error('Title must be at least 2 characters', {
+        position: 'top-right',
+        duration: 3000,
+      });
+
+      return;
+    }
+
+    if (trimmedTitle.length > 32) {
+      toast.error('Title cannot exceed 32 characters', {
+        position: 'top-right',
+        duration: 3000,
+      });
+      return;
+    }
+
+    const newColumn = { title: trimmedTitle, boardId: _id };
+    dispatch(onCreateColumn(newColumn));
+    setIsOpen(false);
+    setTitle('');
   };
 
   useEffect(() => {
     const handleEscape = event => {
       if (event.key === 'Escape') {
-        setIsOpen(); // Вызываем функцию закрытия модалки
+        setIsOpen();
       }
     };
 
-    // Подписываемся на событие `keydown` при монтировании компонента
     document.addEventListener('keydown', handleEscape);
 
-    // Очищаем подписку при размонтировании компонента
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
   }, [setIsOpen]);
 
-  // Обработчик для клика по бекдропу
   const handleBackdropClick = event => {
     if (event.target === event.currentTarget) {
-      setIsOpen(); // Закрываем модалку при клике по бекдропу
+      setIsOpen();
     }
   };
   return (

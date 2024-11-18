@@ -19,7 +19,7 @@ const Card = React.memo(({ card }) => {
   const { columns } = board;
 
   const colorPriority = [
-    { color: '#8fa1d0', priority: 'low' },
+    { color: ' #8fa1d0', priority: 'low' },
     { color: '#E09CB5', priority: 'medium' },
     { color: '#BEDBB0', priority: 'high' },
     { color: '#B7B7B7', priority: 'without priority' },
@@ -57,9 +57,18 @@ const Card = React.memo(({ card }) => {
     const checkDeadline = () => {
       const deadlineDate = new Date(deadline);
       const currentDate = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(currentDate.getDate() - 1);
 
       if (currentDate > deadlineDate) {
         setIsDeadlinePassed(true);
+        if (
+          deadlineDate.getFullYear() === yesterday.getFullYear() &&
+          deadlineDate.getMonth() === yesterday.getMonth() &&
+          deadlineDate.getDate() === yesterday.getDate()
+        ) {
+          setIsDeadlinePassed('yesterday');
+        }
       } else {
         setIsDeadlinePassed(false);
       }
@@ -130,8 +139,14 @@ const Card = React.memo(({ card }) => {
                       width="16"
                       height="16"
                       style={{
-                        filter: 'drop-shadow(0px 0px 6px rgb(57 168 62))',
-                        stroke: 'rgb(77 144 80)',
+                        filter:
+                          isDeadlinePassed === 'yesterday'
+                            ? 'drop-shadow(0px 0px 6px rgb(255, 0, 0)) drop-shadow(0px 0px 6px rgb(255, 0, 0))'
+                            : 'drop-shadow(0px 0px 6px rgb(57 168 62)) drop-shadow(0px 0px 6px rgb(57 168 62))',
+                        stroke:
+                          isDeadlinePassed === 'yesterday'
+                            ? 'rgb(255, 0, 0)'
+                            : 'rgb(77 144 80)',
                       }}
                     />
                   )}
@@ -179,7 +194,13 @@ const Card = React.memo(({ card }) => {
           </div>
         </div>
       </div>
-      {isEdit && <EditCardPopup card={card} setIsEdit={setIsEdit} />}
+      {isEdit && (
+        <EditCardPopup
+          card={card}
+          setIsEdit={setIsEdit}
+          updateDeadlineStatus={status => setIsDeadlinePassed(status)}
+        />
+      )}
 
       <ModalDelete
         isOpen={isModalOpen}

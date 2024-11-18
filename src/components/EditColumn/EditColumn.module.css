@@ -1,13 +1,10 @@
-.section {
-  /* position: relative; */
-}
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(21, 21, 21, 0.50);
+  background-color: rgba(21, 21, 21, 0.5);
   z-index: 1000;
 }
 .container {
@@ -32,7 +29,7 @@
 }
 
 .title {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 18px;
   letter-spacing: -0.02em;
@@ -54,7 +51,8 @@
 
 .btnClose:hover {
   stroke: var(--icons-color-2);
-  filter: brightness(4) drop-shadow(0 0 10px var(--btn--hover-color)) drop-shadow(0 0 2px var(--btn--hover-color));
+  filter: brightness(4) drop-shadow(0 0 10px var(--btn--hover-color))
+    drop-shadow(0 0 2px var(--btn--hover-color));
 }
 
 .btnAdd {
@@ -63,7 +61,7 @@
   align-items: center;
   gap: 3.5px;
   padding: 10px 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
@@ -72,11 +70,12 @@
   border-radius: 8px;
   background-color: var(--btn-color);
   border: none;
-}
+  transition: background-color var(--tns-cubic);
 
-.btnAdd:hover,
-.btnAdd:focus {
-  background-color: var(--btn--hover-color);
+  &:focus,
+  &:hover {
+    background-color: var(--btn--hover-color);
+  }
 }
 
 .inputTitle {
@@ -87,7 +86,7 @@
   box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
   background: var(--header-color);
   padding-left: 18px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 14px;
   letter-spacing: -0.02em;

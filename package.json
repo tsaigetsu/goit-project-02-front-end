@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@emotion/styled": "^11.13.0",
+    "@formkit/auto-animate": "^0.8.2",
     "@hookform/resolvers": "^3.9.1",
     "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",

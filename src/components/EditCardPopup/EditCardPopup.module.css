@@ -13,48 +13,40 @@
   z-index: 1000;
 }
 
-@media screen and (min-width: 320px) {
-  .popup {
-    /* stroke: white; */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    right: auto;
-    bottom: auto;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    min-width: 335px;
-    background-color: var(--filters-modal-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 150%;
-    letter-spacing: -0.02em;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Тінь*/
-  }
+.popup {
+  stroke: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  padding: 24px;
+
+  width: 90%;
+  max-width: 350px;
+
+  background-color: var(--filters-modal-bg);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-@media screen and (min-width: 768px) {
-  .popup {
-    min-width: 350px;
-  }
-}
-
-@media screen and (min-width: 320px) {
-  .popupContent {
-    display: flex;
-    padding: 24px;
-    border-radius: 8px; /**/
-    color: var(--popup-text-color);
-    color: white;
-    flex-direction: column;
-    width: 100%;
-  }
+.popupContent {
+  display: flex;
+  border-radius: 8px; /**/
+  color: var(--popup-text-color);
+  color: white;
+  flex-direction: column;
+  width: 100%;
 }
 
 .TitleCard {
@@ -159,10 +151,11 @@ input[type='radio'] {
   cursor: pointer;
   transition: all 0.2s;
   z-index: 100;
-}
+  transition: transform var(--tns-cubic);
 
-.colorCircle:hover {
-  transform: scale(1.2);
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 
 .colorCircle.active {
@@ -243,6 +236,7 @@ input[type='radio'] {
   letter-spacing: -0.02em;
   color: rgba(255, 255, 255, 0.5);
 }
+
 .labelTitle {
   font-family: 'Poppins', sans-serif;
   margin-bottom: 4px;
@@ -253,18 +247,18 @@ input[type='radio'] {
   letter-spacing: -0.02em;
   color: var(--svg-btns-color);
 }
+
 .labelColor {
   letter-spacing: -0.02em;
   color: rgba(255, 255, 255, 0.5);
 }
+
 .labelColors {
   display: flex;
   align-content: center;
   align-items: center;
   justify-content: flex-start;
   gap: 12px;
-}
-.deadlineWrapper {
 }
 
 .deadline {
@@ -288,7 +282,7 @@ input[type='radio'] {
 
 .priority-selector {
   display: flex;
-  gap: 10px; /* Расстояние между кружочками */
+  gap: 10px;
 }
 
 .priorityLabel {
@@ -306,8 +300,8 @@ input[type='radio'] {
 }
 
 .priorityCircle.selected {
-  transform: scale(0.9); /* Делает кружок меньше */
-  border-width: 2px; /* Толщина бордера */
+  transform: scale(0.9);
+  border-width: 2px;
 }
 
 .errorMessage {

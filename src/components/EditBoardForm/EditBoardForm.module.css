@@ -1,284 +1,291 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(21, 21, 21, 0.50);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    animation: fadeInOpacity 0.3s forwards;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(21, 21, 21, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeInOpacity 0.3s forwards;
 }
 
 @keyframes fadeInOpacity {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 .modalOverlay.fadeOut {
-    animation: fadeOutOpacity 0.3s forwards;
+  animation: fadeOutOpacity 0.3s forwards;
 }
 
 @keyframes fadeOutOpacity {
-    from {
-        opacity: 1;
-    }
+  from {
+    opacity: 1;
+  }
 
-    to {
-        opacity: 0;
-    }
+  to {
+    opacity: 0;
+  }
 }
 
 .modalContainer {
-    background: var(--header-color);
-    padding: 24px;
-    border-radius: 8px;
-    border: 0.1px solid var(--btn-color);
-    max-width: 335px;
-    height: 433px;
-    color: var(--text-color);
-    position: relative;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    animation: fadeInOpacity 0.3s forwards;
+  position: relative;
+  padding: 24px;
+  border-radius: 8px;
+  border: 0.1px solid var(--btn-color);
+  /* max-width: 335px; */
+  color: var(--text-color);
+  background: var(--header-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: fadeInOpacity 0.3s forwards;
+
+  @media screen and (max-width: 767px) {
+    width: 90%;
+    max-width: 350px;
+  }
 }
 
 .modalContainer.fadeOut {
-    animation: fadeOutOpacity 0.3s forwards;
+  animation: fadeOutOpacity 0.3s forwards;
 }
 
 .modalCloseBtn {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: var(--hamburger-btn-color);
-    outline: none;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--hamburger-btn-color);
+  outline: none;
 }
 
 .closeBtnIcon {
-    stroke: var(--icons-color-1);
-    fill: white;
-    transition: stroke 0.3s ease, filter 0.3s ease;
+  stroke: var(--icons-color-1);
+  fill: white;
+  transition: stroke 0.3s ease, filter 0.3s ease;
 }
 
 .modalCloseBtn:hover .closeBtnIcon {
-    stroke: var(--icons-color-2);
-    filter: brightness(4) drop-shadow(0 0 10px var(--btn--hover-color)) drop-shadow(0 0 2px var(--btn--hover-color));
+  stroke: var(--icons-color-2);
+  filter: brightness(4) drop-shadow(0 0 10px var(--btn--hover-color))
+    drop-shadow(0 0 2px var(--btn--hover-color));
 }
 
 .modalContainer h2 {
-    color: var(--text-color);
-    font-family: "Poppins", sans-serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: -0.36px;
-    margin-bottom: 24px;
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.36px;
+  margin-bottom: 24px;
 }
 
 /* Поле для назви дошки */
 .inputGroup {
-    position: relative;
-    height: 73px;
+  position: relative;
+  height: 73px;
 }
 
 .inputGroup input {
-    width: 287px;
-    height: 49px;
-    padding-top: 14px;
-    padding-bottom: 14px;
-    padding-left: 18px;
-    align-items: center;
-    display: flex;
-    margin-bottom: 4px;
-    border-radius: 8px;
-    border: 1px solid var(--btn-color);
-    background: var(--header-color);
-    opacity: 0.4;
-    box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
+  display: flex;
+  align-items: center;
+  max-width: 302px;
+  width: 100%;
+  height: 49px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 18px;
+  margin-bottom: 4px;
+  border-radius: 8px;
+  border: 1px solid var(--btn-color);
+  background: var(--header-color);
+  opacity: 0.4;
+  box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
 
-    color: var(--text-color);
-    font-family: "Poppins", sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.02em;
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.02em;
 }
 
 .inputGroup input:focus,
 .inputGroup input.focused {
-    outline: none;
-    border-color: var(--btn--hover-color);
-    opacity: 1;
+  outline: none;
+  border-color: var(--btn--hover-color);
+  opacity: 1;
 }
 
 .error {
-    color: #ff4d4f;
-    font-size: 12px;
-    margin-top: 4px;
-    opacity: 0;
-    transform: translateY(-5px);
-    animation: fadeIn 0.3s ease forwards;
+  color: #ff4d4f;
+  font-size: 12px;
+  margin-top: 4px;
+  opacity: 0;
+  transform: translateY(-5px);
+  animation: fadeIn 0.3s ease forwards;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Контейнер для иконок */
 .icons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 24px;
-    margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+  margin-top: 14px;
 }
 
 .iconButton {
-    flex-shrink: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.2s;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s;
 }
 
-.iconButton input[type="radio"] {
-    display: none;
+.iconButton input[type='radio'] {
+  display: none;
 }
 
 .radioIcon {
-    stroke: var(--icons-color-2);
-    fill: none;
+  stroke: var(--icons-color-2);
+  fill: none;
 }
 
-.iconButton input[type="radio"]:checked+svg {
-    stroke: var(--icons-color-1);
+.iconButton input[type='radio']:checked + svg {
+  stroke: var(--icons-color-1);
 }
 
 /* Контейнер для фонов */
 .backgrounds {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-bottom: 40px;
-    margin-top: 14px;
-    width: 260px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 40px;
+  margin-top: 14px;
+  max-width: 260px;
+  width: 100%;
 }
 
 .backgroundIcon {
-    padding: 4px 5px;
-    background: var(--background-help);
+  padding: 4px 5px;
+  background: var(--background-help);
 }
 
 .backgroundIcon.selected {
-    border-color: var(--btn--hover-color);
-    box-shadow: 0 0 8px var(--btn--hover-color);
+  border-color: var(--btn--hover-color);
+  box-shadow: 0 0 8px var(--btn--hover-color);
 }
 
 .backgroundIcon svg {
-    stroke: var(--icons-color-2);
-    fill: none;
+  stroke: var(--icons-color-2);
+  fill: none;
 }
 
-.backgroundIcon input[type="radio"] {
-    display: none;
+.backgroundIcon input[type='radio'] {
+  display: none;
 }
 
 .backgroundButton,
 .backgroundIcon {
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
-    position: relative;
-    border: 1px solid transparent;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.backgroundButton input[type="radio"] {
-    display: none;
+.backgroundButton input[type='radio'] {
+  display: none;
 }
 
 .backgroundButton.selected {
-    border-color: var(--btn--hover-color);
-    box-shadow: 0 0 8px var(--btn--hover-color);
+  border-color: var(--btn--hover-color);
+  box-shadow: 0 0 8px var(--btn--hover-color);
 }
 
 /* Кнопка создания / редактирования */
 .createBtn {
-    width: 287px;
-    height: 49px;
-    display: flex;
-    padding: 10px 0px 11px 0px;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    gap: 8px;
-    border-radius: 8px;
-    background-color: var(--btn-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  max-width: 302px;
+  width: 100%;
+  height: 49px;
+  padding: 10px 0px 11px 0px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--btn-color);
 
-    color: var(--plus-fill);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-family: "Poppins", sans-serif;
+  color: var(--plus-fill);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: 'Poppins', sans-serif;
 }
 
 .createBtnIcon {
-    width: 28px;
-    height: 28px;
-    fill: var(--plus-fill);
-    stroke: var(--plus-stroke);
-}
+  width: 28px;
+  height: 28px;
+  fill: var(--plus-fill);
+  stroke: var(--plus-stroke);
+  transition: background-color var(--tns-cubic);
 
-.createBtn:hover {
+  &:hover {
     background-color: var(--btn--hover-color);
+  }
 }
-
-/* Media. Tablet + Desktop */
 
 @media screen and (min-width: 768px) {
-    .modalContainer {
-        max-width: 350px;
-    }
+  .modalContainer {
+    max-width: 350px;
+  }
 
-    .inputGroup input {
-        width: 302px;
-    }
+  .inputGroup input {
+    width: 302px;
+  }
 
-    .createBtn {
-        width: 302px;
-    }
+  .createBtn {
+    width: 302px;
+  }
 }

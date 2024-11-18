@@ -26,13 +26,13 @@
   line-height: 1.33333;
   letter-spacing: -0.02em;
   padding: 0 5px;
+  transition: color var(--tns-cubic);
+
+  &:hover {
+    color: var(--btn--hover-color);
+  }
 }
 
-.spanBtn:hover {
-  color: var(--btn--hover-color);
-}
-
-/* Tablet */
 @media only screen and (min-width: 768px) {
   .text {
     font-size: 14px;
@@ -41,7 +41,7 @@
     /* height: 72px; */
   }
 }
-/* Desktop */
+
 @media only screen and (min-width: 1440px) {
   .text {
     width: 486px;

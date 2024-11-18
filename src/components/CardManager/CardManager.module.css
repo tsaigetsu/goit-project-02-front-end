@@ -26,6 +26,11 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: auto;
+  transition: background-color var(--tns-cubic);
+
+  &:hover {
+    background-color: var(--btn--hover-color);
+  }
 }
 
 .svg {
@@ -36,13 +41,11 @@
   padding: 7px;
   align-content: center;
 }
+
 .svgIcon {
   stroke: var(--plus-stroke);
 }
 
-.cardManagerButton:hover {
-  background-color: var(--btn--hover-color);
-}
 @media only screen and (max-width: 374px) {
   .cardManagerButton {
     width: calc(100% - 12px);

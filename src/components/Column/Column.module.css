@@ -42,7 +42,7 @@
 .svgBtn {
   stroke: var(--svg-btns-color);
   fill: none;
-  transition: stroke 0.3s ease, filter 0.3s ease;
+  transition: stroke var(--tns-cubic), filter var(--tns-cubic);
 }
 
 .btnIcon:hover .svgBtn {
@@ -66,7 +66,7 @@
     width: calc(100% - 12px);
   }
   .itemList {
-    width: 100%;
+    min-width: 280px;
   }
 }
 .cardManagerButton {
@@ -85,7 +85,11 @@
   font-weight: 500;
   color: var(--plus-fill);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color var(--tns-cubic);
+
+  &:hover {
+    background-color: var(--btn--hover-color);
+  }
 }
 
 .svg {
@@ -96,6 +100,12 @@
   padding: 7px;
   align-content: center;
 }
+
 .svgIcon {
   stroke: var(--plus-stroke);
+}
+@media only screen and (max-width: 374px) {
+  .cardManagerButton {
+    width: calc(100% - 12px);
+  }
 }

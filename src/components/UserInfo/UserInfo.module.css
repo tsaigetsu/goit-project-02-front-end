@@ -12,6 +12,7 @@
   transition: transform 0.2s ease;
   margin: 0;
 }
+
 .userInfoModal img {
   width: 32px;
   height: 32px;
@@ -19,7 +20,7 @@
   border-radius: 8px;
 }
 
-.userInfoModal:hover{
+.userInfoModal:hover {
   transform: scale(1.05);
 }
 
@@ -37,6 +38,8 @@
   font-size: 14px;
   margin-right: 8px;
   font-weight: 500;
+
+  transition: color var(--tns-cubic);
 }
 
 .userImg {
@@ -44,8 +47,8 @@
 }
 
 .userSvg {
-    width: 32px;
-    height: 32px;
-    transition: transform 0.2s ease;
-    border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  transition: transform 0.2s ease;
+  border-radius: 8px;
 }

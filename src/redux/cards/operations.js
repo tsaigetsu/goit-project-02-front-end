@@ -8,14 +8,14 @@ export const addCard = createAsyncThunk('addCard', async (data, thunkAPI) => {
 
     toast.success('Card created successfully!', {
       duration: 4000,
-      position: 'bottom-center',
+      position: 'top-center',
       icon: '✔️',
     });
     return response.data;
   } catch (error) {
     toast.error('Failed to create column: ' + error.message, {
       duration: 5000,
-      position: 'bottom-center',
+      position: 'top-center',
       icon: '❌',
     });
     return thunkAPI.rejectWithValue(error.message);
@@ -29,7 +29,7 @@ export const deleteCard = createAsyncThunk(
       await api.delete(`/tasks/${cardId}`);
       toast.success('Card deleted!', {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
 
@@ -37,7 +37,7 @@ export const deleteCard = createAsyncThunk(
     } catch (error) {
       toast.error('Failed to delete card: ' + error.message, {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.message);
@@ -52,14 +52,14 @@ export const updateCard = createAsyncThunk(
       const response = await api.patch(`/tasks/${_id}`, data);
       toast.success('Card updated successfully!', {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
       return response.data;
     } catch (error) {
       toast.error('Failed to update card: ' + error.message, {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.message);
@@ -77,7 +77,7 @@ export const moveCardToColumn = createAsyncThunk(
 
       toast.success('Card moved successfully!', {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
 
@@ -85,7 +85,7 @@ export const moveCardToColumn = createAsyncThunk(
     } catch (error) {
       toast.error('Failed to move card: ' + error.message, {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '❌',
       });
       return thunkAPI.rejectWithValue(
