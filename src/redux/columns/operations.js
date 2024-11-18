@@ -12,14 +12,14 @@ export const onCreateColumn = createAsyncThunk(
 
       toast.success('Column created successfully!', {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
       return { boardId: CreatedColumn.boardId, column: CreatedColumn };
     } catch (error) {
       toast.error('Failed to create column: ' + error.message, {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.message);
@@ -34,14 +34,14 @@ export const onDeleteColumn = createAsyncThunk(
       await api.delete(`columns/${columnId}`);
       toast.success('Column deleted!', {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
       return columnId;
     } catch (error) {
       toast.error('Failed to delete column: ' + error.message, {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.message);
@@ -57,7 +57,7 @@ export const onEditColumn = createAsyncThunk(
 
       toast.success('Column updated successfully!', {
         duration: 4000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '✔️',
       });
 
@@ -65,7 +65,7 @@ export const onEditColumn = createAsyncThunk(
     } catch (error) {
       toast.error('Failed to update column: ' + error.message, {
         duration: 5000,
-        position: 'bottom-center',
+        position: 'top-center',
         icon: '❌',
       });
       return thunkAPI.rejectWithValue(error.message);
