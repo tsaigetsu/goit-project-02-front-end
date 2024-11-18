@@ -57,9 +57,18 @@ const Card = React.memo(({ card }) => {
     const checkDeadline = () => {
       const deadlineDate = new Date(deadline);
       const currentDate = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(currentDate.getDate() - 1);
 
       if (currentDate > deadlineDate) {
         setIsDeadlinePassed(true);
+        if (
+          deadlineDate.getFullYear() === yesterday.getFullYear() &&
+          deadlineDate.getMonth() === yesterday.getMonth() &&
+          deadlineDate.getDate() === yesterday.getDate()
+        ) {
+          setIsDeadlinePassed('yesterday');
+        }
       } else {
         setIsDeadlinePassed(false);
       }
@@ -131,8 +140,13 @@ const Card = React.memo(({ card }) => {
                       height="16"
                       style={{
                         filter:
-                          'drop-shadow(0px 0px 6px rgb(57 168 62)) drop-shadow(0px 0px 6px rgb(57 168 62))',
-                        stroke: 'rgb(77 144 80)',
+                          isDeadlinePassed === 'yesterday'
+                            ? 'drop-shadow(0px 0px 6px rgb(255, 0, 0)) drop-shadow(0px 0px 6px rgb(255, 0, 0))'
+                            : 'drop-shadow(0px 0px 6px rgb(57 168 62)) drop-shadow(0px 0px 6px rgb(57 168 62))',
+                        stroke:
+                          isDeadlinePassed === 'yesterday'
+                            ? 'rgb(255, 0, 0)'
+                            : 'rgb(77 144 80)',
                       }}
                     />
                   )}
@@ -180,7 +194,13 @@ const Card = React.memo(({ card }) => {
           </div>
         </div>
       </div>
-      {isEdit && <EditCardPopup card={card} setIsEdit={setIsEdit} />}
+      {isEdit && (
+        <EditCardPopup
+          card={card}
+          setIsEdit={setIsEdit}
+          updateDeadlineStatus={status => setIsDeadlinePassed(status)}
+        />
+      )}
 
       <ModalDelete
         isOpen={isModalOpen}

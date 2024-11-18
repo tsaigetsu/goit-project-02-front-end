@@ -38,8 +38,6 @@ const validateFormSchema = Yup.object().shape({
 const RegisterForm = () => {
   const [visiblePassword, setVisiblePassword] = useState(false);
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
   const {
     register,
     handleSubmit,
@@ -148,4 +146,5 @@ const RegisterForm = () => {
     </div>
   );
 };
+
 export default RegisterForm;

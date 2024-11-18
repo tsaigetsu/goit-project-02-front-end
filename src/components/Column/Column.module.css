@@ -86,8 +86,7 @@
   cursor: pointer;
   transition: background-color var(--tns-cubic);
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: var(--btn--hover-color);
   }
 }
@@ -100,11 +99,9 @@
   padding: 7px;
   align-content: center;
 }
+
 .svgIcon {
   stroke: var(--plus-stroke);
-}
-.cardManagerButton:hover {
-  background-color: var(--btn--hover-color);
 }
 @media only screen and (max-width: 374px) {
   .cardManagerButton {

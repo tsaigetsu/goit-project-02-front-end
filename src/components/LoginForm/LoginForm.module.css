@@ -13,14 +13,15 @@
   padding: 24px;
   background-color: #151515;
   border-radius: 8px;
-  width: 335px;
   height: fit-content;
   box-sizing: border-box;
+  width: 90%;
+  max-width: 335px;
 }
 
 @media only screen and (min-width: 768px) {
   .container {
-    width: 424px;
+    max-width: 424px;
     padding: 40px;
   }
 }
@@ -35,11 +36,12 @@
   font-size: 18px;
   color: #ffffff;
   opacity: 30%;
-}
+  transition: opacity var(--tns-cubic);
 
-.link:hover,
-.link:focus {
-  opacity: 100%;
+  &:hover,
+  &:focus {
+    opacity: 100%;
+  }
 }
 
 .formContainer {
@@ -76,6 +78,16 @@
   width: 100%;
   padding-left: 18px;
   padding-right: 18px;
+
+  outline: none;
+  transition: opacity var(--tns-cubic), border var(--tns-cubic),
+    background-color 5000s ease-in-out 0s;
+
+  &:hover,
+  &:focus {
+    opacity: 100%;
+    border: 1px solid #9dc888;
+  }
 }
 
 .input::placeholder {
@@ -84,15 +96,15 @@
   font-size: 14px;
 }
 
-.input:hover,
+/* .input:hover,
 .input:focus {
   opacity: 100%;
   outline: none;
   border: 1px solid #9dc888;
-}
-.input {
+} */
+/* .input {
   transition: background-color 5000s ease-in-out 0s;
-}
+} */
 
 .input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px transparent inset;
@@ -116,11 +128,12 @@
   border: none;
   font-size: 14px;
   font-weight: 500;
-}
+  transition: background-color var(--tns-cubic);
 
-.btn:hover,
-.btn:focus {
-  background-color: #9dc888;
+  &:hover,
+  &:focus {
+    background-color: #9dc888;
+  }
 }
 
 .toggleBtn {
@@ -135,11 +148,13 @@
   stroke: #ffffff;
   opacity: 30%;
   fill: none;
+  transition: opacity var(--tns-cubic);
+
+  &:hover {
+    opacity: 100%;
+  }
 }
 
-.toggleBtnIcon:hover {
-  opacity: 100%;
-}
 .error {
   position: absolute;
   top: 100%;
