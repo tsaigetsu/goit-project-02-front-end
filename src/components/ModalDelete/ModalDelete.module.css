@@ -37,6 +37,10 @@
   text-align: center;
 }
 
+.title {
+  margin-bottom: 10px;
+}
+
 .buttons {
   display: flex;
   flex-direction: column;
@@ -61,16 +65,21 @@
 }
 
 .confirmButton {
-  background: #bedbb0;
+  background-color: #bedbb0;
+  transition: background-color var(--tns-cubic);
+
+  &:hover,
+  &:focus {
+    background-color: #9dc888;
+  }
 }
-.confirmButton:hover,
-.confirmButton:focus {
-  background: #9dc888;
-}
+
 .cancelButton {
   background-color: #e09cb5;
-}
-.cancelButton:hover,
-.cancelButton:focus {
-  background-color: #df83a5;
+  transition: background-color var(--tns-cubic);
+
+  &:hover,
+  &:focus {
+    background-color: #df83a5;
+  }
 }

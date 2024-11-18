@@ -8,7 +8,7 @@ import { updateCard } from '../../redux/cards/operations.js';
 import s from './EditCardPopup.module.css';
 import { useCallback, useEffect, useState } from 'react';
 
-const EditCardPopup = ({ card, setIsEdit }) => {
+const EditCardPopup = ({ card, setIsEdit, updateDeadlineStatus }) => {
   const { _id, title, description, deadline, priority, columnId } = card;
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(
@@ -189,6 +189,22 @@ const EditCardPopup = ({ card, setIsEdit }) => {
                           if (date instanceof Date && !isNaN(date.getTime())) {
                             setFieldValue('deadline', date);
                             setSelectedDate(date);
+
+                            if (updateDeadlineStatus) {
+                              const currentDate = new Date();
+                              const yesterday = new Date();
+                              yesterday.setDate(currentDate.getDate() - 1);
+
+                              if (date < currentDate) {
+                                updateDeadlineStatus(
+                                  date.getTime() === yesterday.getTime()
+                                    ? 'yesterday'
+                                    : true
+                                );
+                              } else {
+                                updateDeadlineStatus(false);
+                              }
+                            }
                           }
 
                           setIsCalendarOpen(false);

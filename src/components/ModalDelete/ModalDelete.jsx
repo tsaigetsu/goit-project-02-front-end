@@ -17,7 +17,7 @@ export const ModalDelete = ({
       ariaHideApp={false}
     >
       <div className={style.modalContent}>
-        <h2>Confirm Delete</h2>
+        <h2 className={style.title}>Confirm Delete</h2>
         <p>
           Are you sure you want
           <br />

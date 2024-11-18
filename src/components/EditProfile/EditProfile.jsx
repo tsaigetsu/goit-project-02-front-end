@@ -41,7 +41,7 @@ const EditProfile = ({ userData, onClose }) => {
     defaultValues: {
       name: userData?.name || '',
       email: userData?.email || '',
-      password: '', // Пусть будет пустым, если не передан пароль
+      password: '',
     },
     resolver: yupResolver(validateFormSchema),
     mode: 'onChange',
@@ -60,43 +60,40 @@ const EditProfile = ({ userData, onClose }) => {
       name: data.name,
       email: data.email,
     };
-    dispatch(updateUserAvatar(updatedUserData)); //сохраняем новые данные юзера
+    dispatch(updateUserAvatar(updatedUserData));
     onClose();
   };
-  // Обработчик выбора файла
+
   const handleAvatarChange = event => {
     const file = event.target.files[0];
     if (file) {
       const formData = new FormData();
       formData.append('photo', file);
-      dispatch(updateUserAvatar(formData)); // Отправляем новый аватар на сервер
+      dispatch(updateUserAvatar(formData));
     }
   };
-  // Функция для открытия диалога выбора файла
+
   const handleClick = () => {
-    fileInputRef.current.click(); // Программно вызываем клик на скрытый инпут
+    fileInputRef.current.click();
   };
 
   useEffect(() => {
     const handleEscape = event => {
       if (event.key === 'Escape') {
-        onClose(); // Вызываем функцию закрытия модалки
+        onClose();
       }
     };
 
-    // Подписываемся на событие `keydown` при монтировании компонента
     document.addEventListener('keydown', handleEscape);
 
-    // Очищаем подписку при размонтировании компонента
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
   }, [onClose]);
 
-  // Обработчик для клика по бекдропу
   const handleBackdropClick = event => {
     if (event.target === event.currentTarget) {
-      onClose(); // Закрываем модалку при клике по бекдропу
+      onClose();
     }
   };
   return (

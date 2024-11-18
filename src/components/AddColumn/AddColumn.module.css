@@ -14,15 +14,13 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  margin-right: -50%;
   transform: translate(-50%, -50%);
-  box-sizing: border-box;
-  position: absolute;
   display: flex;
   flex-direction: column;
   gap: 24px;
   border-radius: 8px;
-  width: 350px;
+  width: 90%;
+  max-width: 350px;
   background-color: var(--filters-modal-bg);
   padding: 24px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);

@@ -1,70 +1,71 @@
 .myBoardsText {
-    color: var(--inactive-color-sidebar);
-    font-family: Poppins, sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.24px;
-    margin: 0 14px 8px;
+  color: var(--inactive-color-sidebar);
+  font-family: Poppins, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.24px;
+  margin: 0 14px 8px;
 }
 .createBoard {
-    height: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--lines-sidebar);
-    border-bottom: 1px solid var(--lines-sidebar);
-    margin: 0 14px 8px;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--lines-sidebar);
+  border-bottom: 1px solid var(--lines-sidebar);
+  margin: 0 14px 8px;
 }
 
 .createBoardText {
-    width: 76px;
-    color: var(--active-color-sidebar);
-    font-family: Poppins, sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: -0.28px;
+  width: 76px;
+  color: var(--active-color-sidebar);
+  font-family: Poppins, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
 }
 .createBoardBtn {
-    width: 40px;
-    height: 36px;
-    border: none;
-    border-radius: 6px;
-    background-color: var(--newBoard-btn);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+  width: 40px;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--newBoard-btn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--tns-cubic);
 
-.createBoardBtn:hover {
-  background-color: var(--newBoard-btn-hover);
+  &:hover {
+    background-color: var(--newBoard-btn-hover);
+  }
 }
 
 .createIcon {
-    stroke: var(--plus-fill);
-    fill: none;
+  stroke: var(--plus-fill);
+  fill: none;
 }
 
 .ul {
-    max-height: calc(61px * 2); 
-    overflow-y: auto;
-    scrollbar-width: none;
+  max-height: calc(61px * 2);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+@media (min-width: 768px) {
+  .ul {
+    max-height: calc(61px * 3);
   }
-  
-  @media (min-width: 768px) {
-    .ul {
-      max-height: calc(61px * 3); 
-    }
+}
+
+@media (min-width: 1440px) {
+  .ul {
+    max-height: calc(61px * 4);
   }
-  
-  @media (min-width: 1440px) {
-    .ul {
-      max-height: calc(61px*4); 
-    }
-  }
+}
 
 .ul li {
   cursor: pointer;

@@ -90,14 +90,15 @@
   display: flex;
   align-items: center;
   color: var(--icons-color-1);
-  transition: transform 0.3s ease;
+  transition: transform var(--tns-cubic), color var(--tns-cubic);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    color: var(--text-hover-color);
+  }
 
   /* filter: drop-shadow(2px 2px 1px green) hue-rotate(180deg) drop-shadow(2px -2px 3px red); */
-}
-
-.themeButton:hover {
-  transform: scale(1.1);
-  color: var(--text-hover-color);
 }
 
 .modal {
@@ -121,7 +122,7 @@
 .modal li {
   color: var(--btn-text-color);
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, color var(--tns-cubic);
 }
 
 .modal li:not(:last-child) {

@@ -1,130 +1,134 @@
- .welcomePage {
-     background: linear-gradient(to bottom, white, rgb(171, 244, 171));
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     min-height: 100vh;
-     font-family: "Poppins", sans-serif;
-     color: #161616;
- }
-
-
- /*  Desktop */
- @media (min-width: 1440px) {}
-
- /* tab */
- @media (min-width: 768px) {}
-
-     .welcomSection {
-         width: 375px;
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-     }
-
-@media (min-width: 768px) {
-     .welcomSection {
-        width: 473px;
-    }
+.welcomePage {
+  background: linear-gradient(to bottom, white, rgb(171, 244, 171));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  color: #161616;
 }
 
-
-     .welcomSection h1 {
-         font-size: 28px;
-     }
-
-@media (min-width: 768px) {
-    .welcomSection h1 {
-        font-size: 40px;
-    }
+/*  Desktop */
+@media (min-width: 1440px) {
 }
 
-    .welcomSection img {
-       margin-bottom: 24px;
+/* tab */
+@media (min-width: 768px) {
+}
 
-    }
-
-     .welcomSection p {
-         font-size: 14px;
-         text-align: center;
-         margin-bottom: 48px;
-     }
-
-     .buttonRegister {
-         width: 335px;
-         padding: 14px 131px;
-         font-size: 14px;
-         color: #FFFFFF;
-         background-color: #161616;
-         border-radius: 5px;
-         border: none;
-         margin-bottom: 14px;
-         font: inherit;
-         cursor: pointer;
-         transition-duration: 0.4s;
-     }
-
-     .buttonLogin {
-         background: none;
-         border: none;
-         padding: 14px 131px;
-         font: inherit;
-         color: #161616;
-         cursor: pointer;
-         transition-duration: 0.4s;
-     }
-
- 
-
- .buttonRegister:hover {
-     opacity: 0.8;
- }
-
- .buttonLogin:hover {
-     color: #FFFFFF;
- }
-
- .taskProBox {
-     display: flex;
-     align-items: center;
-     text-align: center;
-
- }
-
- .taskProBox {
-     margin-bottom: 24px;
- }
-
- .iconContainer {
-     width: 40px;
-     height: 40px;
-     background-color: #161616;
-     border-radius: 10px;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     margin-right: 14px;
- }
-
+.welcomSection {
+  width: 90%;
+  max-width: 375px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 @media (min-width: 768px) {
-    .iconContainer {
-        width: 48px;
-        height: 48px;
-    }
+  .welcomSection {
+    width: 473px;
+  }
+}
 
-    .welcomeIcon {
-        width: 18px;
-        height: 24px;
-    }
+.welcomSection h1 {
+  font-size: 28px;
+}
 
-    .welcomSection img {
-        width: 162px;
-        height: 162px;
-    }
-    
-    .buttonRegister {
-        width: 344px;
-    }
+@media (min-width: 768px) {
+  .welcomSection h1 {
+    font-size: 40px;
+  }
+}
+
+.welcomSection img {
+  margin-bottom: 24px;
+}
+
+.welcomSection p {
+  max-width: 473px;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.buttonRegister {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 131px;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #161616;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 14px;
+  font: inherit;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.buttonLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 14px 0;
+  font: inherit;
+  color: #161616;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.buttonRegister:hover {
+  opacity: 0.8;
+}
+
+.buttonLogin:hover {
+  color: #ffffff;
+}
+
+.taskProBox {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.taskProBox {
+  margin-bottom: 24px;
+}
+
+.iconContainer {
+  width: 40px;
+  height: 40px;
+  background-color: #161616;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 14px;
+}
+
+@media (min-width: 768px) {
+  .iconContainer {
+    width: 48px;
+    height: 48px;
+  }
+
+  .welcomeIcon {
+    width: 18px;
+    height: 24px;
+  }
+
+  .welcomSection img {
+    width: 162px;
+    height: 162px;
+  }
+
+  .buttonRegister {
+    width: 344px;
+  }
 }

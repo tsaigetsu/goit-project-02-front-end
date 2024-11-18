@@ -12,7 +12,7 @@
 .titleBoard {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 18px;
+  font-size: clamp(0.875rem, 0.8036rem + 0.3571vw, 1.125rem);
   letter-spacing: -0.02em;
   color: var(--text-color);
   /* filter: drop-shadow(0 0 3px white) drop-shadow(0px 0px 2px white)
