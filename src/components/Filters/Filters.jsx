@@ -65,7 +65,7 @@ const Filters = ({ setIsModalOpen, boardId }) => {
               Show all
             </button>
           </div>
-          {['without', 'low', 'medium', 'high'].map(priority => (
+          {['without priority', 'low', 'medium', 'high'].map(priority => (
             <label key={priority} className={css.priorityLabel}>
               <input
                 type="checkbox"
