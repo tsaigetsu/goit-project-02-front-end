@@ -146,6 +146,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
                         <button
                           key={color}
                           type="button"
+                          title={priority}
                           className={`${s.colorCircle} ${
                             values.priority === priority ? s.active : ''
                           }`}
