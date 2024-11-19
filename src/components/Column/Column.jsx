@@ -8,7 +8,7 @@ import { onDeleteColumn } from '../../redux/columns/operations';
 import { useDispatch } from 'react-redux';
 import AddCardPopup from '../AddCardPopup/AddCardPopup';
 
-const Column = ({ title, columnId, boardId }) => {
+const Column = ({ title, columnId, boardId, column }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,9 +18,6 @@ const Column = ({ title, columnId, boardId }) => {
     if (columnId && boardId) {
       dispatch(onDeleteColumn(columnId));
       closeModal();
-      // if (value !== '') {
-      //   dispatch(changeFilter(''));
-      // }
     }
   };
   const handleOpenPopup = useMemo(() => () => setIsOpen(true), []);
@@ -37,11 +34,7 @@ const Column = ({ title, columnId, boardId }) => {
         <div className={css.container}>
           <p className={css.columnName}>{title || 'Untitled Column'}</p>
           <div className={css.boxIcon}>
-            <button
-              className={css.btnIcon}
-              // onChange={onEdit}
-              onClick={() => setIsEdit(true)}
-            >
+            <button className={css.btnIcon} onClick={() => setIsEdit(true)}>
               <SvgIcon
                 id="icon-pencil-01"
                 className={css.svgBtn}
@@ -59,7 +52,7 @@ const Column = ({ title, columnId, boardId }) => {
             </button>
           </div>
         </div>
-        <CardManager columnId={columnId} />
+        <CardManager columnId={columnId} column={column} />
         <div className={css.btnContainer}>
           <button className={css.cardManagerButton} onClick={handleOpenPopup}>
             <div className={css.svg}>
@@ -79,7 +72,6 @@ const Column = ({ title, columnId, boardId }) => {
             columnId={columnId}
             boardId={boardId}
             setIsEdit={setIsEdit}
-            // isEdit={isEdit}
           />
         )}
       </li>

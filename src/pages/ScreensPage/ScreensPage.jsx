@@ -83,12 +83,11 @@ const ScreensPage = () => {
         ) : (
           <>
             <MemoizedHeaderDashboard
+            boardId={board._id}
               title={board.title}
-              // onFilterChange={setFilter}
               className={css.headerDashboard}
             />
             <MemoizedMainDashboard
-              // filter={filter}
               className={css.mainDashboard}
               boardId={board._id}
             />

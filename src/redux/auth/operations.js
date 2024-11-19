@@ -18,15 +18,12 @@ export const registerThunk = createAsyncThunk(
     try {
       const { data } = await api.post('/auth/register', credentials);
 
-      console.log('token при регистрации!', data.accessToken);
-
       setToken(data.accessToken);
       toast.success('Welcome! You are successfully registered.', {
         duration: 4000,
         position: 'top-center',
         icon: '✔️',
       });
-      console.log('data!!!!!!!', data);
 
       return data;
     } catch (error) {
@@ -44,9 +41,7 @@ export const loginThunk = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      console.log('credentials', credentials);
       const { data } = await api.post('/auth/login', credentials);
-      console.log('data LOGIN RESPONSE', data.data.accessToken);
 
       localStorage.setItem('token', data.data.accessToken);
       setToken(data.data.accessToken);
@@ -59,7 +54,7 @@ export const loginThunk = createAsyncThunk(
         position: 'top-center',
         icon: '✔️',
       });
-      console.log('token!!!!!!!', data.data.accessToken);
+
       return { token, userData }; //верно!!!
     } catch (error) {
       toast.error('Incorrect email or password', {
@@ -76,7 +71,6 @@ export const currentUserThunk = createAsyncThunk(
   'currentUser',
   async (_, thunkAPI) => {
     const savedToken = thunkAPI.getState().auth.token;
-    console.log('savedToken', savedToken);
 
     try {
       // Проверка и установка токена в заголовки
@@ -156,7 +150,6 @@ export const sendHelpCommentThunk = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await api.post('/help', data);
-      console.log('Successfully sent help comment:', response.data);
 
       toast.success("Email sent to tech support. We'll reply soon!", {
         duration: 4000,
@@ -166,12 +159,6 @@ export const sendHelpCommentThunk = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      console.error('Error sending help comment:', error.message);
-      // toast.error("Error sending letter. Please, try again later.", {
-      //   duration: 5000,
-      //   position: "top-center",
-      //   icon: "❌",
-      // });
       return thunkAPI.rejectWithValue(error.message);
     }
   }

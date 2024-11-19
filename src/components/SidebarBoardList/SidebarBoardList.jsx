@@ -29,7 +29,6 @@ const SidebarBoardList = () => {
   const handleSelectBoard = async boardId => {
     try {
       const board = await dispatch(getBoardByIdThunk(boardId)).unwrap();
-      console.log('board', board);
 
       setSelectedBoardData(board);
       setActiveBoardId(boardId);

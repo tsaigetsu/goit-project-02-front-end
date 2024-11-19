@@ -25,7 +25,6 @@ const slice = createSlice({
         return initialState;
       })
       .addCase(registerThunk.fulfilled, (state, action) => {
-        //ТуТ ВСЕ ВЕРНО!!!!!
         console.log('user', action.payload.data.user);
         console.log('token', action.payload.accessToken);
         state.user = action.payload.data.user;
@@ -40,30 +39,22 @@ const slice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
-        console.log('TOKEN LOGIN', action.payload);
         state.user = action.payload.userData;
-        state.token = action.payload.token; //верно!!!
+        state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(loginThunk.rejected, state => {
         state.isLoggedIn = false;
       })
       .addCase(currentUserThunk.fulfilled, (state, action) => {
-        // console.log(
-        //   'Стейт после успешного выполнения currentUserThunk:',
-        //   state
-        // );
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-
-        // console.log('USER currentUserThunk!!!', action.payload);
       })
       .addCase(currentUserThunk.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(currentUserThunk.rejected, state => {
-        console.log('Стейт после отклонения currentUserThunk:', state);
         state.isRefreshing = false;
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
