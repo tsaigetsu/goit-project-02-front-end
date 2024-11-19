@@ -8,7 +8,7 @@ import { addCard } from '../../redux/cards/operations.js';
 import s from './AddCardPopup.module.css';
 import { useCallback, useEffect, useState } from 'react';
 
-const AddCardPopup = ({ setIsOpen, columnId }) => {
+const AddCardPopup = ({ setIsCardVisible, columnId }) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
     };
 
     dispatch(addCard(data));
-    setIsOpen(false);
+    setIsCardVisible(false);
   };
 
   const toggleDateInput = useCallback(() => {
@@ -74,7 +74,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
   useEffect(() => {
     const handleEscape = event => {
       if (event.key === 'Escape') {
-        setIsOpen(false);
+        setIsCardVisible(false);
       }
     };
 
@@ -83,13 +83,13 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [setIsOpen]);
+  }, [setIsCardVisible]);
 
   return (
     <div
       className={s.popupOverlay}
       onClick={e => {
-        if (e.target === e.currentTarget) setIsOpen(false);
+        if (e.target === e.currentTarget) setIsCardVisible(false);
       }}
     >
       <div className={s.popup}>
@@ -98,7 +98,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
           <button
             className={s.closeButton}
             onClick={() => {
-              setIsOpen(false);
+              setIsCardVisible(false);
             }}
           >
             <SvgIcon id="icon-x-close" width="18" height="18" />

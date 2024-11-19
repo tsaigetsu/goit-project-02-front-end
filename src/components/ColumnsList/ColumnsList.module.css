@@ -1,6 +1,7 @@
 /* Mobile */
 
 .columnsList {
+  border: 2px solid white;
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
@@ -9,10 +10,12 @@
   position: relative;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding-left: 0;
+  /* padding-bottom: 20px; */
   align-items: flex-start;
   list-style: none;
-  height: calc(100% - 50px);
+  height: 86vh;
+  /* max-height: 90vh; */
+  /* height: calc(100% - 150px); */
   gap: 20px;
   padding-left: 20px;
 }

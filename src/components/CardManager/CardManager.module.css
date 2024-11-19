@@ -1,14 +1,18 @@
 /* Card Manager Container */
 .cardManager {
+  flex-grow: 1;
+  border: 2px solid red;
   display: flex;
   flex-direction: column;
-  max-height: 60vh;
   overflow: hidden;
-  position: relative;
   gap: 14px;
+  /* height: 100vh; */
+
+  /* max-height: 60vh; */
+  /* position: relative; */
 }
 /* Add Card Button */
-.cardManagerButton {
+/* .cardManagerButton {
   position: sticky;
   bottom: 0;
   display: flex;
@@ -31,7 +35,7 @@
   &:hover {
     background-color: var(--btn--hover-color);
   }
-}
+} */
 
 .svg {
   background-color: var(--plus-fill);
@@ -46,14 +50,14 @@
   stroke: var(--plus-stroke);
 }
 
-@media only screen and (max-width: 374px) {
+/* @media only screen and (max-width: 374px) {
   .cardManagerButton {
     width: calc(100% - 12px);
   }
-}
+} */
 
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .cardManager {
     max-height: 60vh;
   }
-}
+} */

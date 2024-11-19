@@ -8,6 +8,14 @@
   overflow: hidden;
   height: 100%;
 } */
+.itemList {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  /* height: 100vh; */
+  max-height: 77vh;
+  gap: 14px;
+}
 .container {
   width: 334px;
   display: flex;
@@ -18,7 +26,7 @@
   border-radius: 8px;
   color: var(--text-color);
   flex-shrink: 0;
-  margin-bottom: 14px;
+  /* margin-bottom: 14px; */
 }
 .columnName {
   color: var(--text-color);
@@ -49,13 +57,6 @@
   stroke: var(--icons-hover-color);
 }
 
-.itemList {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%;
-  gap: 14px;
-}
 @media only screen and (max-width: 374px) {
   .wrapper {
     width: 100vw;
@@ -67,45 +68,16 @@
   }
   .itemList {
     min-width: 280px;
+    /* max-height: 94vh; */
   }
 }
-.cardManagerButton {
-  position: sticky;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 334px;
-  height: 56px;
-  background-color: var(--btn-color);
-  border-radius: 8px;
-  border: none;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--plus-fill);
-  cursor: pointer;
-  transition: background-color var(--tns-cubic);
-
-  &:hover {
-    background-color: var(--btn--hover-color);
+@media screen and (min-width: 768px) {
+  .itemList {
+    max-height: 83vh;
   }
 }
-
-.svg {
-  background-color: var(--plus-fill);
-  border-radius: 8px;
-  width: 28px;
-  height: 28px;
-  padding: 7px;
-  align-content: center;
-}
-
-.svgIcon {
-  stroke: var(--plus-stroke);
-}
-@media only screen and (max-width: 374px) {
-  .cardManagerButton {
-    width: calc(100% - 12px);
+@media screen and (min-width: 1280px) {
+  .itemList {
+    max-height: 84vh;
   }
 }

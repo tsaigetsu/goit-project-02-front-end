@@ -5,12 +5,13 @@
   gap: 8px;
   overflow-y: auto;
   width: 350px;
+  height: 100%;
+  /* height: calc(100%-56px); */
 }
 
 /* Стили для самой полосы прокрутки */
 .wrapperList::-webkit-scrollbar {
   width: 8px; /* Ширина вертикальной полосы прокрутки */
-
 }
 
 /* Стили для ползунка (thumb) */
