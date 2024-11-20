@@ -8,7 +8,6 @@ import { onDeleteColumn } from '../../redux/columns/operations';
 import { useDispatch } from 'react-redux';
 
 const Column = ({ title, columnId, boardId, column }) => {
-  // const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
@@ -19,7 +18,7 @@ const Column = ({ title, columnId, boardId, column }) => {
       closeModal();
     }
   };
-  // const handleOpenPopup = useMemo(() => () => setIsOpen(true), []);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
