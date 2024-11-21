@@ -1,30 +1,39 @@
-.section {
-  /* position: relative; */
+.cardManagerButton {
+  /* position: sticky; */
+  /* bottom: 0; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 334px;
+  height: 56px;
+  background-color: var(--btn-color);
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--plus-fill);
+  cursor: pointer;
+  transition: background-color var(--tns-cubic);
+
+  &:hover {
+    background-color: var(--btn--hover-color);
+  }
+}
+@media only screen and (max-width: 374px) {
+  .cardManagerButton {
+    width: calc(100% - 12px);
+  }
+}
+.svg {
+  background-color: var(--plus-fill);
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  padding: 7px;
+  align-content: center;
 }
 
-.btnAdd {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3.5px;
-  padding: 14px 0;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: -0.02em;
-  color: #161616;
-  width: 334px;
-  border-radius: 8px;
-  background-color: #bedbb0;
-  border: none;
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: -0.02em;
-  color: #161616;
-}
-.btnAdd:hover,
-.btnAdd:focus {
-  background-color: #9dc888;
+.svgIcon {
+  stroke: var(--plus-stroke);
 }

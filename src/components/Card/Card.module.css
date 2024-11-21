@@ -6,7 +6,7 @@
   overflow: hidden;
 }
 .cardholder {
-  height: 154px;
+  min-height: 154px;
   width: 334px;
 }
 .card {
