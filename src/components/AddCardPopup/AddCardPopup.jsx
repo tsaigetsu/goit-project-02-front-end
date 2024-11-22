@@ -16,7 +16,7 @@ const AddCardPopup = ({ setIsOpen, columnId }) => {
   const valuesFields = {
     title: '',
     description: '',
-    deadline: new Date(),
+    deadline: '',
     priority: 'without priority',
   };
 
