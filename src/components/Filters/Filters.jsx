@@ -1,15 +1,20 @@
-import SvgIcon from "../SvgIcon/SvgIcon";
-import { useEffect, useState } from "react";
-import css from "./Filters.module.css";
+import SvgIcon from '../SvgIcon/SvgIcon';
+import { useEffect, useState } from 'react';
+import css from './Filters.module.css';
+import { setPriority } from '../../redux/boards/slice.js';
+import { useDispatch } from 'react-redux';
+import { filterCardsByPriorityThunk } from '../../redux/boards/operations.js';
 
-const Filters = ({ onFilterChange, setIsModalOpen }) => {
-  const [selectedPriority, setSelectedPriority] = useState(null);
+const Filters = ({ setIsModalOpen, boardId }) => {
+  const [selectedPriorities, setSelectedPriorities] = useState('all');
+  const dispatch = useDispatch();
+
   const toggleModal = () => {
     setIsModalOpen(false);
-    document.body.classList.remove(css.noScroll); 
+    document.body.classList.remove(css.noScroll);
   };
 
-  const handleOverlayClick = (e) => {
+  const handleOverlayClick = e => {
     if (e.target.classList.contains(css.overlay)) {
       toggleModal(); // Закриття модалки при кліку на фон
     }
@@ -18,21 +23,23 @@ const Filters = ({ onFilterChange, setIsModalOpen }) => {
   // Використовуємо useEffect для додавання та видалення класу
   useEffect(() => {
     document.body.classList.add(css.noScroll);
-    
+
     return () => {
       document.body.classList.remove(css.noScroll);
     };
-  }, []); 
+  }, []);
 
-  const handleFilterChange = (priority) => {
-    setSelectedPriority(priority); 
-    onFilterChange?.(priority);
+  const handleFilterChange = priority => {
+    dispatch(setPriority(priority));
+    dispatch(filterCardsByPriorityThunk({ boardId, priority }));
+    setSelectedPriorities(priority);
   };
 
   // Функція для показу всіх карток
-  const handleShowAllClick = () => {
-    setSelectedPriority(null); 
-    onFilterChange?.(null); 
+  const handleShowAll = () => {
+    dispatch(setPriority(null)); // Сбрасываем фильтр
+    dispatch(filterCardsByPriorityThunk({ boardId, priority: null }));
+    setSelectedPriorities(null);
   };
 
   return (
@@ -43,28 +50,34 @@ const Filters = ({ onFilterChange, setIsModalOpen }) => {
         </button>
 
         <h2>Filters</h2>
-        
+
         {/* Priority Options */}
         <div className={css.priorityOptions}>
           <div className={css.labelRow}>
             <h3>Label color</h3>
-            <button 
-              type="button" 
-              className={css.dropdownButton} 
-              onClick={handleShowAllClick}
+            <button
+              type="button"
+              className={css.dropdownButton}
+              onClick={() => {
+                handleShowAll();
+              }}
             >
               Show all
             </button>
           </div>
-          {["without", "low", "medium", "high"].map((priority) => (
+          {['without priority', 'low', 'medium', 'high'].map(priority => (
             <label key={priority} className={css.priorityLabel}>
-              <input 
-                type="checkbox" 
-                name="priority" 
-                value={priority} 
-                checked={selectedPriority === priority} 
-                onChange={() => handleFilterChange(priority)} 
-                className={`${css.filterRadio} ${css[`filterRadio--${priority}`]}`} 
+              <input
+                type="checkbox"
+                name="priority"
+                value={priority}
+                checked={selectedPriorities === priority}
+                onChange={() => {
+                  handleFilterChange(priority);
+                }}
+                className={`${css.filterRadio} ${
+                  css[`filterRadio--${priority}`]
+                }`}
               />
               <span className={css.radioLabel}>
                 {priority.charAt(0).toUpperCase() + priority.slice(1)}

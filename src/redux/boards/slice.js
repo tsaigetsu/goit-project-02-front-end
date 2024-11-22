@@ -3,6 +3,7 @@ import {
   addBoardsThunk,
   deleteBoardThunk,
   fetchBoardsThunk,
+  filterCardsByPriorityThunk,
   getBoardByIdThunk,
   updateBoardThunk,
 } from './operations';
@@ -16,13 +17,15 @@ import {
   addCard,
   deleteCard,
   moveCardToColumn,
+  // setPriority,
   updateCard,
 } from '../cards/operations.js';
-// import { createSelector } from "@reduxjs/toolkit";
 
 const initialState = {
   boards: [],
   selectedBoard: null,
+  filteredCards: [],
+  priority: null,
   loading: false,
   error: null,
 };
@@ -30,6 +33,12 @@ const initialState = {
 const slice = createSlice({
   name: 'boards',
   initialState,
+  reducers: {
+    setPriority: (state, action) => {
+      state.priority = action.payload;
+      localStorage.setItem('priority', JSON.stringify(action.payload));
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchBoardsThunk.fulfilled, (state, action) => {
@@ -64,7 +73,7 @@ const slice = createSlice({
         }
       })
       .addCase(updateBoardThunk.rejected, (state, action) => {
-        console.error('Failed to update board:', action.error?.message);
+        // console.error('Failed to update board:', action.error?.message);
         state.loading = false;
         state.error = action.error?.message;
       })
@@ -99,7 +108,6 @@ const slice = createSlice({
       .addCase(addCard.fulfilled, (state, action) => {
         const task = action.payload.data;
         const { columnId } = task;
-
         const column = state.selectedBoard.columns.find(
           col => col._id === columnId
         );
@@ -149,7 +157,6 @@ const slice = createSlice({
       })
       .addCase(moveCardToColumn.fulfilled, (state, action) => {
         state.loading = false;
-
         state.selectedBoard.columns.forEach(column => {
           const cardIndex = column.tasks.findIndex(
             task => task._id === action.payload._id
@@ -162,6 +169,13 @@ const slice = createSlice({
           }
         });
       })
+      .addCase(filterCardsByPriorityThunk.fulfilled, (state, action) => {
+        const { boardId, filteredBoard } = action.payload;
+        const boardIndex = state.findIndex(b => b._id === boardId);
+        if (boardIndex !== -1) {
+          state[boardIndex].columns = filteredBoard; // Обновляем колонки для борда
+        }
+      })
       .addMatcher(
         isAnyOf(
           fetchBoardsThunk.pending,
@@ -173,7 +187,8 @@ const slice = createSlice({
           onEditColumn.pending,
           addCard.pending,
           deleteCard.pending,
-          updateCard.pending
+          updateCard.pending,
+          filterCardsByPriorityThunk.pending
         ),
         state => {
           state.loading = true;
@@ -191,7 +206,8 @@ const slice = createSlice({
           onEditColumn.rejected,
           addCard.rejected,
           deleteCard.rejected,
-          updateCard.rejected
+          updateCard.rejected,
+          filterCardsByPriorityThunk.rejected
         ),
         (state, action) => {
           state.loading = false;
@@ -209,7 +225,8 @@ const slice = createSlice({
           onEditColumn.fulfilled,
           addCard.fulfilled,
           deleteCard.fulfilled,
-          updateCard.fulfilled
+          updateCard.fulfilled,
+          filterCardsByPriorityThunk.fulfilled
         ),
         state => {
           state.loading = false;
@@ -219,3 +236,4 @@ const slice = createSlice({
 });
 
 export const boardsReducer = slice.reducer;
+export const { setPriority } = slice.actions;

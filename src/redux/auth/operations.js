@@ -24,7 +24,6 @@ export const registerThunk = createAsyncThunk(
         position: 'top-center',
         icon: '✔️',
       });
-      console.log('data!!!!!!!', data);
 
       return data;
     } catch (error) {
@@ -161,12 +160,6 @@ export const sendHelpCommentThunk = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      console.error('Error sending help comment:', error.message);
-      // toast.error("Error sending letter. Please, try again later.", {
-      //   duration: 5000,
-      //   position: "top-center",
-      //   icon: "❌",
-      // });
       return thunkAPI.rejectWithValue(error.message);
     }
   }

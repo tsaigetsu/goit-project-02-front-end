@@ -4,7 +4,7 @@ import Filters from '../Filters/Filters';
 
 import { useState } from 'react';
 
-const HeaderDashboard = ({ title, onFilterChange, onBackgroundChange }) => {
+const HeaderDashboard = ({ title, boardId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -21,12 +21,7 @@ const HeaderDashboard = ({ title, onFilterChange, onBackgroundChange }) => {
         </button>
 
         {isModalOpen && (
-          <Filters
-            setIsModalOpen={setIsModalOpen}
-            isModalOpen={isModalOpen}
-            onBackgroundChange={onBackgroundChange}
-            onFilterChange={onFilterChange}
-          />
+          <Filters boardId={boardId} setIsModalOpen={setIsModalOpen} />
         )}
       </div>
     </div>

@@ -1,9 +1,12 @@
 import ColumnsList from '../ColumnsList/ColumnsList.jsx';
+import css from '../MainDashboard/MainDashboard.module.css';
 
-const MainDashboard = ({ boardId, filter }) => {
+const MainDashboard = () => {
   return (
     <>
-      <ColumnsList boardId={boardId} filter={filter} />
+      <div className={css.wrapperMainDashboard}>
+        <ColumnsList />
+      </div>
     </>
   );
 };

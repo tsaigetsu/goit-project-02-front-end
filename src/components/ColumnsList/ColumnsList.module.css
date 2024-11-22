@@ -10,16 +10,15 @@
   position: relative;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding-left: 0;
   align-items: flex-start;
   list-style: none;
-  height: calc(100% - 50px);
+  height: 86vh;
   gap: 20px;
   padding-left: 20px;
 }
-/* .columnsList:active {
+.columnsList:active {
   cursor: grabbing;
-} */
+}
 .columnsList::-webkit-scrollbar {
   height: 12px;
 }
@@ -42,6 +41,7 @@
 .columnsList::-webkit-scrollbar-thumb:hover {
   background: var(--scroll-color);
   transform: rotate(90deg);
+  cursor: grabbing;
 }
 
 .columnsList::-webkit-scrollbar-thumb:active {
