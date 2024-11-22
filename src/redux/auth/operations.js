@@ -18,11 +18,9 @@ export const registerThunk = createAsyncThunk(
     try {
       const { data } = await api.post('/auth/register', credentials);
 
-      console.log('token при регистрации!', data.accessToken);
-
       setToken(data.accessToken);
       toast.success('Welcome! You are successfully registered.', {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
@@ -31,7 +29,7 @@ export const registerThunk = createAsyncThunk(
       return data;
     } catch (error) {
       toast.error('This email is already registered', {
-        duration: 5000,
+        duration: 3000,
         position: 'top-center',
         icon: '❌',
       });
@@ -44,9 +42,7 @@ export const loginThunk = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      console.log('credentials', credentials);
       const { data } = await api.post('/auth/login', credentials);
-      console.log('data LOGIN RESPONSE', data.data.accessToken);
 
       localStorage.setItem('token', data.data.accessToken);
       setToken(data.data.accessToken);
@@ -55,15 +51,15 @@ export const loginThunk = createAsyncThunk(
       const userData = response.data.data;
 
       toast.success('Welcome! You are logged in.', {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
-      console.log('token!!!!!!!', data.data.accessToken);
+
       return { token, userData }; //верно!!!
     } catch (error) {
       toast.error('Incorrect email or password', {
-        duration: 5000,
+        duration: 3000,
         position: 'top-center',
         icon: '❌',
       });
@@ -76,12 +72,10 @@ export const currentUserThunk = createAsyncThunk(
   'currentUser',
   async (_, thunkAPI) => {
     const savedToken = thunkAPI.getState().auth.token;
-    console.log('savedToken', savedToken);
 
     try {
-      // Проверка и установка токена в заголовки
       if (savedToken) {
-        setToken(savedToken); // Эта функция должна быть реализована для установки заголовка
+        setToken(savedToken);
       }
       const response = await api.get('/user/profile');
 
@@ -101,9 +95,9 @@ export const fetchUserProfile = createAsyncThunk(
   'user/fetchUserProfile',
   async (_, thunkAPI) => {
     try {
-      const response = await api.get('/user/profile'); // Эндпоинт не требует ID
+      const response = await api.get('/user/profile');
 
-      return response.data.data; // Возвращаем данные пользователя
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -120,15 +114,16 @@ export const updateUserAvatar = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await api.patch(`/user/profile`, formData);
+
       toast.success('User updated successfully!', {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
-      return response.data.data; // Возвращаем обновленные данные пользователя
+      return response.data.data;
     } catch (error) {
       toast.error('Failed to update user: ' + error.message, {
-        duration: 5000,
+        duration: 3000,
         position: 'top-center',
         icon: '❌',
       });
@@ -142,6 +137,7 @@ export const updateTheme = createAsyncThunk(
   async (newTheme, thunkAPI) => {
     try {
       const response = await api.patch('/user/profile', { theme: newTheme });
+
       toast.success('Theme updated successfully!');
       return response.data.data;
     } catch (error) {
@@ -156,10 +152,9 @@ export const sendHelpCommentThunk = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await api.post('/help', data);
-      console.log('Successfully sent help comment:', response.data);
 
       toast.success("Email sent to tech support. We'll reply soon!", {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });

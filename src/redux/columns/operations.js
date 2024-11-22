@@ -11,14 +11,14 @@ export const onCreateColumn = createAsyncThunk(
       const CreatedColumn = response.data.data;
 
       toast.success('Column created successfully!', {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
       return { boardId: CreatedColumn.boardId, column: CreatedColumn };
     } catch (error) {
       toast.error('Failed to create column: ' + error.message, {
-        duration: 5000,
+        duration: 3000,
         position: 'top-center',
         icon: '❌',
       });
@@ -33,14 +33,14 @@ export const onDeleteColumn = createAsyncThunk(
     try {
       await api.delete(`columns/${columnId}`);
       toast.success('Column deleted!', {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
       return columnId;
     } catch (error) {
       toast.error('Failed to delete column: ' + error.message, {
-        duration: 5000,
+        duration: 3000,
         position: 'top-center',
         icon: '❌',
       });
@@ -56,7 +56,7 @@ export const onEditColumn = createAsyncThunk(
       const response = await api.patch(`columns/${columnId}`, updateColumn);
 
       toast.success('Column updated successfully!', {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
@@ -64,7 +64,7 @@ export const onEditColumn = createAsyncThunk(
       return { updatedColumn: response.data.data };
     } catch (error) {
       toast.error('Failed to update column: ' + error.message, {
-        duration: 5000,
+        duration: 3000,
         position: 'top-center',
         icon: '❌',
       });
@@ -79,7 +79,6 @@ export const filterCardsByPriority = createAsyncThunk(
     const state = getState();
     const { allColumns } = state.columns;
 
-    // Фільтруємо картки в колонках на основі пріоритету
     if (priority === 'all') {
       return allColumns;
     } else {
