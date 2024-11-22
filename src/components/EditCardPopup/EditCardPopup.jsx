@@ -155,16 +155,14 @@ const EditCardPopup = ({ card, setIsEdit, updateDeadlineStatus }) => {
                         <button
                           key={color}
                           type="button"
+                          title={priority}
                           className={`${s.colorCircle} ${
                             values.priority === priority ? s.active : ''
                           }`}
                           style={{ backgroundColor: color }}
                           onClick={() => {
-                            // console.log("Color:", color);
-                            // console.log("Priority:", priority);
                             setFieldValue('labelColor', color);
                             setFieldValue('priority', priority);
-                            // setSelectedPriority(priority);
                           }}
                         />
                       ))}

@@ -11,13 +11,13 @@ export const setToken = token => {
 
 export const clearToken = () => {
   const token = localStorage.getItem('token');
+
   if (token) {
     api.defaults.headers.common.Authorization = ``;
     localStorage.removeItem('token');
   }
 };
 
-// Добавление токена к каждому запросу
 api.interceptors.request.use(
   config => {
     const token = localStorage.getItem('token');
