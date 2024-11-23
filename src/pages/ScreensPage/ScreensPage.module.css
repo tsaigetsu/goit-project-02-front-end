@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  /* height: calc(100vh-68px); */
   box-sizing: border-box;
   width: 100%;
   background-size: cover;
@@ -28,6 +29,7 @@
 @media (min-width: 768px) and (max-width: 1439px) and (min-resolution: 1dppx) {
   .wrapperScreenPage {
     background-image: var(--background-tablet-normal);
+    /* height: calc(100vh-68px); */
   }
 }
 
@@ -49,5 +51,10 @@
 @media (min-width: 1440px) and (min-resolution: 2dppx) {
   .wrapperScreenPage {
     background-image: var(--background-desktop-large);
+  }
+}
+@media (min-width: 767px) {
+  .wrapperScreenPage {
+    height: calc(100vh-76px);
   }
 }

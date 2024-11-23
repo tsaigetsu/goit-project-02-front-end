@@ -49,17 +49,11 @@
 }
  */
 
-@media screen and (min-width: 768px) and (max-width: 1439px) {
-}
-
-@media screen and (min-width: 1440px) {
-}
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 24px;
+  padding: 14px 20px;
   width: 100%;
   background-color: var(--header-color);
   color: var(--text-color);
@@ -146,7 +140,7 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  width: 30px;
+  width: 24px;
   height: 24px;
   transition-duration: 0.4s;
 }
@@ -199,4 +193,20 @@
 li.activeTheme {
   color: var(--accent-color);
   font-weight: bold;
+}
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .header {
+    padding: 18px 32px;
+  }
+  .hamburgerButton {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .header {
+    padding: 18px 24px;
+    width: calc(100%-260px);
+  }
 }

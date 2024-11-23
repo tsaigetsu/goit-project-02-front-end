@@ -1,7 +1,8 @@
 .itemList {
   display: flex;
   flex-direction: column;
-  max-height: 77vh;
+  max-height: 79vh;
+
   gap: 14px;
 }
 .container {
@@ -57,8 +58,8 @@
     min-width: 280px;
   }
 }
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .itemList {
     max-height: 84vh;
   }
-}
+} */

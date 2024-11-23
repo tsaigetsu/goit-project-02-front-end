@@ -4,6 +4,8 @@
   flex-direction: column;
   overflow: hidden;
   gap: 14px;
+  padding-bottom: 13px;
+  min-height: 100%;
 }
 
 .svg {
@@ -17,4 +19,9 @@
 
 .svgIcon {
   stroke: var(--plus-stroke);
+}
+@media only screen and (min-width: 1440px) {
+  .cardManager {
+    padding-bottom: 0;
+  }
 }
