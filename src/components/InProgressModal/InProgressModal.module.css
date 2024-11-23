@@ -21,7 +21,8 @@
   z-index: 1001;
   box-shadow: 0 4px 16px 0 rgba(17, 17, 17, 0.1);
   background-color: var(--background-sidebar);
-  color: var(--svg-btns-color);
+  /* color: var(--svg-btns-color); */
+  color: var(--inactive-color-sidebar);
   border-radius: 8px;
   padding: 7px;
   max-height: 130px;
@@ -53,8 +54,8 @@
 .item:hover .icon,
 .item:focus .title,
 .item:focus .icon {
-  color: var(--modal-text-color);
-  stroke: var(--modal-text-color);
+  color: var(--drag-ul);
+  stroke: var(--drag-ul);
   fill: none;
 }
 

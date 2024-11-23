@@ -24,27 +24,35 @@ const slice = createSlice({
       .addCase(logoutThunk.fulfilled, () => {
         return initialState;
       })
+      .addCase(registerThunk.pending, state => {
+        state.isRefreshing = true;
+      })
       .addCase(registerThunk.fulfilled, (state, action) => {
         console.log('user', action.payload.data.user);
         console.log('token', action.payload.accessToken);
         state.user = action.payload.data.user;
         state.token = action.payload.accessToken;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
       .addCase(registerThunk.rejected, state => {
         state.isLoggedIn = false;
+        state.isRefreshing = false;
       })
 
       .addCase(loginThunk.pending, state => {
+        state.isRefreshing = true;
         state.isLoggedIn = false;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.user = action.payload.userData;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
       .addCase(loginThunk.rejected, state => {
         state.isLoggedIn = false;
+        state.isRefreshing = false;
       })
       .addCase(currentUserThunk.fulfilled, (state, action) => {
         state.user = action.payload;
