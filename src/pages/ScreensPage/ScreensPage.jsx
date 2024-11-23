@@ -7,7 +7,10 @@ import DefaultText from '../../components/DefaultText/DefaultText.jsx';
 import NewBoardForm from '../../components/NewBoardForm/NewBoardForm.jsx';
 import { useSelector, useDispatch } from 'react-redux';
 import backgrounds from '../../data/backgrounds.json';
-import { addBoardsThunk } from '../../redux/boards/operations.js';
+import {
+  addBoardsThunk,
+  getBoardByIdThunk,
+} from '../../redux/boards/operations.js';
 
 // Мемоизируем компоненты для предотвращения лишних ререндеров
 const MemoizedHeaderDashboard = React.memo(HeaderDashboard);
@@ -18,6 +21,7 @@ const ScreensPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const boards = useSelector(selectBoards);
   const board = useSelector(selectedBoard);
+
   const dispatch = useDispatch();
 
   // Мемоизация для backgroundUrl
@@ -68,11 +72,26 @@ const ScreensPage = () => {
   }, []);
 
   const handleSaveBoard = useCallback(
-    newBoard => {
-      dispatch(addBoardsThunk(newBoard));
-      setIsOpen(false);
+    async newBoard => {
+      try {
+        // Создаем новый борд
+        const resultAction = await dispatch(addBoardsThunk(newBoard));
+
+        if (addBoardsThunk.fulfilled.match(resultAction)) {
+          const createdBoardId = resultAction.payload._id; // Получаем ID нового борда
+
+          // Загружаем данные борда по ID
+          await dispatch(getBoardByIdThunk(createdBoardId));
+        } else {
+          console.error('Failed to create board:', resultAction.payload);
+        }
+      } catch (error) {
+        console.error('Error while creating board:', error);
+      } finally {
+        setIsOpen(false); // Закрываем модальное окно
+      }
     },
-    [dispatch]
+    [dispatch, setIsOpen]
   );
 
   return (
@@ -83,7 +102,7 @@ const ScreensPage = () => {
         ) : (
           <>
             <MemoizedHeaderDashboard
-            boardId={board._id}
+              boardId={board._id}
               title={board.title}
               className={css.headerDashboard}
             />

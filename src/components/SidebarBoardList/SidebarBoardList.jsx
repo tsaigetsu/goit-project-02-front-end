@@ -29,7 +29,6 @@ const SidebarBoardList = () => {
   };
 
   const handleSelectBoard = async boardId => {
-    console.log('click board');
     try {
       const board = await dispatch(getBoardByIdThunk(boardId)).unwrap();
 
