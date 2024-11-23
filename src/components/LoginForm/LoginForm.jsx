@@ -1,6 +1,5 @@
 import css from './LoginForm.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
-
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -21,7 +20,7 @@ const validateFormSchema = Yup.object().shape({
     .required('Password is required')
     .matches(
       /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
-      'Password can contain only Latin letters, numbers, and special characters'
+      'Password must contain Latin letters'
     )
     .matches(/^\S*$/, 'Password cannot contain spaces')
     .min(8, 'Password must be at least 8 characters')
@@ -40,7 +39,7 @@ const LoginForm = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       email: '',
@@ -87,7 +86,7 @@ const LoginForm = () => {
             <label className={css.label}>
               <input
                 {...register('email')}
-                type="text"
+                type="email"
                 placeholder="Enter your email"
                 className={css.input}
                 autoFocus
@@ -129,7 +128,11 @@ const LoginForm = () => {
               </button>
             </label>
           </div>
-          <button type="submit" className={css.btn}>
+          <button
+            type="submit"
+            className={`${css.btn} ${!isValid ? css.btnInvalid : ''}`}
+            disabled={!isValid}
+          >
             Log In Now
           </button>
         </form>

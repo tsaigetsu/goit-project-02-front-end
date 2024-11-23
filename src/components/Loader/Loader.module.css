@@ -1,5 +1,18 @@
-.loader {
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: grid;
   place-items: center;
-  height: 100vh;
+  /* background: rgba(0, 0, 0, 0.1); */
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.loader {
+  z-index: 10000;
 }

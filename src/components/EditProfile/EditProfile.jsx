@@ -18,7 +18,6 @@ const validateFormSchema = Yup.object().shape({
     .required('Email is required')
     .email('Invalid email address'),
   password: Yup.string()
-
     .matches(
       /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
       'Password must contain Latin letters'
@@ -32,6 +31,7 @@ const EditProfile = ({ userData, onClose }) => {
   const dispatch = useDispatch();
   const [visiblePassword, setVisiblePassword] = useState(false);
   const fileInputRef = useRef(null);
+
   const {
     register,
     handleSubmit,
@@ -46,6 +46,7 @@ const EditProfile = ({ userData, onClose }) => {
     resolver: yupResolver(validateFormSchema),
     mode: 'onChange',
   });
+
   useEffect(() => {
     if (userData) {
       reset({
@@ -156,7 +157,7 @@ const EditProfile = ({ userData, onClose }) => {
             <label className={css.label}>
               <input
                 {...register('email')}
-                type="text"
+                type="email"
                 placeholder="Enter your email"
                 className={css.input}
               />
