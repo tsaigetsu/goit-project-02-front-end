@@ -87,7 +87,7 @@ const LoginForm = () => {
             <label className={css.label}>
               <input
                 {...register('email')}
-                type="text"
+                type="email"
                 placeholder="Enter your email"
                 className={css.input}
                 autoFocus

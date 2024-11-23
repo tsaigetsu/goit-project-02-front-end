@@ -97,7 +97,7 @@ const RegisterForm = () => {
             <label className={css.label}>
               <input
                 {...register('email')}
-                type="text"
+                type="emai l"
                 placeholder="Enter your email"
                 className={css.input}
               />
