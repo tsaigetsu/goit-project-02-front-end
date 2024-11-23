@@ -74,7 +74,7 @@
   height: 49px;
   width: 100%;
   padding-left: 18px;
-  padding-right: 18px;
+  padding-right: 39px;
   outline: none;
 
   transition: opacity var(--tns-cubic), border var(--tns-cubic),
@@ -127,6 +127,11 @@
   &:focus {
     background-color: #9dc888;
   }
+}
+
+.btnInvalid {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .toggleBtn {

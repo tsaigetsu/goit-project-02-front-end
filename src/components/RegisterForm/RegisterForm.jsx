@@ -14,7 +14,7 @@ const validateFormSchema = Yup.object().shape({
     .required('Name is required')
     .matches(
       /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
-      'Name can contain only Latin letters, numbers, and special characters'
+      'Name must contain Latin letters'
     )
     .min(2, 'Name must be at least 2 characters')
     .max(32, 'Name must not exceed 32 characters'),
@@ -28,7 +28,7 @@ const validateFormSchema = Yup.object().shape({
     .required('Password is required')
     .matches(
       /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
-      'Password can contain only Latin letters, numbers, and special characters'
+      'Password must contain Latin letters'
     )
     .matches(/^\S*$/, 'Password cannot contain spaces')
     .min(8, 'Password must be at least 8 characters')
@@ -38,11 +38,12 @@ const validateFormSchema = Yup.object().shape({
 const RegisterForm = () => {
   const [visiblePassword, setVisiblePassword] = useState(false);
   const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       name: '',
@@ -88,6 +89,7 @@ const RegisterForm = () => {
                 type="text"
                 placeholder="Enter your name"
                 className={css.input}
+                autoComplete="off"
                 autoFocus
               />
               {errors.name && (
@@ -100,6 +102,7 @@ const RegisterForm = () => {
                 type="email"
                 placeholder="Enter your email"
                 className={css.input}
+                autoComplete="off"
               />
               {errors.email && (
                 <div className={css.error}>{errors.email.message}</div>
@@ -111,6 +114,7 @@ const RegisterForm = () => {
                 type={visiblePassword ? 'text' : 'password'}
                 placeholder="Create a password"
                 className={css.input}
+                autoComplete="new-password"
               />
               {errors.password && (
                 <div className={css.error}>{errors.password.message}</div>
@@ -138,7 +142,11 @@ const RegisterForm = () => {
               </button>
             </label>
           </div>
-          <button type="submit" className={css.btn}>
+          <button
+            type="submit"
+            className={`${css.btn} ${!isValid ? css.btnInvalid : ''}`}
+            disabled={!isValid}
+          >
             Register Now
           </button>
         </form>

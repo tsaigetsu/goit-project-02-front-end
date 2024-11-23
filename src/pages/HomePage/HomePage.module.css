@@ -42,6 +42,7 @@
   --avatar-btn: #bedbb0;
   --scroll-color: rgba(190, 219, 176, 0.5);
   --scroll-color-active: #bedbb0;
+  --drag-ul: #000000;
 }
 
 .theme-dark {
@@ -88,6 +89,7 @@
   --avatar-btn: #bedbb0;
   --scroll-color: #302f2f;
   --scroll-color-active: #121212;
+  --drag-ul: #ffffff;
 }
 
 .theme-violet {
@@ -100,6 +102,7 @@
   --background-help: rgba(236, 237, 253, 0.4);
   --background-sidebar: #5255bc;
   --btn-color: #5255bc;
+  /* --btn-text-color: #ffffff; */
   --btn--hover-color: #7b7ede;
   --icons-color-1: #161616;
   --icons-color-2: #16161680;
@@ -133,6 +136,7 @@
   --avatar-btn: #ecedfd;
   --scroll-color: rgba(82, 85, 188, 0.5);
   --scroll-color-active: rgb(82, 85, 188);
+  --drag-ul: #ffffff;
 }
 
 .homePage {

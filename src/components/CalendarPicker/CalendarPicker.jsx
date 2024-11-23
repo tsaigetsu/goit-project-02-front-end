@@ -20,7 +20,7 @@ const CalendarPicker = ({
         }}
         className={calendarClassName}
       >
-        {selected ? formatDate(selected) : 'Select a date'}
+        {displayDate}
       </div>
       {isCalendarOpen && (
         <div className={css.datePickerWrapper}>

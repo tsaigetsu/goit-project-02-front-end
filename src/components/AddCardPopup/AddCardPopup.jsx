@@ -16,7 +16,7 @@ const AddCardPopup = ({ setIsCardVisible, columnId }) => {
   const valuesFields = {
     title: '',
     description: '',
-    deadline: new Date(),
+    deadline: '',
     priority: 'without priority',
   };
 
@@ -146,6 +146,7 @@ const AddCardPopup = ({ setIsCardVisible, columnId }) => {
                         <button
                           key={color}
                           type="button"
+                          title={priority}
                           className={`${s.colorCircle} ${
                             values.priority === priority ? s.active : ''
                           }`}

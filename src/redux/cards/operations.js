@@ -7,14 +7,14 @@ export const addCard = createAsyncThunk('addCard', async (data, thunkAPI) => {
     const response = await api.post('/tasks', data);
 
     toast.success('Card created successfully!', {
-      duration: 4000,
+      duration: 3000,
       position: 'top-center',
       icon: '✔️',
     });
     return response.data;
   } catch (error) {
     toast.error('Failed to create column: ' + error.message, {
-      duration: 5000,
+      duration: 3000,
       position: 'top-center',
       icon: '❌',
     });
@@ -28,7 +28,7 @@ export const deleteCard = createAsyncThunk(
     try {
       await api.delete(`/tasks/${cardId}`);
       toast.success('Card deleted!', {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
@@ -36,7 +36,7 @@ export const deleteCard = createAsyncThunk(
       return { cardId };
     } catch (error) {
       toast.error('Failed to delete card: ' + error.message, {
-        duration: 5000,
+        duration: 3000,
         position: 'top-center',
         icon: '❌',
       });
@@ -51,14 +51,14 @@ export const updateCard = createAsyncThunk(
     try {
       const response = await api.patch(`/tasks/${_id}`, data);
       toast.success('Card updated successfully!', {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
       return response.data;
     } catch (error) {
       toast.error('Failed to update card: ' + error.message, {
-        duration: 5000,
+        duration: 3000,
         position: 'top-center',
         icon: '❌',
       });
@@ -76,7 +76,7 @@ export const moveCardToColumn = createAsyncThunk(
       });
 
       toast.success('Card moved successfully!', {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
@@ -84,7 +84,7 @@ export const moveCardToColumn = createAsyncThunk(
       return response.data.data;
     } catch (error) {
       toast.error('Failed to move card: ' + error.message, {
-        duration: 5000,
+        duration: 3000,
         position: 'top-center',
         icon: '❌',
       });

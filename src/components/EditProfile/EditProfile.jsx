@@ -32,6 +32,7 @@ const EditProfile = ({ userData, onClose }) => {
   const dispatch = useDispatch();
   const [visiblePassword, setVisiblePassword] = useState(false);
   const fileInputRef = useRef(null);
+
   const {
     register,
     handleSubmit,
@@ -46,6 +47,7 @@ const EditProfile = ({ userData, onClose }) => {
     resolver: yupResolver(validateFormSchema),
     mode: 'onChange',
   });
+
   useEffect(() => {
     if (userData) {
       reset({

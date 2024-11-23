@@ -46,6 +46,7 @@
   height: 18px;
   stroke: var(--icons-color-1);
   z-index: 1100;
+  transition: stroke var(--tns-cubic), filter var(--tns-cubic);
 }
 
 .closeButton:hover {
@@ -106,6 +107,7 @@
   text-decoration-style: solid;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  transition: opacity var(--tns-cubic);
 }
 
 .dropdownButton:hover {
@@ -123,6 +125,7 @@
   font-size: 12px;
   opacity: 50%;
   letter-spacing: 0.1ex;
+  transition: opacity var(--tns-cubic);
 }
 
 .filterRadio:checked + .radioLabel,
@@ -139,7 +142,11 @@
   border: none;
   cursor: pointer;
   appearance: none;
+  background-color: #b7b7b7;
+  transition: opacity var(--tns-cubic);
 }
+
+/* #B7B7B7 */
 
 .filterRadio--without {
   background-color: var(--priority-color-none);

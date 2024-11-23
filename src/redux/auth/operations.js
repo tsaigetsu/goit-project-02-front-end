@@ -20,7 +20,7 @@ export const registerThunk = createAsyncThunk(
 
       setToken(data.accessToken);
       toast.success('Welcome! You are successfully registered.', {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
@@ -28,7 +28,7 @@ export const registerThunk = createAsyncThunk(
       return data;
     } catch (error) {
       toast.error('This email is already registered', {
-        duration: 5000,
+        duration: 3000,
         position: 'top-center',
         icon: '❌',
       });
@@ -50,7 +50,7 @@ export const loginThunk = createAsyncThunk(
       const userData = response.data.data;
 
       toast.success('Welcome! You are logged in.', {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
@@ -58,7 +58,7 @@ export const loginThunk = createAsyncThunk(
       return { token, userData }; //верно!!!
     } catch (error) {
       toast.error('Incorrect email or password', {
-        duration: 5000,
+        duration: 3000,
         position: 'top-center',
         icon: '❌',
       });
@@ -73,9 +73,8 @@ export const currentUserThunk = createAsyncThunk(
     const savedToken = thunkAPI.getState().auth.token;
 
     try {
-      // Проверка и установка токена в заголовки
       if (savedToken) {
-        setToken(savedToken); // Эта функция должна быть реализована для установки заголовка
+        setToken(savedToken);
       }
       const response = await api.get('/user/profile');
 
@@ -114,15 +113,16 @@ export const updateUserAvatar = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await api.patch(`/user/profile`, formData);
+
       toast.success('User updated successfully!', {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
-      return response.data.data; // Возвращаем обновленные данные пользователя
+      return response.data.data;
     } catch (error) {
       toast.error('Failed to update user: ' + error.message, {
-        duration: 5000,
+        duration: 3000,
         position: 'top-center',
         icon: '❌',
       });
@@ -136,6 +136,7 @@ export const updateTheme = createAsyncThunk(
   async (newTheme, thunkAPI) => {
     try {
       const response = await api.patch('/user/profile', { theme: newTheme });
+
       toast.success('Theme updated successfully!');
       return response.data.data;
     } catch (error) {
@@ -152,7 +153,7 @@ export const sendHelpCommentThunk = createAsyncThunk(
       const response = await api.post('/help', data);
 
       toast.success("Email sent to tech support. We'll reply soon!", {
-        duration: 4000,
+        duration: 3000,
         position: 'top-center',
         icon: '✔️',
       });
