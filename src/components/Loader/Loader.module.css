@@ -10,7 +10,7 @@
   background-color: transparent;
   backdrop-filter: blur(5px);
   z-index: 9999;
-  pointer-events: none;
+  pointer-events: all;
 }
 
 .loader {
