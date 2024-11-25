@@ -18,6 +18,7 @@ const validateFormSchema = Yup.object().shape({
     .required('Email is required')
     .email('Invalid email address'),
   password: Yup.string()
+    .required('Password is required')
     .matches(
       /^[A-Za-z0-9!@#$%^&*()_\-+=<>?,.:;'"`~[\]{}|\\/]+$/,
       'Password must contain Latin letters'

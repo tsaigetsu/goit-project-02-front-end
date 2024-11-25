@@ -12,9 +12,8 @@
   flex-wrap: nowrap;
   align-items: flex-start;
   list-style: none;
-  height: 86vh;
+  height: 100%;
   gap: 20px;
-  padding-left: 20px;
 }
 .columnsList:active {
   cursor: grabbing;
@@ -28,6 +27,7 @@
   opacity: 0;
 }
 .columnsList::-webkit-scrollbar-thumb {
+  width: 179px;
   background-color: transparent;
   opacity: 0;
 }
@@ -48,15 +48,19 @@
   background: var(--scroll-color-active);
   border-radius: 12px;
 }
-@media only screen and (max-width: 374px) {
-  .columnsList {
-    padding-left: 20px;
+
+@media only screen and (min-width: 767px) {
+  .columnsList::-webkit-scrollbar-thumb {
+    width: 265px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .columnsList {
     max-width: calc(100vw - 260px);
+  }
+  .columnsList::-webkit-scrollbar-thumb {
+    width: 637px;
   }
 }
 

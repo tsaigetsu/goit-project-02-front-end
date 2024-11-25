@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import NewBoardForm from '../NewBoardForm/NewBoardForm';
 import SidebarBoardItem from '../SidebarBoardItem/SidebarBoardItem';
 import SvgIcon from '../SvgIcon/SvgIcon';
@@ -13,8 +13,10 @@ import {
 } from '../../redux/boards/operations.js';
 import icons from '../../data/icons.json';
 import EditBoardForm from '../EditBoardForm/EditBoardForm.jsx';
+import { SidebarContext } from '../Layout/Layout.jsx';
 
 const SidebarBoardList = () => {
+  const { toggleSidebar } = useContext(SidebarContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [activeBoardId, setActiveBoardId] = useState(null);
@@ -32,6 +34,7 @@ const SidebarBoardList = () => {
 
       setSelectedBoardData(board);
       setActiveBoardId(boardId);
+      toggleSidebar();
     } catch (error) {
       console.error(error);
     }

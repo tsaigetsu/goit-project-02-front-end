@@ -2,4 +2,18 @@
   height: 100%;
   display: flex;
   width: 100%;
+  padding-left: 20px;
+  padding-bottom: 24px;
+}
+
+@media (min-width: 767px) {
+  .wrapperMainDashboard {
+    padding-bottom: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .wrapperMainDashboard {
+    padding-bottom: 24px;
+  }
 }
