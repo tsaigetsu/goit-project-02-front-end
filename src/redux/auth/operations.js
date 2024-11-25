@@ -90,23 +90,23 @@ export const currentUserThunk = createAsyncThunk(
   }
 );
 
-export const fetchUserProfile = createAsyncThunk(
-  'user/fetchUserProfile',
-  async (_, thunkAPI) => {
-    try {
-      const response = await api.get('/user/profile');
+// export const fetchUserProfile = createAsyncThunk(
+//   'user/fetchUserProfile',
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await api.get('/user/profile'); // Эндпоинт не требует ID
 
-      return response.data.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  },
-  {
-    condition(_, { getState }) {
-      return !getState().auth.user._id;
-    },
-  }
-);
+//       return response.data.data; // Возвращаем данные пользователя
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.response.data);
+//     }
+//   },
+//   {
+//     condition(_, { getState }) {
+//       return !getState().auth.user._id;
+//     },
+//   }
+// );
 
 export const updateUserAvatar = createAsyncThunk(
   'user/updateUserAvatar',

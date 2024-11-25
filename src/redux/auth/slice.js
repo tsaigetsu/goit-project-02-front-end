@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   currentUserThunk,
-  fetchUserProfile,
+  // fetchUserProfile,
   logoutThunk,
   updateUserAvatar,
 } from './operations.js';
@@ -28,8 +28,6 @@ const slice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(registerThunk.fulfilled, (state, action) => {
-        console.log('user', action.payload.data.user);
-        console.log('token', action.payload.accessToken);
         state.user = action.payload.data.user;
         state.token = action.payload.accessToken;
         state.isLoggedIn = true;
@@ -65,10 +63,10 @@ const slice = createSlice({
       .addCase(currentUserThunk.rejected, state => {
         state.isRefreshing = false;
       })
-      .addCase(fetchUserProfile.fulfilled, (state, action) => {
-        state.isLoggedIn = true;
-        state.user = action.payload;
-      })
+      // .addCase(fetchUserProfile.fulfilled, (state, action) => {
+      //   state.isLoggedIn = true;
+      //   state.user = action.payload;
+      // })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.isRefreshing = false;

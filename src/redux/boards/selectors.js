@@ -6,6 +6,10 @@ export const selectedBoard = state => {
   const board = state.boards.selectedBoard;
   return board;
 };
+export const selectedBoardById = (state, boardId) => {
+  const board = state.boards.find(board => board._id === boardId);
+  return board;
+};
 
 export const selectFilteredCardsByBoard = state => {
   const board = state.boards.selectedBoard;
