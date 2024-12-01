@@ -90,6 +90,19 @@ export const currentUserThunk = createAsyncThunk(
   }
 );
 
+// if (!savedToken) {
+//   return thunkAPI.rejectWithValue('No token found');
+// }
+
+// try {
+//   setToken(savedToken);
+//   const response = await api.get('/user/profile');
+//   return response.data.data;
+// } catch (error) {
+//   clearToken();
+//   return thunkAPI.rejectWithValue(error.message);
+// }
+
 // export const fetchUserProfile = createAsyncThunk(
 //   'user/fetchUserProfile',
 //   async (_, thunkAPI) => {

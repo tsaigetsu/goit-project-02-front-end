@@ -5,6 +5,7 @@
   height: 61px;
   flex-grow: 1;
   padding-left: 14px;
+  transition: background-color var(--tns-cubic);
 }
 .li:hover {
   background-color: var(--active-board-bg-sidebar);

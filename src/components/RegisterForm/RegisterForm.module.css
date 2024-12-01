@@ -16,7 +16,6 @@
   width: 90%;
   max-width: 335px;
   height: fit-content;
-  box-sizing: border-box;
 }
 
 @media only screen and (min-width: 768px) {
@@ -64,7 +63,6 @@
 }
 
 .input {
-  box-sizing: border-box;
   color: #ffffff;
   background-color: #1f1f1f;
   border: 1px solid rgba(190, 219, 176, 0.4);
