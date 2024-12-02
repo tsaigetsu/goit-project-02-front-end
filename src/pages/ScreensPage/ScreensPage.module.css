@@ -3,7 +3,6 @@
   flex-direction: column;
   height: 100vh;
   /* height: calc(100vh-68px); */
-  box-sizing: border-box;
   width: 100%;
   background-size: cover;
   background-position: center;

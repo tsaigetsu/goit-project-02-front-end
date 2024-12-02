@@ -43,6 +43,8 @@
   --scroll-color: rgba(190, 219, 176, 0.5);
   --scroll-color-active: #bedbb0;
   --drag-ul: #000000;
+  --scroll-list-bg: #e8e8e8e6;
+  --scroll-list: #ffffff;
 }
 
 .theme-dark {
@@ -90,6 +92,8 @@
   --scroll-color: #302f2f;
   --scroll-color-active: #121212;
   --drag-ul: #ffffff;
+  --scroll-list-bg: #161616;
+  --scroll-list: #ffffff10;
 }
 
 .theme-violet {
@@ -137,6 +141,8 @@
   --scroll-color: rgba(82, 85, 188, 0.5);
   --scroll-color-active: rgb(82, 85, 188);
   --drag-ul: #ffffff;
+  --scroll-list-bg: #b8bcfd;
+  --scroll-list: #ffffff;
 }
 
 .homePage {

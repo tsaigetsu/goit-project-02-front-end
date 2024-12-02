@@ -19,7 +19,7 @@
 }
 
 .createBoardText {
-  width: 76px;
+  max-width: 76px;
   color: var(--active-color-sidebar);
   font-family: Poppins, sans-serif;
   font-size: 14px;
