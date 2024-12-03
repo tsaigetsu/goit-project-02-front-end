@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 export const logoutThunk = createAsyncThunk('logout', async (_, thunkAPI) => {
   try {
     clearToken();
+    localStorage.removeItem('token');
 
     await api.post('auth/logout');
   } catch (error) {
@@ -72,36 +73,20 @@ export const currentUserThunk = createAsyncThunk(
   async (_, thunkAPI) => {
     const savedToken = thunkAPI.getState().auth.token;
 
-    try {
-      if (savedToken) {
-        setToken(savedToken);
-      }
-      const response = await api.get('/user/profile');
+    if (!savedToken) {
+      return thunkAPI.rejectWithValue('No token found');
+    }
 
+    try {
+      setToken(savedToken);
+      const response = await api.get('/user/profile');
       return response.data.data;
     } catch (error) {
+      clearToken();
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
-  {
-    condition(_, { getState }) {
-      return Boolean(getState().auth.token);
-    },
   }
 );
-
-// if (!savedToken) {
-//   return thunkAPI.rejectWithValue('No token found');
-// }
-
-// try {
-//   setToken(savedToken);
-//   const response = await api.get('/user/profile');
-//   return response.data.data;
-// } catch (error) {
-//   clearToken();
-//   return thunkAPI.rejectWithValue(error.message);
-// }
 
 // export const fetchUserProfile = createAsyncThunk(
 //   'user/fetchUserProfile',
