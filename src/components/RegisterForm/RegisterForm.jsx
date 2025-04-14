@@ -8,6 +8,7 @@ import { useState } from 'react';
 import SvgIcon from '../SvgIcon/SvgIcon';
 import { useDispatch } from 'react-redux';
 import { registerThunk } from '../../redux/auth/operations.js';
+import toast from 'react-hot-toast';
 
 const validateFormSchema = Yup.object().shape({
   name: Yup.string()
@@ -55,8 +56,25 @@ const RegisterForm = () => {
   });
 
   const onSubmit = data => {
-    dispatch(registerThunk(data));
-
+    dispatch(registerThunk(data))
+      .unwrap()
+      .then(response => {
+        toast.success(
+          `Welcome! You are successfully registered, ${response.data.user.name}`,
+          {
+            duration: 3000,
+            position: 'top-center',
+            icon: '✔️',
+          }
+        );
+      })
+      .catch(() => {
+        toast.error('This email is already registered', {
+          duration: 3000,
+          position: 'top-center',
+          icon: '❌',
+        });
+      });
     reset();
   };
 

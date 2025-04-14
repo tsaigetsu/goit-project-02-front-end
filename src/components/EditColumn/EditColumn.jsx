@@ -3,6 +3,7 @@ import SvgIcon from '../SvgIcon/SvgIcon';
 import css from './EditColumn.module.css';
 import { onEditColumn } from '../../redux/columns/operations';
 import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 
 const EditColumn = ({ title, setIsEdit, columnId }) => {
   const [newTitle, setNewTitle] = useState(title);
@@ -15,7 +16,22 @@ const EditColumn = ({ title, setIsEdit, columnId }) => {
   const handleUpdateColumn = () => {
     setIsEdit(false);
     const updateColumn = { title: newTitle };
-    dispatch(onEditColumn({ columnId, updateColumn }));
+    dispatch(onEditColumn({ columnId, updateColumn }))
+      .unwrap()
+      .then(() => {
+        toast.success('Column updated successfully!', {
+          duration: 3000,
+          position: 'top-center',
+          icon: '✔️',
+        });
+      })
+      .catch(error => {
+        toast.error('Failed to update column: ' + error.message, {
+          duration: 3000,
+          position: 'top-center',
+          icon: '❌',
+        });
+      });
   };
 
   useEffect(() => {
@@ -25,19 +41,16 @@ const EditColumn = ({ title, setIsEdit, columnId }) => {
       }
     };
 
-    // Подписываемся на событие `keydown` при монтировании компонента
     document.addEventListener('keydown', handleEscape);
 
-    // Очищаем подписку при размонтировании компонента
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
   }, [closeModal]);
 
-  // Обработчик для клика по бекдропу
   const handleBackdropClick = event => {
     if (event.target === event.currentTarget) {
-      closeModal(); // Закрываем модалку при клике по бекдропу
+      closeModal();
     }
   };
   const handleKeyDown = event => {

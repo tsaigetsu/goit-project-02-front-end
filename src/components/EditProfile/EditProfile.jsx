@@ -7,6 +7,7 @@ import SvgIcon from '../SvgIcon/SvgIcon';
 import ThemedIcon from '../ThemedIcon/ThemedIcon.jsx';
 import { useDispatch } from 'react-redux';
 import { updateUserAvatar } from '../../redux/auth/operations.js';
+import toast from 'react-hot-toast';
 
 const validateFormSchema = Yup.object().shape({
   name: Yup.string()
@@ -62,7 +63,27 @@ const EditProfile = ({ userData, onClose }) => {
       name: data.name,
       email: data.email,
     };
-    dispatch(updateUserAvatar(updatedUserData));
+
+    if (data.password.trim()) {
+      updatedUserData.password = data.password;
+    }
+
+    dispatch(updateUserAvatar(updatedUserData))
+      .unwrap()
+      .then(() => {
+        toast.success('User updated successfully!', {
+          duration: 3000,
+          position: 'top-center',
+          icon: '✔️',
+        });
+      })
+      .catch(error => {
+        toast.error('Failed to update user: ' + error.message, {
+          duration: 3000,
+          position: 'top-center',
+          icon: '❌',
+        });
+      });
     onClose();
   };
 

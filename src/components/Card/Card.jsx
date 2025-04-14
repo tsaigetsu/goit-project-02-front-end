@@ -7,6 +7,7 @@ import { deleteCard, moveCardToColumn } from '../../redux/cards/operations.js';
 import EditCardPopup from '../EditCardPopup/EditCardPopup.jsx';
 import InProgressModal from '../InProgressModal/InProgressModal.jsx';
 import { selectedBoard } from '../../redux/boards/selectors.js';
+import toast from 'react-hot-toast';
 
 const Card = React.memo(({ card }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -34,7 +35,22 @@ const Card = React.memo(({ card }) => {
 
   const onDelete = useCallback(() => {
     if (columnId && _id) {
-      dispatch(deleteCard(_id));
+      dispatch(deleteCard(_id))
+        .unwrap()
+        .then(() => {
+          toast.success('Card deleted!', {
+            duration: 3000,
+            position: 'top-center',
+            icon: '✔️',
+          });
+        })
+        .catch(error => {
+          toast.error('Failed to delete card: ' + error.message, {
+            duration: 3000,
+            position: 'top-center',
+            icon: '❌',
+          });
+        });
       closeModal();
     }
   }, [columnId, _id, dispatch, closeModal]);
@@ -50,7 +66,22 @@ const Card = React.memo(({ card }) => {
   const filteredColumns = columns.filter(col => col._id !== columnId);
 
   const handleMoveCard = columnId => {
-    dispatch(moveCardToColumn({ cardId: _id, columnId }));
+    dispatch(moveCardToColumn({ cardId: _id, columnId }))
+      .unwrap()
+      .then(() => {
+        toast.success('Card moved successfully!', {
+          duration: 3000,
+          position: 'top-center',
+          icon: '✔️',
+        });
+      })
+      .catch(error => {
+        toast.error('Failed to move card: ' + error.message, {
+          duration: 3000,
+          position: 'top-center',
+          icon: '❌',
+        });
+      });
     setIsModalChange(false);
   };
   useEffect(() => {

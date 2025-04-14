@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { updateCard } from '../../redux/cards/operations.js';
 import s from './EditCardPopup.module.css';
 import { useCallback, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const EditCardPopup = ({ card, setIsEdit, updateDeadlineStatus }) => {
   const { _id, title, description, deadline, priority, columnId } = card;
@@ -66,7 +67,22 @@ const EditCardPopup = ({ card, setIsEdit, updateDeadlineStatus }) => {
       columnId,
     };
 
-    dispatch(updateCard({ _id, data }));
+    dispatch(updateCard({ _id, data }))
+      .unwrap()
+      .then(() => {
+        toast.success('Card updated successfully!', {
+          duration: 3000,
+          position: 'top-center',
+          icon: '✔️',
+        });
+      })
+      .catch(error => {
+        toast.error('Failed to update card: ' + error.message, {
+          duration: 3000,
+          position: 'top-center',
+          icon: '❌',
+        });
+      });
     setIsEdit(false);
   };
 

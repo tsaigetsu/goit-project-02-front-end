@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const api = axios.create({
   baseURL: 'https://goit-project-02-back-end.onrender.com/',
+  withCredentials: true,
 });
 
 export const setToken = token => {
@@ -13,7 +14,7 @@ export const clearToken = () => {
   const token = localStorage.getItem('token');
 
   if (token) {
-    api.defaults.headers.common.Authorization = ``;
+    api.defaults.headers.common.Authorization = '';
     localStorage.removeItem('token');
   }
 };

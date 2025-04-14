@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectUserData } from '../../redux/auth/selectors.js';
 import { useState } from 'react';
 import ThemedIcon from '../ThemedIcon/ThemedIcon.jsx';
+import Loader from '../Loader/Loader.jsx';
 
 export default function UserInfo() {
   const userData = useSelector(selectUserData);
@@ -11,6 +12,8 @@ export default function UserInfo() {
   const handleEditModal = () => {
     setIsEditModal(true);
   };
+
+  if (!userData) return <Loader />;
 
   return (
     <div className={css.userInfo}>

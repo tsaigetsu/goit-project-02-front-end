@@ -73,11 +73,9 @@ const slice = createSlice({
         }
       })
       .addCase(updateBoardThunk.rejected, (state, action) => {
-        // console.error('Failed to update board:', action.error?.message);
         state.loading = false;
         state.error = action.error?.message;
       })
-      //COLUMNS
       .addCase(onCreateColumn.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
@@ -171,9 +169,9 @@ const slice = createSlice({
       })
       .addCase(filterCardsByPriorityThunk.fulfilled, (state, action) => {
         const { boardId, filteredBoard } = action.payload;
-        const boardIndex = state.findIndex(b => b._id === boardId);
+        const boardIndex = state.boards.findIndex(b => b._id === boardId);
         if (boardIndex !== -1) {
-          state[boardIndex].columns = filteredBoard; // Обновляем колонки для борда
+          state.boards[boardIndex].columns = filteredBoard;
         }
       })
       .addMatcher(

@@ -12,19 +12,27 @@ import LoginForm from './components/LoginForm/LoginForm';
 import HomePage from './pages/HomePage/HomePage';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsRefreshing } from './redux/auth/selectors';
+import { selectIsRefreshing, selectToken } from './redux/auth/selectors';
 import Loader from './components/Loader/Loader';
 import { ThemeProvider } from './components/Layout/ThemeContext.jsx';
-import { currentUserThunk } from './redux/auth/operations.js';
+import { setToken as setReduxToken } from './redux/auth/slice.js';
+import { setToken as setApiToken } from './api.js';
 import { useEffect } from 'react';
+import { currentUserThunk } from './redux/auth/operations.js';
 
 function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
+  // const token = useSelector(selectToken);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(currentUserThunk());
-  }, [dispatch]);
+    const savedToken = localStorage.getItem('token');
+    if (savedToken) {
+      setApiToken(savedToken);
+      dispatch(setReduxToken(savedToken));
+      dispatch(currentUserThunk());
+    }
+  }, []);
 
   return (
     <>
@@ -55,7 +63,6 @@ function App() {
         >
           <Route path=":boardId" element={<ScreensPage />} />
         </Route>
-        {/* <Route path="/home" element={<HomePage />}/> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

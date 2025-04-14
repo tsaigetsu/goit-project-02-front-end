@@ -1,4 +1,4 @@
-import { useContext, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import React from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import ScreensPage from '../ScreensPage/ScreensPage';
@@ -8,12 +8,22 @@ import { SidebarContext } from '../../components/Layout/Layout.jsx';
 // import { useContext } from "react";
 import Layout from '../../components/Layout/Layout.jsx';
 import ThemeContext from '../../components/Layout/ThemeContext.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { currentUserThunk } from '../../redux/auth/operations.js';
+import { selectToken } from '../../redux/auth/selectors.js';
 
 const HomePage = () => {
   const { isSidebarOpen } = useContext(SidebarContext);
   const { theme } = useContext(ThemeContext);
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
 
-  // Мемоизация классов для предотвращения лишних ререндеров
+  // useEffect(() => {
+  //   if (token) {
+  //     dispatch(currentUserThunk());
+  //   }
+  // }, [currentUserThunk, token]);
+
   const sidebarClass = useMemo(
     () => (isSidebarOpen ? 'aside open' : 'aside'),
     [isSidebarOpen]
@@ -34,7 +44,6 @@ const HomePage = () => {
   );
 };
 
-// Мемоизация компонентов для предотвращения лишних ререндеров
 const MemoizedSidebar = React.memo(Sidebar);
 const MemoizedHeader = React.memo(Header);
 const MemoizedScreensPage = React.memo(ScreensPage);

@@ -10,6 +10,7 @@ import s from './ModalNeedHelp.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserData } from '../../redux/auth/selectors';
 import { sendHelpCommentThunk } from '../../redux/auth/operations';
+import toast from 'react-hot-toast';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -65,28 +66,19 @@ const ModalNeedHelp = ({ isOpen, onClose }) => {
     }, 300);
   };
 
-  // const onSubmit = async (data) => {
-  //   setIsSubmitting(true);
-  //   try {
-  //     await new Promise((resolve) => setTimeout(resolve, 1000));
-  //     reset();
-  //     handleFormClose();
-  //     toast.success("Email sent to tech support. We'll reply soon!", {
-  //       duration: 4000,
-  //       position: "bottom-center",
-  //       icon: "✔️",
-  //     });
-  //   } catch (error) {
-  //     console.error("Error sending data:", error);
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
-
   const onSubmit = async data => {
     setIsSubmitting(true);
     try {
-      await dispatch(sendHelpCommentThunk(data));
+      await dispatch(sendHelpCommentThunk(data))
+        .unwrap()
+        .then(() => {
+          toast.success("Email sent to tech support. We'll reply soon!", {
+            duration: 3000,
+            position: 'top-center',
+            icon: '✔️',
+          });
+        })
+        .catch(() => {});
       reset();
       handleFormClose();
     } catch (error) {
