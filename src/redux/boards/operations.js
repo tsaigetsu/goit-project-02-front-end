@@ -72,11 +72,10 @@ export const filterCardsByPriorityThunk = createAsyncThunk(
   'boards/filterCardsByPriority',
   async ({ boardId, priority }, { getState }) => {
     const state = getState();
-    const board = state.boards.find(b => b._id === boardId);
+    const board = state.boards.boards.find(b => b._id === boardId);
 
-    if (!board) return []; // Если нет такого борда, возвращаем пустой массив
+    if (!board || !board.columns) return [];
 
-    // Фильтруем карточки в пределах колонок
     const filteredBoard = board.columns.map(column => ({
       ...column,
       tasks: column.tasks.filter(
@@ -84,6 +83,6 @@ export const filterCardsByPriorityThunk = createAsyncThunk(
       ),
     }));
 
-    return { boardId, filteredBoard }; // Возвращаем только отфильтрованные данные для данного борда
+    return { boardId, filteredBoard };
   }
 );

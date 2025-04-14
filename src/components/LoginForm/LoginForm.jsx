@@ -8,6 +8,7 @@ import SvgIcon from '../SvgIcon/SvgIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk } from '../../redux/auth/operations.js';
 import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
+import toast from 'react-hot-toast';
 
 const validateFormSchema = Yup.object().shape({
   email: Yup.string()
@@ -50,7 +51,22 @@ const LoginForm = () => {
   });
 
   const onSubmit = data => {
-    dispatch(loginThunk(data));
+    dispatch(loginThunk(data))
+      .unwrap()
+      .then(user => {
+        toast.success(`Welcome back, ${user}`, {
+          duration: 3000,
+          position: 'top-center',
+          icon: '✔️',
+        });
+      })
+      .catch(() => {
+        toast.error('Incorrect email or password', {
+          duration: 3000,
+          position: 'top-center',
+          icon: '❌',
+        });
+      });
     reset();
   };
 

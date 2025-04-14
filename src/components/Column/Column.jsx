@@ -6,6 +6,7 @@ import { ModalDelete } from '../ModalDelete/ModalDelete';
 import CardManager from '../CardManager/CardManager';
 import { onDeleteColumn } from '../../redux/columns/operations';
 import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 
 const Column = ({ title, columnId, boardId, column }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -14,7 +15,22 @@ const Column = ({ title, columnId, boardId, column }) => {
 
   const onDelete = () => {
     if (columnId && boardId) {
-      dispatch(onDeleteColumn(columnId));
+      dispatch(onDeleteColumn(columnId))
+        .unwrap()
+        .then(() => {
+          toast.success('Column deleted!', {
+            duration: 3000,
+            position: 'top-center',
+            icon: '✔️',
+          });
+        })
+        .catch(error => {
+          toast.error('Failed to delete column: ' + error.message, {
+            duration: 3000,
+            position: 'top-center',
+            icon: '❌',
+          });
+        });
       closeModal();
     }
   };

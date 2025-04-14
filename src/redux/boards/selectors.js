@@ -1,15 +1,9 @@
-export const selectBoards = state => {
-  const boards = state.boards.boards;
-  return boards;
-};
-export const selectedBoard = state => {
-  const board = state.boards.selectedBoard;
-  return board;
-};
-export const selectedBoardById = (state, boardId) => {
-  const board = state.boards.find(board => board._id === boardId);
-  return board;
-};
+export const selectBoards = state => state.boards.boards;
+
+export const selectedBoard = state => state.boards.selectedBoard;
+
+export const selectedBoardById = (state, boardId) =>
+  state.boards.boards.find(board => board._id === boardId);
 
 export const selectFilteredCardsByBoard = state => {
   const board = state.boards.selectedBoard;

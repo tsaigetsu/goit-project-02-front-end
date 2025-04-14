@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { addCard } from '../../redux/cards/operations.js';
 import s from './AddCardPopup.module.css';
 import { useCallback, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const AddCardPopup = ({ setIsCardVisible, columnId }) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
@@ -63,7 +64,22 @@ const AddCardPopup = ({ setIsCardVisible, columnId }) => {
       columnId,
     };
 
-    dispatch(addCard(data));
+    dispatch(addCard(data))
+      .unwrap()
+      .then(() => {
+        toast.success('Card created successfully!', {
+          duration: 3000,
+          position: 'top-center',
+          icon: '✔️',
+        });
+      })
+      .catch(error => {
+        toast.error('Failed to create column: ' + error.message, {
+          duration: 3000,
+          position: 'top-center',
+          icon: '❌',
+        });
+      });
     setIsCardVisible(false);
   };
 

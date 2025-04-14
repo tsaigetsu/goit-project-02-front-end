@@ -1,28 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   currentUserThunk,
-  // fetchUserProfile,
   logoutThunk,
   updateUserAvatar,
 } from './operations.js';
 import { loginThunk, registerThunk } from './operations.js';
 
-const initialState = {
-  user: null,
-  token: null,
-  isLoggedIn: false,
-  isRefreshing: false,
-  error: null,
-};
-
 const slice = createSlice({
   name: 'auth',
-  initialState,
-
+  initialState: {
+    user: null,
+    token: null,
+    isLoggedIn: false,
+    isRefreshing: false,
+    error: null,
+  },
+  reducers: {
+    setToken(state, action) {
+      state.token = action.payload;
+      state.isLoggedIn = true;
+    },
+  },
   extraReducers: builder => {
     builder
-      .addCase(logoutThunk.fulfilled, () => {
-        return initialState;
+      .addCase(logoutThunk.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(logoutThunk.fulfilled, state => {
+        state.user = {
+          user: null,
+          token: null,
+        };
+        state.isLoggedIn = false;
+        state.isRefreshing = false;
+        state.error = null;
+      })
+      .addCase(logoutThunk.rejected, state => {
+        state.isRefreshing = false;
       })
       .addCase(registerThunk.pending, state => {
         state.isRefreshing = true;
@@ -44,7 +58,7 @@ const slice = createSlice({
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.user = action.payload.userData;
-        state.token = action.payload.token;
+        state.token = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -52,20 +66,28 @@ const slice = createSlice({
         state.isLoggedIn = false;
         state.isRefreshing = false;
       })
+      .addCase(currentUserThunk.pending, state => {
+        state.isRefreshing = true;
+      })
       .addCase(currentUserThunk.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addCase(currentUserThunk.pending, state => {
-        state.isRefreshing = true;
-      })
       .addCase(currentUserThunk.rejected, state => {
         state.isRefreshing = false;
       })
-      // .addCase(fetchUserProfile.fulfilled, (state, action) => {
+      // .addCase(refresh.pending, state => {
+      //   state.isRefreshing = true;
+      // })
+      // .addCase(refresh.fulfilled, (state, action) => {
+      //   state.user = action.payload.user;
+      //   state.token = action.payload.accessToken;
       //   state.isLoggedIn = true;
-      //   state.user = action.payload;
+      //   state.isRefreshing = false;
+      // })
+      // .addCase(refresh.rejected, state => {
+      //   state.isRefreshing = false;
       // })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.isLoggedIn = true;

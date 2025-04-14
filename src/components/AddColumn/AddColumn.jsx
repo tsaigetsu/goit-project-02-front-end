@@ -44,7 +44,22 @@ const AddColumn = ({ setIsOpen }) => {
     }
 
     const newColumn = { title: trimmedTitle, boardId: _id };
-    dispatch(onCreateColumn(newColumn));
+    dispatch(onCreateColumn(newColumn))
+      .unwrap()
+      .then(() => {
+        toast.success('Column created successfully!', {
+          duration: 3000,
+          position: 'top-center',
+          icon: '✔️',
+        });
+      })
+      .catch(error => {
+        toast.error('Failed to create column: ' + error.message, {
+          duration: 3000,
+          position: 'top-center',
+          icon: '❌',
+        });
+      });
     setIsOpen(false);
     setTitle('');
   };
