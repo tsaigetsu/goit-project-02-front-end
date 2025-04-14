@@ -18,11 +18,11 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
 
-  useEffect(() => {
-    if (token) {
-      dispatch(currentUserThunk());
-    }
-  }, [currentUserThunk, token]);
+  // useEffect(() => {
+  //   if (token) {
+  //     dispatch(currentUserThunk());
+  //   }
+  // }, [currentUserThunk, token]);
 
   const sidebarClass = useMemo(
     () => (isSidebarOpen ? 'aside open' : 'aside'),

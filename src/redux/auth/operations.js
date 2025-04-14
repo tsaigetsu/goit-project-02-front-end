@@ -9,7 +9,6 @@ export const registerThunk = createAsyncThunk(
       const { data } = await api.post('/auth/register', credentials);
 
       setToken(data.accessToken);
-      console.log(data);
 
       return data;
     } catch (error) {
@@ -22,21 +21,15 @@ export const loginThunk = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      // const { data } = await api.post('/auth/login', credentials);
+      const { data } = await api.post('/auth/login', credentials);
 
       // localStorage.setItem('token', data.data.accessToken);
-      // setToken(data.data.accessToken);
-      // const token = data.data.accessToken;
-      // const response = await api.get('/user/profile');
-      // const userData = response.data.data;
-
-      // return { token, userData }; //верно!!!
-
-      const { data } = await api.post('/auth/login', credentials);
+      setToken(data.data.accessToken);
       const token = data.data.accessToken;
+      const response = await api.get('/user/profile');
+      const userData = response.data.data;
 
-      setToken(token); // зберігає в headers і localStorage
-      return token; // тільки токен повертаєш
+      return { token, userData }; //верно!!!
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

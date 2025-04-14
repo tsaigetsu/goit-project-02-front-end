@@ -54,7 +54,7 @@ const LoginForm = () => {
     dispatch(loginThunk(data))
       .unwrap()
       .then(user => {
-        toast.success(`Welcome back, ${user}`, {
+        toast.success(`Welcome back, ${user.userData.name}`, {
           duration: 3000,
           position: 'top-center',
           icon: '✔️',

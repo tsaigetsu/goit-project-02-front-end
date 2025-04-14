@@ -64,6 +64,10 @@ const EditProfile = ({ userData, onClose }) => {
       email: data.email,
     };
 
+    if (data.password.trim()) {
+      updatedUserData.password = data.password;
+    }
+
     dispatch(updateUserAvatar(updatedUserData))
       .unwrap()
       .then(() => {

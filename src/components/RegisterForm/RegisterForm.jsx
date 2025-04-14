@@ -60,7 +60,7 @@ const RegisterForm = () => {
       .unwrap()
       .then(response => {
         toast.success(
-          `Welcome! You are successfully registered, ${response.user}`,
+          `Welcome! You are successfully registered, ${response.data.user.name}`,
           {
             duration: 3000,
             position: 'top-center',
@@ -75,7 +75,7 @@ const RegisterForm = () => {
           icon: '❌',
         });
       });
-    X % reset();
+    reset();
   };
 
   return (

@@ -73,11 +73,9 @@ const slice = createSlice({
         }
       })
       .addCase(updateBoardThunk.rejected, (state, action) => {
-        // console.error('Failed to update board:', action.error?.message);
         state.loading = false;
         state.error = action.error?.message;
       })
-      //COLUMNS
       .addCase(onCreateColumn.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;

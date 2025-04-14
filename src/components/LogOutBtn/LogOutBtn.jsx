@@ -3,7 +3,6 @@ import SvgIcon from '../SvgIcon/SvgIcon';
 import s from './LogOutBtn.module.css';
 import { logoutThunk } from '../../redux/auth/operations.js';
 const LogOutBtn = () => {
-  // console.log('Вызов действия логаута');
   const dispatch = useDispatch();
   return (
     <button className={s.btn} onClick={() => dispatch(logoutThunk())}>

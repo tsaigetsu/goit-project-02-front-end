@@ -14,7 +14,7 @@ export const clearToken = () => {
   const token = localStorage.getItem('token');
 
   if (token) {
-    api.defaults.headers.common.Authorization = ``;
+    api.defaults.headers.common.Authorization = '';
     localStorage.removeItem('token');
   }
 };

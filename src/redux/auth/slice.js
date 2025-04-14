@@ -4,6 +4,7 @@ import {
   logoutThunk,
   updateUserAvatar,
 } from './operations.js';
+import { clearToken as clearApiToken } from '../../api.js';
 import { loginThunk, registerThunk } from './operations.js';
 
 const slice = createSlice({
@@ -27,10 +28,8 @@ const slice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(logoutThunk.fulfilled, state => {
-        state.user = {
-          user: null,
-          token: null,
-        };
+        state.user = null;
+        state.token = null;
         state.isLoggedIn = false;
         state.isRefreshing = false;
         state.error = null;
@@ -58,7 +57,7 @@ const slice = createSlice({
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.user = action.payload.userData;
-        state.token = action.payload;
+        state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -75,7 +74,13 @@ const slice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(currentUserThunk.rejected, state => {
+        state.token = null;
+        state.user = null;
+        state.isLoggedIn = false;
         state.isRefreshing = false;
+        clearApiToken();
+        localStorage.removeItem('token');
+        localStorage.removeItem('persist:auth');
       })
       // .addCase(refresh.pending, state => {
       //   state.isRefreshing = true;
@@ -107,7 +112,7 @@ const slice = createSlice({
 });
 
 // Экшены для слайса
-export const { setToken, clearToken, setUser, clearUser } = slice.actions;
+export const { setToken } = slice.actions;
 
 // Экспорт редьюсера
 export const authReducer = slice.reducer; // Экспорт редьюсера слайса

@@ -18,20 +18,21 @@ import { ThemeProvider } from './components/Layout/ThemeContext.jsx';
 import { setToken as setReduxToken } from './redux/auth/slice.js';
 import { setToken as setApiToken } from './api.js';
 import { useEffect } from 'react';
-// import { currentUserThunk } from './redux/auth/operations.js';
+import { currentUserThunk } from './redux/auth/operations.js';
 
 function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
-  const token = useSelector(selectToken);
+  // const token = useSelector(selectToken);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (token) {
-      setApiToken(token);
-      dispatch(setReduxToken(token));
-      // dispatch(currentUserThunk());
+    const savedToken = localStorage.getItem('token');
+    if (savedToken) {
+      setApiToken(savedToken);
+      dispatch(setReduxToken(savedToken));
+      dispatch(currentUserThunk());
     }
-  }, [dispatch, token]);
+  }, []);
 
   return (
     <>
